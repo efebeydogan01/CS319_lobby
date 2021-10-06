@@ -9,5 +9,5 @@ description will be written
 * [Arda Önal](https://github.com/ardaOnal)
 * [Emir Melih Erdem](https://github.com/emirmeliherdem)
 * [Eren Polat](https://github.com/erenpolat)
-* Mert Barkın Er
+* [Mert Barkın Er](https://github.com/Mert-Barkin-Er)
 * [Gökberk Beydemir](https://github.com/gokberkbeydemir)
