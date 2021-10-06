@@ -10,4 +10,4 @@ description will be written
 * [Emir Melih Erdem](https://github.com/emirmeliherdem)
 * [Eren Polat](https://github.com/erenpolat)
 * Mert Barkın Er
-* Gökberk Beydemir
+* [Gökberk Beydemir](https://github.com/gokberkbeydemir)
