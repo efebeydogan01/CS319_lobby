@@ -26,7 +26,7 @@ The software will be used to keep track of the COVID pandemic in the campus, suc
 #### Features for contacting the university regarding the pandemic:
 - Violation report system so users can report violations they observe in the campus 
 - Request form to the university for suggestions on COVID related precautions (addition of disinfectants to certain places etc.). The suggestions will be displayed in a table for every user to see and upvote/downvote so suggestions with support from a lot of people can be ranked higher for review.
--Feedback form to receive feedback from the users about the app and increase service quality
+- Feedback form to receive feedback from the users about the app and increase service quality
 
 #### Other features:
 - Feature to add friends so the user can track their friends' statuses as well  
