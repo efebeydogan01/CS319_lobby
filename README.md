@@ -1,8 +1,22 @@
 # CS319_lobby_Group1A
-CS319 lobby pandemic manager project
+A pandemic manager for Bilkent University
 
 ## Description
-description will be written
+The software will be used to keep track of the COVID pandemic in the campus, such as positive individuals and test results. It will feature the following high level functions:  
+1. Display the COVID status of the user (positive/negative, vaccinated/unvaccinated, riskless/contacted etc.)  
+2. Vaccination information: Vaccination date, vaccine type (BioNtech/Sinovac etc.), number of doses  
+3. Test results: PCR/Diagnovir test results if available  
+4. Getting Diagnovir test appointment
+5. Showing university wide stats (1st dose/2nd dose percentage, total number of doses, number of applied doses(1st/2nd dose), number of tests, number of current cases)
+7. Statuses of other people in the sections of the user's registered courses  
+8. Feature to add friends so the user can track their friends' statuses as well  
+9. Shows if the user has contracted COVID previously  
+10. Ability to upload official vaccination card so vaccination information can be automatically filled out  
+11. Sending notifications based on changes in the COVID status of either the user or their friends/classmates  
+12. Displaying the QR code of the user so others can scan it with their phone and view their HES information  
+13. Violation report system so users can report violations they observe in the campus  
+
+
 
 ## Group Members
 * [Efe Beydoğan](https://github.com/efebeydogan01)
