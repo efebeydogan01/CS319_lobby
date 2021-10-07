@@ -5,20 +5,21 @@ A pandemic manager for Bilkent University
 The software will be used to keep track of the COVID pandemic in the campus, such as positive individuals and test results. It will include the following features:  
 1. Display information about user (Name, Bilkent ID, Turkey identification number etc.) 
 2. Display the COVID status of the user (positive/negative, vaccinated/unvaccinated, riskless/contacted, allowed on campus etc.)
-3. Vaccination information: Vaccination date, vaccine type (BioNtech/Sinovac etc.), number of doses  
-4. Test results: PCR/Diagnovir test results if available  
-5. Getting Diagnovir test appointment
-6. Showing university wide stats (1st dose/2nd dose percentage, total number of doses, number of applied doses(1st/2nd dose), number of tests, number of current cases)
-7. Statuses of other people in the sections of the user's registered courses  
-8. Feature to add friends so the user can track their friends' statuses as well  
-9. Shows if the user has contracted COVID previously  
-10. Ability to upload official vaccination card so vaccination information can be automatically filled out  
-11. Sending notifications based on changes in the COVID status of either the user or their friends/classmates  
-12. Displaying the QR code of the user so others can scan it with their phone and view their HES information  
-13. Violation report system so users can report violations they observe in the campus 
-14. Weekly COVID Report
-15. COVID guidelines specified by the university will be displayed.
-16. Request form to the university for suggestions on COVID related precautions (addition of disinfectants to certain places etc.)
+3. Track the COVID status of the people contacted by the user (neighbours in class, on Bilkent rings) and update user's risk status
+4. Vaccination information: Vaccination date, vaccine type (BioNtech/Sinovac etc.), number of doses  
+5. Test results: PCR/Diagnovir test results if available  
+6. Getting Diagnovir test appointment
+7. Showing university wide stats (1st dose/2nd dose percentage, total number of doses, number of applied doses(1st/2nd dose), number of tests, number of current cases)
+8. Statuses of other people in the sections of the user's registered courses  
+9. Feature to add friends so the user can track their friends' statuses as well  
+10. Shows if the user has contracted COVID previously  
+11. Ability to upload official vaccination card so vaccination information can be automatically filled out  
+12. Sending notifications based on changes in the COVID status of either the user or their friends/classmates  
+13. Displaying the QR code of the user so others can scan it with their phone and view their HES information  
+14. Violation report system so users can report violations they observe in the campus 
+15. Weekly COVID Report
+16. COVID guidelines specified by the university will be displayed.
+17. Request form to the university for suggestions on COVID related precautions (addition of disinfectants to certain places etc.)
 18. Request/evaluation form to receive feedback from the users and increase service quality
 
 
