@@ -2,12 +2,13 @@
 A pandemic manager for Bilkent University
 
 ## Description
-The software will be used to keep track of the COVID pandemic in the campus, such as positive individuals and test results. It will feature the following high level functions:  
-1. Display the COVID status of the user (positive/negative, vaccinated/unvaccinated, riskless/contacted etc.)  
-2. Vaccination information: Vaccination date, vaccine type (BioNtech/Sinovac etc.), number of doses  
-3. Test results: PCR/Diagnovir test results if available  
-4. Getting Diagnovir test appointment
-5. Showing university wide stats (1st dose/2nd dose percentage, total number of doses, number of applied doses(1st/2nd dose), number of tests, number of current cases)
+The software will be used to keep track of the COVID pandemic in the campus, such as positive individuals and test results. It will include the following features:  
+1. Display information about user (Name, Bilkent ID, Turkey identification number etc.) 
+2. Display the COVID status of the user (positive/negative, vaccinated/unvaccinated, riskless/contacted etc.)
+3. Vaccination information: Vaccination date, vaccine type (BioNtech/Sinovac etc.), number of doses  
+4. Test results: PCR/Diagnovir test results if available  
+5. Getting Diagnovir test appointment
+6. Showing university wide stats (1st dose/2nd dose percentage, total number of doses, number of applied doses(1st/2nd dose), number of tests, number of current cases)
 7. Statuses of other people in the sections of the user's registered courses  
 8. Feature to add friends so the user can track their friends' statuses as well  
 9. Shows if the user has contracted COVID previously  
