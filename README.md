@@ -18,6 +18,8 @@ The software will be used to keep track of the COVID pandemic in the campus, suc
 13. Violation report system so users can report violations they observe in the campus 
 14. Weekly COVID Report
 15. COVID guidelines specified by the university will be displayed.
+16. Request form to the university for suggestions on COVID related precautions (addition of disinfectants to certain places etc.)
+18. Request/evaluation form to receive feedback from the users and increase service quality
 
 
 
