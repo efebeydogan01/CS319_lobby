@@ -15,7 +15,8 @@ The software will be used to keep track of the COVID pandemic in the campus, suc
 10. Ability to upload official vaccination card so vaccination information can be automatically filled out  
 11. Sending notifications based on changes in the COVID status of either the user or their friends/classmates  
 12. Displaying the QR code of the user so others can scan it with their phone and view their HES information  
-13. Violation report system so users can report violations they observe in the campus  
+13. Violation report system so users can report violations they observe in the campus 
+14. Weekly COVID-19 Report
 
 
 
