@@ -41,6 +41,12 @@ The software will be used to keep track of the COVID pandemic in the campus, suc
 - Display and send important announcements regarding the pandemic
 - Modify and regulate test appointments based on availability
 
+### *Features for health center employees:*
+
+- Ability to see every user's information
+- Ability to add the test results to the system
+- Ability to set the status of a user as potentially infected depending on physical examination
+
 
 
 
