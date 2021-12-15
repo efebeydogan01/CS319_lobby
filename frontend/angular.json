@@ -30,6 +30,7 @@
               "src/styles.css"
             ],
             "scripts": [
+              "src/assets/js/fontawesome.js",
               "src/assets/js/core/popper.min.js",
               "src/assets/js/core/bootstrap.min.js",
               "src/assets/js/core/jquery-3.6.0.min.js",
