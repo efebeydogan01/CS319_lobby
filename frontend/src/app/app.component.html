@@ -1,9 +1,9 @@
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>
-    Pandemica by Lobby
-  </title>
-</head>
-
-<router-outlet></router-outlet>
+<app-sidebar *ngIf="router.url !== '/'"></app-sidebar>
+<main class="main-content position-relative max-height-vh-100 h-100 mt-1 border-radius-lg ">
+  <!-- Navbar -->
+  <app-topbar *ngIf="router.url !== '/'"></app-topbar>
+  <!-- End Navbar -->
+  <div class="container-fluid py-4">
+    <router-outlet></router-outlet>
+  </div>
+</main>
