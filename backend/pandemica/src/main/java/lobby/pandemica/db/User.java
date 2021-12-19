@@ -18,42 +18,50 @@ import java.util.UUID;
 public class User extends BaseEntity
 {
 	//Attributes
-	@Column(name = "name", unique = true)
+	@Column(name = "name")
 	private String name;
 
 	@Column(name = "username", unique = true)
 	private String username;
 
-	@Column(name = "password", unique = true)
+	@Column(name = "password")
 	private String password;
 
 	@Column(name = "bilkentId", unique = true)
 	private Integer bilkentId;
 
 	@Getter @Setter
-	@Column(name = "age", unique = true)
+	@Column(name = "age")
 	private Integer age;
 
-	@Column(name = "dateOfBirth", unique = true)
+	@Column(name = "dateOfBirth")
 	private String dateOfBirth;
 
-	@Column(name = "phoneNumber", unique = true)
+	@Column(name = "phoneNumber")
 	private String phoneNumber;
 
-	/*@Column(name = "TestResult", unique = true)
-	private UUID testResult;
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "testResult-id", referencedColumnName = "id")
+	private TestResult testResult;
 
-	@Column(name = "notifications", unique = true)
-	private UUID notifications;
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "exReport-id", referencedColumnName = "id")
+	private ExaminationReport exReport;
 
-	@Column(name = "exReport", unique = true)
-	private UUID exReport;
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "covidInfo-id", referencedColumnName = "id")
+	private CovidInformation covidInfo;
 
-	@Column(name = "covidInfo", unique = true)
-	private UUID covidInfo;
+	//todo
+	//METİR BUNLARA BAK
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "appointments-id", referencedColumnName = "id")
+	private Appointment[] appointments;
 
-	@Column(name = "appointments", unique = true)
-	private UUID appointments;0*/
+	//todo
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "notifications-id", referencedColumnName = "id")
+	private Notification[] notifications;
 
 	//Methods
 	/*public void addAppointment(Appointment appointment){}
