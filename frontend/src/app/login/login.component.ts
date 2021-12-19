@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { NgForm } from "@angular/forms";
+import {LoginService} from "../Services/login-service.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-login',
@@ -7,13 +8,22 @@ import { NgForm } from "@angular/forms";
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-
-  constructor() { }
+  constructor( private logService: LoginService, private router: Router) { }
 
   ngOnInit(): void {
   }
 
-  onSubmit(signInForm: NgForm) {
-    console.log(signInForm.value);
+  loginUser( id: number, password: String) {
+    let user = {
+      "name": "efe",
+      "id": "21901548",
+      "password": password
+    };
+    this.logService.authenticateUser( user).subscribe(
+      data => {
+        console.log("ok");
+        this.router.navigate( ['/personal-info']);
+      }
+    );
   }
 }

@@ -17,6 +17,7 @@ import { GuidelinesComponent } from './guidelines/guidelines.component';
 import { WeeklyReportsComponent } from './weekly-reports/weekly-reports.component';
 import { SearchUserInfoComponent } from './search-user-info/search-user-info.component';
 import { SearchUserBarComponent } from './search-user-bar/search-user-bar.component';
+import {HttpClientModule} from "@angular/common/http";
 
 const appRoutes: Routes =[
   { path: '', component: LoginComponent},
@@ -44,13 +45,14 @@ const appRoutes: Routes =[
     GuidelinesComponent,
     WeeklyReportsComponent,
     SearchUserInfoComponent,
-    SearchUserBarComponent
+    SearchUserBarComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     RouterModule.forRoot(appRoutes),
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
