@@ -17,12 +17,12 @@ import java.util.UUID;
 @Table(name = "users")
 public class User extends BaseEntity
 {
-	@Column(name = "name", unique = true)
+	@Column(name = "name", unique = true, nullable = false)
 	private String name;
 
-	@Column(name = "username", unique = true)
+	@Column(name = "username", unique = true, nullable = false)
 	private String username;
 
-	@Column(name = "password", unique = true)
+	@Column(name = "password", nullable = false)
 	private String password;
 }
