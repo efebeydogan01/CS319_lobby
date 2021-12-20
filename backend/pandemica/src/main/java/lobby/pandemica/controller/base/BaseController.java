@@ -86,12 +86,12 @@ public abstract class BaseController<D extends BaseDto<UUID>>
 		}
 	}
 
-	@GetMapping(value = "read")
-	public ResponseEntity<List<D>> read()
+	@GetMapping(value = "readAll")
+	public ResponseEntity<List<D>> readAll()
 	{
 		try
 		{
-			return new ResponseEntity<>(baseCrudService.read(), HttpStatus.OK);
+			return new ResponseEntity<>(baseCrudService.readAll(), HttpStatus.OK);
 		}
 		catch (EntityNotFoundException e)
 		{
