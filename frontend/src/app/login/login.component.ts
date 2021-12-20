@@ -12,17 +12,21 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
+  userAuthenticated: boolean = true;
   loginUser( id: number, password: String) {
     let user = {
-      "name": "efe",
-      "id": "21901548",
+      "bilkentId": id,
       "password": password
     };
-    this.logService.authenticateUser( user).subscribe(
-      data => {
-        console.log("ok");
-        this.router.navigate( ['/personal-info']);
+    this.logService.authenticateUser( user).subscribe( {
+        next: (data) => {
+          this.userAuthenticated = true;
+          this.router.navigate( ['/personal-info']);
+        },
+        error: (err) => {
+          this.userAuthenticated = false;
+          console.log( "User cannot be authenticated: " + err);
+        }
       }
     );
   }
