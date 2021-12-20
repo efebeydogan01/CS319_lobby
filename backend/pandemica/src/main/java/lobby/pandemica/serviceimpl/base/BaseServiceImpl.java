@@ -7,8 +7,9 @@ import lobby.pandemica.service.base.BaseCrudService;
 import lobby.pandemica.serviceimpl.mapper.base.BaseMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Qualifier;
+import java.util.Optional;
 
+import javax.persistence.EntityNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -27,27 +28,40 @@ public class BaseServiceImpl<E extends BaseEntity, D extends BaseDto<UUID>> impl
 	}
 
 	@Override
-	public D create(D dto)
+	public D create(D dto) throws EntityNotFoundException
 	{
 		E entity = baseMapper.dtoToEntity(dto);
+		if (entity == null) {
+			LOGGER.warn("The entity to save cannot be empty!");
+			throw new EntityNotFoundException();
+		}
 		return baseMapper.entityToDto(baseRepository.save(entity));
 	}
 
 	@Override
-	public List<D> createAll(List<D> dtoList)
+	public List<D> createAll(List<D> dtoList) throws EntityNotFoundException
 	{
 		List<E> list = new ArrayList<>();
 		for (D dto: dtoList)
 		{
 			E entity = baseMapper.dtoToEntity(dto);
+			if (entity == null) {
+				LOGGER.warn("The entity to save cannot be empty!");
+				throw new EntityNotFoundException();
+			}
 			list.add(entity);
 		}
 		return baseMapper.entityListToDtoList(baseRepository.saveAll(list));
 	}
 
 	@Override
-	public D read(UUID id)
+	public D read(UUID id) throws EntityNotFoundException
 	{
+		if (id == null)
+		{
+			LOGGER.warn("The id cannot be empty!");
+			throw new EntityNotFoundException();
+		}
 		return baseMapper.entityToDto(baseRepository.getById(id));
 	}
 
@@ -58,38 +72,90 @@ public class BaseServiceImpl<E extends BaseEntity, D extends BaseDto<UUID>> impl
 	}
 
 	@Override
-	public D update(D dto)
+	public D update(D dto) throws EntityNotFoundException
 	{
-		return null;
+		if (dto == null) {
+			LOGGER.warn("The entity to update cannot be empty!");
+			throw new EntityNotFoundException();
+		}
+		Optional<E> dbEntity = baseRepository.findById(dto.getId());
+		if (!dbEntity.isPresent()) {
+			LOGGER.warn("The entity to update could not be found!");
+			throw new EntityNotFoundException();
+		}
+		E entity = baseMapper.dtoToEntity(dto);
+		baseRepository.save(entity);
+		return dto;
 	}
 
 	@Override
 	public List<D> updateAll(List<D> dtoList)
 	{
-		return null;
+		ArrayList<D> updatedList = new ArrayList();
+		E entity;
+		for (D dto: dtoList)
+		{
+			if (dto == null) {
+				LOGGER.warn("The entity to update cannot be empty!");
+				throw new EntityNotFoundException();
+			}
+			E dbEntity = baseRepository.getById(dto.getId());
+			if (dbEntity == null) {
+				LOGGER.warn("The entity to update could not be found!");
+				throw new EntityNotFoundException();
+			}
+			entity = baseRepository.getById(dto.getId());
+			entity = baseMapper.dtoToEntity(dto);
+			baseRepository.save(entity);
+			updatedList.add(dto);
+		}
+		return updatedList;
 	}
 
 	@Override
-	public D delete(UUID id)
+	public D delete(UUID id) throws EntityNotFoundException
 	{
-		return null;
+		Optional<E> entity = baseRepository.findById(id);
+		if (!entity.isPresent())
+		{
+			LOGGER.warn("Entity with id " + id + " was not found!");
+			throw new EntityNotFoundException();
+		}
+		baseRepository.delete(entity.get());
+		return baseMapper.entityToDto(entity.get());
 	}
 
 	@Override
-	public List<D> deleteAll(List<UUID> idList)
+	public List<D> deleteAll(List<String> StringidList) throws EntityNotFoundException
 	{
-		return null;
+		List<E> entityList = new ArrayList<>();
+		Optional<E> entity;
+		D dto;
+		for (String id: StringidList)
+		{
+			entity = baseRepository.findById(UUID.fromString(id));
+			if (!entity.isPresent())
+			{
+				LOGGER.warn("Entity with id " + id + " was not found!");
+				throw new EntityNotFoundException();
+			}
+			entityList.add(entity.get());
+		}
+		for (E deletedEntity : entityList)
+		{
+			baseRepository.delete(deletedEntity);
+		}
+		return baseMapper.entityListToDtoList(entityList);
 	}
 
 	@Override
 	public boolean existsById(UUID id)
 	{
-		return false;
-	}
-
-	@Override
-	public List<D> read(List<UUID> idlist) throws Exception
-	{
-		return null;
+		if (id == null)
+		{
+			LOGGER.warn("id cannot be empty!");
+			return false;
+		}
+		return baseRepository.findById(id).isPresent();
 	}
 }
