@@ -34,6 +34,10 @@ public class User extends BaseEntity
 
 	@Column(name = "phoneNumber")
 	private String phoneNumber;
+
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "covid_information_id", referencedColumnName = "id")
+	private CovidInformation covidInformation;
 /*
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "testResult-id", referencedColumnName = "id")

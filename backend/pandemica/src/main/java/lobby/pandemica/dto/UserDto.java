@@ -1,5 +1,6 @@
 package lobby.pandemica.dto;
 
+import lobby.pandemica.db.CovidInformation;
 import lobby.pandemica.dto.base.BaseDto;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -22,4 +23,5 @@ public class UserDto extends BaseDto<UUID>
 	private Integer bilkentId;
 	private Date dateOfBirth;
 	private String phoneNumber;
+	private CovidInformation covidInformation;
 }

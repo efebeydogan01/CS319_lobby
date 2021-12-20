@@ -19,9 +19,6 @@ import java.util.UUID;
 @Entity
 public class CovidInformation extends BaseEntity {
     //Attributes
-    @Column(name = "covidInfoId")
-    private Integer covidInfo;
-
     @Column(name = "status")
     private String status;
 
@@ -31,11 +28,12 @@ public class CovidInformation extends BaseEntity {
     @Column(name = "allowedOnCampus")
     private Boolean allowedOnCampus;
 
+
+
     //@Transient
     //private ArrayList<Date> diagnosisDates;
 
-    /*@OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "user-id", referencedColumnName = "id")
-    private User user;*/
+    @OneToOne(mappedBy = "covid_information")
+    private User user;
 
 }
