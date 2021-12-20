@@ -1,19 +1,25 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {Observable} from "rxjs";
+import {Observable, Subject, tap} from "rxjs";
+import {User} from "./user.model";
 
 @Injectable({
   providedIn: 'root'
 })
 export class LoginService {
-  readonly rootUrl: String = '';
-  constructor( private http: HttpClient) { }
+  user = new Subject<User>();
 
-  // authenticateUser(user: {id: number, password: String}): Observable<any> {
-  //   return this.http.post<any>( "/user/create", user);
-  // }
+  constructor( private http: HttpClient) { }
 
   authenticateUser(user: {bilkentId: number, password: String}): Observable<any> {
     return this.http.post<any>( "http://localhost:8080/user/get", user);
+    // return this.http.post<any>( "http://localhost:8080/user/create", user)
+    //   .pipe( tap( data => {
+    //     const expDate = new Date(new Date().getTime() + +data.tokenExpDate * 1000);
+    //
+    //     const user = new User( data.id, data.token, expDate);
+    //     this.user.next( user);
+    //   })
+    // );
   }
 }
