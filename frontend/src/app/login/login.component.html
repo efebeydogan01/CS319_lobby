@@ -28,6 +28,7 @@
               </div>
               <div class="card-body">
                 <form #loginForm="ngForm" role="form" (ngSubmit)="loginUser(userId.value, password.value)">
+                  <span class="text-danger" *ngIf="!userAuthenticated">Incorrect credentials</span>
                   <div class="form-group">
                     <label>ID</label>
                     <div class="mb-3">
