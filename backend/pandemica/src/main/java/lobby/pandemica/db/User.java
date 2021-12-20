@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.Date;
 import java.util.UUID;
 
 @Entity
@@ -21,20 +22,14 @@ public class User extends BaseEntity
 	@Column(name = "name")
 	private String name;
 
-	@Column(name = "username", unique = true, nullable = false)
-	private String username;
-
 	@Column(name = "password")
 	private String password;
 
 	@Column(name = "bilkentId", unique = true)
 	private Integer bilkentId;
 
-	@Column(name = "age")
-	private Integer age;
-
 	@Column(name = "dateOfBirth")
-	private String dateOfBirth;
+	private Date dateOfBirth;
 
 	@Column(name = "phoneNumber")
 	private String phoneNumber;
