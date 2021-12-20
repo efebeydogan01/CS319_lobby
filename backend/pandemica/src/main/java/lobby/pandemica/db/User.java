@@ -56,7 +56,4 @@ public class User extends BaseEntity
 	public String getRiskStatus(){};
 	public VaccinationInformation getVaccinationInfo(){}
 	public addTestResult( TestResult testResult)(){}*/
-
-
-
 }

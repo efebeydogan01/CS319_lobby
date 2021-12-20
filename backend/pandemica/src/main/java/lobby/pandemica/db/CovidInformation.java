@@ -10,12 +10,13 @@ import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.UUID;
-@Entity
+
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "covidInformation")
+@Entity
 public class CovidInformation extends BaseEntity {
     //Attributes
     @Column(name = "covidInfoId")
@@ -30,11 +31,11 @@ public class CovidInformation extends BaseEntity {
     @Column(name = "allowedOnCampus")
     private Boolean allowedOnCampus;
 
-    @Transient
-    private ArrayList<Date> diagnosisDates;
+    //@Transient
+    //private ArrayList<Date> diagnosisDates;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    /*@OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "user-id", referencedColumnName = "id")
-    private User user;
+    private User user;*/
 
 }

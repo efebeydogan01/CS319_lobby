@@ -1,5 +1,6 @@
 package lobby.pandemica.db;
 
+import lobby.pandemica.db.base.BaseEntity;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -16,25 +17,37 @@ import java.util.UUID;
 @NoArgsConstructor
 @Table(name = "students")
 
-public class Student extends User {
+public class Student extends BaseEntity {
     //Attributes
+    @Column(name = "name")
+    private String name;
+
+    @Column(name = "username", unique = true)
+    private String username;
+
+    @Column(name = "password")
+    private String password;
+
+    @Column(name = "bilkentId", unique = true)
+    private Integer bilkentId;
+
+    @Column(name = "age")
+    private Integer age;
+
+    @Column(name = "dateOfBirth")
+    private String dateOfBirth;
+
+    @Column(name = "phoneNumber")
+    private String phoneNumber;
     @Column(name = "department")
     private String department;
 
     @Column(name = "year")
     private String year;
 
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "friendRequest-id", referencedColumnName = "id", columnDefinition = "uuid[]")
-    private ArrayList<FriendRequest> friendRequests;
-
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "neighbor-id", referencedColumnName = "id", columnDefinition = "uuid[]")
-    private ArrayList<Neighbor> neighbors;
-
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "friend-id", referencedColumnName = "id", columnDefinition = "uuid[]")
-    private ArrayList<Student> friends;
+    //@OneToMany(cascade = CascadeType.ALL)
+    //@JoinColumn(name = "friend-id", referencedColumnName = "id", columnDefinition = "uuid[]")
+    //private ArrayList<Student> friends;
 
 
     //Methods
