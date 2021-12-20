@@ -17,12 +17,43 @@ import java.util.UUID;
 @Table(name = "users")
 public class User extends BaseEntity
 {
-	@Column(name = "name", unique = true)
+	//Attributes
+	@Column(name = "name")
 	private String name;
 
-	@Column(name = "username", unique = true)
+	@Column(name = "username", unique = true, nullable = false)
 	private String username;
 
-	@Column(name = "password", unique = true)
+	@Column(name = "password")
 	private String password;
+
+	@Column(name = "bilkentId", unique = true)
+	private Integer bilkentId;
+
+	@Column(name = "age")
+	private Integer age;
+
+	@Column(name = "dateOfBirth")
+	private String dateOfBirth;
+
+	@Column(name = "phoneNumber")
+	private String phoneNumber;
+/*
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "testResult-id", referencedColumnName = "id")
+	private TestResult testResult;
+
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "exReport-id", referencedColumnName = "id")
+	private ExaminationReport exReport;
+
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "covidInfo-id", referencedColumnName = "id")
+	private CovidInformation covidInfo;*/
+
+	//Methods
+	/*public void addAppointment(Appointment appointment){}
+	public String getRiskStatus(){};
+	public VaccinationInformation getVaccinationInfo(){}
+	public addTestResult( TestResult testResult)(){}*/
 }
