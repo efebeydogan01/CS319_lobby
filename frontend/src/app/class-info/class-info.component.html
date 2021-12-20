@@ -57,8 +57,10 @@
                         <h5 class="modal-title" id="exampleModalLabel">Update Seat</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                       </div>
-                      <div class="modal-body">
-                        <img src="../assets/img/seating-plan.png" alt="user1">
+                      <div class="modal-body bg-dark">
+                        <div *ngFor="let i of [].constructor(120); let indexOfElements = index;">
+                          <app-seat [i]="indexOfElements" (updateSeat)="updateSelectedSeat($event)"></app-seat>
+                        </div>
                       </div>
                       <div class="modal-footer">
                         <button type="button" class="btn btn-sm btn-secondary" data-bs-dismiss="modal">Close</button>
