@@ -27,13 +27,13 @@ public class Student extends BaseEntity {
     @Column(name = "password", nullable = false)
     private String password;
 
-    @Column(name = "bilkentId", unique = true, nullable = false)
+    @Column(name = "bilkent_id", unique = true, nullable = false)
     private Integer bilkentId;
 
-    @Column(name = "dateOfBirth", nullable = false)
+    @Column(name = "date_of_birth", nullable = false)
     private String dateOfBirth;
 
-    @Column(name = "phoneNumber", nullable = false)
+    @Column(name = "phone-number", nullable = false)
     private String phoneNumber;
 
     @Column(name = "department", nullable = false)

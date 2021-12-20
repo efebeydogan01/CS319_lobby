@@ -15,24 +15,23 @@ import java.util.UUID;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "covid_informations")
+//@Table(name = "covid_information")
 @Entity
 public class CovidInformation extends BaseEntity {
     //Attributes
     @Column(name = "status")
     private String status;
 
-    @Column(name = "hesCode")
+    @Column(name = "hes_code")
     private String hesCode;
 
-    @Column(name = "allowedOnCampus")
+    @Column(name = "allowed_on_campus")
     private Boolean allowedOnCampus;
-
-
 
     //@Transient
     //private ArrayList<Date> diagnosisDates;
 
-    @OneToOne(mappedBy = "covidInformation")
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "user_id", referencedColumnName = "id")
     private User user;
 }

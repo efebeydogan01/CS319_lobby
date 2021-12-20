@@ -27,17 +27,16 @@ public class User extends BaseEntity
 	@Column(name = "password", nullable = false)
 	private String password;
 
-	@Column(name = "bilkentId", unique = true, nullable = false)
+	@Column(name = "bilkent_id", unique = true, nullable = false)
 	private Integer bilkentId;
 
-	@Column(name = "dateOfBirth", nullable = false)
+	@Column(name = "date_of_birth", nullable = false)
 	private Date dateOfBirth = new Date(System.currentTimeMillis());
 
-	@Column(name = "phoneNumber", nullable = false)
+	@Column(name = "phone_number", nullable = false)
 	private String phoneNumber;
 
-	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "covid_information_id", referencedColumnName = "id")
+	@OneToOne(mappedBy = "user")
 	private CovidInformation covidInformation;
 /*
 =======
