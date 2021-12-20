@@ -13,7 +13,7 @@ export class LoginService {
   //   return this.http.post<any>( "/user/create", user);
   // }
 
-  authenticateUser(user: {name: String, username: String, password: String}): Observable<any> {
+  authenticateUser(user: {name: String, id: String, password: String}): Observable<any> {
     return this.http.post<any>( "http://localhost:8080/user/create", user);
   }
 }
