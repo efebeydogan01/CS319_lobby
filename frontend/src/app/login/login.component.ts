@@ -16,7 +16,7 @@ export class LoginComponent implements OnInit {
   loginUser( id: number, password: String) {
     let user = {
       "name": "efe",
-      "id": "21901548",
+      "username": "21901548",
       "password": password
     };
     this.logService.authenticateUser( user).subscribe(
