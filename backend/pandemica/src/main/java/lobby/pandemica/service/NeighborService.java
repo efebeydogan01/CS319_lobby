@@ -1,4 +1,8 @@
 package lobby.pandemica.service;
 
-public interface NeighborService {
+import lobby.pandemica.dto.NeighborDto;
+import lobby.pandemica.service.base.BaseCrudService;
+
+public interface NeighborService extends BaseCrudService<NeighborDto>
+{
 }

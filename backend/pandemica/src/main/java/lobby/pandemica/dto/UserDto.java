@@ -1,14 +1,22 @@
 package lobby.pandemica.dto;
 
 import lobby.pandemica.db.CovidInformation;
+<<<<<<< Updated upstream
+=======
+import lobby.pandemica.db.Student;
+>>>>>>> Stashed changes
 import lobby.pandemica.dto.base.BaseDto;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import java.util.Date;
+import java.util.List;
 import java.util.UUID;
 
 @Getter

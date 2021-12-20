@@ -15,7 +15,7 @@ import java.util.UUID;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "covidInformation")
+@Table(name = "covid_informations")
 @Entity
 public class CovidInformation extends BaseEntity {
     //Attributes
@@ -33,7 +33,13 @@ public class CovidInformation extends BaseEntity {
     //@Transient
     //private ArrayList<Date> diagnosisDates;
 
+<<<<<<< Updated upstream
     @OneToOne(mappedBy = "covid_information")
     private User user;
+=======
+    @OneToOne(mappedBy = "covidInformation")
+    private User user;
+
+>>>>>>> Stashed changes
 
 }

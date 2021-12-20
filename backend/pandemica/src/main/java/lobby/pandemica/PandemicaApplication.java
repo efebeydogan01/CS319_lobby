@@ -23,11 +23,19 @@ public class PandemicaApplication {
 			userService.create(new UserDto(UUID.randomUUID(),"elif beydogan", "password",
 					21212122, new Date(System.currentTimeMillis()), "53112312123", null));
 			userService.create(new UserDto(UUID.randomUUID(),"efe beydogan", "password",
+<<<<<<< Updated upstream
 					29992122, new Date(System.currentTimeMillis()), "53112312123",null));
 			userService.create(new UserDto(UUID.randomUUID(),"cagtay beydogan", "password",
 					21000022, new Date(System.currentTimeMillis()), "53112312123",null));
 			userService.create(new UserDto(UUID.randomUUID(),"mama polat", "password",
 					21212111, new Date(System.currentTimeMillis()), "53112312123",null));
+=======
+					29992122, new Date(System.currentTimeMillis()), "53112312123", null));
+			userService.create(new UserDto(UUID.randomUUID(),"cagtay beydogan", "password",
+					21000022, new Date(System.currentTimeMillis()), "53112312123", null));
+			userService.create(new UserDto(UUID.randomUUID(),"mama polat", "password",
+					21212111, new Date(System.currentTimeMillis()), "53112312123", null));
+>>>>>>> Stashed changes
 		};
 	}
 }
