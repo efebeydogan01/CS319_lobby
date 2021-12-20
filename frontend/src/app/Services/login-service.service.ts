@@ -12,6 +12,7 @@ export class LoginService {
   constructor( private http: HttpClient) { }
 
   authenticateUser(user: {bilkentId: number, password: String}): Observable<any> {
+    return this.http.post<any>( "http://localhost:8080/user/get", user);
     // return this.http.post<any>( "http://localhost:8080/user/create", user)
     //   .pipe( tap( data => {
     //     const expDate = new Date(new Date().getTime() + +data.tokenExpDate * 1000);
@@ -20,7 +21,5 @@ export class LoginService {
     //     this.user.next( user);
     //   })
     // );
-
-    return this.http.post<any>( "http://localhost:8080/user/create", user);
   }
 }
