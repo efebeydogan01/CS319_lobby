@@ -1,10 +1,8 @@
 package lobby.pandemica.dto;
 
 import lobby.pandemica.db.CovidInformation;
-<<<<<<< Updated upstream
-=======
+
 import lobby.pandemica.db.Student;
->>>>>>> Stashed changes
 import lobby.pandemica.dto.base.BaseDto;
 import lombok.AllArgsConstructor;
 import lombok.Getter;

@@ -33,13 +33,6 @@ public class CovidInformation extends BaseEntity {
     //@Transient
     //private ArrayList<Date> diagnosisDates;
 
-<<<<<<< Updated upstream
-    @OneToOne(mappedBy = "covid_information")
-    private User user;
-=======
     @OneToOne(mappedBy = "covidInformation")
     private User user;
-
->>>>>>> Stashed changes
-
 }

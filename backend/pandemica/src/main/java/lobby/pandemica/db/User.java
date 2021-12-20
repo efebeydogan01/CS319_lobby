@@ -39,7 +39,6 @@ public class User extends BaseEntity
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "covid_information_id", referencedColumnName = "id")
 	private CovidInformation covidInformation;
-<<<<<<< Updated upstream
 /*
 =======
 
