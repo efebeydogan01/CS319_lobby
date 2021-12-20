@@ -14,6 +14,6 @@ export class LoginService {
   // }
 
   authenticateUser(user: {bilkentId: number, password: String}): Observable<any> {
-    return this.http.post<any>( "http://localhost:8080/user/create", user);
+    return this.http.post<any>( "http://localhost:8080/user/get", user);
   }
 }

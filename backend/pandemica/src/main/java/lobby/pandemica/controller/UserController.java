@@ -23,7 +23,7 @@ public class UserController extends BaseController<UserDto>
 		this.userService = userService;
 	}
 
-	@GetMapping(value = "get")
+	@PostMapping(value = "get")
 	public ResponseEntity<RestResponse<UserDto>> get(@RequestBody TempDetails details)
 	{
 		try
