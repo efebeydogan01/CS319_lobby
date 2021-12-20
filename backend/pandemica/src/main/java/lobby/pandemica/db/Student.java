@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.UUID;
 
 @Entity
@@ -23,21 +24,18 @@ public class Student extends User {
     @Column(name = "year")
     private String year;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "friendRequest-id", referencedColumnName = "id", columnDefinition = "uuid[]")
-    private FriendRequest[] friendRequests;
+    private ArrayList<FriendRequest> friendRequests;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "neighbor-id", referencedColumnName = "id", columnDefinition = "uuid[]")
-    private Neighbor[] neighbors;
+    private ArrayList<Neighbor> neighbors;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "friend-id", referencedColumnName = "id", columnDefinition = "uuid[]")
-    private Student[] friends;
+    private ArrayList<Student> friends;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "friend-id", referencedColumnName = "id", columnDefinition = "uuid[]")
-    private Student[] friends;
 
     //Methods
     /*

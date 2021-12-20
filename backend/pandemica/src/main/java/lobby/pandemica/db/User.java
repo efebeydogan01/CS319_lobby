@@ -5,7 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
+import java.util.ArrayList;
 import javax.persistence.*;
 import java.util.UUID;
 
@@ -30,7 +30,6 @@ public class User extends BaseEntity
 	@Column(name = "bilkentId", unique = true)
 	private Integer bilkentId;
 
-	@Getter @Setter
 	@Column(name = "age")
 	private Integer age;
 
@@ -39,7 +38,7 @@ public class User extends BaseEntity
 
 	@Column(name = "phoneNumber")
 	private String phoneNumber;
-
+/*
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "testResult-id", referencedColumnName = "id")
 	private TestResult testResult;
@@ -50,18 +49,7 @@ public class User extends BaseEntity
 
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "covidInfo-id", referencedColumnName = "id")
-	private CovidInformation covidInfo;
-
-	//todo
-	//METİR BUNLARA BAK
-	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "appointments-id", referencedColumnName = "id")
-	private Appointment[] appointments;
-
-	//todo
-	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "notifications-id", referencedColumnName = "id")
-	private Notification[] notifications;
+	private CovidInformation covidInfo;*/
 
 	//Methods
 	/*public void addAppointment(Appointment appointment){}
