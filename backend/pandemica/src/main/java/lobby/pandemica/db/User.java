@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -29,7 +30,7 @@ public class User extends BaseEntity
 	private Integer bilkentId;
 
 	@Column(name = "dateOfBirth")
-	private Date dateOfBirth;
+	private Date dateOfBirth = new Date(System.currentTimeMillis());
 
 	@Column(name = "phoneNumber")
 	private String phoneNumber;

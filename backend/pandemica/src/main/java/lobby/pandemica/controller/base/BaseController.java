@@ -1,5 +1,6 @@
 package lobby.pandemica.controller.base;
 
+import lobby.pandemica.db.CustomId;
 import lobby.pandemica.dto.base.BaseDto;
 import lobby.pandemica.dto.base.RestResponse;
 import lobby.pandemica.service.base.BaseCrudService;
@@ -64,12 +65,12 @@ public abstract class BaseController<D extends BaseDto<UUID>>
 		}
 	}
 
-	@GetMapping(value = "read/{id}")
-	public ResponseEntity<RestResponse<D>> read(@PathVariable String id)
+	@GetMapping(value = "read")
+	public ResponseEntity<RestResponse<D>> read(@RequestBody CustomId id)
 	{
 		try
 		{
-			return new ResponseEntity<>(new RestResponse<>(baseCrudService.read(UUID.fromString(id)), "Read",
+			return new ResponseEntity<>(new RestResponse<>(baseCrudService.read(id.getId()), "Read",
 					"Reading an entity was successful."),
 					HttpStatus.OK);
 		}
@@ -86,8 +87,8 @@ public abstract class BaseController<D extends BaseDto<UUID>>
 		}
 	}
 
-	@GetMapping(value = "read")
-	public ResponseEntity<List<D>> read()
+	@GetMapping(value = "readAll")
+	public ResponseEntity<List<D>> readAll()
 	{
 		try
 		{

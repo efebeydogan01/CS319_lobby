@@ -1,10 +1,12 @@
 package lobby.pandemica.service.base;
 
 import lobby.pandemica.dto.base.BaseDto;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.UUID;
 
+@Service
 public interface BaseCrudService<D extends BaseDto<UUID>>
 {
 	D create(D dto);
