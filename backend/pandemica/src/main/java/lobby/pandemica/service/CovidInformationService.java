@@ -1,4 +1,8 @@
 package lobby.pandemica.service;
 
-public interface CovidInformationService {
+import lobby.pandemica.dto.CovidInformationDto;
+import lobby.pandemica.service.base.BaseCrudService;
+
+public interface CovidInformationService extends BaseCrudService<CovidInformationDto>
+{
 }

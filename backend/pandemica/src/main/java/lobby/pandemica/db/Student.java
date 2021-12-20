@@ -39,6 +39,7 @@ public class Student extends BaseEntity {
 
     @Column(name = "phoneNumber")
     private String phoneNumber;
+
     @Column(name = "department")
     private String department;
 
