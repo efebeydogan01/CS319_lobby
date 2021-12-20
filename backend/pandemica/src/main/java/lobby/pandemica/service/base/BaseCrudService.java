@@ -15,7 +15,7 @@ public interface BaseCrudService<D extends BaseDto<UUID>>
 
 	D read(UUID id);
 
-	List<D> read();
+	List<D> readAll();
 
 	D update(D dto);
 

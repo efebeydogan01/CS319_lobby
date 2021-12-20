@@ -66,7 +66,7 @@ public class BaseServiceImpl<E extends BaseEntity, D extends BaseDto<UUID>> impl
 	}
 
 	@Override
-	public List<D> read()
+	public List<D> readAll()
 	{
 		return baseMapper.entityListToDtoList(baseRepository.findAll());
 	}
