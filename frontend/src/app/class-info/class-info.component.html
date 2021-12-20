@@ -58,8 +58,8 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                       </div>
                       <div class="modal-body bg-dark">
-                        <div *ngFor="let i of [].constructor(120)">
-                          <div class="square"></div>
+                        <div *ngFor="let i of [].constructor(120); let indexOfElements = index;">
+                          <app-seat [i]="indexOfElements" (updateSeat)="updateSelectedSeat($event)"></app-seat>
                         </div>
                       </div>
                       <div class="modal-footer">
