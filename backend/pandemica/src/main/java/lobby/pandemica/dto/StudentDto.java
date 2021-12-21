@@ -18,5 +18,4 @@ public class StudentDto extends BaseDto<UUID>
     private User user;
     private String department;
     private String year;
-
 }
