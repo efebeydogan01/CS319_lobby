@@ -1,7 +1,6 @@
 package lobby.pandemica.repository;
 
 import lobby.pandemica.db.Admin;
-import lobby.pandemica.db.Student;
 import lobby.pandemica.repository.base.BaseRepository;
 import org.springframework.stereotype.Repository;
 

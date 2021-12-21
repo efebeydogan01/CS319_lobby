@@ -1,6 +1,7 @@
 package lobby.pandemica;
 
 import lobby.pandemica.db.CovidInformation;
+import lobby.pandemica.db.Role;
 import lobby.pandemica.db.Status;
 import lobby.pandemica.db.User;
 import lobby.pandemica.dto.CovidInformationDto;
@@ -25,35 +26,34 @@ public class PandemicaApplication {
 	}
 
 	@Bean
-	CommandLineRunner run(UserService userService, UserMapper userMapper,
-						  CovidInformationService covidInformationService,
-						  CovidInformationMapper covidInformationMapper) {
+	CommandLineRunner run(UserService userService,
+						  CovidInformationService covidInformationService) {
 		return args -> {
 			UserDto userDto1 = new UserDto(UUID.randomUUID(),"Mert Barkın Er", "password",
 					0, new Date(101,8,3),
-					"53112312123", 0, "CS", 3);
+					"53112312123", 20, Role.ROLES.STUDENT.name());
 			UserDto userDto2 = new UserDto(UUID.randomUUID(),"Efe Beydoğan", "password",
 					1, new Date(101,3,26),
-					"53112312123",0,"CS",1);
+					"53112312123", 21, Role.ROLES.STUDENT.name());
 			UserDto userDto3 = new UserDto(UUID.randomUUID(),"Arda Önal", "password",
 					2, new Date(101,0,13),
-					"53112312123",0,"MAN",4);
+					"53112312123",22, Role.ROLES.ACADEMIC_PERSONNEL.name());
 			UserDto userDto4 = new UserDto(UUID.randomUUID(),"Eren Polat", "password",
 					3, new Date(101,8,19),
-					"53112312123",0,"PSYC", 2);
+					"53112312123",23, Role.ROLES.MEDICAL_EMPLOYEE.name());
 			userService.create(userDto1);
 			userService.create(userDto2);
 			userService.create(userDto3);
 			userService.create(userDto4);
 
 			CovidInformationDto covidInformationDto1 = new CovidInformationDto(UUID.randomUUID(),
-					"POSITIVE", "hes_code_1",false, userDto1);
+					Status.RISK.POSITIVE.name(), "hes_code_1",false, userDto1);
 			CovidInformationDto covidInformationDto2 = new CovidInformationDto(UUID.randomUUID(),
-					"RISKY", "hes_code_2",false, userDto2);
+					Status.RISK.RISKY.name(), "hes_code_2",false, userDto2);
 			CovidInformationDto covidInformationDto3 = new CovidInformationDto(UUID.randomUUID(),
-					"NEGATIVE", "hes_code_3",true, userDto3);
+					Status.RISK.NEGATIVE.name(), "hes_code_3",true, userDto3);
 			CovidInformationDto covidInformationDto4 = new CovidInformationDto(UUID.randomUUID(),
-					"NEGATIVE", "hes_code_4",true, userDto4);
+					Status.RISK.NEGATIVE.name(), "hes_code_4",true, userDto4);
 			covidInformationService.create(covidInformationDto1);
 			covidInformationService.create(covidInformationDto2);
 			covidInformationService.create(covidInformationDto3);
