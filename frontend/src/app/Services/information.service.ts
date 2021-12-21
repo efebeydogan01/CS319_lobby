@@ -14,7 +14,6 @@ export class InformationService {
 
     return this.http.get<any>( HttpUrls.baseUrl + "covid/get/" + uuid).
       pipe( tap( data => {
-        console.log( data);
     }));
   }
 
