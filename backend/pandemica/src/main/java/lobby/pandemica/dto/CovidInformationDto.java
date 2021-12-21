@@ -22,5 +22,5 @@ public class CovidInformationDto extends BaseDto<UUID>
     private String status;
     private String hesCode;
     private Boolean allowedOnCampus;
-    private User user;
+    private UserDto user;
 }

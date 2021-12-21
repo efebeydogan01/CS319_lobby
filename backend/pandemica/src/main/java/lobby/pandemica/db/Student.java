@@ -33,7 +33,7 @@ public class Student extends BaseEntity {
     @Column(name = "date_of_birth", nullable = false)
     private String dateOfBirth;
 
-    @Column(name = "phone-number", nullable = false)
+    @Column(name = "phone_number", nullable = false)
     private String phoneNumber;
 
     @Column(name = "department", nullable = false)
