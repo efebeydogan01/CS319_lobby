@@ -1,25 +1,23 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {Observable, Subject, tap} from "rxjs";
+import {Observable, ReplaySubject, tap} from "rxjs";
 import {User} from "./user.model";
 
 @Injectable({
   providedIn: 'root'
 })
 export class LoginService {
-  user = new Subject<User>();
+  user = new ReplaySubject<User>( 1);
 
   constructor( private http: HttpClient) { }
 
-  authenticateUser(user: {bilkentId: number, password: String}): Observable<any> {
-    return this.http.post<any>( "http://localhost:8080/user/get", user);
-    // return this.http.post<any>( "http://localhost:8080/user/create", user)
-    //   .pipe( tap( data => {
-    //     const expDate = new Date(new Date().getTime() + +data.tokenExpDate * 1000);
-    //
-    //     const user = new User( data.id, data.token, expDate);
-    //     this.user.next( user);
-    //   })
-    // );
+  authenticateUser(incomingUser: {bilkentId: number, password: String}): Observable<any> {
+    return this.http.post<any>( "http://localhost:8080/user/get", incomingUser)
+      .pipe( tap( data => {
+        const newUser = new User( data.data.bilkentId, data.data.name);
+        console.log( data);
+        this.user.next( newUser);
+      })
+    );
   }
 }
