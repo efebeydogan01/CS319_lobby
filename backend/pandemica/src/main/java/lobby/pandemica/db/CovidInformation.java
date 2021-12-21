@@ -7,35 +7,25 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.UUID;
 
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "covidInformation")
+@Table(name = "covid_information")
 @Entity
 public class CovidInformation extends BaseEntity {
     //Attributes
-    @Column(name = "covidInfoId")
-    private Integer covidInfo;
-
-    @Column(name = "status")
+    @Column(name="status")
     private String status;
 
-    @Column(name = "hesCode")
+    @Column(name = "hes_code")
     private String hesCode;
 
-    @Column(name = "allowedOnCampus")
+    @Column(name = "allowed_on_campus")
     private Boolean allowedOnCampus;
 
-    //@Transient
-    //private ArrayList<Date> diagnosisDates;
-
-    /*@OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "user-id", referencedColumnName = "id")
-    private User user;*/
-
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "user_id", referencedColumnName = "id")
+    private User user;
 }
