@@ -47,4 +47,19 @@ public class User extends BaseEntity
 	@Min(0)
 	@Max(4)
 	private Integer year;
+	/*
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "testResult-id", referencedColumnName = "id")
+	private TestResult testResult;
+
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "exReport-id", referencedColumnName = "id")
+	private ExaminationReport exReport;
+	*/
+
+	//Methods
+	/*public void addAppointment(Appointment appointment){}
+	public String getRiskStatus(){};
+	public VaccinationInformation getVaccinationInfo(){}
+	public addTestResult( TestResult testResult)(){}*/
 }
