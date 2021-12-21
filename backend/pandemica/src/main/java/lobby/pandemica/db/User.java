@@ -38,10 +38,8 @@ public class User extends BaseEntity
 
 	@OneToOne(mappedBy = "user")
 	private CovidInformation covidInformation;
-/*
-=======
 
-
+	
 	/*
 >>>>>>> Stashed changes
 	@OneToOne(cascade = CascadeType.ALL)
