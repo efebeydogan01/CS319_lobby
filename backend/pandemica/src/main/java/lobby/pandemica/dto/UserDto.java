@@ -29,5 +29,7 @@ public class UserDto extends BaseDto<UUID>
 	private Integer bilkentId;
 	private Date dateOfBirth;
 	private String phoneNumber;
-	private CovidInformation covidInformation;
+	private Integer age;
+	private String department;
+	private Integer year;
 }
