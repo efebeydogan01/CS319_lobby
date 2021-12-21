@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {LoginService} from "../Services/login-service.service";
+import {InformationService} from "../Services/information.service";
 
 @Component({
   selector: 'app-topbar',
@@ -7,11 +8,12 @@ import {LoginService} from "../Services/login-service.service";
   styleUrls: ['./topbar.component.css']
 })
 export class TopbarComponent implements OnInit {
-
-  constructor( private loginService: LoginService) { }
+  userRole: string = JSON.parse( localStorage.getItem( 'userData')).role;
+  constructor( private loginService: LoginService, private informationService: InformationService) { }
 
   ngOnInit(): void {
   }
+
 
   onLogout() {
     this.loginService.logout();

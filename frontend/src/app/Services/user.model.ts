@@ -4,9 +4,8 @@ export class User {
               public dob: Date,
               public phoneNumber: string,
               public age: number,
-              public department: string,
-              public year: number,
-              public uuid: string) {
+              public uuid: string,
+              public role: string) {
   }
 
 }
