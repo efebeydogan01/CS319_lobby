@@ -43,7 +43,7 @@ public abstract class BaseController<D extends BaseDto<UUID>>
 		}
 	}
 
-	@PostMapping(value = "createAll")
+	@PostMapping(value = "manufacture")
 	public ResponseEntity<RestResponse<List<D>>> createAll(@RequestBody List<D> dtoList) {
 		try
 		{
@@ -86,7 +86,7 @@ public abstract class BaseController<D extends BaseDto<UUID>>
 		}
 	}
 
-	@GetMapping(value = "readAll")
+	@GetMapping(value = "read")
 	public ResponseEntity<List<D>> readAll()
 	{
 		try
