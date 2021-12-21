@@ -21,20 +21,9 @@ import java.util.UUID;
 
 public class Student extends BaseEntity {
     //Attributes
-    @Column(name = "name", nullable = false)
-    private String name;
-
-    @Column(name = "password", nullable = false)
-    private String password;
-
-    @Column(name = "bilkent_id", unique = true, nullable = false)
-    private Integer bilkentId;
-
-    @Column(name = "date_of_birth", nullable = false)
-    private String dateOfBirth;
-
-    @Column(name = "phone_number", nullable = false)
-    private String phoneNumber;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "user_id", referencedColumnName = "id")
+    private User user;
 
     @Column(name = "department", nullable = false)
     private String department;
