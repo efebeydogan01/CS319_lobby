@@ -1,15 +1,16 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {Observable, ReplaySubject, tap} from "rxjs";
+import {BehaviorSubject, Observable, ReplaySubject, tap} from "rxjs";
 import {User} from "./user.model";
+import {Router} from "@angular/router";
 
 @Injectable({
   providedIn: 'root'
 })
 export class LoginService {
-  user = new ReplaySubject<User>( 1);
+  user = new BehaviorSubject<User>( null);
 
-  constructor( private http: HttpClient) { }
+  constructor( private http: HttpClient, private router: Router) { }
 
   authenticateUser(incomingUser: {bilkentId: number, password: String}): Observable<any> {
     return this.http.post<any>( "http://localhost:8080/user/get", incomingUser)
@@ -19,5 +20,11 @@ export class LoginService {
         this.user.next( newUser);
       })
     );
+  }
+
+  logout() {
+    this.user.next( null);
+    localStorage.clear();
+    this.router.navigate(['/']);
   }
 }
