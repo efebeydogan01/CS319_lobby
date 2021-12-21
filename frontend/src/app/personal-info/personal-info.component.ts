@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {LoginService} from "../Services/login-service.service";
 import {Subscription, take} from "rxjs";
+import {InformationService} from "../Services/information.service";
 
 @Component({
   selector: 'app-personal-info',
@@ -9,7 +10,7 @@ import {Subscription, take} from "rxjs";
 })
 export class PersonalInfoComponent implements OnInit {
   // loginSubs: Subscription = new Subscription();
-  constructor( private loginService: LoginService) { }
+  constructor( private loginService: LoginService, private informationService: InformationService) { }
   // userName: string = "";
   // userId: number = 0;
   // dob: string = "";
@@ -25,7 +26,8 @@ export class PersonalInfoComponent implements OnInit {
     phoneNumber: string,
     age: number,
     department: string,
-    year: number
+    year: number,
+    uuid: string
   } = null;
   ngOnInit(): void {
     // this.loginSubs = this.loginService.user.pipe(take(1)).
@@ -47,7 +49,9 @@ export class PersonalInfoComponent implements OnInit {
     const localUser = localStorage.getItem('userData');
     if ( localUser) {
       this.userData = JSON.parse(localUser);
+      this.informationService.getCovidInfo( this.userData.uuid).subscribe();
     }
+
     console.log( this.userData);
     // this.userName = String( localStorage.getItem( 'name'));
     // this.userId = Number(localStorage.getItem( 'bilkentId'));
