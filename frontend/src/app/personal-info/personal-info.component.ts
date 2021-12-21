@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {LoginService} from "../Services/login-service.service";
-import {Subscription} from "rxjs";
+import {Subscription, take} from "rxjs";
 
 @Component({
   selector: 'app-personal-info',
@@ -13,10 +13,22 @@ export class PersonalInfoComponent implements OnInit {
   userName: string = "";
   userId: number = 0;
   ngOnInit(): void {
-    this.loginSubs = this.loginService.user.subscribe( data => {
-      this.userName = data.name;
-      this.userId = data.id;
+    this.loginSubs = this.loginService.user.
+    subscribe( {
+      next: (data) => {
+        console.log( data);
+        localStorage.setItem('bilkentId', String(data.id));
+        localStorage.setItem('name', data.name);
+        // this.userName = data.name;
+        // this.userId = data.id;
+      },
+      error: (err) => {
+        console.log( "user not logged in!");
+      }
     });
+
+    this.userName = String( localStorage.getItem( 'name'));
+    this.userId = Number(localStorage.getItem( 'bilkentId'));
   }
 
 

@@ -11,12 +11,12 @@ export class LoginService {
 
   constructor( private http: HttpClient) { }
 
-  authenticateUser(user: {bilkentId: number, password: String}): Observable<any> {
-    return this.http.post<any>( "http://localhost:8080/user/get", user)
+  authenticateUser(incomingUser: {bilkentId: number, password: String}): Observable<any> {
+    return this.http.post<any>( "http://localhost:8080/user/get", incomingUser)
       .pipe( tap( data => {
-        const user = new User( data.id, data.name);
-        // console.log( data);
-        this.user.next( user);
+        const newUser = new User( data.data.bilkentId, data.data.name);
+        console.log( data);
+        this.user.next( newUser);
       })
     );
   }
