@@ -40,13 +40,6 @@ public class User extends BaseEntity
 	@Column(name = "age")
 	private Integer age;
 
-	@Column(name = "department")
-	private String department;
-
-	@Column(name = "year")
-	@Min(0)
-	@Max(4)
-	private Integer year;
 	/*
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "testResult-id", referencedColumnName = "id")
