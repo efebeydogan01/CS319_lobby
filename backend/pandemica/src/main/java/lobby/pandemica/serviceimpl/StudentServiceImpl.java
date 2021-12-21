@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class StudentServiceImpl extends BaseServiceImpl<Student, StudentDto> implements StudentService
 {
-    private static final Logger LOGGER = LoggerFactory.getLogger(UserServiceImpl.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(StudentServiceImpl.class);
 
     private final StudentRepository studentRepository;
 
