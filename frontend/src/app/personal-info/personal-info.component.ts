@@ -13,14 +13,12 @@ export class PersonalInfoComponent implements OnInit {
   userName: string = "";
   userId: number = 0;
   ngOnInit(): void {
-    this.loginSubs = this.loginService.user.
+    this.loginSubs = this.loginService.user.pipe(take(1)).
     subscribe( {
       next: (data) => {
         console.log( data);
         localStorage.setItem('bilkentId', String(data.id));
         localStorage.setItem('name', data.name);
-        // this.userName = data.name;
-        // this.userId = data.id;
       },
       error: (err) => {
         console.log( "user not logged in!");
