@@ -2,8 +2,6 @@ package lobby.pandemica.db;
 
 import lombok.*;
 
-import javax.persistence.Entity;
-
 @Data
 @Getter
 @Setter
