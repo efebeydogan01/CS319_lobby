@@ -18,6 +18,8 @@ import { WeeklyReportsComponent } from './weekly-reports/weekly-reports.componen
 import { SearchUserInfoComponent } from './search-user-info/search-user-info.component';
 import { SearchUserBarComponent } from './search-user-bar/search-user-bar.component';
 import {HttpClientModule} from "@angular/common/http";
+import {LoadingSpinnerComponent} from "./loading-spinner/loading-spinner.component";
+import { SeatComponent } from './seat/seat.component';
 
 const appRoutes: Routes =[
   { path: '', component: LoginComponent},
@@ -46,6 +48,8 @@ const appRoutes: Routes =[
     WeeklyReportsComponent,
     SearchUserInfoComponent,
     SearchUserBarComponent,
+    LoadingSpinnerComponent,
+    SeatComponent
   ],
   imports: [
     BrowserModule,

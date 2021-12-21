@@ -8,6 +8,36 @@
           <input type="text" class="form-control" placeholder="Search functionality">
         </div>
       </div>
+      <a class="btn btn-outline-dark my-2" data-bs-toggle="modal" data-bs-target="#sendNotificationPopUp">Send Notification</a>
+                    <div class="modal fade" id="sendNotificationPopUp" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                      <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Send Notification</h5>
+                          </div>
+                          <div class="modal-body">
+                            <form class="p-2">
+                              <div class="my-3">
+                                <label for="exampleInputEmail1" class="form-label">Receivers</label>
+                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="2"></textarea>
+                              </div>
+                              <div class="my-3">
+                                <label for="exampleInputEmail1" class="form-label">Notification Title</label>
+                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="2"></textarea>
+                              </div>
+                              <div class="mb-3">
+                                <label for="exampleInputPassword1" class="form-label">Notification Message</label>
+                                <input class="form-control" id="exampleInputPassword1">
+                              </div>
+                            </form>
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-sm btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-sm btn-primary" data-bs-dismiss="modal">Save</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
       <ul class="navbar-nav  justify-content-end">
         <li class="nav-item px-3 dropdown me-2 d-flex align-items-center">
           <a href="javascript:;" class="nav-link text-body p-0" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
@@ -15,7 +45,7 @@
           </a>
           <ul class="dropdown-menu  dropdown-menu-end  px-2 py-3 me-sm-n4" aria-labelledby="dropdownMenuButton">
             <li class="mb-2">
-              <a class="dropdown-item border-radius-md" href="javascript:;">
+              <a class="dropdown-item border-radius-md">
                 <div class="d-flex py-1">
                   <div class="my-auto">
                     <img src="/assets/img/efe.jpg" class="avatar avatar-sm  me-3 ">
@@ -33,7 +63,7 @@
               </a>
             </li>
             <li class="mb-2">
-              <a class="dropdown-item border-radius-md" href="javascript:;">
+              <a class="dropdown-item border-radius-md">
                 <div class="d-flex py-1">
                   <div class="my-auto">
                     <img src="/assets/img/small-logos/download.png" class="avatar avatar-sm bg-gradient-dark  me-3 ">
@@ -51,7 +81,7 @@
               </a>
             </li>
             <li>
-              <a class="dropdown-item border-radius-md" href="javascript:;">
+              <a class="dropdown-item border-radius-md">
                 <div class="d-flex py-1">
                   <div class="my-auto">
                     <img src="/assets/img/small-logos/success-green-check-mark.png" class="avatar avatar-sm me-3 ">
@@ -71,7 +101,7 @@
           </ul>
         </li>
         <li class="nav-item d-flex align-items-center">
-          <a href="javascript:;" class="nav-link text-body font-weight-bold px-0">
+          <a routerLink="/" class="nav-link text-body font-weight-bold px-0">
             <i class="fa fa-user me-sm-1"></i>
             <span class="d-sm-inline d-none">Log off</span>
           </a>
