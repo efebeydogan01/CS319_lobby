@@ -5,9 +5,10 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
@@ -36,6 +37,14 @@ public class User extends BaseEntity
 	@Column(name = "phone_number", nullable = false)
 	private String phoneNumber;
 
-	@OneToOne(mappedBy = "user")
-	private CovidInformation covidInformation;
+	@Column(name = "age")
+	private Integer age;
+
+	@Column(name = "department")
+	private String department;
+
+	@Column(name = "year")
+	@Min(0)
+	@Max(4)
+	private Integer year;
 }

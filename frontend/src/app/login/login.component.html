@@ -26,8 +26,11 @@
                 <h3 class="font-weight-bolder text-info text-gradient">Welcome back</h3>
                 <p class="mb-0">Enter your id and password to sign in</p>
               </div>
+              <div *ngIf="isLoading" style="text-align: center;">
+                <app-loading-spinner></app-loading-spinner>
+              </div>
               <div class="card-body">
-                <form #loginForm="ngForm" role="form" (ngSubmit)="loginUser(userId.value, password.value)">
+                <form #loginForm="ngForm" role="form" *ngIf="!isLoading" (ngSubmit)="loginUser(userId.value, password.value, loginForm)">
                   <span class="text-danger" *ngIf="!userAuthenticated">Incorrect credentials</span>
                   <div class="form-group">
                     <label>ID</label>
