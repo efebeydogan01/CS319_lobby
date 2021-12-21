@@ -20,17 +20,18 @@ import { SearchUserBarComponent } from './search-user-bar/search-user-bar.compon
 import {HttpClientModule} from "@angular/common/http";
 import {LoadingSpinnerComponent} from "./loading-spinner/loading-spinner.component";
 import { SeatComponent } from './seat/seat.component';
+import {AuthGuard} from "./Services/auth.guard";
 
 const appRoutes: Routes =[
   { path: '', component: LoginComponent},
-  { path: 'personal-info', component: PersonalInfoComponent},
-  { path: 'search-user-info', component: SearchUserInfoComponent}, // admin & health center employee
-  { path: 'class-info', component: ClassInfoComponent},
-  { path: 'general-info', component: GeneralInfoComponent},
-  { path: 'general-info/guidelines', component: GuidelinesComponent},
-  { path: 'general-info/weekly-reports', component: WeeklyReportsComponent},
-  { path: 'social', component: SocialComponent},
-  { path: 'report-request', component: ReportRequestComponent}
+  { path: 'personal-info', component: PersonalInfoComponent, canActivate: [AuthGuard]},
+  { path: 'search-user-info', component: SearchUserInfoComponent, canActivate: [AuthGuard]}, // admin & health center employee
+  { path: 'class-info', component: ClassInfoComponent, canActivate: [AuthGuard]},
+  { path: 'general-info', component: GeneralInfoComponent, canActivate: [AuthGuard]},
+  { path: 'general-info/guidelines', component: GuidelinesComponent, canActivate: [AuthGuard]},
+  { path: 'general-info/weekly-reports', component: WeeklyReportsComponent, canActivate: [AuthGuard]},
+  { path: 'social', component: SocialComponent, canActivate: [AuthGuard]},
+  { path: 'report-request', component: ReportRequestComponent, canActivate: [AuthGuard]}
 ];
 
 @NgModule({
