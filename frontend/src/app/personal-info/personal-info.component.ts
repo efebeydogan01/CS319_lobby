@@ -10,6 +10,7 @@ import {InformationService} from "../Services/information.service";
 })
 export class PersonalInfoComponent implements OnInit {
   // loginSubs: Subscription = new Subscription();
+  covidStatus: string = "";
   constructor( private loginService: LoginService, private informationService: InformationService) { }
   // userName: string = "";
   // userId: number = 0;
@@ -49,10 +50,13 @@ export class PersonalInfoComponent implements OnInit {
     const localUser = localStorage.getItem('userData');
     if ( localUser) {
       this.userData = JSON.parse(localUser);
-      this.informationService.getCovidInfo( this.userData.uuid).subscribe();
+      this.userData.dob = this.userData.dob.substring(0, 10);
+      this.informationService.getCovidInfo( this.userData.uuid).pipe( take(1)).subscribe( {
+        next: (data) => {
+          this.covidStatus = data.data.status;
+        }
+      });
     }
-
-    console.log( this.userData);
     // this.userName = String( localStorage.getItem( 'name'));
     // this.userId = Number(localStorage.getItem( 'bilkentId'));
     // this.dob = localStorage.getItem( 'dob');
