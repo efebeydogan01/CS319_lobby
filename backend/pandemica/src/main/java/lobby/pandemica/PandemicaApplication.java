@@ -29,17 +29,17 @@ public class PandemicaApplication {
 						  CovidInformationService covidInformationService,
 						  CovidInformationMapper covidInformationMapper) {
 		return args -> {
-			UserDto userDto1 = new UserDto(UUID.randomUUID(),"elif beydogan", "password",
-					21212122, new Date(System.currentTimeMillis()),
+			UserDto userDto1 = new UserDto(UUID.randomUUID(),"Mert Barkın Er", "password",
+					0, new Date(System.currentTimeMillis()),
 					"53112312123", null);
-			UserDto userDto2 = new UserDto(UUID.randomUUID(),"efe beydogan", "password",
-					29992122, new Date(System.currentTimeMillis()),
+			UserDto userDto2 = new UserDto(UUID.randomUUID(),"Efe Beydoğan", "password",
+					1, new Date(System.currentTimeMillis()),
 					"53112312123",null);
-			UserDto userDto3 = new UserDto(UUID.randomUUID(),"cagtay beydogan", "password",
-					21000022, new Date(System.currentTimeMillis()),
+			UserDto userDto3 = new UserDto(UUID.randomUUID(),"Arda Önal", "password",
+					2, new Date(System.currentTimeMillis()),
 					"53112312123",null);
-			UserDto userDto4 = new UserDto(UUID.randomUUID(),"mama polat", "password",
-					21212111, new Date(System.currentTimeMillis()),
+			UserDto userDto4 = new UserDto(UUID.randomUUID(),"Eren Polat", "password",
+					3, new Date(System.currentTimeMillis()),
 					"53112312123",null);
 			userService.create(userDto1);
 			userService.create(userDto2);
