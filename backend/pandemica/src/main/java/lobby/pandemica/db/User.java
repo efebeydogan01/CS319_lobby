@@ -9,6 +9,7 @@ import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -20,36 +21,21 @@ import java.util.UUID;
 public class User extends BaseEntity
 {
 	//Attributes
-	@Column(name = "name")
+	@Column(name = "name", nullable = false)
 	private String name;
 
-	@Column(name = "password")
+	@Column(name = "password", nullable = false)
 	private String password;
 
-	@Column(name = "bilkentId", unique = true)
+	@Column(name = "bilkent_id", unique = true, nullable = false)
 	private Integer bilkentId;
 
-	@Column(name = "dateOfBirth")
+	@Column(name = "date_of_birth", nullable = false)
 	private Date dateOfBirth = new Date(System.currentTimeMillis());
 
-	@Column(name = "phoneNumber")
+	@Column(name = "phone_number", nullable = false)
 	private String phoneNumber;
-/*
-	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "testResult-id", referencedColumnName = "id")
-	private TestResult testResult;
 
-	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "exReport-id", referencedColumnName = "id")
-	private ExaminationReport exReport;
-
-	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "covidInfo-id", referencedColumnName = "id")
-	private CovidInformation covidInfo;*/
-
-	//Methods
-	/*public void addAppointment(Appointment appointment){}
-	public String getRiskStatus(){};
-	public VaccinationInformation getVaccinationInfo(){}
-	public addTestResult( TestResult testResult)(){}*/
+	@OneToOne(mappedBy = "user")
+	private CovidInformation covidInformation;
 }
