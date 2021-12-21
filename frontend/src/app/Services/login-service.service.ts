@@ -4,6 +4,7 @@ import {BehaviorSubject, Observable, ReplaySubject, tap} from "rxjs";
 import {User} from "./user.model";
 import {Router} from "@angular/router";
 import {HttpUrls} from "./HttpUrls";
+import {InformationService} from "./information.service";
 
 @Injectable({
   providedIn: 'root'
@@ -16,15 +17,14 @@ export class LoginService {
   authenticateUser(incomingUser: {bilkentId: number, password: String}): Observable<any> {
     return this.http.post<any>( HttpUrls.baseUrl + "user/get", incomingUser)
       .pipe( tap( data => {
-        console.log( data);
+        // console.log( data);
         const newUser = new User( data.data.bilkentId,
           data.data.name,
           data.data.dateOfBirth,
           data.data.phoneNumber,
           data.data.age,
-          data.data.department,
-          data.data.year,
-          data.data.id);
+          data.data.id,
+          data.data.role);
         this.user.next( newUser);
         //this.autoLogout(); CALL AUTOLOGOUT HERE
         localStorage.setItem('userData', JSON.stringify( newUser));
@@ -39,9 +39,8 @@ export class LoginService {
       dateOfBirth: string,
       phoneNumber: string,
       age: string,
-      department: string,
-      year: string,
-      uuid: string
+      uuid: string,
+      role: string
     } = JSON.parse( localStorage.getItem( 'userData'));
     if ( !userData) {
       return;
@@ -52,9 +51,8 @@ export class LoginService {
       new Date( userData.dateOfBirth),
       userData.phoneNumber,
       Number(userData.age),
-      userData.department,
-      Number(userData.year),
-      userData.uuid);
+      userData.uuid,
+      userData.role);
 
     // CHECK IF USER TOKEN IS VALID?
     this.user.next( loadedUser);
