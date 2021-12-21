@@ -19,7 +19,7 @@ import java.util.UUID;
 @Service
 public class CovidInformationServiceImpl extends BaseServiceImpl<CovidInformation, CovidInformationDto> implements CovidInformationService
 {
-    private static final Logger LOGGER = LoggerFactory.getLogger(UserServiceImpl.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(CovidInformationServiceImpl.class);
 
     private final CovidInformationRepository covidInformationRepository;
     private final UserRepository userRepository;
