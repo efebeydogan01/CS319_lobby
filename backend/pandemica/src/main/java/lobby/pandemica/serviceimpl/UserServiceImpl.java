@@ -12,6 +12,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityNotFoundException;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -49,5 +51,17 @@ public class UserServiceImpl extends BaseServiceImpl<User, UserDto> implements U
 			throw new EntityNotFoundException();
 		}
 		return candidateUser;
+	}
+
+	@Override
+	public UserDto create(UserDto dto) throws EntityNotFoundException
+	{
+		Date current = new Date();
+		Calendar currentCalendar = Calendar.getInstance();
+		Calendar userCalendar = Calendar.getInstance();
+		userCalendar.setTime(dto.getDateOfBirth());
+		currentCalendar.setTime(current);
+		dto.setAge(currentCalendar.get(Calendar.YEAR) - userCalendar.get(Calendar.YEAR));
+		return super.create(dto);
 	}
 }
