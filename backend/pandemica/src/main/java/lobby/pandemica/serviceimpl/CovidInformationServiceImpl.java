@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityNotFoundException;
 import java.util.Optional;
+import java.util.UUID;
 
 @Service
 public class CovidInformationServiceImpl extends BaseServiceImpl<CovidInformation, CovidInformationDto> implements CovidInformationService
@@ -22,11 +23,14 @@ public class CovidInformationServiceImpl extends BaseServiceImpl<CovidInformatio
 
     private final CovidInformationRepository covidInformationRepository;
     private final UserRepository userRepository;
+    private final CovidInformationMapper covidInformationMapper;
 
-    public CovidInformationServiceImpl(CovidInformationRepository covidInformationRepository,UserRepository userRepository) {
+    public CovidInformationServiceImpl(CovidInformationRepository covidInformationRepository,
+                                       UserRepository userRepository, CovidInformationMapper covidInformationMapper) {
         super(covidInformationRepository, CovidInformationMapper.INSTANCE);
         this.covidInformationRepository = covidInformationRepository;
         this.userRepository = userRepository;
+        this.covidInformationMapper = covidInformationMapper;
     }
 
     @Override
@@ -46,5 +50,20 @@ public class CovidInformationServiceImpl extends BaseServiceImpl<CovidInformatio
         }
         entity.setUser(infoUser.get());
         return super.create(CovidInformationMapper.INSTANCE.entityToDto(entity));
+    }
+
+    public CovidInformationDto get(UUID userId) throws EntityNotFoundException
+    {
+        if (userId == null)
+        {
+            LOGGER.warn("The id cannot be empty!");
+            throw new EntityNotFoundException();
+        }
+        Optional<CovidInformation> covidInformationOptional = covidInformationRepository.findByUserId(userId);
+        if (!covidInformationOptional.isPresent()) {
+            LOGGER.warn("No such covid information!");
+            throw new EntityNotFoundException();
+        }
+        return covidInformationMapper.entityToDto(covidInformationOptional.get());
     }
 }
