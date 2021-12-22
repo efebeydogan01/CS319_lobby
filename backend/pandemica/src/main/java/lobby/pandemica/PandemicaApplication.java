@@ -1,6 +1,8 @@
 package lobby.pandemica;
 
+import lobby.pandemica.db.Classrooms;
 import lobby.pandemica.db.Role;
+import lobby.pandemica.db.Seat;
 import lobby.pandemica.db.Status;
 import lobby.pandemica.dto.AcademicPersonnelDto;
 import lobby.pandemica.dto.CovidInformationDto;
@@ -34,7 +36,8 @@ public class PandemicaApplication {
 						  AdminService adminService,
 						  MedicalEmployeeService medicalEmployeeService,
 						  AcademicPersonnelService academicPersonnelService,
-						  SectionService sectionService) {
+						  SectionService sectionService,
+						  SeatService seatService) {
 		return args -> {
 			Integer dummyAge = 0;
 			UserDto userDto1 = new UserDto(UUID.randomUUID(),"Mert Barkın Er", "password",
@@ -73,15 +76,15 @@ public class PandemicaApplication {
 			covidInformationService.create(covidInformationDto3);
 			covidInformationService.create(covidInformationDto4);
 
-//			StudentDto studentDto1 = new StudentDto(UUID.randomUUID(), userDto1, "CS", "3");
-//			studentService.create(studentDto1);
-//			AdminDto adminDto = new AdminDto(UUID.randomUUID(), userDto2);
-//			adminService.create(adminDto);
-//			MedicalEmployeeDto medicalEmployeeDto = new MedicalEmployeeDto(UUID.randomUUID(), userDto3, "KBB", "asda");
-//			medicalEmployeeService.create(medicalEmployeeDto);
-//			StudentDto studentDto2 = new StudentDto(UUID.randomUUID(), userDto4, "CS", "3");
-//			studentService.create(studentDto2);
-//			covidInformationService.create(covidInformationDto5);
+			StudentDto studentDto1 = new StudentDto(UUID.randomUUID(), userDto1, "CS", "3");
+			studentService.create(studentDto1);
+			AdminDto adminDto = new AdminDto(UUID.randomUUID(), userDto2);
+			adminService.create(adminDto);
+			MedicalEmployeeDto medicalEmployeeDto = new MedicalEmployeeDto(UUID.randomUUID(), userDto3, "KBB", "asda");
+			medicalEmployeeService.create(medicalEmployeeDto);
+			StudentDto studentDto2 = new StudentDto(UUID.randomUUID(), userDto4, "CS", "3");
+			studentService.create(studentDto2);
+			covidInformationService.create(covidInformationDto5);
 
 			AcademicPersonnelDto academicPersonnelDto = new AcademicPersonnelDto(UUID.randomUUID(), "CS", userDto5);
 			academicPersonnelService.create(academicPersonnelDto);
@@ -94,6 +97,16 @@ public class PandemicaApplication {
 			sectionService.create(sectionDto2);
 			sectionService.create(sectionDto3);
 			sectionService.create(sectionDto4);
+
+			Classrooms classroom = new Classrooms();
+			Boolean[][] b204 = classroom.getClassroom(sectionDto1.getClassroom());
+			int rowLength = b204.length; int columnLength = b204[0].length;
+			for (int i = 0; i < rowLength; i++) {
+				for (int j = 0; j < columnLength; j++) {
+					SeatDto seatDto = new SeatDto(UUID.randomUUID(), sectionDto1, b204[i][j], i + 1, j + 1, null);
+					seatService.create(seatDto);
+				}
+			}
 
 		};
 	}

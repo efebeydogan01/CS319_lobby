@@ -6,7 +6,8 @@ import java.util.HashMap;
 @Data
 @Getter
 @Setter
-public class Classrooms {
+public class Classrooms
+{
     private static HashMap<String, Boolean[][]> classrooms;
 
     private final Boolean[][] b204 = {
@@ -25,15 +26,20 @@ public class Classrooms {
             {true, true, true, true, true, true, true, true, true, true}
     };
 
-    public Classrooms(){
+    public Classrooms()
+    {
         classrooms = new HashMap<>();
         addClassroom( "B-204", b204);
         addClassroom( "EE-214", ee214);
     }
-    public Boolean[][] getClassroom( String classroomName){
-        return classrooms.get( classroomName);
+
+    public Boolean[][] getClassroom(String classroomName)
+    {
+        return classrooms.get(classroomName);
     }
-    public void addClassroom(String classroomName, Boolean[][] classroom){
+
+    public void addClassroom(String classroomName, Boolean[][] classroom)
+    {
         classrooms.put(classroomName, classroom);
     }
 }
