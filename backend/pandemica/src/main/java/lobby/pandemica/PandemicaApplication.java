@@ -38,16 +38,16 @@ public class PandemicaApplication {
 		return args -> {
 			Integer dummyAge = 0;
 			UserDto userDto1 = new UserDto(UUID.randomUUID(),"Mert Barkın Er", "password",
-					0, new Date(101,8,3),
+					21900000, new Date(101,8,3),
 					"53112312123",0, "STUDENT");
 			UserDto userDto2 = new UserDto(UUID.randomUUID(),"Efe Beydoğan", "password",
-					1, new Date(101,3,26),
+					21900001, new Date(101,3,26),
 					"53112312123",1, "ADMIN");
 			UserDto userDto3 = new UserDto(UUID.randomUUID(),"Arda Önal", "password",
-					2, new Date(101,0,13),
+					21900002, new Date(101,0,13),
 					"53112312123",4, "MEDICAL_EMPLOYEE");
 			UserDto userDto4 = new UserDto(UUID.randomUUID(),"Eren Polat", "password",
-					3, new Date(101,8,19),
+					21900003, new Date(101,8,19),
 					"53112312123",0,"STUDENT");
 			UserDto userDto5 = new UserDto(UUID.randomUUID(),"Eray Tuzun", "password",
 					21900004, new Date(77,8,19),

@@ -18,7 +18,6 @@ import javax.persistence.*;
 )
 public class Section extends BaseEntity {
     @ManyToOne(cascade = CascadeType.ALL)
-    @EqualsAndHashCode.Exclude @ToString.Exclude
     @JoinColumn(name = "academic_personnel_id", referencedColumnName = "id")
     private AcademicPersonnel academicPersonnel;
 
