@@ -8,6 +8,7 @@ import {LoginService} from "../Services/login-service.service";
 })
 export class TopbarComponent implements OnInit {
   userRole: string = JSON.parse( localStorage.getItem( 'userData')).role;
+
   constructor( private loginService: LoginService) { }
 
   ngOnInit(): void {
