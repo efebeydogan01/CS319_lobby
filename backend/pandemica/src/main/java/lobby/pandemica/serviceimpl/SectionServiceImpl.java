@@ -50,7 +50,7 @@ public class SectionServiceImpl extends BaseServiceImpl<Section, SectionDto> imp
             LOGGER.warn("The entity to save cannot be empty!");
             throw new EntityNotFoundException();
         }
-        AcademicPersonnelDto academicPersonnelDto = dto.getAcademicPersonnelDto();
+        AcademicPersonnelDto academicPersonnelDto = dto.getAcademicPersonnel();
         Integer bilkentID = academicPersonnelDto.getUser().getBilkentId();
         Optional<User> infoUser = userRepository.findByBilkentId(bilkentID);
         Optional<AcademicPersonnel> infoAcademic = academicPersonnelRepository.findByUserId(infoUser.get().getId());
