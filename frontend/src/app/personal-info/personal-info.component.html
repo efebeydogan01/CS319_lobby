@@ -161,7 +161,7 @@
                 <h5>Tests</h5>
                 <p class="text-sm mb-0">
                   <i class="fa fa-check text-info" aria-hidden="true"></i>
-                  <span class="font-weight-bold ms-1">4 tests done</span> this month
+                  <span class="font-weight-bold ms-1">{{ testResults ? testResults.length + " tests done" : "0 tests done" }}</span>
                 </p>
               </div>
               <div class="col-lg-6 col-5 my-auto text-end">
@@ -185,64 +185,19 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
+                <tr *ngFor="let test of testResults">
                   <td>
                     <div class="d-flex px-2 py-1 flex-column justify-content-center">
-                      <h6 class="ms-2 mb-0 text-sm">22/10/2021</h6>
+                      <h6 class="ms-2 mb-0 text-sm">{{ test.testDate.substring(0, 10) }}</h6>
                     </div>
                   </td>
                   <td>
                     <div class="d-flex py-1 flex-column justify-content-center">
-                      <h6 class="mb-0 text-sm">Diagnovir</h6>
+                      <h6 class="mb-0 text-sm">{{ test.type }}</h6>
                     </div>
                   </td>
                   <td class="align-middle text-center text-sm">
-                    <span class="text-xs font-weight-bold"> Negative </span>
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    <div class="d-flex px-2 py-1 flex-column justify-content-center">
-                      <h6 class="ms-2 mb-0 text-sm">20/10/2021</h6>
-                    </div>
-                  </td>
-                  <td>
-                    <div class="d-flex py-1 flex-column justify-content-center">
-                      <h6 class="mb-0 text-sm">Diagnovir</h6>
-                    </div>
-                  </td>
-                  <td class="align-middle text-center text-sm">
-                    <span class="text-xs font-weight-bold"> Negative </span>
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    <div class="d-flex px-2 py-1 flex-column justify-content-center">
-                      <h6 class="ms-2 mb-0 text-sm">18/10/2021</h6>
-                    </div>
-                  </td>
-                  <td>
-                    <div class="d-flex py-1 flex-column justify-content-center">
-                      <h6 class="mb-0 text-sm">Diagnovir</h6>
-                    </div>
-                  </td>
-                  <td class="align-middle text-center text-sm">
-                    <span class="text-xs font-weight-bold"> Negative </span>
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    <div class="d-flex px-2 py-1 flex-column justify-content-center">
-                      <h6 class="ms-2 mb-0 text-sm">16/10/2021</h6>
-                    </div>
-                  </td>
-                  <td>
-                    <div class="d-flex py-1 flex-column justify-content-center">
-                      <h6 class="mb-0 text-sm">PCR</h6>
-                    </div>
-                  </td>
-                  <td class="align-middle text-center text-sm">
-                    <span class="text-xs font-weight-bold"> Negative </span>
+                    <span class="text-xs font-weight-bold"> {{ test.result ? 'Negative' : 'Positive' }} </span>
                   </td>
                 </tr>
                 </tbody>

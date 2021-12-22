@@ -11,6 +11,12 @@ import {LocalStorageConstants} from "../Services/LocalStorageConstants";
 })
 export class PersonalInfoComponent implements OnInit {
   // loginSubs: Subscription = new Subscription();
+  testResults: {
+    id: string,
+    result: boolean,
+    testDate: string,
+    type: string
+  }[] = null;
   covidStatus: string = "";
   studentInfo: {
     department: string,
@@ -46,6 +52,10 @@ export class PersonalInfoComponent implements OnInit {
           this.studentInfo = JSON.parse( localStorage.getItem(LocalStorageConstants.studentInfo));
       }
 
+      const tests = JSON.parse( localStorage.getItem( LocalStorageConstants.testResults));
+      if ( tests) {
+        this.testResults = tests;
+      }
 
     }
   }
