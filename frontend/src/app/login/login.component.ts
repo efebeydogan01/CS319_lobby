@@ -34,12 +34,23 @@ export class LoginComponent implements OnInit {
 
           const userData = JSON.parse(localStorage.getItem('userData'));
 
-          this.informationService.getRoleInfo( userData.uuid, userData.role).pipe( take(1)).subscribe( () => {
-            this.informationService.neighborStatus( userData.uuid).pipe( take( 1)).subscribe( () => {
-              this.router.navigate( ['/personal-info']);
-              this.isLoading = false;
-            })
+          this.informationService.getRoleInfo( userData.uuid, userData.role).pipe( take(1)).subscribe( {
+            next: () => {
+              this.informationService.neighborStatus( userData.uuid).pipe( take( 1)).subscribe( {
+                next: () => {
+                  this.router.navigate( ['/personal-info']);
+                  this.isLoading = false;
+                },
+                error: () => {
+                  this.onError();
+                }
+              });
+            },
+            error: () => {
+              this.onError();
+            }
           });
+
 
 
           // this.informationService.getRoleInfo( userData.uuid, userData.role).pipe(
@@ -56,10 +67,16 @@ export class LoginComponent implements OnInit {
           this.userAuthenticated = false;
           console.log( "User cannot be authenticated");
           this.isLoading = false;
+          this.onError();
         }
       }
     );
 
     form.reset();
+  }
+
+  onError() {
+    this.isLoading = false;
+    this.logService.logout();
   }
 }
