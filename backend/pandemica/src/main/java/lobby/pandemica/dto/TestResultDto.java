@@ -1,5 +1,7 @@
 package lobby.pandemica.dto;
 
+import lobby.pandemica.db.CovidInformation;
+import lobby.pandemica.db.User;
 import lobby.pandemica.dto.base.BaseDto;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -14,9 +16,10 @@ import java.util.UUID;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class NeighborDto extends BaseDto<UUID>
+public class TestResultDto extends BaseDto<UUID>
 {
-    private SectionDto section;
-    private StudentDto firstStudent;
-    private StudentDto secondStudent;
+    private UserDto user;
+    private Date testDate;
+    private String type;
+    private String result;
 }

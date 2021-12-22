@@ -1,6 +1,5 @@
 package lobby.pandemica.repository;
-
-import lobby.pandemica.db.Neighbor;
+import lobby.pandemica.db.TestResult;
 import lobby.pandemica.repository.base.BaseRepository;
 import org.springframework.stereotype.Repository;
 
@@ -10,8 +9,7 @@ import java.util.UUID;
 
 @Transactional
 @Repository
-public interface NeighborRepository extends BaseRepository<Neighbor, UUID>
+public interface TestResultRepository extends BaseRepository<TestResult, UUID>
 {
-	Integer countNeighborsByFirstStudentId(UUID firstStudentId);
-	List<Neighbor> findAllByFirstStudent_Id(UUID id);
+	List<TestResult> findAllByUserId(UUID userId);
 }

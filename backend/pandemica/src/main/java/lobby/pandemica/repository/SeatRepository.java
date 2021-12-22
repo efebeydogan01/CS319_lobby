@@ -1,6 +1,6 @@
 package lobby.pandemica.repository;
 
-import lobby.pandemica.db.Neighbor;
+import lobby.pandemica.db.Seat;
 import lobby.pandemica.repository.base.BaseRepository;
 import org.springframework.stereotype.Repository;
 
@@ -10,8 +10,7 @@ import java.util.UUID;
 
 @Transactional
 @Repository
-public interface NeighborRepository extends BaseRepository<Neighbor, UUID>
+public interface SeatRepository extends BaseRepository<Seat, UUID>
 {
-	Integer countNeighborsByFirstStudentId(UUID firstStudentId);
-	List<Neighbor> findAllByFirstStudent_Id(UUID id);
+    List<Seat> findAllBySectionId(UUID sectionID);
 }
