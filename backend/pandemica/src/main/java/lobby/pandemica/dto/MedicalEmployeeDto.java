@@ -15,7 +15,8 @@ import java.util.UUID;
 @NoArgsConstructor
 public class MedicalEmployeeDto extends BaseDto<UUID>
 {
-    private User user;
+    private UUID id;
+    private UserDto user;
     private String type;
     private String workingLocation;
 
