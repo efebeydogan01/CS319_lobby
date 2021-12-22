@@ -107,6 +107,14 @@ public class PandemicaApplication {
 					seatService.create(seatDto);
 				}
 			}
+			Boolean[][] ee214 = classroom.getClassroom(sectionDto4.getClassroom());
+			rowLength = ee214.length; columnLength = ee214[0].length;
+			for (int i = 0; i < rowLength; i++) {
+				for (int j = 0; j < columnLength; j++) {
+					SeatDto seatDto = new SeatDto(UUID.randomUUID(), sectionDto4, ee214[i][j], i + 1, j + 1, null);
+					seatService.create(seatDto);
+				}
+			}
 
 		};
 	}

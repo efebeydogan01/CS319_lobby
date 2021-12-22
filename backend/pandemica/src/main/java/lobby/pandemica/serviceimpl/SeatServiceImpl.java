@@ -59,7 +59,7 @@ public class SeatServiceImpl extends BaseServiceImpl<Seat, SeatDto> implements S
         Optional<Section> infoSection = sectionRepository.findByCourseNameAndSectionNo(courseName, sectionNo);
         if (!infoSection.isPresent())
         {
-            LOGGER.warn("The section of the seat cannot be empty!");
+            LOGGER.warn("The section of the seat cannot be found!");
             throw new EntityNotFoundException();
         }
         entity.setSection(infoSection.get());
@@ -72,7 +72,7 @@ public class SeatServiceImpl extends BaseServiceImpl<Seat, SeatDto> implements S
             Optional<Student> infoStudent = studentRepository.findByUserId(infoUser.get().getId());
             if (!infoStudent.isPresent())
             {
-                LOGGER.warn("The student of the seat cannot be empty!");
+                LOGGER.warn("The student of the seat cannot be found!");
                 throw new EntityNotFoundException();
             }
             entity.setStudent(infoStudent.get());

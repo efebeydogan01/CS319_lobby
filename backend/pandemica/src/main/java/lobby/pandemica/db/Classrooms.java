@@ -11,7 +11,7 @@ public class Classrooms
     private static HashMap<String, Boolean[][]> classrooms;
 
     private final Boolean[][] b204 = {
-            {true, true, true, true, true, true, true, true, true, true},
+            {false, true, true, true, true, true, true, true, true, true},
             {true, true, true, true, true, true, true, true, true, true},
             {true, true, true, true, true, true, true, true, true, true},
             {true, true, true, true, true, true, true, true, true, true},
