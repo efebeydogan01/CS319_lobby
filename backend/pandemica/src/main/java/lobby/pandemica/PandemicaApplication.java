@@ -1,6 +1,5 @@
 package lobby.pandemica;
 
-import lobby.pandemica.db.CovidInformation;
 import lobby.pandemica.db.Role;
 import lobby.pandemica.db.Status;
 import lobby.pandemica.dto.AcademicPersonnelDto;
@@ -11,11 +10,8 @@ import lobby.pandemica.service.AcademicPersonnelService;
 import lobby.pandemica.service.CovidInformationService;
 import lobby.pandemica.service.SectionService;
 import lobby.pandemica.service.UserService;
-import lobby.pandemica.db.User;
 import lobby.pandemica.dto.*;
 import lobby.pandemica.service.*;
-import lobby.pandemica.serviceimpl.mapper.CovidInformationMapper;
-import lobby.pandemica.serviceimpl.mapper.UserMapper;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -36,7 +32,7 @@ public class PandemicaApplication {
 						  CovidInformationService covidInformationService,
 						  StudentService studentService,
 						  AdminService adminService,
-						  MedicalEmployeeService medicalEmployeeService) {
+						  MedicalEmployeeService medicalEmployeeService,
 						  AcademicPersonnelService academicPersonnelService,
 						  SectionService sectionService) {
 		return args -> {
@@ -53,6 +49,9 @@ public class PandemicaApplication {
 			UserDto userDto4 = new UserDto(UUID.randomUUID(),"Eren Polat", "password",
 					3, new Date(101,8,19),
 					"53112312123",0,"STUDENT");
+			UserDto userDto5 = new UserDto(UUID.randomUUID(),"Eray Tuzun", "password",
+					21900004, new Date(77,8,19),
+					"53112312123",dummyAge, Role.ROLES.ACADEMIC_PERSONNEL.name());
 			userService.create(userDto1);
 			userService.create(userDto2);
 			userService.create(userDto3);

@@ -16,6 +16,7 @@ import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityNotFoundException;
 import java.util.Optional;
+import java.util.UUID;
 
 @Service
 public class AcademicPersonnelServiceImpl extends BaseServiceImpl<AcademicPersonnel, AcademicPersonnelDto> implements AcademicPersonnelService
@@ -23,10 +24,11 @@ public class AcademicPersonnelServiceImpl extends BaseServiceImpl<AcademicPerson
     private static final Logger LOGGER = LoggerFactory.getLogger(AcademicPersonnelServiceImpl.class);
 
     private final UserRepository userRepository;
-
+    private final AcademicPersonnelRepository academicPersonnelRepository;
 
     public AcademicPersonnelServiceImpl(AcademicPersonnelRepository academicPersonnelRepository, UserRepository userRepository) {
         super(academicPersonnelRepository, AcademicPersonnelMapper.INSTANCE);
+        this.academicPersonnelRepository = academicPersonnelRepository;
         this.userRepository = userRepository;
     }
 
@@ -53,5 +55,17 @@ public class AcademicPersonnelServiceImpl extends BaseServiceImpl<AcademicPerson
             throw new EntityNotFoundException();
         }
         return super.create(AcademicPersonnelMapper.INSTANCE.entityToDto(entity));
+    }
+
+    @Override
+    public AcademicPersonnelDto getUserWithRole(UUID userId)
+    {
+        Optional<AcademicPersonnel> optionalAcademicPersonnel = academicPersonnelRepository.findByUserId(userId);
+        if (!optionalAcademicPersonnel.isPresent())
+        {
+            LOGGER.warn("The entity to find does not exist!");
+            throw new EntityNotFoundException();
+        }
+        return AcademicPersonnelMapper.INSTANCE.entityToDto(optionalAcademicPersonnel.get());
     }
 }
