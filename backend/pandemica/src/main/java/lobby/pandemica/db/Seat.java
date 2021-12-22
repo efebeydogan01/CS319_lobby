@@ -1,8 +1,6 @@
 package lobby.pandemica.db;
 
 import lobby.pandemica.db.base.BaseEntity;
-import lobby.pandemica.dto.SectionDto;
-import lobby.pandemica.dto.StudentDto;
 import lombok.*;
 
 import javax.persistence.*;
@@ -21,10 +19,10 @@ public class Seat extends BaseEntity {
     @Column(name = "exists", nullable = false)
     private Boolean exists;
 
-    @Column(name = "row", nullable = false)
+    @Column(name = "row_no", nullable = false)
     private Integer row;
 
-    @Column(name = "column", nullable = false)
+    @Column(name = "column_no", nullable = false)
     private Integer column;
 
     @ManyToOne(cascade = CascadeType.ALL)

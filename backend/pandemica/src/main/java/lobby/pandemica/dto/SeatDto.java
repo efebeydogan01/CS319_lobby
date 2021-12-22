@@ -11,7 +11,7 @@ import java.util.UUID;
 @Getter
 @Setter
 @AllArgsConstructor
-@NoArgsConstructor
+//@NoArgsConstructor
 public class SeatDto extends BaseDto<UUID>
 {
     private UUID id;
