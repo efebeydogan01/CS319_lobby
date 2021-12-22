@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {LoginService} from "../Services/login-service.service";
 import {Subscription, take} from "rxjs";
 import {InformationService} from "../Services/information.service";
+import {LocalStorageConstants} from "../Services/LocalStorageConstants";
 
 @Component({
   selector: 'app-personal-info',
@@ -9,8 +10,16 @@ import {InformationService} from "../Services/information.service";
   styleUrls: ['./personal-info.component.css']
 })
 export class PersonalInfoComponent implements OnInit {
-  // loginSubs: Subscription = new Subscription();
+
+  testResults: {
+    id: string,
+    result: string,
+    testDate: string,
+    type: string
+  }[] = null;
+
   covidStatus: string = "";
+
   studentInfo: {
     department: string,
     year: string
@@ -23,15 +32,14 @@ export class PersonalInfoComponent implements OnInit {
     phoneNumber: string,
     age: number,
     uuid: string,
-    role: string
+    role: string,
+    neighborStatus: string
   } = null;
 
   constructor( private loginService: LoginService, private informationService: InformationService) { }
 
-
-  specificData = null;
   ngOnInit(): void {
-    const localUser = localStorage.getItem('userData');
+    const localUser = localStorage.getItem(LocalStorageConstants.userData);
     if ( localUser) {
       this.userData = JSON.parse(localUser);
       this.userData.dob = this.userData.dob.substring(0, 10);
@@ -41,11 +49,15 @@ export class PersonalInfoComponent implements OnInit {
         }
       });
 
-      if ( localStorage.getItem('studentInfo')) {
+      if ( localStorage.getItem(LocalStorageConstants.studentInfo)) {
         if ( this.userData.role === 'STUDENT')
-          this.studentInfo = JSON.parse( localStorage.getItem('studentInfo'));
+          this.studentInfo = JSON.parse( localStorage.getItem(LocalStorageConstants.studentInfo));
       }
 
+      const tests = JSON.parse( localStorage.getItem( LocalStorageConstants.testResults));
+      if ( tests) {
+        this.testResults = tests;
+      }
 
     }
   }

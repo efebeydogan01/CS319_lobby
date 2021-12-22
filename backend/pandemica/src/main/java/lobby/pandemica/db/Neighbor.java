@@ -17,8 +17,19 @@ import java.util.UUID;
 @Getter
 @Setter
 @AllArgsConstructor
-//@NoArgsConstructor
-//@Table(name = "neighbors")
-public class Neighbor extends BaseEntity {
+@NoArgsConstructor
+@Table(name = "neighbors")
+public class Neighbor extends BaseEntity
+{
+	@ManyToOne(cascade = CascadeType.MERGE)
+	@JoinColumn(name = "section_id", referencedColumnName = "id")
+	private Section section;
 
+	@ManyToOne(cascade = CascadeType.MERGE)
+	@JoinColumn(name = "first_student_id", referencedColumnName = "id")
+	private Student firstStudent;
+
+	@ManyToOne(cascade = CascadeType.MERGE)
+	@JoinColumn(name = "second_student_id", referencedColumnName = "id")
+	private Student secondStudent;
 }

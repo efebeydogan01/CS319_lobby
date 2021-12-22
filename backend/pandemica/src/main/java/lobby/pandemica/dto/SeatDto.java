@@ -6,17 +6,18 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.Column;
-import java.util.Date;
 import java.util.UUID;
 
 @Getter
 @Setter
 @AllArgsConstructor
-@NoArgsConstructor
-public class NeighborDto extends BaseDto<UUID>
+//@NoArgsConstructor
+public class SeatDto extends BaseDto<UUID>
 {
+    private UUID id;
     private SectionDto section;
-    private StudentDto firstStudent;
-    private StudentDto secondStudent;
+    private Boolean exists;
+    private Integer row;
+    private Integer column;
+    private StudentDto student;
 }

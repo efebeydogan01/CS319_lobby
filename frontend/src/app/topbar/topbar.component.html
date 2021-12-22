@@ -2,6 +2,10 @@
   <div class="container-fluid py-1 px-3">
 
     <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
+      <div class="text-primary h4">
+        <i class="fa fa-user-graduate"></i>
+        <span class="text-lg ps-2">{{ role }}</span>
+      </div>
       <div class="ms-md-auto pe-md-3 d-flex align-items-center">
         <div class="input-group">
           <span class="input-group-text text-body"><i class="fas fa-search" aria-hidden="true"></i></span>
@@ -9,35 +13,7 @@
         </div>
       </div>
       <a *ngIf="userRole === 'ADMIN'" class="btn btn-outline-dark my-2" data-bs-toggle="modal" data-bs-target="#sendNotificationPopUp">Send Notification</a>
-                    <div class="modal fade" id="sendNotificationPopUp" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                      <div class="modal-dialog modal-dialog-centered">
-                        <div class="modal-content">
-                          <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Send Notification</h5>
-                          </div>
-                          <div class="modal-body">
-                            <form class="p-2">
-                              <div class="my-3">
-                                <label for="exampleInputEmail1" class="form-label">Receivers</label>
-                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="2"></textarea>
-                              </div>
-                              <div class="my-3">
-                                <label for="exampleInputEmail1" class="form-label">Notification Title</label>
-                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="2"></textarea>
-                              </div>
-                              <div class="mb-3">
-                                <label for="exampleInputPassword1" class="form-label">Notification Message</label>
-                                <input class="form-control" id="exampleInputPassword1">
-                              </div>
-                            </form>
-                          </div>
-                          <div class="modal-footer">
-                            <button type="button" class="btn btn-sm btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-sm btn-primary" data-bs-dismiss="modal">Save</button>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
+      <app-send-notification-popup></app-send-notification-popup>
       <ul class="navbar-nav  justify-content-end">
         <li class="nav-item px-3 dropdown me-2 d-flex align-items-center">
           <a href="javascript:;" class="nav-link text-body p-0" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
