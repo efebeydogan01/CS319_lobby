@@ -9,6 +9,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.UUID;
+
 @Service
 public class TestResultServiceImpl extends BaseServiceImpl<TestResult, TestResultDto> implements TestResultService
 {
@@ -19,5 +22,11 @@ public class TestResultServiceImpl extends BaseServiceImpl<TestResult, TestResul
     public TestResultServiceImpl(TestResultRepository testResultRepository) {
         super(testResultRepository, TestResultMapper.INSTANCE);
         this.testResultRepository = testResultRepository;
+    }
+
+    @Override
+    public List<TestResultDto> getTestResults(UUID userId)
+    {
+        return TestResultMapper.INSTANCE.entityListToDtoList(testResultRepository.findAllByUserId(userId));
     }
 }
