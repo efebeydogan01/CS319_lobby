@@ -14,6 +14,5 @@ public class Status {
         RISKY,
         POSITIVE
     }
-
     private RISK status;
 }

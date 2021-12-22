@@ -30,6 +30,5 @@ public class UserDto extends BaseDto<UUID>
 	private Date dateOfBirth;
 	private String phoneNumber;
 	private Integer age;
-	private String department;
-	private Integer year;
+	private String role;
 }

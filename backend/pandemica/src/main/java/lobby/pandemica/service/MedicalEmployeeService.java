@@ -1,12 +1,13 @@
 package lobby.pandemica.service;
 
+import lobby.pandemica.dto.MedicalEmployeeDto;
 import lobby.pandemica.dto.StudentDto;
 import lobby.pandemica.service.base.BaseCrudService;
 import org.springframework.stereotype.Service;
 
 import java.util.UUID;
 
-public interface StudentService extends BaseCrudService<StudentDto>
+public interface MedicalEmployeeService extends BaseCrudService<MedicalEmployeeDto>
 {
-	public StudentDto getUserWithRole(UUID userId);
+	public MedicalEmployeeDto getUserWithRole(UUID userId);
 }

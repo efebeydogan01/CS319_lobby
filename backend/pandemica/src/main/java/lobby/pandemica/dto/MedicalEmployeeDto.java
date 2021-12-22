@@ -13,10 +13,11 @@ import java.util.UUID;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class StudentDto extends BaseDto<UUID>
+public class MedicalEmployeeDto extends BaseDto<UUID>
 {
     private UUID id;
     private UserDto user;
-    private String department;
-    private String year;
+    private String type;
+    private String workingLocation;
+
 }

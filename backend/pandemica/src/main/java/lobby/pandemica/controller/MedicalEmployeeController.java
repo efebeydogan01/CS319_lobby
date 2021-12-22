@@ -1,9 +1,9 @@
 package lobby.pandemica.controller;
 
 import lobby.pandemica.controller.base.BaseController;
-import lobby.pandemica.dto.StudentDto;
+import lobby.pandemica.dto.MedicalEmployeeDto;
 import lobby.pandemica.dto.base.RestResponse;
-import lobby.pandemica.service.StudentService;
+import lobby.pandemica.service.MedicalEmployeeService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,22 +15,22 @@ import javax.persistence.EntityNotFoundException;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("student")
-public class StudentController extends BaseController<StudentDto> {
-    private final StudentService studentService;
+@RequestMapping("medical_employee")
+public class MedicalEmployeeController extends BaseController<MedicalEmployeeDto> {
+    private final MedicalEmployeeService medicalEmployeeService;
 
-    public StudentController(StudentService studentService) {
-        super(studentService);
-        this.studentService = studentService;
+    public MedicalEmployeeController(MedicalEmployeeService medicalEmployeeService) {
+        super(medicalEmployeeService);
+        this.medicalEmployeeService = medicalEmployeeService;
     }
 
     @Override
     @GetMapping("read/{id}")
-    public ResponseEntity<RestResponse<StudentDto>> read(@PathVariable String id)
+    public ResponseEntity<RestResponse<MedicalEmployeeDto>> read(@PathVariable String id)
     {
         try
         {
-            return new ResponseEntity<>(new RestResponse<>(studentService.getUserWithRole(UUID.fromString(id)), "Get",
+            return new ResponseEntity<>(new RestResponse<>(medicalEmployeeService.getUserWithRole(UUID.fromString(id)), "Get",
                     "Getting an entity was successful."),
                     HttpStatus.OK);
         }
