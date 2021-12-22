@@ -29,6 +29,6 @@ public class TestResult extends BaseEntity {
     private String type;
 
     @Column(name = "result", nullable = false)
-    private Boolean result;
+    private String result;
 
 }
