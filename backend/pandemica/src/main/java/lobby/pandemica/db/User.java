@@ -42,19 +42,4 @@ public class User extends BaseEntity
 
 	@Column(name = "role")
 	private String role;
-	/*
-	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "testResult-id", referencedColumnName = "id")
-	private TestResult testResult;
-
-	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "exReport-id", referencedColumnName = "id")
-	private ExaminationReport exReport;
-	*/
-
-	//Methods
-	/*public void addAppointment(Appointment appointment){}
-	public String getRiskStatus(){};
-	public VaccinationInformation getVaccinationInfo(){}
-	public addTestResult( TestResult testResult)(){}*/
 }

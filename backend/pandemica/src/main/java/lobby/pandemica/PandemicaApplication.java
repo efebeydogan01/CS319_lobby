@@ -1,14 +1,17 @@
 package lobby.pandemica;
 
-import lobby.pandemica.db.CovidInformation;
+import lobby.pandemica.db.Role;
 import lobby.pandemica.db.Status;
-import lobby.pandemica.db.User;
+import lobby.pandemica.dto.AcademicPersonnelDto;
 import lobby.pandemica.dto.CovidInformationDto;
+import lobby.pandemica.dto.SectionDto;
 import lobby.pandemica.dto.UserDto;
+import lobby.pandemica.service.AcademicPersonnelService;
 import lobby.pandemica.service.CovidInformationService;
+import lobby.pandemica.service.SectionService;
 import lobby.pandemica.service.UserService;
-import lobby.pandemica.serviceimpl.mapper.CovidInformationMapper;
-import lobby.pandemica.serviceimpl.mapper.UserMapper;
+import lobby.pandemica.dto.*;
+import lobby.pandemica.service.*;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -25,10 +28,15 @@ public class PandemicaApplication {
 	}
 
 	@Bean
-	CommandLineRunner run(UserService userService, UserMapper userMapper,
+	CommandLineRunner run(UserService userService,
 						  CovidInformationService covidInformationService,
-						  CovidInformationMapper covidInformationMapper) {
+						  StudentService studentService,
+						  AdminService adminService,
+						  MedicalEmployeeService medicalEmployeeService,
+						  AcademicPersonnelService academicPersonnelService,
+						  SectionService sectionService) {
 		return args -> {
+			Integer dummyAge = 0;
 			UserDto userDto1 = new UserDto(UUID.randomUUID(),"Mert Barkın Er", "password",
 					0, new Date(101,8,3),
 					"53112312123",0, "STUDENT");
@@ -41,23 +49,52 @@ public class PandemicaApplication {
 			UserDto userDto4 = new UserDto(UUID.randomUUID(),"Eren Polat", "password",
 					3, new Date(101,8,19),
 					"53112312123",0,"STUDENT");
+			UserDto userDto5 = new UserDto(UUID.randomUUID(),"Eray Tuzun", "password",
+					21900004, new Date(77,8,19),
+					"53112312123",dummyAge, Role.ROLES.ACADEMIC_PERSONNEL.name());
 			userService.create(userDto1);
 			userService.create(userDto2);
 			userService.create(userDto3);
 			userService.create(userDto4);
+			userService.create(userDto5);
 
 			CovidInformationDto covidInformationDto1 = new CovidInformationDto(UUID.randomUUID(),
-					"POSITIVE", "hes_code_1",false, userDto1);
+					Status.RISK.POSITIVE.name(), "hes_code_1",false, userDto1);
 			CovidInformationDto covidInformationDto2 = new CovidInformationDto(UUID.randomUUID(),
-					"RISKY", "hes_code_2",false, userDto2);
+					Status.RISK.RISKY.name(), "hes_code_2",false, userDto2);
 			CovidInformationDto covidInformationDto3 = new CovidInformationDto(UUID.randomUUID(),
-					"NEGATIVE", "hes_code_3",true, userDto3);
+					Status.RISK.NEGATIVE.name(), "hes_code_3",true, userDto3);
 			CovidInformationDto covidInformationDto4 = new CovidInformationDto(UUID.randomUUID(),
-					"NEGATIVE", "hes_code_4",true, userDto4);
+					Status.RISK.NEGATIVE.name(), "hes_code_4",true, userDto4);
+			CovidInformationDto covidInformationDto5 = new CovidInformationDto(UUID.randomUUID(),
+					Status.RISK.NEGATIVE.name(), "hes_code_5",true, userDto5);
 			covidInformationService.create(covidInformationDto1);
 			covidInformationService.create(covidInformationDto2);
 			covidInformationService.create(covidInformationDto3);
 			covidInformationService.create(covidInformationDto4);
+
+			StudentDto studentDto1 = new StudentDto(UUID.randomUUID(), userDto1, "CS", "3");
+			studentService.create(studentDto1);
+			AdminDto adminDto = new AdminDto(UUID.randomUUID(), userDto2);
+			adminService.create(adminDto);
+			MedicalEmployeeDto medicalEmployeeDto = new MedicalEmployeeDto(UUID.randomUUID(), userDto3, "KBB", "asda");
+			medicalEmployeeService.create(medicalEmployeeDto);
+			StudentDto studentDto2 = new StudentDto(UUID.randomUUID(), userDto4, "CS", "3");
+			studentService.create(studentDto2);
+			covidInformationService.create(covidInformationDto5);
+
+			AcademicPersonnelDto academicPersonnelDto = new AcademicPersonnelDto(UUID.randomUUID(), "CS", userDto5);
+			academicPersonnelService.create(academicPersonnelDto);
+
+			SectionDto sectionDto1 = new SectionDto(UUID.randomUUID(), "CS319", 1, "B-204", userDto5);
+			SectionDto sectionDto2 = new SectionDto(UUID.randomUUID(), "CS319", 2, "B-204", userDto5);
+			SectionDto sectionDto3 = new SectionDto(UUID.randomUUID(), "CS319", 3, "B-204", userDto5);
+			SectionDto sectionDto4 = new SectionDto(UUID.randomUUID(), "CS319", 4, "EE-214", userDto5);
+			sectionService.create(sectionDto1);
+			sectionService.create(sectionDto2);
+			sectionService.create(sectionDto3);
+			sectionService.create(sectionDto4);
+
 		};
 	}
 }
