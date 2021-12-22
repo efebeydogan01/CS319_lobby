@@ -1,0 +1,54 @@
+<div class="modal fade" id="sendNotificationPopUp" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Send Notification</h5>
+      </div>
+      <div class="modal-body">
+        <form class="p-2">
+          <label for="exampleFormControlTextarea1" class="form-label pe-2">Receivers</label>
+          <div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1" [checked]="toAll" (change)="toAll = !toAll">
+              <label class="form-check-label" for="inlineCheckbox1">All</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2" [disabled]="toAll">
+              <label class="form-check-label" for="inlineCheckbox2">Students</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3" [disabled]="toAll">
+              <label class="form-check-label" for="inlineCheckbox3">Academic Personnel</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="checkbox" id="inlineCheckbox4" value="option4" [disabled]="toAll">
+              <label class="form-check-label" for="inlineCheckbox4">Health Center Employees</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="checkbox" id="inlineCheckbox5" value="option5" [disabled]="toAll">
+              <label class="form-check-label" for="inlineCheckbox5">Admins</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="checkbox" id="inlineCheckbox6" value="option6" [checked]="toOther"  [disabled]="toAll" (change)="toOther = !toOther">
+              <label class="form-check-label" for="inlineCheckbox6">Other</label>
+            </div>
+            <label for="exampleFormControlTextarea1" class="form-label pe-2" *ngIf="toOther">Receiver Ids</label>
+            <input class="form-control" id="exampleFormControlTextarea1" *ngIf="toOther"/>
+          </div>
+          <div class="my-3">
+            <label for="exampleFormControlTextarea1" class="form-label">Notification Title</label>
+            <input class="form-control" id="exampleFormControlTextarea1"/>
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">Notification Message</label>
+            <textarea class="form-control" id="exampleInputPassword1" rows="3"></textarea>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-sm btn-secondary" data-bs-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-sm btn-primary" data-bs-dismiss="modal">Send</button>
+      </div>
+    </div>
+  </div>
+</div>
