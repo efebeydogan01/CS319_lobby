@@ -8,6 +8,8 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -19,36 +21,31 @@ import java.util.UUID;
 
 public class Student extends BaseEntity {
     //Attributes
-    @Column(name = "name")
-    private String name;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "user_id", referencedColumnName = "id")
+    private User user;
 
-    @Column(name = "username", unique = true)
-    private String username;
-
-    @Column(name = "password")
-    private String password;
-
-    @Column(name = "bilkentId", unique = true)
-    private Integer bilkentId;
-
-    @Column(name = "age")
-    private Integer age;
-
-    @Column(name = "dateOfBirth")
-    private String dateOfBirth;
-
-    @Column(name = "phoneNumber")
-    private String phoneNumber;
-
-    @Column(name = "department")
+    @Column(name = "department", nullable = false)
     private String department;
 
-    @Column(name = "year")
+    @Column(name = "year", nullable = false)
     private String year;
+
+    /*
+    @ManyToMany
+    @JoinTable(name = "neighbors31",
+            joinColumns={@JoinColumn(name="first-neighbor", referencedColumnName="id")},
+            inverseJoinColumns={@JoinColumn(name="second-neighbor", referencedColumnName="id")}
+    )
+    private Collection<Student> students;
+
+    @ManyToMany(mappedBy = "students", cascade = CascadeType.PERSIST)
+    private Collection<Student> students2;
+
 
     //@OneToMany(cascade = CascadeType.ALL)
     //@JoinColumn(name = "friend-id", referencedColumnName = "id", columnDefinition = "uuid[]")
-    //private ArrayList<Student> friends;
+    //private ArrayList<Student> friends;*/
 
 
     //Methods

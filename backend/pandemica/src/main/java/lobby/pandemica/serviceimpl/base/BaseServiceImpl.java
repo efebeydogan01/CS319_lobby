@@ -62,11 +62,12 @@ public class BaseServiceImpl<E extends BaseEntity, D extends BaseDto<UUID>> impl
 			LOGGER.warn("The id cannot be empty!");
 			throw new EntityNotFoundException();
 		}
-		return baseMapper.entityToDto(baseRepository.getById(id));
+		E base = baseRepository.getById(id);
+		return baseMapper.entityToDto(base);
 	}
 
 	@Override
-	public List<D> read()
+	public List<D> readAll()
 	{
 		return baseMapper.entityListToDtoList(baseRepository.findAll());
 	}
