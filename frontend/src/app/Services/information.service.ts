@@ -41,10 +41,9 @@ export class InformationService {
   }
 
   getTestResults( uuid: string) {
-    return this.http.get<any>( HttpUrls.baseUrl + "getTestResults/" + uuid).
+    return this.http.get<any>( HttpUrls.baseUrl + "test_result/getTestResults/" + uuid).
       pipe( tap( data => {
-        console.log( data);
-        localStorage.setItem( LocalStorageConstants.testResults, JSON.stringify( data));
+        localStorage.setItem( LocalStorageConstants.testResults, JSON.stringify( data.data));
     }));
   }
 

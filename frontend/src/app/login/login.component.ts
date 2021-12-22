@@ -39,8 +39,15 @@ export class LoginComponent implements OnInit {
             next: () => {
               this.informationService.neighborStatus( userData.uuid).pipe( take( 1)).subscribe( {
                 next: () => {
-                  this.router.navigate( ['/personal-info']);
-                  this.isLoading = false;
+                  this.informationService.getTestResults( userData.uuid).pipe( take( 1)).subscribe( {
+                    next: () => {
+                      this.router.navigate( ['/personal-info']);
+                      this.isLoading = false;
+                    },
+                    error: () => {
+                      this.onError();
+                    }
+                  });
                 },
                 error: () => {
                   this.onError();
@@ -51,7 +58,6 @@ export class LoginComponent implements OnInit {
               this.onError();
             }
           });
-
 
 
           // this.informationService.getRoleInfo( userData.uuid, userData.role).pipe(
