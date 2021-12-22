@@ -21,6 +21,7 @@ import {HttpClientModule} from "@angular/common/http";
 import {LoadingSpinnerComponent} from "./loading-spinner/loading-spinner.component";
 import { SeatComponent } from './seat/seat.component';
 import {AuthGuard} from "./Services/auth.guard";
+import { SendNotificationPopupComponent } from './send-notification-popup/send-notification-popup.component';
 
 const appRoutes: Routes =[
   { path: '', component: LoginComponent},
@@ -51,7 +52,8 @@ const appRoutes: Routes =[
     SearchUserInfoComponent,
     SearchUserBarComponent,
     LoadingSpinnerComponent,
-    SeatComponent
+    SeatComponent,
+    SendNotificationPopupComponent
   ],
   imports: [
     BrowserModule,
