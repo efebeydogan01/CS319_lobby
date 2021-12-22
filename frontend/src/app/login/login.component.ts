@@ -4,6 +4,7 @@ import {Router} from "@angular/router";
 import {NgForm} from "@angular/forms";
 import {switchMap, take} from "rxjs";
 import {InformationService} from "../Services/information.service";
+import {LocalStorageConstants} from "../Services/LocalStorageConstants";
 
 @Component({
   selector: 'app-login',
@@ -15,7 +16,7 @@ export class LoginComponent implements OnInit {
   constructor( private logService: LoginService, private router: Router, private informationService:InformationService) { }
 
   ngOnInit(): void {
-    if ( localStorage.getItem( 'userData')) {
+    if ( localStorage.getItem( LocalStorageConstants.userData)) {
       this.router.navigate( ['/personal-info']);
     }
   }
@@ -32,7 +33,7 @@ export class LoginComponent implements OnInit {
         next: (data) => {
           this.userAuthenticated = true;
 
-          const userData = JSON.parse(localStorage.getItem('userData'));
+          const userData = JSON.parse(localStorage.getItem(LocalStorageConstants.userData));
 
           this.informationService.getRoleInfo( userData.uuid, userData.role).pipe( take(1)).subscribe( {
             next: () => {
