@@ -42,11 +42,16 @@ public class NeighborServiceImpl extends BaseServiceImpl<Neighbor, NeighborDto> 
     @Override
     public Boolean getRiskStatus(UUID id)
     {
-        UUID studentId = studentRepository.findByUserId(id).get().getId();
+        Optional<Student> dbStudent = studentRepository.findByUserId(id);
+        if (!dbStudent.isPresent())
+        {
+            return null;
+        }
+        UUID studentId = dbStudent.get().getId();
         User dbUser = userRepository.getById(id);
         if (!dbUser.getRole().equalsIgnoreCase(Role.ROLES.STUDENT.name()))
         {
-            return Boolean.FALSE;
+            return null;
         }
         int noOfNeighbors = neighborRepository.countNeighborsByFirstStudentId(studentId);
         if (noOfNeighbors == 0)
