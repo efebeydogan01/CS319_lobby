@@ -86,10 +86,10 @@ public class PandemicaApplication {
 			AcademicPersonnelDto academicPersonnelDto = new AcademicPersonnelDto(UUID.randomUUID(), "CS", userDto5);
 			academicPersonnelService.create(academicPersonnelDto);
 
-			SectionDto sectionDto1 = new SectionDto(UUID.randomUUID(), "CS319", 1, "B-204", userDto5);
-			SectionDto sectionDto2 = new SectionDto(UUID.randomUUID(), "CS319", 2, "B-204", userDto5);
-			SectionDto sectionDto3 = new SectionDto(UUID.randomUUID(), "CS319", 3, "B-204", userDto5);
-			SectionDto sectionDto4 = new SectionDto(UUID.randomUUID(), "CS319", 4, "EE-214", userDto5);
+			SectionDto sectionDto1 = new SectionDto(UUID.randomUUID(), "CS319", 1, "B-204", academicPersonnelDto);
+			SectionDto sectionDto2 = new SectionDto(UUID.randomUUID(), "CS319", 2, "B-204", academicPersonnelDto);
+			SectionDto sectionDto3 = new SectionDto(UUID.randomUUID(), "CS319", 3, "B-204", academicPersonnelDto);
+			SectionDto sectionDto4 = new SectionDto(UUID.randomUUID(), "CS319", 4, "EE-214", academicPersonnelDto);
 			sectionService.create(sectionDto1);
 			sectionService.create(sectionDto2);
 			sectionService.create(sectionDto3);

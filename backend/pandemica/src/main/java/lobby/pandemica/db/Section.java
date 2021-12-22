@@ -1,10 +1,7 @@
 package lobby.pandemica.db;
 
 import lobby.pandemica.db.base.BaseEntity;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 
@@ -20,9 +17,10 @@ import javax.persistence.*;
         )
 )
 public class Section extends BaseEntity {
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "instructor_id", referencedColumnName = "id")
-    private User user;
+    @ManyToOne(cascade = CascadeType.ALL)
+    @EqualsAndHashCode.Exclude @ToString.Exclude
+    @JoinColumn(name = "academic_personnel_id", referencedColumnName = "id")
+    private AcademicPersonnel academicPersonnel;
 
     @Column(name = "course_name", nullable = false)
     private String courseName;

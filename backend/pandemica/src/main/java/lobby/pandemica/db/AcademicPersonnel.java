@@ -1,5 +1,6 @@
 package lobby.pandemica.db;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lobby.pandemica.db.base.BaseEntity;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -7,6 +8,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -21,4 +24,8 @@ public class AcademicPersonnel extends BaseEntity {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     private User user;
+
+//    @JsonIgnore
+//    @OneToMany(mappedBy = "academicPersonnel")
+//    private Set<Section> sections = new HashSet<>();
 }

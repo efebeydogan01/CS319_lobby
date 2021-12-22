@@ -1,5 +1,6 @@
 package lobby.pandemica.dto;
 
+import lobby.pandemica.db.AcademicPersonnel;
 import lobby.pandemica.dto.base.BaseDto;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -18,5 +19,5 @@ public class SectionDto extends BaseDto<UUID>
     private String courseName;
     private Integer sectionNo;
     private String classroom;
-    private UserDto user;
+    private AcademicPersonnelDto academicPersonnelDto;
 }
