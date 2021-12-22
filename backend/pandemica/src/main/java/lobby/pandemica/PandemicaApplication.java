@@ -39,16 +39,16 @@ public class PandemicaApplication {
 			Integer dummyAge = 0;
 			UserDto userDto1 = new UserDto(UUID.randomUUID(),"Mert Barkın Er", "password",
 					21900000, new Date(101,8,3),
-					"53112312123",0, "STUDENT");
+					"53112312123",0, Role.ROLES.STUDENT.name());
 			UserDto userDto2 = new UserDto(UUID.randomUUID(),"Efe Beydoğan", "password",
 					21900001, new Date(101,3,26),
-					"53112312123",1, "ADMIN");
+					"53112312123",1, Role.ROLES.ADMIN.name());
 			UserDto userDto3 = new UserDto(UUID.randomUUID(),"Arda Önal", "password",
 					21900002, new Date(101,0,13),
-					"53112312123",4, "MEDICAL_EMPLOYEE");
+					"53112312123",4, Role.ROLES.MEDICAL_EMPLOYEE.name());
 			UserDto userDto4 = new UserDto(UUID.randomUUID(),"Eren Polat", "password",
 					21900003, new Date(101,8,19),
-					"53112312123",0,"STUDENT");
+					"53112312123",0,Role.ROLES.STUDENT.name());
 			UserDto userDto5 = new UserDto(UUID.randomUUID(),"Eray Tuzun", "password",
 					21900004, new Date(77,8,19),
 					"53112312123",dummyAge, Role.ROLES.ACADEMIC_PERSONNEL.name());
@@ -73,15 +73,15 @@ public class PandemicaApplication {
 			covidInformationService.create(covidInformationDto3);
 			covidInformationService.create(covidInformationDto4);
 
-			StudentDto studentDto1 = new StudentDto(UUID.randomUUID(), userDto1, "CS", "3");
-			studentService.create(studentDto1);
-			AdminDto adminDto = new AdminDto(UUID.randomUUID(), userDto2);
-			adminService.create(adminDto);
-			MedicalEmployeeDto medicalEmployeeDto = new MedicalEmployeeDto(UUID.randomUUID(), userDto3, "KBB", "asda");
-			medicalEmployeeService.create(medicalEmployeeDto);
-			StudentDto studentDto2 = new StudentDto(UUID.randomUUID(), userDto4, "CS", "3");
-			studentService.create(studentDto2);
-			covidInformationService.create(covidInformationDto5);
+//			StudentDto studentDto1 = new StudentDto(UUID.randomUUID(), userDto1, "CS", "3");
+//			studentService.create(studentDto1);
+//			AdminDto adminDto = new AdminDto(UUID.randomUUID(), userDto2);
+//			adminService.create(adminDto);
+//			MedicalEmployeeDto medicalEmployeeDto = new MedicalEmployeeDto(UUID.randomUUID(), userDto3, "KBB", "asda");
+//			medicalEmployeeService.create(medicalEmployeeDto);
+//			StudentDto studentDto2 = new StudentDto(UUID.randomUUID(), userDto4, "CS", "3");
+//			studentService.create(studentDto2);
+//			covidInformationService.create(covidInformationDto5);
 
 			AcademicPersonnelDto academicPersonnelDto = new AcademicPersonnelDto(UUID.randomUUID(), "CS", userDto5);
 			academicPersonnelService.create(academicPersonnelDto);

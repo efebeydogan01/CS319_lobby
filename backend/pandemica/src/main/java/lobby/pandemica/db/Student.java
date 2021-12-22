@@ -30,33 +30,4 @@ public class Student extends BaseEntity {
 
     @Column(name = "year", nullable = false)
     private String year;
-
-    /*
-    @ManyToMany
-    @JoinTable(name = "neighbors31",
-            joinColumns={@JoinColumn(name="first-neighbor", referencedColumnName="id")},
-            inverseJoinColumns={@JoinColumn(name="second-neighbor", referencedColumnName="id")}
-    )
-    private Collection<Student> students;
-
-    @ManyToMany(mappedBy = "students", cascade = CascadeType.PERSIST)
-    private Collection<Student> students2;
-
-
-    //@OneToMany(cascade = CascadeType.ALL)
-    //@JoinColumn(name = "friend-id", referencedColumnName = "id", columnDefinition = "uuid[]")
-    //private ArrayList<Student> friends;*/
-
-
-    //Methods
-    /*
-    public void sendFriendRequest(FriendRequest friendRequest){}
-    public Boolean deleteFriendRequest(FriendRequest friendRequest){}
-    public void addNeighbor( Neighbor neighbor){}
-    public Boolean removeNeighbor( Neighbor neighbor){}
-    public void addFriend( Friend friend){}
-    public Boolean unfriend( Friend friend){}*/
-
-
-
 }

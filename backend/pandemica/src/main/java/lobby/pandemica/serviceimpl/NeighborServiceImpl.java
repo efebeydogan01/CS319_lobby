@@ -1,13 +1,11 @@
 package lobby.pandemica.serviceimpl;
 
-import lobby.pandemica.db.CovidInformation;
-import lobby.pandemica.db.Neighbor;
-import lobby.pandemica.db.Student;
-import lobby.pandemica.db.User;
+import lobby.pandemica.db.*;
 import lobby.pandemica.dto.NeighborDto;
 import lobby.pandemica.repository.CovidInformationRepository;
 import lobby.pandemica.repository.NeighborRepository;
 import lobby.pandemica.repository.StudentRepository;
+import lobby.pandemica.repository.UserRepository;
 import lobby.pandemica.service.NeighborService;
 import lobby.pandemica.serviceimpl.base.BaseServiceImpl;
 import lobby.pandemica.serviceimpl.mapper.NeighborMapper;
@@ -29,19 +27,27 @@ public class NeighborServiceImpl extends BaseServiceImpl<Neighbor, NeighborDto> 
     private final NeighborRepository neighborRepository;
     private final StudentRepository studentRepository;
     private final CovidInformationRepository covidInformationRepository;
+    private final UserRepository userRepository;
 
     public NeighborServiceImpl(NeighborRepository neighborRepository, StudentRepository studentRepository,
-                               CovidInformationRepository covidInformationRepository) {
+                               CovidInformationRepository covidInformationRepository,
+                               UserRepository userRepository) {
         super(neighborRepository, NeighborMapper.INSTANCE);
         this.neighborRepository = neighborRepository;
         this.studentRepository = studentRepository;
         this.covidInformationRepository = covidInformationRepository;
+        this.userRepository = userRepository;
     }
 
     @Override
     public Boolean getRiskStatus(UUID id)
     {
         UUID studentId = studentRepository.findByUserId(id).get().getId();
+        User dbUser = userRepository.getById(id);
+        if (!dbUser.getRole().equalsIgnoreCase(Role.ROLES.STUDENT.name()))
+        {
+            return Boolean.FALSE;
+        }
         int noOfNeighbors = neighborRepository.countNeighborsByFirstStudentId(studentId);
         if (noOfNeighbors == 0)
         {
@@ -62,7 +68,7 @@ public class NeighborServiceImpl extends BaseServiceImpl<Neighbor, NeighborDto> 
         for (User user: neighborsUsers)
         {
             Optional<CovidInformation> covidInformation = covidInformationRepository.findByUserId(user.getId());
-            if (covidInformation.isPresent() && covidInformation.get().getStatus().equalsIgnoreCase("POSITIVE"))
+            if (covidInformation.isPresent() && covidInformation.get().getStatus().equalsIgnoreCase(Role.ROLES.STUDENT.name()))
             {
                 return Boolean.FALSE;
             }
