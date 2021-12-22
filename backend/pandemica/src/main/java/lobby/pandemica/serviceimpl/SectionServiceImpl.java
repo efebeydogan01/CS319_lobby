@@ -50,12 +50,12 @@ public class SectionServiceImpl extends BaseServiceImpl<Section, SectionDto> imp
             LOGGER.warn("The user of the section cannot be empty!");
             throw new EntityNotFoundException();
         }
+        entity.setUser(infoUser.get());
         if (!userDto.getRole().equals(Role.ROLES.ACADEMIC_PERSONNEL.name()))
         {
             LOGGER.warn("The user of the section must be an academic personnel!");
             throw new EntityNotFoundException();
         }
-        entity.setUser(infoUser.get());
         return super.create(SectionMapper.INSTANCE.entityToDto(entity));
     }
 }
