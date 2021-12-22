@@ -12,9 +12,9 @@ import java.util.UUID;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class AdminDto extends BaseDto<UUID>
+public class AcademicPersonnelDto extends BaseDto<UUID>
 {
-    private User user;
+    private UUID id;
     private String department;
-    private String year;
+    private UserDto user;
 }

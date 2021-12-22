@@ -1,6 +1,6 @@
 package lobby.pandemica.repository;
 
-import lobby.pandemica.db.Admin;
+import lobby.pandemica.db.AcademicPersonnel;
 import lobby.pandemica.repository.base.BaseRepository;
 import org.springframework.stereotype.Repository;
 
@@ -9,6 +9,6 @@ import java.util.UUID;
 
 @Transactional
 @Repository
-public interface AdminRepository extends BaseRepository<Admin, UUID>
+public interface AcademicPersonnelRepository extends BaseRepository<AcademicPersonnel, UUID>
 {
 }

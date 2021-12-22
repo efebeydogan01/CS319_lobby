@@ -9,11 +9,11 @@ import lombok.*;
 @NoArgsConstructor
 public class Role
 {
-	public enum Roles{
+	public enum ROLES {
 		ADMIN,
 		MEDICAL_EMPLOYEE,
 		STUDENT,
 		ACADEMIC_PERSONNEL
 	}
-	public Roles role;
+	public ROLES role;
 }
