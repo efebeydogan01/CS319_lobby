@@ -21,5 +21,5 @@ public class TestResultDto extends BaseDto<UUID>
     private UserDto user;
     private Date testDate;
     private String type;
-    private Boolean result;
+    private String result;
 }

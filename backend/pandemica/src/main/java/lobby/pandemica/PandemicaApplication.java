@@ -1,6 +1,8 @@
 package lobby.pandemica;
 
+import lobby.pandemica.db.Classrooms;
 import lobby.pandemica.db.Role;
+import lobby.pandemica.db.Seat;
 import lobby.pandemica.db.Status;
 import lobby.pandemica.dto.AcademicPersonnelDto;
 import lobby.pandemica.dto.CovidInformationDto;
@@ -34,7 +36,8 @@ public class PandemicaApplication {
 						  AdminService adminService,
 						  MedicalEmployeeService medicalEmployeeService,
 						  AcademicPersonnelService academicPersonnelService,
-						  SectionService sectionService) {
+						  SectionService sectionService,
+						  SeatService seatService) {
 		return args -> {
 			Integer dummyAge = 0;
 			UserDto userDto1 = new UserDto(UUID.randomUUID(),"Mert Barkın Er", "password",
@@ -94,6 +97,24 @@ public class PandemicaApplication {
 			sectionService.create(sectionDto2);
 			sectionService.create(sectionDto3);
 			sectionService.create(sectionDto4);
+
+			Classrooms classroom = new Classrooms();
+			Boolean[][] b204 = classroom.getClassroom(sectionDto1.getClassroom());
+			int rowLength = b204.length; int columnLength = b204[0].length;
+			for (int i = 0; i < rowLength; i++) {
+				for (int j = 0; j < columnLength; j++) {
+					SeatDto seatDto = new SeatDto(UUID.randomUUID(), sectionDto1, b204[i][j], i + 1, j + 1, null);
+					seatService.create(seatDto);
+				}
+			}
+			Boolean[][] ee214 = classroom.getClassroom(sectionDto4.getClassroom());
+			rowLength = ee214.length; columnLength = ee214[0].length;
+			for (int i = 0; i < rowLength; i++) {
+				for (int j = 0; j < columnLength; j++) {
+					SeatDto seatDto = new SeatDto(UUID.randomUUID(), sectionDto4, ee214[i][j], i + 1, j + 1, null);
+					seatService.create(seatDto);
+				}
+			}
 
 		};
 	}
