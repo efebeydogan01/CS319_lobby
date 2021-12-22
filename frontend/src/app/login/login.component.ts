@@ -34,11 +34,16 @@ export class LoginComponent implements OnInit {
 
           const userData = JSON.parse(localStorage.getItem('userData'));
 
+          // this.informationService.getRoleInfo( userData.uuid, userData.role).pipe( take(1)).subscribe( () => {
+          //   this.informationService.neighborStatus( userData.uuid).pipe( take( 1)).subscribe( () => {
+          //     this.router.navigate( ['/personal-info']);
+          //     this.isLoading = false;
+          //   })
+          // });
+
           this.informationService.getRoleInfo( userData.uuid, userData.role).pipe( take(1)).subscribe( () => {
-            this.informationService.neighborStatus( userData.uuid).pipe( take( 1)).subscribe( () => {
-              this.router.navigate( ['/personal-info']);
-              this.isLoading = false;
-            })
+            this.router.navigate( ['/personal-info']);
+            this.isLoading = false;
           });
 
           // this.informationService.getRoleInfo( userData.uuid, userData.role).pipe(
