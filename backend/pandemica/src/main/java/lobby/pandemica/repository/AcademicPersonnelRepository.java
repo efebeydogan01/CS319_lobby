@@ -1,6 +1,7 @@
 package lobby.pandemica.repository;
 
 import lobby.pandemica.db.AcademicPersonnel;
+import lobby.pandemica.db.User;
 import lobby.pandemica.repository.base.BaseRepository;
 import org.springframework.stereotype.Repository;
 
@@ -12,5 +13,5 @@ import java.util.UUID;
 @Repository
 public interface AcademicPersonnelRepository extends BaseRepository<AcademicPersonnel, UUID>
 {
-	Optional<AcademicPersonnel> findByUserId(UUID userId);
+    Optional<AcademicPersonnel> findByUserId(UUID userId);
 }

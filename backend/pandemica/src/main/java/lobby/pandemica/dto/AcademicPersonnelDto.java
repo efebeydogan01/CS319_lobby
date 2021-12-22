@@ -1,5 +1,4 @@
 package lobby.pandemica.dto;
-import lobby.pandemica.db.User;
 import lobby.pandemica.dto.base.BaseDto;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
