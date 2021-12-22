@@ -61,12 +61,13 @@ export class LoginService {
   logout() {
     this.user.next( null);
     localStorage.removeItem('userData');
+    localStorage.removeItem( 'studentInfo');
     this.router.navigate(['/']);
 
-    if ( this.tokenExpirationTimer) {
-      clearTimeout( this.tokenExpirationTimer);
-    }
-    this.tokenExpirationTimer = null;
+    // if ( this.tokenExpirationTimer) {
+    //   clearTimeout( this.tokenExpirationTimer);
+    // }
+    // this.tokenExpirationTimer = null;
   }
 
   // NEED TO CALL AUTOLOGOUT BUT NEED TOKEN

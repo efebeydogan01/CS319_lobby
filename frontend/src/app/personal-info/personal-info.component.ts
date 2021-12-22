@@ -11,7 +11,10 @@ import {InformationService} from "../Services/information.service";
 export class PersonalInfoComponent implements OnInit {
   // loginSubs: Subscription = new Subscription();
   covidStatus: string = "";
-  constructor( private loginService: LoginService, private informationService: InformationService) { }
+  studentInfo: {
+    department: string,
+    year: string
+  } = null;
 
   userData: {
     id: number,
@@ -22,6 +25,9 @@ export class PersonalInfoComponent implements OnInit {
     uuid: string,
     role: string
   } = null;
+
+  constructor( private loginService: LoginService, private informationService: InformationService) { }
+
 
   specificData = null;
   ngOnInit(): void {
@@ -35,11 +41,12 @@ export class PersonalInfoComponent implements OnInit {
         }
       });
 
-      this.informationService.getRoleInfo( this.userData.uuid, this.userData.role).pipe( take(1)).subscribe( {
-        next: (data) => {
+      if ( localStorage.getItem('studentInfo')) {
+        if ( this.userData.role === 'STUDENT')
+          this.studentInfo = JSON.parse( localStorage.getItem('studentInfo'));
+      }
 
-        }
-      });
+
     }
   }
 

@@ -23,8 +23,8 @@
                 <p class="text-sm mb-0">{{ userData.age }}</p>
                 <p class="text-sm mb-3">{{ userData.dob }}</p>
                 <p class="text-sm mb-3">{{ userData.phoneNumber }}</p>
-                <p class="text-sm mb-0" *ngIf="userData.role === 'STUDENT'"></p>
-                <p class="text-sm mb-0" *ngIf="userData.role === 'STUDENT'"></p>
+                <p class="text-sm mb-0" *ngIf="userData.role === 'STUDENT'">{{ studentInfo.department }}</p>
+                <p class="text-sm mb-0" *ngIf="userData.role === 'STUDENT'">{{ studentInfo.year }}</p>
               </div>
             </div>
           </div>

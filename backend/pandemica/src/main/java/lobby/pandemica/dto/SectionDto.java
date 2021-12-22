@@ -1,5 +1,6 @@
 package lobby.pandemica.dto;
-import lobby.pandemica.db.User;
+
+import lobby.pandemica.db.AcademicPersonnel;
 import lobby.pandemica.dto.base.BaseDto;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -12,8 +13,11 @@ import java.util.UUID;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class AdminDto extends BaseDto<UUID>
+public class SectionDto extends BaseDto<UUID>
 {
     private UUID id;
-    private UserDto user;
+    private String courseName;
+    private Integer sectionNo;
+    private String classroom;
+    private AcademicPersonnelDto academicPersonnel;
 }
