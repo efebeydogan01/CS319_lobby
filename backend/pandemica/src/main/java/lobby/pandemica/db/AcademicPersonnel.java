@@ -8,17 +8,17 @@ import lombok.Setter;
 
 import javax.persistence.*;
 
-@Entity
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "academic_personnel")
+@Entity
 public class AcademicPersonnel extends BaseEntity {
+    @Column(name = "department", nullable = false)
+    private String department;
+
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     private User user;
-
-    @Column(name = "department", nullable = false)
-    private String department;
 }

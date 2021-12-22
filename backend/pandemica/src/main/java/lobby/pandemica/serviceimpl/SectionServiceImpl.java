@@ -43,7 +43,7 @@ public class SectionServiceImpl extends BaseServiceImpl<Section, SectionDto> imp
             LOGGER.warn("The entity to save cannot be empty!");
             throw new EntityNotFoundException();
         }
-        UserDto userDto = dto.getUserDto();
+        UserDto userDto = dto.getUser();
         Optional<User> infoUser = userRepository.findByBilkentId(userDto.getBilkentId());
         if (!infoUser.isPresent())
         {

@@ -14,6 +14,7 @@ import java.util.UUID;
 @NoArgsConstructor
 public class AcademicPersonnelDto extends BaseDto<UUID>
 {
-    private User user;
+    private UUID id;
     private String department;
+    private UserDto user;
 }

@@ -18,5 +18,5 @@ public class SectionDto extends BaseDto<UUID>
     private String courseName;
     private Integer sectionNo;
     private String classroom;
-    private UserDto userDto;
+    private UserDto user;
 }

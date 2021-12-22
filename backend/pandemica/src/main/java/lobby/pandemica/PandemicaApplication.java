@@ -2,9 +2,11 @@ package lobby.pandemica;
 
 import lobby.pandemica.db.Role;
 import lobby.pandemica.db.Status;
+import lobby.pandemica.dto.AcademicPersonnelDto;
 import lobby.pandemica.dto.CovidInformationDto;
 import lobby.pandemica.dto.SectionDto;
 import lobby.pandemica.dto.UserDto;
+import lobby.pandemica.service.AcademicPersonnelService;
 import lobby.pandemica.service.CovidInformationService;
 import lobby.pandemica.service.SectionService;
 import lobby.pandemica.service.UserService;
@@ -26,6 +28,7 @@ public class PandemicaApplication {
 	@Bean
 	CommandLineRunner run(UserService userService,
 						  CovidInformationService covidInformationService,
+						  AcademicPersonnelService academicPersonnelService,
 						  SectionService sectionService) {
 		return args -> {
 			Integer dummyAge = 0;
@@ -65,6 +68,9 @@ public class PandemicaApplication {
 			covidInformationService.create(covidInformationDto3);
 			covidInformationService.create(covidInformationDto4);
 			covidInformationService.create(covidInformationDto5);
+
+			AcademicPersonnelDto academicPersonnelDto = new AcademicPersonnelDto(UUID.randomUUID(), "CS", userDto5);
+			academicPersonnelService.create(academicPersonnelDto);
 
 			SectionDto sectionDto1 = new SectionDto(UUID.randomUUID(), "CS319", 1, "B-204", userDto5);
 			SectionDto sectionDto2 = new SectionDto(UUID.randomUUID(), "CS319", 2, "B-204", userDto5);
