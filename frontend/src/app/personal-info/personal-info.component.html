@@ -48,10 +48,16 @@
           <div class="card" *ngIf="userData.role === 'STUDENT'">
             <div class="card-header p-3 pb-0">
               <p class="mb-2 font-weight-bold">Neighbors</p>
-              <p class="text-sm">
+              <p class="text-sm" *ngIf="userData.neighborStatus; else neighborInfected">
                 <i class="fa fa-check text-success" aria-hidden="true"></i>
                 No infected/risky neighbors
               </p>
+              <ng-template #neighborInfected>
+                <p class="text-sm text-danger">
+                  <i class="fa fa-exclamation text-danger pe-1" aria-hidden="true"></i>
+                  You have infected neighbor(s)
+                </p>
+              </ng-template>
             </div>
             <div class="card-body p-3">
             </div>

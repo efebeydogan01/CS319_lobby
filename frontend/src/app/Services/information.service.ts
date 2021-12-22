@@ -30,11 +30,12 @@ export class InformationService {
   }
 
   neighborStatus( uuid: string): Observable<any> {
-    return this.http.get<any>( HttpUrls.baseUrl + "/neighbor/getRiskStatus/" + uuid).
+    return this.http.get<any>( HttpUrls.baseUrl + "neighbor/getRiskStatus/" + uuid).
       pipe( tap( data => {
         let newUserData = JSON.parse( localStorage.getItem( 'userData'));
-        newUserData.neighborStatus = data;
+        newUserData.neighborStatus = data.data;
         localStorage.setItem( 'userData', JSON.stringify( newUserData));
+        // console.log( JSON.parse( localStorage.getItem('userData')).neighborStatus);
       }));
   }
 
