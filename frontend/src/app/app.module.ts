@@ -31,7 +31,8 @@ const appRoutes: Routes =[
   { path: 'general-info/guidelines', component: GuidelinesComponent, canActivate: [AuthGuard]},
   { path: 'general-info/weekly-reports', component: WeeklyReportsComponent, canActivate: [AuthGuard]},
   { path: 'social', component: SocialComponent, canActivate: [AuthGuard]},
-  { path: 'report-request', component: ReportRequestComponent, canActivate: [AuthGuard]}
+  { path: 'report-request', component: ReportRequestComponent, canActivate: [AuthGuard]},
+  { path: "**",redirectTo: localStorage.getItem( 'userData') ? 'personal-info' : ''}
 ];
 
 @NgModule({

@@ -29,4 +29,13 @@ export class InformationService {
     }));
   }
 
+  neighborStatus( uuid: string): Observable<any> {
+    return this.http.get<any>( HttpUrls.baseUrl + "/neighbor/getRiskStatus/" + uuid).
+      pipe( tap( data => {
+        let newUserData = JSON.parse( localStorage.getItem( 'userData'));
+        newUserData.neighborStatus = data;
+        localStorage.setItem( 'userData', JSON.stringify( newUserData));
+      }));
+  }
+
 }
