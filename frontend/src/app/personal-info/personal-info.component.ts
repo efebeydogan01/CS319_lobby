@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {LoginService} from "../Services/login-service.service";
 import {Subscription, take} from "rxjs";
 import {InformationService} from "../Services/information.service";
+import {LocalStorageConstants} from "../Services/LocalStorageConstants";
 
 @Component({
   selector: 'app-personal-info',
@@ -30,7 +31,7 @@ export class PersonalInfoComponent implements OnInit {
   constructor( private loginService: LoginService, private informationService: InformationService) { }
 
   ngOnInit(): void {
-    const localUser = localStorage.getItem('userData');
+    const localUser = localStorage.getItem(LocalStorageConstants.userData);
     if ( localUser) {
       this.userData = JSON.parse(localUser);
       this.userData.dob = this.userData.dob.substring(0, 10);
@@ -40,9 +41,9 @@ export class PersonalInfoComponent implements OnInit {
         }
       });
 
-      if ( localStorage.getItem('studentInfo')) {
+      if ( localStorage.getItem(LocalStorageConstants.studentInfo)) {
         if ( this.userData.role === 'STUDENT')
-          this.studentInfo = JSON.parse( localStorage.getItem('studentInfo'));
+          this.studentInfo = JSON.parse( localStorage.getItem(LocalStorageConstants.studentInfo));
       }
 
 

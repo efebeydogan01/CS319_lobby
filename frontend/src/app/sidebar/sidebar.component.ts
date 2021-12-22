@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {LocalStorageConstants} from "../Services/LocalStorageConstants";
 
 @Component({
   selector: 'app-sidebar',
@@ -12,7 +13,7 @@ export class SidebarComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    this.userRole = JSON.parse( localStorage.getItem( 'userData')).role;
+    this.userRole = JSON.parse( localStorage.getItem( LocalStorageConstants.userData)).role;
   }
 
 }
