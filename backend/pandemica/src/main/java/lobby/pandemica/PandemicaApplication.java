@@ -1,17 +1,13 @@
 package lobby.pandemica;
 
-import lobby.pandemica.db.CovidInformation;
 import lobby.pandemica.db.Role;
 import lobby.pandemica.db.Status;
-import lobby.pandemica.db.User;
 import lobby.pandemica.dto.CovidInformationDto;
 import lobby.pandemica.dto.SectionDto;
 import lobby.pandemica.dto.UserDto;
 import lobby.pandemica.service.CovidInformationService;
 import lobby.pandemica.service.SectionService;
 import lobby.pandemica.service.UserService;
-import lobby.pandemica.serviceimpl.mapper.CovidInformationMapper;
-import lobby.pandemica.serviceimpl.mapper.UserMapper;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
