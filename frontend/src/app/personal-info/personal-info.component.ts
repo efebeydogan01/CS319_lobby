@@ -13,7 +13,7 @@ export class PersonalInfoComponent implements OnInit {
 
   testResults: {
     id: string,
-    result: boolean,
+    result: string,
     testDate: string,
     type: string
   }[] = null;
