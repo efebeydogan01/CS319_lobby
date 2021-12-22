@@ -13,12 +13,10 @@ import java.util.UUID;
 @Getter
 @Setter
 @AllArgsConstructor
-//@NoArgsConstructor
+@NoArgsConstructor
 public class NeighborDto extends BaseDto<UUID>
 {
-
-    //private Section section;
-    /*
-    private Student neighbor1;
-    private Student neighbor2;*/
+    private SectionDto section;
+    private StudentDto firstStudent;
+    private StudentDto secondStudent;
 }
