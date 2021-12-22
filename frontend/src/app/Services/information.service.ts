@@ -19,6 +19,13 @@ export class InformationService {
   getRoleInfo( uuid: string, role: string): Observable<any> {
     return this.http.get<any>( HttpUrls.baseUrl + role.toLowerCase() + "/read/" + uuid).
     pipe( tap( data => {
+      if ( role === 'STUDENT') {
+        const studentInfo: {
+          department: string,
+          year: string
+        } = { department: data.data.department, year: data.data.year};
+        localStorage.setItem( 'studentInfo', JSON.stringify( studentInfo));
+      }
     }));
   }
 

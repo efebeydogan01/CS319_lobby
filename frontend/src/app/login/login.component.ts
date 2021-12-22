@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {LoginService} from "../Services/login-service.service";
 import {Router} from "@angular/router";
 import {NgForm} from "@angular/forms";
+import {take} from "rxjs";
+import {InformationService} from "../Services/information.service";
 
 @Component({
   selector: 'app-login',
@@ -10,7 +12,7 @@ import {NgForm} from "@angular/forms";
 })
 export class LoginComponent implements OnInit {
   isLoading: boolean = false;
-  constructor( private logService: LoginService, private router: Router) { }
+  constructor( private logService: LoginService, private router: Router, private informationService:InformationService) { }
 
   ngOnInit(): void {
     if ( localStorage.getItem( 'userData')) {
@@ -26,10 +28,14 @@ export class LoginComponent implements OnInit {
 
     this.isLoading = true;
 
-    this.logService.authenticateUser( user).subscribe( {
+    this.logService.authenticateUser( user).pipe( take(1)).subscribe( {
         next: (data) => {
           this.userAuthenticated = true;
-          this.router.navigate( ['/personal-info']);
+
+          const userData = JSON.parse(localStorage.getItem('userData'));
+          this.informationService.getRoleInfo( userData.uuid, userData.role).pipe( take(1)).subscribe( () => {
+            this.router.navigate( ['/personal-info']);
+          });
           this.isLoading = false;
         },
         error: (err) => {
@@ -39,6 +45,7 @@ export class LoginComponent implements OnInit {
         }
       }
     );
+
     form.reset();
   }
 }
