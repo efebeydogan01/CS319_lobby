@@ -23,13 +23,12 @@ export class PersonalInfoComponent implements OnInit {
     phoneNumber: string,
     age: number,
     uuid: string,
-    role: string
+    role: string,
+    neighborStatus: string
   } = null;
 
   constructor( private loginService: LoginService, private informationService: InformationService) { }
 
-
-  specificData = null;
   ngOnInit(): void {
     const localUser = localStorage.getItem('userData');
     if ( localUser) {
