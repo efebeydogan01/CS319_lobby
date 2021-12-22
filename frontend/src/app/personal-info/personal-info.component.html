@@ -14,7 +14,6 @@
                 <p class="text-sm text-bold mb-0">Age</p>
                 <p class="text-sm text-bold mb-3">Date of Birth</p>
                 <p class="text-sm text-bold mb-3">Phone Number</p>
-                <p class="text-sm text-bold mb-3">Role</p>
                 <p class="text-sm text-bold mb-0" *ngIf="userData.role === 'STUDENT'">Department</p>
                 <p class="text-sm text-bold mb-0" *ngIf="userData.role === 'STUDENT'">Year</p>
               </div>
@@ -24,10 +23,6 @@
                 <p class="text-sm mb-0">{{ userData.age }}</p>
                 <p class="text-sm mb-3">{{ userData.dob }}</p>
                 <p class="text-sm mb-3">{{ userData.phoneNumber }}</p>
-                <p class="text-sm mb-0" *ngIf="userData.role === 'STUDENT'">Student</p>
-                <p class="text-sm mb-0" *ngIf="userData.role === 'ADMIN'">Admin</p>
-                <p class="text-sm mb-0" *ngIf="userData.role === 'MEDICAL_EMPLOYEE'">Medical Employee</p>
-                <p class="text-sm mb-0" *ngIf="userData.role === 'ACADEMIC_PERSONNEL'">Academic Personnel</p>
                 <p class="text-sm mb-0" *ngIf="userData.role === 'STUDENT'">{{ studentInfo.department }}</p>
                 <p class="text-sm mb-0" *ngIf="userData.role === 'STUDENT'">{{ studentInfo.year }}</p>
               </div>

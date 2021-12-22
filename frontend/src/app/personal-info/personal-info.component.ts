@@ -10,14 +10,16 @@ import {LocalStorageConstants} from "../Services/LocalStorageConstants";
   styleUrls: ['./personal-info.component.css']
 })
 export class PersonalInfoComponent implements OnInit {
-  // loginSubs: Subscription = new Subscription();
+
   testResults: {
     id: string,
     result: boolean,
     testDate: string,
     type: string
   }[] = null;
+
   covidStatus: string = "";
+
   studentInfo: {
     department: string,
     year: string
