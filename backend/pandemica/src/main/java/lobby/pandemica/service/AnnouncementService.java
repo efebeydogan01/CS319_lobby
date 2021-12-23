@@ -9,6 +9,6 @@ import java.util.UUID;
 
 public interface AnnouncementService extends BaseCrudService<AnnouncementDto>
 {
-    AnnouncementDto get(UUID id);
-    GeneralInfo readGeneralInfo();
+	AnnouncementDto get(UUID id);
+	GeneralInfo readGeneralInfo();
 }

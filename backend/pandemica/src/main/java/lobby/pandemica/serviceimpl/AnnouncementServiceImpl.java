@@ -26,86 +26,86 @@ import java.util.UUID;
 @Service
 public class AnnouncementServiceImpl extends BaseServiceImpl<Announcement, AnnouncementDto> implements AnnouncementService
 {
-    private static final Logger LOGGER = LoggerFactory.getLogger(AcademicPersonnelServiceImpl.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(AcademicPersonnelServiceImpl.class);
 
-    private final AnnouncementMapper announcementMapper;
-    private final AnnouncementRepository announcementRepository;
-    private final CovidInformationRepository covidInformationRepository;
-    private final UserRepository userRepository;
+	private final AnnouncementMapper announcementMapper;
+	private final AnnouncementRepository announcementRepository;
+	private final CovidInformationRepository covidInformationRepository;
+	private final UserRepository userRepository;
 
-    public AnnouncementServiceImpl(AnnouncementRepository announcementRepository, AnnouncementMapper announcementMapper,
-                                   CovidInformationRepository covidInformationRepository, UserRepository userRepository) {
-        super(announcementRepository, AnnouncementMapper.INSTANCE);
-        this.announcementRepository = announcementRepository;
-        this.announcementMapper = announcementMapper;
-        this.covidInformationRepository = covidInformationRepository;
-        this.userRepository = userRepository;
-    }
-    @Override
-    public AnnouncementDto create(AnnouncementDto dto) throws EntityNotFoundException
-    {
+	public AnnouncementServiceImpl(AnnouncementRepository announcementRepository, AnnouncementMapper announcementMapper,
+								   CovidInformationRepository covidInformationRepository, UserRepository userRepository) {
+		super(announcementRepository, AnnouncementMapper.INSTANCE);
+		this.announcementRepository = announcementRepository;
+		this.announcementMapper = announcementMapper;
+		this.covidInformationRepository = covidInformationRepository;
+		this.userRepository = userRepository;
+	}
+	@Override
+	public AnnouncementDto create(AnnouncementDto dto) throws EntityNotFoundException
+	{
 
-        Announcement entity = AnnouncementMapper.INSTANCE.dtoToEntity(dto);
-        if (entity == null) {
-            LOGGER.warn("The entity to save cannot be empty!");
-            throw new EntityNotFoundException();
-        }
-        return super.create(AnnouncementMapper.INSTANCE.entityToDto(entity));
-    }
+		Announcement entity = AnnouncementMapper.INSTANCE.dtoToEntity(dto);
+		if (entity == null) {
+			LOGGER.warn("The entity to save cannot be empty!");
+			throw new EntityNotFoundException();
+		}
+		return super.create(AnnouncementMapper.INSTANCE.entityToDto(entity));
+	}
 
-    public AnnouncementDto get(UUID id) throws EntityNotFoundException
-    {
-        if (id == null)
-        {
-            LOGGER.warn("The id cannot be empty!");
-            throw new EntityNotFoundException();
-        }
-        Optional<Announcement> announcementOptional = announcementRepository.findById(id);
-        if (!announcementOptional.isPresent()) {
-            LOGGER.warn("No such announcement!");
-            throw new EntityNotFoundException();
-        }
-        return announcementMapper.entityToDto(announcementOptional.get());
-    }
+	public AnnouncementDto get(UUID id) throws EntityNotFoundException
+	{
+		if (id == null)
+		{
+			LOGGER.warn("The id cannot be empty!");
+			throw new EntityNotFoundException();
+		}
+		Optional<Announcement> announcementOptional = announcementRepository.findById(id);
+		if (!announcementOptional.isPresent()) {
+			LOGGER.warn("No such announcement!");
+			throw new EntityNotFoundException();
+		}
+		return announcementMapper.entityToDto(announcementOptional.get());
+	}
 
-    @Override
-    public GeneralInfo readGeneralInfo()
-    {
-        Integer academicCases = 0;
-        Integer adminCases = 0;
-        Integer staffCases = 0;
-        Integer studentCases = 0;
-        Integer vaccinationRate = 72;
-        GeneralInfo generalInfo = new GeneralInfo();
-        generalInfo.setAnnouncements(announcementRepository.findAll());
-        List<CovidInformation> covidInformationList = covidInformationRepository.findAllByStatus(Status.RISK.POSITIVE.name());
-        for (CovidInformation covidInformation: covidInformationList)
-        {
-            UUID userId = covidInformation.getUser().getId();
-            User user = userRepository.getById(userId);
-            switch (user.getRole()){
-                case "ACADEMIC_PERSONNEL":
-                    academicCases++;
-                    break;
-                case "ADMIN":
-                    adminCases++;
-                    break;
-                case "STAFF":
-                    staffCases++;
-                    break;
-                case "STUDENT":
-                    studentCases++;
-                    break;
-                default:
-                    break;
-            }
-        }
-        generalInfo.setAcademicCases(academicCases);
-        generalInfo.setAdminCases(adminCases);
-        generalInfo.setStudentCases(studentCases);
-        generalInfo.setStaffCases(staffCases);
-        generalInfo.setVaccinationRate(vaccinationRate);
-        return generalInfo;
-    }
+	@Override
+	public GeneralInfo readGeneralInfo()
+	{
+		Integer academicCases = 0;
+		Integer adminCases = 0;
+		Integer staffCases = 0;
+		Integer studentCases = 0;
+		Integer vaccinationRate = 72;
+		GeneralInfo generalInfo = new GeneralInfo();
+		generalInfo.setAnnouncements(announcementRepository.findAll());
+		List<CovidInformation> covidInformationList = covidInformationRepository.findAllByStatus(Status.RISK.POSITIVE.name());
+		for (CovidInformation covidInformation: covidInformationList)
+		{
+			UUID userId = covidInformation.getUser().getId();
+			User user = userRepository.getById(userId);
+			switch (user.getRole()){
+				case "ACADEMIC_PERSONNEL":
+					academicCases++;
+					break;
+				case "ADMIN":
+					adminCases++;
+					break;
+				case "STAFF":
+					staffCases++;
+					break;
+				case "STUDENT":
+					studentCases++;
+					break;
+				default:
+					break;
+			}
+		}
+		generalInfo.setAcademicCases(academicCases);
+		generalInfo.setAdminCases(adminCases);
+		generalInfo.setStudentCases(studentCases);
+		generalInfo.setStaffCases(staffCases);
+		generalInfo.setVaccinationRate(vaccinationRate);
+		return generalInfo;
+	}
 
 }

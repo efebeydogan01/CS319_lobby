@@ -18,33 +18,33 @@ import java.util.UUID;
 @RestController
 @RequestMapping("announcement")
 public class AnnouncementController extends BaseController<AnnouncementDto> {
-    private final AnnouncementService announcementService;
+	private final AnnouncementService announcementService;
 
-    public AnnouncementController(AnnouncementService announcementService) {
-        super(announcementService);
-        this.announcementService = announcementService;
-    }
+	public AnnouncementController(AnnouncementService announcementService) {
+		super(announcementService);
+		this.announcementService = announcementService;
+	}
 
-    @GetMapping("readGeneralInfo")
-    public ResponseEntity<RestResponse<GeneralInfo>> read()
-    {
-        try
-        {
-            return new ResponseEntity<>(new RestResponse<>(announcementService.readGeneralInfo(), "Get",
-                    "Getting an entity was successful."),
-                    HttpStatus.OK);
-        }
-        catch (EntityNotFoundException e)
-        {
-            return new ResponseEntity<>(new RestResponse<>(null, "Get",
-                    "Getting entity was unsuccessful due to an error with the entities given."),
-                    HttpStatus.UNPROCESSABLE_ENTITY);
-        }
-        catch (Exception e)
-        {
-            return new ResponseEntity<>(new RestResponse<>(null, "Get","There was an unexpected error."),
-                    HttpStatus.EXPECTATION_FAILED);
-        }
-    }
+	@GetMapping("readGeneralInfo")
+	public ResponseEntity<RestResponse<GeneralInfo>> read()
+	{
+		try
+		{
+			return new ResponseEntity<>(new RestResponse<>(announcementService.readGeneralInfo(), "Get",
+					"Getting an entity was successful."),
+					HttpStatus.OK);
+		}
+		catch (EntityNotFoundException e)
+		{
+			return new ResponseEntity<>(new RestResponse<>(null, "Get",
+					"Getting entity was unsuccessful due to an error with the entities given."),
+					HttpStatus.UNPROCESSABLE_ENTITY);
+		}
+		catch (Exception e)
+		{
+			return new ResponseEntity<>(new RestResponse<>(null, "Get","There was an unexpected error."),
+					HttpStatus.EXPECTATION_FAILED);
+		}
+	}
 
 }

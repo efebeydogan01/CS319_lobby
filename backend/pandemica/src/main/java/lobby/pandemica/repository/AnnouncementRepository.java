@@ -13,5 +13,5 @@ import java.util.UUID;
 @Repository
 public interface AnnouncementRepository extends BaseRepository<Announcement, UUID>
 {
-    Optional<Announcement> findById(UUID id);
+	Optional<Announcement> findById(UUID id);
 }

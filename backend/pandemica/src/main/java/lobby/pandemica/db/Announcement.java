@@ -17,29 +17,13 @@ import java.util.Date;
 @Table(name = "announcements")
 
 public class Announcement extends BaseEntity {
-    //Attributes
-    @Column(name = "title")
-    private String title;
+	//Attributes
+	@Column(name = "title")
+	private String title;
 
-    @Column(name = "date")
-    private Date date;
+	@Column(name = "date")
+	private Date date;
 
-    @Column(name = "announcement_text")
-    private String announcementText;
-    /*
-    @Column(name = "academic_staff_cases")
-    private int academicStaffCases;
-
-    @Column(name = "administrative_staff_cases")
-    private int administrativeStaffCases;
-
-    @Column(name = "support_staff_cases")
-    private int supportStaffCases;
-
-    @Column(name = "student_cases")
-    private int studentCases;
-
-    @Column(name = "vaccination_rate")
-    private double vaccinationRate;
-     */
+	@Column(name = "announcement_text")
+	private String announcementText;
 }

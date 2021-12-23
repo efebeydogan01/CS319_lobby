@@ -9,5 +9,5 @@ import org.mapstruct.factory.Mappers;
 @Mapper(config = MapConfig.class, componentModel = "spring")
 public interface AnnouncementMapper extends BaseMapper<Announcement, AnnouncementDto>
 {
-    AnnouncementMapper INSTANCE = Mappers.getMapper(AnnouncementMapper.class);
+	AnnouncementMapper INSTANCE = Mappers.getMapper(AnnouncementMapper.class);
 }

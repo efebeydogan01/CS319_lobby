@@ -14,8 +14,8 @@ import java.util.UUID;
 @NoArgsConstructor
 public class AnnouncementDto extends BaseDto<UUID>
 {
-    private UUID id;
-    private String title;
-    private Date date;
-    private String announcementText;
+	private UUID id;
+	private String title;
+	private Date date;
+	private String announcementText;
 }
