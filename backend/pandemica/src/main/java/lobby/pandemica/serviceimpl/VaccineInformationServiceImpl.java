@@ -16,6 +16,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.persistence.EntityNotFoundException;
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -37,10 +39,10 @@ public class VaccineInformationServiceImpl extends BaseServiceImpl<VaccineInform
 	}
 
 	@Override
-	public List<VaccineInformationDto> upload(MultipartFile multipartFile, UUID id)
+	public List<String> upload(MultipartFile multipartFile, UUID id) throws IOException
 	{
-		Optional<VaccineInformation> vaccineInformation =  vaccineInformationRepository.findById(id);
-		vaccineInformation.get().getVaccineName();
-		return null;
+		List<String> list = new ArrayList<>();
+		list.add(new String(multipartFile.getBytes()));
+		return list;
 	}
 }
