@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {LoginService} from "../Services/login-service.service";
 import {Subscription, take} from "rxjs";
 import {InformationService} from "../Services/information.service";
@@ -38,6 +38,11 @@ export class PersonalInfoComponent implements OnInit {
     neighborStatus: string
   } = null;
 
+  @ViewChild('vaccFile')
+  uploadedFile: ElementRef;
+
+  formData: FormData;
+
   constructor( private loginService: LoginService, private informationService: InformationService, private http: HttpClient) { }
 
   ngOnInit(): void {
@@ -63,20 +68,28 @@ export class PersonalInfoComponent implements OnInit {
 
     }
   }
-
   onFileChange( event) {
     const file: File = event.target.files[0];
     console.log( file);
     if ( file) {
-      const formData = new FormData();
-
-      formData.append( "vaccFile", file);
-      console.log( formData);
-      // const upload$ = this.http.post( HttpUrls.baseUrl + "vaccine/uploadFile/" + this.userData.uuid, formData);
-      //
-      // upload$.pipe( take(1)).subscribe();
+      this.formData = new FormData();
+      this.formData.append( "vaccFile", file);
     }
   }
 
+  removeFile() {
+    this.uploadedFile.nativeElement.value = "";
+  }
+
+  onUpload() {
+    const upload$ = this.http.post( HttpUrls.baseUrl + "vaccine/uploadFile/" + this.userData.uuid, this.formData);
+    upload$.pipe( take(1)).subscribe( {
+      next: (data: any) => {
+      },
+      error: () => {
+        console.log( "File could not be uploaded");
+      }
+    });
+  }
 
 }
