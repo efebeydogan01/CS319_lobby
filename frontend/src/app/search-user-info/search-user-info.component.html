@@ -21,7 +21,7 @@
               <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Date of status update</th>
               <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Vaccination Status</th>
               <th class="text-secondary opacity-7"></th>
-              <th class="text-secondary opacity-7" *ngIf="false"></th>
+              <th class="text-secondary opacity-7" *ngIf="userRole === 'ADMIN'"></th>
             </tr>
             </thead>
             <tbody>
@@ -51,13 +51,13 @@
               <td class="align-middle text-center text-sm">
                 <span class="badge badge-sm bg-gradient-success">Vaccinated</span>
               </td>
-              <td class="align-middle" *ngIf="false">
+              <td class="align-middle" *ngIf="userRole === 'ADMIN'">
                 <a class="btn btn-xs btn-outline-secondary mb-0 p-1 px-3" href="javascript:;">edit</a>
               </td>
-              <td class="align-middle" *ngIf="false">
+              <td class="align-middle" *ngIf="userRole === 'ADMIN'">
                 <a class="btn btn-xs btn-outline-danger mb-0 p-1 px-3" href="javascript:;">remove</a>
               </td>
-              <td class="align-middle" *ngIf="true">
+              <td class="align-middle" *ngIf="userRole === 'MEDICAL_EMPLOYEE'">
                 <a class="btn btn-xs btn-outline-secondary mb-0 p-1 px-3" href="javascript:;">enter test result</a>
               </td>
             </tr>
