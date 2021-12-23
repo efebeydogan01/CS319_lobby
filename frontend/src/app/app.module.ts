@@ -23,6 +23,7 @@ import { SeatComponent } from './seat/seat.component';
 import {AuthGuard} from "./Services/auth.guard";
 import { SendNotificationPopupComponent } from './send-notification-popup/send-notification-popup.component';
 import {LocalStorageConstants} from "./Services/LocalStorageConstants";
+import { SeatingPlanComponent } from './seating-plan/seating-plan.component';
 
 const appRoutes: Routes =[
   { path: '', component: LoginComponent},
@@ -54,7 +55,8 @@ const appRoutes: Routes =[
     SearchUserBarComponent,
     LoadingSpinnerComponent,
     SeatComponent,
-    SendNotificationPopupComponent
+    SendNotificationPopupComponent,
+    SeatingPlanComponent
   ],
   imports: [
     BrowserModule,
