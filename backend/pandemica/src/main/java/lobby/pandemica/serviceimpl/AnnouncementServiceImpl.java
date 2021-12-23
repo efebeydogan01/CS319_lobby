@@ -1,11 +1,11 @@
 package lobby.pandemica.serviceimpl;
 
-import lobby.pandemica.db.AcademicPersonnel;
-import lobby.pandemica.db.Announcement;
+import lobby.pandemica.db.*;
 import lobby.pandemica.dto.AnnouncementDto;
 import lobby.pandemica.dto.UserDto;
 import lobby.pandemica.repository.AcademicPersonnelRepository;
 import lobby.pandemica.repository.AnnouncementRepository;
+import lobby.pandemica.repository.CovidInformationRepository;
 import lobby.pandemica.repository.UserRepository;
 import lobby.pandemica.service.AcademicPersonnelService;
 import lobby.pandemica.service.AnnouncementService;
@@ -19,6 +19,7 @@ import org.springframework.stereotype.Service;
 import sun.java2d.loops.FillRect;
 
 import javax.persistence.EntityNotFoundException;
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -29,11 +30,16 @@ public class AnnouncementServiceImpl extends BaseServiceImpl<Announcement, Annou
 
     private final AnnouncementMapper announcementMapper;
     private final AnnouncementRepository announcementRepository;
+    private final CovidInformationRepository covidInformationRepository;
+    private final UserRepository userRepository;
 
-    public AnnouncementServiceImpl(AnnouncementRepository announcementRepository, AnnouncementMapper announcementMapper) {
+    public AnnouncementServiceImpl(AnnouncementRepository announcementRepository, AnnouncementMapper announcementMapper,
+                                   CovidInformationRepository covidInformationRepository, UserRepository userRepository) {
         super(announcementRepository, AnnouncementMapper.INSTANCE);
         this.announcementRepository = announcementRepository;
         this.announcementMapper = announcementMapper;
+        this.covidInformationRepository = covidInformationRepository;
+        this.userRepository = userRepository;
     }
     @Override
     public AnnouncementDto create(AnnouncementDto dto) throws EntityNotFoundException
@@ -60,6 +66,46 @@ public class AnnouncementServiceImpl extends BaseServiceImpl<Announcement, Annou
             throw new EntityNotFoundException();
         }
         return announcementMapper.entityToDto(announcementOptional.get());
+    }
+
+    @Override
+    public GeneralInfo readGeneralInfo()
+    {
+        Integer academicCases = 0;
+        Integer adminCases = 0;
+        Integer staffCases = 0;
+        Integer studentCases = 0;
+        Integer vaccinationRate = 72;
+        GeneralInfo generalInfo = new GeneralInfo();
+        generalInfo.setAnnouncements(announcementRepository.findAll());
+        List<CovidInformation> covidInformationList = covidInformationRepository.findAllByStatus(Status.RISK.POSITIVE.name());
+        for (CovidInformation covidInformation: covidInformationList)
+        {
+            UUID userId = covidInformation.getUser().getId();
+            User user = userRepository.getById(userId);
+            switch (user.getRole()){
+                case "ACADEMIC_PERSONNEL":
+                    academicCases++;
+                    break;
+                case "ADMIN":
+                    adminCases++;
+                    break;
+                case "STAFF":
+                    staffCases++;
+                    break;
+                case "STUDENT":
+                    studentCases++;
+                    break;
+                default:
+                    break;
+            }
+        }
+        generalInfo.setAcademicCases(academicCases);
+        generalInfo.setAdminCases(adminCases);
+        generalInfo.setStudentCases(studentCases);
+        generalInfo.setStaffCases(staffCases);
+        generalInfo.setVaccinationRate(vaccinationRate);
+        return generalInfo;
     }
 
 }

@@ -1,6 +1,7 @@
 package lobby.pandemica.controller;
 
 import lobby.pandemica.controller.base.BaseController;
+import lobby.pandemica.db.GeneralInfo;
 import lobby.pandemica.dto.AdminDto;
 import lobby.pandemica.dto.AnnouncementDto;
 import lobby.pandemica.dto.MedicalEmployeeDto;
@@ -23,14 +24,13 @@ public class AnnouncementController extends BaseController<AnnouncementDto> {
         super(announcementService);
         this.announcementService = announcementService;
     }
-    /*
-    @Override
-    @GetMapping("read/{id}")
-    public ResponseEntity<RestResponse<AdminDto>> read(@PathVariable String id)
+
+    @GetMapping("readGeneralInfo")
+    public ResponseEntity<RestResponse<GeneralInfo>> read()
     {
         try
         {
-            return new ResponseEntity<>(new RestResponse<>(adminService.getUserWithRole(UUID.fromString(id)), "Get",
+            return new ResponseEntity<>(new RestResponse<>(announcementService.readGeneralInfo(), "Get",
                     "Getting an entity was successful."),
                     HttpStatus.OK);
         }
@@ -46,5 +46,5 @@ public class AnnouncementController extends BaseController<AnnouncementDto> {
                     HttpStatus.EXPECTATION_FAILED);
         }
     }
-    */
+
 }
