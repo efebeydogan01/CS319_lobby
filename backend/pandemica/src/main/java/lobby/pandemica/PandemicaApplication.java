@@ -37,7 +37,7 @@ public class PandemicaApplication {
 						  MedicalEmployeeService medicalEmployeeService,
 						  AcademicPersonnelService academicPersonnelService,
 						  SectionService sectionService,
-						  SeatService seatService) {
+						  SeatService seatService, FilesStorageService filesStorageService) {
 		return args -> {
 			Integer dummyAge = 0;
 			UserDto userDto1 = new UserDto(UUID.randomUUID(),"Mert Barkın Er", "password",
