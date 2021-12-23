@@ -98,26 +98,6 @@ public class PandemicaApplication {
 			sectionService.create(sectionDto3);
 			sectionService.create(sectionDto4);
 
-			adminService.initializeSeatingPlan(sectionDto1);
-			adminService.initializeSeatingPlan(sectionDto4);
-//			Classrooms classroom = new Classrooms();
-//			Boolean[][] b204 = classroom.getClassroom(sectionDto1.getClassroom());
-//			int rowLength = b204.length; int columnLength = b204[0].length;
-//			for (int i = 0; i < rowLength; i++) {
-//				for (int j = 0; j < columnLength; j++) {
-//					SeatDto seatDto = new SeatDto(UUID.randomUUID(), sectionDto1, b204[i][j], i, j, null);
-//					seatService.create(seatDto);
-//				}
-//			}
-//			Boolean[][] ee214 = classroom.getClassroom(sectionDto4.getClassroom());
-//			rowLength = ee214.length; columnLength = ee214[0].length;
-//			for (int i = 0; i < rowLength; i++) {
-//				for (int j = 0; j < columnLength; j++) {
-//					SeatDto seatDto = new SeatDto(UUID.randomUUID(), sectionDto4, ee214[i][j], i, j, null);
-//					seatService.create(seatDto);
-//				}
-//			}
-
 		};
 	}
 }
