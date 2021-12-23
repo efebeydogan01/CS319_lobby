@@ -2,8 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import {LoginService} from "../Services/login-service.service";
 import {Router} from "@angular/router";
 import {NgForm} from "@angular/forms";
-import {take} from "rxjs";
+import {switchMap, take} from "rxjs";
 import {InformationService} from "../Services/information.service";
+import {LocalStorageConstants} from "../Services/LocalStorageConstants";
 
 @Component({
   selector: 'app-login',
@@ -15,7 +16,7 @@ export class LoginComponent implements OnInit {
   constructor( private logService: LoginService, private router: Router, private informationService:InformationService) { }
 
   ngOnInit(): void {
-    if ( localStorage.getItem( 'userData')) {
+    if ( localStorage.getItem( LocalStorageConstants.userData)) {
       this.router.navigate( ['/personal-info']);
     }
   }
@@ -32,20 +33,57 @@ export class LoginComponent implements OnInit {
         next: (data) => {
           this.userAuthenticated = true;
 
-          const userData = JSON.parse(localStorage.getItem('userData'));
-          this.informationService.getRoleInfo( userData.uuid, userData.role).pipe( take(1)).subscribe( () => {
-            this.router.navigate( ['/personal-info']);
+          const userData = JSON.parse(localStorage.getItem(LocalStorageConstants.userData));
+
+          this.informationService.getRoleInfo( userData.uuid, userData.role).pipe( take(1)).subscribe( {
+            next: () => {
+              this.informationService.neighborStatus( userData.uuid).pipe( take( 1)).subscribe( {
+                next: () => {
+                  this.informationService.getTestResults( userData.uuid).pipe( take( 1)).subscribe( {
+                    next: () => {
+                      this.router.navigate( ['/personal-info']);
+                      this.isLoading = false;
+                    },
+                    error: () => {
+                      this.onError();
+                    }
+                  });
+                },
+                error: () => {
+                  this.onError();
+                }
+              });
+            },
+            error: () => {
+              this.onError();
+            }
           });
-          this.isLoading = false;
+
+
+          // this.informationService.getRoleInfo( userData.uuid, userData.role).pipe(
+          //   switchMap( (data) => {
+          //
+          //   })
+          // ).subscribe( () => {
+          //   this.router.navigate( ['/personal-info']);
+          //   this.isLoading = false;
+          // });
+
         },
         error: (err) => {
           this.userAuthenticated = false;
           console.log( "User cannot be authenticated");
           this.isLoading = false;
+          this.onError();
         }
       }
     );
 
     form.reset();
+  }
+
+  onError() {
+    this.isLoading = false;
+    this.logService.logout();
   }
 }

@@ -5,6 +5,7 @@ import {User} from "./user.model";
 import {Router} from "@angular/router";
 import {HttpUrls} from "./HttpUrls";
 import {InformationService} from "./information.service";
+import {LocalStorageConstants} from "./LocalStorageConstants";
 
 @Injectable({
   providedIn: 'root'
@@ -27,7 +28,7 @@ export class LoginService {
           data.data.role);
         this.user.next( newUser);
         //this.autoLogout(); CALL AUTOLOGOUT HERE
-        localStorage.setItem('userData', JSON.stringify( newUser));
+        localStorage.setItem(LocalStorageConstants.userData, JSON.stringify( newUser));
       })
     );
   }
@@ -41,7 +42,7 @@ export class LoginService {
       age: string,
       uuid: string,
       role: string
-    } = JSON.parse( localStorage.getItem( 'userData'));
+    } = JSON.parse( localStorage.getItem( LocalStorageConstants.userData));
     if ( !userData) {
       return;
     }
@@ -60,8 +61,10 @@ export class LoginService {
   }
   logout() {
     this.user.next( null);
-    localStorage.removeItem('userData');
-    localStorage.removeItem( 'studentInfo');
+    localStorage.removeItem(LocalStorageConstants.userData);
+    localStorage.removeItem( LocalStorageConstants.studentInfo);
+    localStorage.removeItem( LocalStorageConstants.testResults);
+    localStorage.removeItem( LocalStorageConstants.seating);
     this.router.navigate(['/']);
 
     // if ( this.tokenExpirationTimer) {

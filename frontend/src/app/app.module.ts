@@ -21,6 +21,9 @@ import {HttpClientModule} from "@angular/common/http";
 import {LoadingSpinnerComponent} from "./loading-spinner/loading-spinner.component";
 import { SeatComponent } from './seat/seat.component';
 import {AuthGuard} from "./Services/auth.guard";
+import { SendNotificationPopupComponent } from './send-notification-popup/send-notification-popup.component';
+import {LocalStorageConstants} from "./Services/LocalStorageConstants";
+import { SeatingPlanComponent } from './seating-plan/seating-plan.component';
 
 const appRoutes: Routes =[
   { path: '', component: LoginComponent},
@@ -31,7 +34,8 @@ const appRoutes: Routes =[
   { path: 'general-info/guidelines', component: GuidelinesComponent, canActivate: [AuthGuard]},
   { path: 'general-info/weekly-reports', component: WeeklyReportsComponent, canActivate: [AuthGuard]},
   { path: 'social', component: SocialComponent, canActivate: [AuthGuard]},
-  { path: 'report-request', component: ReportRequestComponent, canActivate: [AuthGuard]}
+  { path: 'report-request', component: ReportRequestComponent, canActivate: [AuthGuard]},
+  { path: "**",redirectTo: localStorage.getItem( LocalStorageConstants.userData) ? 'personal-info' : ''}
 ];
 
 @NgModule({
@@ -50,7 +54,9 @@ const appRoutes: Routes =[
     SearchUserInfoComponent,
     SearchUserBarComponent,
     LoadingSpinnerComponent,
-    SeatComponent
+    SeatComponent,
+    SendNotificationPopupComponent,
+    SeatingPlanComponent
   ],
   imports: [
     BrowserModule,

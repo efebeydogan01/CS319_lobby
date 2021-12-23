@@ -17,7 +17,7 @@ import javax.persistence.EntityNotFoundException;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("academic")
+@RequestMapping("academic_personnel")
 public class AcademicPersonnelController extends BaseController<AcademicPersonnelDto> {
     private final AcademicPersonnelService academicPersonnelService;
 

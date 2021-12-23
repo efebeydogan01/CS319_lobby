@@ -31,7 +31,7 @@
             </tr>
             </thead>
             <tbody>
-            <tr>
+            <tr *ngFor="let i of [].constructor(3)">
               <td>
                 <div class="d-flex px-2 py-1 flex-column justify-content-center">
                   <h6 class="ms-2 mb-0">CS-319</h6>
@@ -49,109 +49,10 @@
               </td>
               <td class="align-middle text-center">
                 <a class="btn btn-xs btn-outline-primary mb-0" data-bs-toggle="modal" data-bs-target="#updateSeatPopup">update seat</a>
+                <app-seating-plan></app-seating-plan>
+              </td>
+            </tr>
 
-                <div class="modal fade" id="updateSeatPopup" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                  <div class="modal-dialog modal-dialog-centered">
-                    <div class="modal-content">
-                      <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Update Seat</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                      </div>
-                      <div class="modal-body bg-dark">
-                        <div *ngFor="let i of [].constructor(120); let indexOfElements = index;">
-                          <app-seat [i]="indexOfElements" (updateSeat)="updateSelectedSeat($event)"></app-seat>
-                        </div>
-                      </div>
-                      <div class="modal-footer">
-                        <button type="button" class="btn btn-sm btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-sm btn-primary" data-bs-dismiss="modal">Save</button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <div class="d-flex px-2 py-1 flex-column justify-content-center">
-                  <h6 class="ms-2 mb-0">CS-319</h6>
-                </div>
-              </td>
-              <td>
-                <div class="d-flex py-1 flex-column justify-content-center text-center">
-                  <h6 class="mb-0 text-sm text-muted">A6</h6>
-                </div>
-              </td>
-              <td>
-                <div class="d-flex py-1 flex-column justify-content-center align-items-center">
-                  <img src="../assets/img/seating-plan.png" alt="user1">
-                </div>
-              </td>
-              <td class="align-middle text-center">
-                <a class="btn btn-xs btn-outline-primary mb-0" data-bs-toggle="modal" data-bs-target="#updateSeatPopup">update seat</a>
-
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <div class="d-flex px-2 py-1 flex-column justify-content-center">
-                  <h6 class="ms-2 mb-0">CS-319</h6>
-                </div>
-              </td>
-              <td>
-                <div class="d-flex py-1 flex-column justify-content-center text-center">
-                  <h6 class="mb-0 text-sm text-muted">A6</h6>
-                </div>
-              </td>
-              <td>
-                <div class="d-flex py-1 flex-column justify-content-center align-items-center">
-                  <img src="../assets/img/seating-plan.png" alt="user1">
-                </div>
-              </td>
-              <td class="align-middle text-center">
-                <a class="btn btn-xs btn-outline-primary mb-0" data-bs-toggle="modal" data-bs-target="#updateSeatPopup">update seat</a>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <div class="d-flex px-2 py-1 flex-column justify-content-center">
-                  <h6 class="ms-2 mb-0">CS-319</h6>
-                </div>
-              </td>
-              <td>
-                <div class="d-flex py-1 flex-column justify-content-center text-center">
-                  <h6 class="mb-0 text-sm text-muted">A6</h6>
-                </div>
-              </td>
-              <td>
-                <div class="d-flex py-1 flex-column justify-content-center align-items-center">
-                  <img src="../assets/img/seating-plan.png" alt="user1">
-                </div>
-              </td>
-              <td class="align-middle text-center">
-                <a class="btn btn-xs btn-outline-primary mb-0" data-bs-toggle="modal" data-bs-target="#updateSeatPopup">update seat</a>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <div class="d-flex px-2 py-1 flex-column justify-content-center">
-                  <h6 class="ms-2 mb-0">CS-319</h6>
-                </div>
-              </td>
-              <td>
-                <div class="d-flex py-1 flex-column justify-content-center text-center">
-                  <h6 class="mb-0 text-sm text-muted">A6</h6>
-                </div>
-              </td>
-              <td>
-                <div class="d-flex py-1 flex-column justify-content-center align-items-center">
-                  <img src="../assets/img/seating-plan.png" alt="user1">
-                </div>
-              </td>
-              <td class="align-middle text-center">
-                <a class="btn btn-xs btn-outline-primary mb-0" data-bs-toggle="modal" data-bs-target="#updateSeatPopup">update seat</a>
-              </td>
-            </tr>
             </tbody>
           </table>
         </div>
