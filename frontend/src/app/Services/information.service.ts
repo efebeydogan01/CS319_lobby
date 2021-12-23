@@ -55,4 +55,32 @@ export class InformationService {
         localStorage.setItem( LocalStorageConstants.seating, JSON.stringify( data.data));
       }));
   }
+
+  getGeneralInfo() {
+    return this.http.get<any>( HttpUrls.baseUrl + "announcement/readGeneralInfo").
+      pipe( tap( data => {
+        console.log(data);
+        localStorage.setItem( LocalStorageConstants.generalInfo, JSON.stringify( data.data));
+      }));
+  }
+
+  getGuidelines() {
+    return this.http.get<any>( HttpUrls.baseUrl + "guidelines").
+      pipe( tap( data => {
+        console.log(data);
+        localStorage.setItem( LocalStorageConstants.guidelines, JSON.stringify( data.data));
+      }));
+  }
+
+  getWeeklyReports() {
+    return this.http.get<any>( HttpUrls.baseUrl + "weeklyReports").
+      pipe( tap( data => {
+        console.log(data);
+        localStorage.setItem( LocalStorageConstants.guidelines, JSON.stringify( data.data));
+      }));
+  }
+
+  makeAnnouncement( announcement: { title: string, date:string, announcementText: string}) {
+    return this.http.post<any>( HttpUrls.baseUrl + "announcement/create", announcement);
+  }
 }
