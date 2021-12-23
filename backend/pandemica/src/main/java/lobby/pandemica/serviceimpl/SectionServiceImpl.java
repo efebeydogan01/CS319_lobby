@@ -21,10 +21,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityNotFoundException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-import java.util.UUID;
+import java.util.*;
 
 @Service
 public class SectionServiceImpl extends BaseServiceImpl<Section, SectionDto> implements SectionService
@@ -69,6 +66,7 @@ public class SectionServiceImpl extends BaseServiceImpl<Section, SectionDto> imp
         }
         SectionDto sectionDto = sectionMapper.entityToDto(infoSection.get());
         List<Seat> infoSeats = seatRepository.findAllBySectionId(sectionDto.getId());
+        order(infoSeats);
         List<SeatDto> seatDtos = new ArrayList<>();
         for (int i = 0; i < infoSeats.size(); i++) {
             seatDtos.add(seatMapper.entityToDto(infoSeats.get(i)));
@@ -97,5 +95,25 @@ public class SectionServiceImpl extends BaseServiceImpl<Section, SectionDto> imp
         Section finalEntity = sectionRepository.save(entity);
         adminService.initializeSeatingPlan(dto);
         return SectionMapper.INSTANCE.entityToDto(finalEntity);
+    }
+
+    private void order(List<Seat> seats) {
+
+        Collections.sort(seats, new Comparator() {
+
+            public int compare(Object o1, Object o2) {
+
+                Integer row1 = ((Seat) o1).getRow();
+                Integer row2 = ((Seat) o2).getRow();
+                int comp = row1.compareTo(row2);
+
+                if (comp != 0) {
+                    return comp;
+                }
+
+                Integer column1 = ((Seat) o1).getColumn();
+                Integer column2 = ((Seat) o2).getColumn();
+                return column1.compareTo(column2);
+            }});
     }
 }
