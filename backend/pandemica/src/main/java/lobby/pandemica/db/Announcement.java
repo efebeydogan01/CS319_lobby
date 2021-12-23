@@ -22,7 +22,7 @@ public class Announcement extends BaseEntity {
 	private String title;
 
 	@Column(name = "date")
-	private Date date;
+	private String date;
 
 	@Column(name = "announcement_text")
 	private String announcementText;

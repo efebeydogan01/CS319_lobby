@@ -1,21 +1,20 @@
 package lobby.pandemica.dto;
+
 import lobby.pandemica.dto.base.BaseDto;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.Date;
 import java.util.UUID;
 
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class AnnouncementDto extends BaseDto<UUID>
+public class ViolationReportDto extends BaseDto<UUID>
 {
-	private UUID id;
-	private String title;
-	private String date;
-	private String announcementText;
+	private UserDto user;
+	private String message;
+	private String place;
 }
