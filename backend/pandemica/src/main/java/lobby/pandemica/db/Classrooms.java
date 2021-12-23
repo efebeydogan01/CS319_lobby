@@ -14,10 +14,9 @@ public class Classrooms
             {false, false, true, true, true, true, true, true, false, false},
             {false, true, true, true, true, true, true, true, true, false},
             {true, true, true, true, true, true, true, true, true, true},
-            {false, true, true, true, true, true, true, true, true, false},
-            {false, false, true, true, true, true, true, true, false, false}
+            {true, true, true, true, true, true, true, true, true, true},
+            {true, true, true, true, true, true, true, true, true, true}
     };
-
     private final Boolean[][] ee214 = {
             {true, true, true, true, true, true, true, true, true, true},
             {true, true, true, true, true, true, true, true, true, true},
@@ -25,9 +24,7 @@ public class Classrooms
             {true, true, true, true, true, true, true, true, true, true},
             {true, true, true, true, true, true, true, true, true, true}
     };
-
-    public Classrooms()
-    {
+    public Classrooms(){
         classrooms = new HashMap<>();
         addClassroom( "B-204", b204);
         addClassroom( "EE-214", ee214);

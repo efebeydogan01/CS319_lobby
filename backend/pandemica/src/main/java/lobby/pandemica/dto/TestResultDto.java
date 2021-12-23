@@ -18,7 +18,8 @@ import java.util.UUID;
 @NoArgsConstructor
 public class TestResultDto extends BaseDto<UUID>
 {
-    private UserDto user;
+    private UUID id;
+    private UserDto userDto;
     private Date testDate;
     private String type;
     private String result;
