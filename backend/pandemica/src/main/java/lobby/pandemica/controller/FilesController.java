@@ -4,13 +4,11 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import lobby.pandemica.controller.base.BaseController;
+import lobby.pandemica.db.FileInfo;
 import lobby.pandemica.db.ResponseMessage;
 import lobby.pandemica.dto.CovidInformationDto;
 import lobby.pandemica.service.FilesStorageService;
-//import org.apache.tomcat.jni.FileInfo;
-//import org.apache.tomcat.jni.FileInfo;
 import lobby.pandemica.service.base.BaseCrudService;
-import org.apache.tomcat.jni.FileInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
@@ -20,9 +18,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.method.annotation.MvcUriComponentsBuilder;
-
+@RestController
 @RequestMapping("fileupload")
-@CrossOrigin("http://localhost:8081")
+//@CrossOrigin("http://localhost:8081")
 public class FilesController extends BaseController<CovidInformationDto> {
 
 
@@ -53,9 +51,7 @@ public class FilesController extends BaseController<CovidInformationDto> {
         List<FileInfo> fileInfos = storageService.loadAll().map(path -> {
             String filename = path.getFileName().toString();
             String url = MvcUriComponentsBuilder.fromMethodName(FilesController.class, "getFile", path.getFileName().toString()).build().toString();
-            FileInfo fileInfo = new FileInfo();
-            fileInfo.fname = filename;
-            return fileInfo;
+            return new FileInfo(filename, url);
         }).collect(Collectors.toList());
 
         return ResponseEntity.status(HttpStatus.OK).body(fileInfos);
