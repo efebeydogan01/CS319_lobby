@@ -14,4 +14,5 @@ import java.util.UUID;
 public interface CovidInformationRepository extends BaseRepository<CovidInformation, UUID>
 {
     Optional<CovidInformation> findByUserId(UUID userID);
+    Integer countByStatus(String status);
 }
