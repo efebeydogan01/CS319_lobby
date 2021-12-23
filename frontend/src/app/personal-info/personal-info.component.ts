@@ -73,7 +73,7 @@ export class PersonalInfoComponent implements OnInit {
     console.log( file);
     if ( file) {
       this.formData = new FormData();
-      this.formData.append( "vaccFile", file);
+      this.formData.append( "file", file);
     }
   }
 
