@@ -8,3 +8,7 @@
   background-position:center center;
   background-repeat:no-repeat;
 }
+
+.bg-faded-success {
+  background-color: rgba(130,214,22,0.61);
+}
