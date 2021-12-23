@@ -65,6 +65,10 @@ export class LoginService {
     localStorage.removeItem( LocalStorageConstants.studentInfo);
     localStorage.removeItem( LocalStorageConstants.testResults);
     localStorage.removeItem( LocalStorageConstants.seating);
+    localStorage.removeItem( LocalStorageConstants.generalInfo);
+    localStorage.removeItem( LocalStorageConstants.guidelines);
+    localStorage.removeItem( LocalStorageConstants.weeklyReports);
+    localStorage.removeItem( LocalStorageConstants.announcement);
     this.router.navigate(['/']);
 
     // if ( this.tokenExpirationTimer) {
