@@ -3,6 +3,7 @@ import {Observable, Subject, tap} from "rxjs";
 import {HttpClient} from "@angular/common/http";
 import {HttpUrls} from "./HttpUrls";
 import {LocalStorageConstants} from "./LocalStorageConstants";
+import {User} from "./user.model";
 
 @Injectable({
   providedIn: 'root'
@@ -47,4 +48,11 @@ export class InformationService {
     }));
   }
 
+  getSeatingPlan( section: {courseName: string, sectionNo: number}) {
+    return this.http.post<any>( HttpUrls.baseUrl + "section/seating", section).
+      pipe( tap( data => {
+        console.log(data);
+        localStorage.setItem( LocalStorageConstants.seating, JSON.stringify( data.data));
+      }));
+  }
 }

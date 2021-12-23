@@ -10,6 +10,7 @@ import {LocalStorageConstants} from "../Services/LocalStorageConstants";
 export class TopbarComponent implements OnInit {
   userRole: string = JSON.parse( localStorage.getItem( LocalStorageConstants.userData)).role;
   role: string = "";
+  roleIcon: string = "";
 
   constructor( private loginService: LoginService) { }
 
@@ -17,15 +18,19 @@ export class TopbarComponent implements OnInit {
     switch ( this.userRole) {
       case ( 'STUDENT'):
         this.role = "Student";
+        this.roleIcon = "fa-user-graduate";
         break;
       case( 'ADMIN'):
         this.role = "Admin";
+        this.roleIcon = "fa-users-cog";
         break;
       case( 'MEDICAL_EMPLOYEE'):
         this.role = "Medical Employee";
+        this.roleIcon = "fa-user-nurse";
         break;
       case( 'ACADEMIC_PERSONNEL'):
         this.role = "Academic Personnel";
+        this.roleIcon = "fa-chalkboard-teacher";
         break;
     }
   }
