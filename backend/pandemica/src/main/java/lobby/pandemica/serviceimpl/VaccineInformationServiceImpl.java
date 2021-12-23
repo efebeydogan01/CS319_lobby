@@ -39,7 +39,6 @@ public class VaccineInformationServiceImpl extends BaseServiceImpl<VaccineInform
 	@Override
 	public List<String> upload(MultipartFile multipartFile, UUID id)
 	{
-		multipartFile.
-		return list;
+		return new ArrayList<>();
 	}
 }
