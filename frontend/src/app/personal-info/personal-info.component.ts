@@ -1,8 +1,10 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {LoginService} from "../Services/login-service.service";
 import {Subscription, take} from "rxjs";
 import {InformationService} from "../Services/information.service";
 import {LocalStorageConstants} from "../Services/LocalStorageConstants";
+import {HttpClient} from "@angular/common/http";
+import {HttpUrls} from "../Services/HttpUrls";
 
 @Component({
   selector: 'app-personal-info',
@@ -36,7 +38,12 @@ export class PersonalInfoComponent implements OnInit {
     neighborStatus: string
   } = null;
 
-  constructor( private loginService: LoginService, private informationService: InformationService) { }
+  @ViewChild('vaccFile')
+  uploadedFile: ElementRef;
+
+  formData: FormData;
+
+  constructor( private loginService: LoginService, private informationService: InformationService, private http: HttpClient) { }
 
   ngOnInit(): void {
     const localUser = localStorage.getItem(LocalStorageConstants.userData);
@@ -61,6 +68,28 @@ export class PersonalInfoComponent implements OnInit {
 
     }
   }
+  onFileChange( event) {
+    const file: File = event.target.files[0];
+    console.log( file);
+    if ( file) {
+      this.formData = new FormData();
+      this.formData.append( "file", file);
+    }
+  }
 
+  removeFile() {
+    this.uploadedFile.nativeElement.value = "";
+  }
+
+  onUpload() {
+    const upload$ = this.http.post( HttpUrls.baseUrl + "vaccine/uploadFile/" + this.userData.uuid, this.formData);
+    upload$.pipe( take(1)).subscribe( {
+      next: (data: any) => {
+      },
+      error: () => {
+        console.log( "File could not be uploaded");
+      }
+    });
+  }
 
 }

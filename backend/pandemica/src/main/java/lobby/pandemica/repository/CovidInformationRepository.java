@@ -6,6 +6,7 @@ import lobby.pandemica.repository.base.BaseRepository;
 import org.springframework.stereotype.Repository;
 
 import javax.transaction.Transactional;
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -14,4 +15,6 @@ import java.util.UUID;
 public interface CovidInformationRepository extends BaseRepository<CovidInformation, UUID>
 {
     Optional<CovidInformation> findByUserId(UUID userID);
+    Integer countByStatus(String status);
+    List<CovidInformation> findAllByStatus(String status);
 }
