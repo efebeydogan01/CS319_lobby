@@ -1,5 +1,5 @@
 
-<app-search-user-bar *ngIf="userData.role === 'ADMIN' || 'MEDICAL_EMPLOYEE'"></app-search-user-bar>
+<app-search-user-bar *ngIf="userData.role === 'ADMIN' || userData.role === 'MEDICAL_EMPLOYEE'"></app-search-user-bar>
     <div class="row mb-4">
       <div class="col-8">
         <div class="card" style="height:100%">
