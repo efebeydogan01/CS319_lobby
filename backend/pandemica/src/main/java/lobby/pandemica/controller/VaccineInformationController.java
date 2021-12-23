@@ -27,7 +27,7 @@ public class VaccineInformationController extends BaseController<VaccineInformat
 	}
 
 	@PostMapping("uploadFile/{id}")
-	public ResponseEntity<RestResponse<List<String>>> uploadVacFile(@RequestBody MultipartFile multipartFile, @PathVariable String id)
+	public ResponseEntity<RestResponse<List<String>>> uploadVacFile(@RequestPart("file") MultipartFile multipartFile, @PathVariable String id)
 	{
 		try
 		{
