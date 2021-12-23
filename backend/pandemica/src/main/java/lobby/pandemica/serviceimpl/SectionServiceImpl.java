@@ -10,6 +10,7 @@ import lobby.pandemica.repository.AcademicPersonnelRepository;
 import lobby.pandemica.repository.SeatRepository;
 import lobby.pandemica.repository.SectionRepository;
 import lobby.pandemica.repository.UserRepository;
+import lobby.pandemica.service.AdminService;
 import lobby.pandemica.service.SectionService;
 import lobby.pandemica.serviceimpl.base.BaseServiceImpl;
 import lobby.pandemica.serviceimpl.mapper.AcademicPersonnelMapper;
@@ -36,10 +37,11 @@ public class SectionServiceImpl extends BaseServiceImpl<Section, SectionDto> imp
     private final AcademicPersonnelRepository academicPersonnelRepository;
     private final SeatRepository seatRepository;
     private final SeatMapper seatMapper;
+    private final AdminService adminService;
 
     public SectionServiceImpl(SectionRepository sectionRepository, SectionMapper sectionMapper,
                               UserRepository userRepository, AcademicPersonnelRepository academicPersonnelRepository,
-                              SeatRepository seatRepository, SeatMapper seatMapper) {
+                              SeatRepository seatRepository, SeatMapper seatMapper, AdminService adminService) {
         super(sectionRepository, SectionMapper.INSTANCE);
         this.sectionRepository = sectionRepository;
         this.userRepository = userRepository;
@@ -47,6 +49,7 @@ public class SectionServiceImpl extends BaseServiceImpl<Section, SectionDto> imp
         this.academicPersonnelRepository = academicPersonnelRepository;
         this.seatRepository = seatRepository;
         this.seatMapper = seatMapper;
+        this.adminService = adminService;
     }
 
     public List<SeatDto> getSeatingPlan(RequestSeatingPlan requestSeatingPlan)
@@ -91,6 +94,8 @@ public class SectionServiceImpl extends BaseServiceImpl<Section, SectionDto> imp
             throw new EntityNotFoundException();
         }
         entity.setAcademicPersonnel(infoAcademic.get());
-        return SectionMapper.INSTANCE.entityToDto(sectionRepository.save(entity));
+        Section finalEntity = sectionRepository.save(entity);
+        adminService.initializeSeatingPlan(dto);
+        return SectionMapper.INSTANCE.entityToDto(finalEntity);
     }
 }

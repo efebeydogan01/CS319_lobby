@@ -9,20 +9,21 @@ import {SeatService} from "../Services/seat.service";
   styleUrls: ['./seat.component.css']
 })
 export class SeatComponent implements OnInit {
-  bntStyle: string;
-  @Input() i: number;
+  bntStyle: string = '';
+  @Input() i: number = -1;
+  @Input() exists: boolean = false;
   @Output("updateSeat") updateSeat: EventEmitter<number> = new EventEmitter<number>();
   constructor( private seatService: SeatService) {
-    this.bntStyle = '';
-    this.i = -1;
   }
 
   ngOnInit(): void {
     this.seatService.emitSeat(this);
+    if (this.exists)
+      this.bntStyle = 'bg-secondary';
   }
 
   selectSeat() {
-    if (this.bntStyle === '') {
+    if (this.exists && this.bntStyle === 'bg-secondary') {
       this.bntStyle = 'bg-success';
       this.updateSeat.emit( this.i);
       console.log(this.i);
@@ -30,6 +31,7 @@ export class SeatComponent implements OnInit {
   }
 
   unselectSeat() {
-    this.bntStyle = '';
+    if (this.exists)
+      this.bntStyle = 'bg-secondary';
   }
 }
