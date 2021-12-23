@@ -72,7 +72,7 @@ public class PandemicaApplication {
 			covidInformationService.create(covidInformationDto2);
 			covidInformationService.create(covidInformationDto3);
 			covidInformationService.create(covidInformationDto4);
-
+			/*
 //			StudentDto studentDto1 = new StudentDto(UUID.randomUUID(), userDto1, "CS", "3");
 //			studentService.create(studentDto1);
 //			AdminDto adminDto = new AdminDto(UUID.randomUUID(), userDto2);
@@ -82,7 +82,7 @@ public class PandemicaApplication {
 //			StudentDto studentDto2 = new StudentDto(UUID.randomUUID(), userDto4, "CS", "3");
 //			studentService.create(studentDto2);
 //			covidInformationService.create(covidInformationDto5);
-
+			*/
 			AcademicPersonnelDto academicPersonnelDto = new AcademicPersonnelDto(UUID.randomUUID(), "CS", userDto5);
 			academicPersonnelService.create(academicPersonnelDto);
 

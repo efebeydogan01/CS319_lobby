@@ -20,7 +20,7 @@ public class TestResult extends BaseEntity {
     //Attributes
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id", referencedColumnName = "id")
-    private CovidInformation covidInformation;
+    private User user;
 
     @Column(name = "test_date", nullable = false)
     private Date testDate;

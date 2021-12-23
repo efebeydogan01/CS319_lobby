@@ -18,7 +18,8 @@ import java.util.UUID;
 @NoArgsConstructor
 public class TestResultDto extends BaseDto<UUID>
 {
-    private CovidInformationDto covidInformation;
+    private UUID id;
+    private UserDto userDto;
     private Date testDate;
     private String testPlace;
     private Boolean result;
