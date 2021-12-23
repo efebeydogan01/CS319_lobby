@@ -3,6 +3,8 @@ import {LoginService} from "../Services/login-service.service";
 import {Subscription, take} from "rxjs";
 import {InformationService} from "../Services/information.service";
 import {LocalStorageConstants} from "../Services/LocalStorageConstants";
+import {HttpClient} from "@angular/common/http";
+import {HttpUrls} from "../Services/HttpUrls";
 
 @Component({
   selector: 'app-personal-info',
@@ -36,7 +38,7 @@ export class PersonalInfoComponent implements OnInit {
     neighborStatus: string
   } = null;
 
-  constructor( private loginService: LoginService, private informationService: InformationService) { }
+  constructor( private loginService: LoginService, private informationService: InformationService, private http: HttpClient) { }
 
   ngOnInit(): void {
     const localUser = localStorage.getItem(LocalStorageConstants.userData);
@@ -59,6 +61,20 @@ export class PersonalInfoComponent implements OnInit {
         this.testResults = tests;
       }
 
+    }
+  }
+
+  onFileChange( event) {
+    const file: File = event.target.files[0];
+    console.log( file);
+    if ( file) {
+      const formData = new FormData();
+
+      formData.append( "vaccFile", file);
+      console.log( formData);
+      // const upload$ = this.http.post( HttpUrls.baseUrl + "vaccine/uploadFile/" + this.userData.uuid, formData);
+      //
+      // upload$.pipe( take(1)).subscribe();
     }
   }
 

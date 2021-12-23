@@ -87,7 +87,7 @@
                           <h5 class="modal-title" id="exampleModalLabel">Add Vaccination File</h5>
                         </div>
                         <div class="modal-body">
-                          <input type="file" id="myFile" class="text-dark"/>
+                          <input type="file" (change)="onFileChange($event)" placeholder="Vaccination File" accept=".pdf" id="myFile" class="text-dark"/>
                         </div>
                         <div class="modal-footer">
                           <button type="button" class="btn btn-sm btn-secondary" data-bs-dismiss="modal">Close</button>
