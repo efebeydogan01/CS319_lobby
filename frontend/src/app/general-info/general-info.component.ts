@@ -31,8 +31,8 @@ export class GeneralInfoComponent implements OnInit {
   constructor( private informationService: InformationService, private router: Router) { }
 
   ngOnInit(): void {
-    //this.generalInfo = JSON.parse( localStorage.getItem( LocalStorageConstants.generalInfo));
-    //this.userRole = JSON.parse( localStorage.getItem( LocalStorageConstants.userData)).role;
+    this.generalInfo = JSON.parse( localStorage.getItem( LocalStorageConstants.generalInfo));
+    this.userRole = JSON.parse( localStorage.getItem( LocalStorageConstants.userData)).role;
     this.informationService.getGeneralInfo().subscribe( () => {
       this.generalInfo = JSON.parse( localStorage.getItem( LocalStorageConstants.generalInfo));
     });
