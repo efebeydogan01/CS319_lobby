@@ -7,4 +7,7 @@ export class LocalStorageConstants {
   public static guidelines: string = 'guidelines';
   public static weeklyReports: string = 'weeklyReports';
   public static announcement: string = 'announcement';
+  public static violationReports: string = 'violationReports';
+  public static feedbackForms: string = 'feedbackForms';
+  public static requestForms: string = 'requestForms';
 }

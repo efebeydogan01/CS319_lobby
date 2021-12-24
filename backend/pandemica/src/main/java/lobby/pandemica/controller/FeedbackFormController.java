@@ -1,9 +1,9 @@
 package lobby.pandemica.controller;
 
 import lobby.pandemica.controller.base.BaseController;
-import lobby.pandemica.dto.ViolationReportDto;
+import lobby.pandemica.dto.FeedbackFormDto;
 import lobby.pandemica.dto.base.RestResponse;
-import lobby.pandemica.service.ViolationFormService;
+import lobby.pandemica.service.FeedbackFormService;
 import lobby.pandemica.service.base.BaseCrudService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,23 +17,23 @@ import java.util.List;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("violation_report")
-public class ViolationReportController extends BaseController<ViolationReportDto>
+@RequestMapping("feedback_form")
+public class FeedbackFormController extends BaseController<FeedbackFormDto>
 {
-	private final ViolationFormService violationFormService;
+	private final FeedbackFormService feedbackFormService;
 
-	public ViolationReportController(BaseCrudService<ViolationReportDto> baseCrudService, ViolationFormService violationFormService)
+	public FeedbackFormController(BaseCrudService<FeedbackFormDto> baseCrudService, FeedbackFormService feedbackFormService)
 	{
 		super(baseCrudService);
-		this.violationFormService = violationFormService;
+		this.feedbackFormService = feedbackFormService;
 	}
 
 	@GetMapping("readAllFromUser/{id}")
-	public ResponseEntity<RestResponse<List<ViolationReportDto>>> readAllFromUser(@PathVariable String id)
+	public ResponseEntity<RestResponse<List<FeedbackFormDto>>> readAllFromUser(@PathVariable String id)
 	{
 		try
 		{
-			return new ResponseEntity<>(new RestResponse<>(violationFormService.readAllFromUser(UUID.fromString(id)), "Get",
+			return new ResponseEntity<>(new RestResponse<>(feedbackFormService.readAllFromUser(UUID.fromString(id)), "Get",
 					"Getting an entity was successful."),
 					HttpStatus.OK);
 		}

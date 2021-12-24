@@ -24,6 +24,6 @@ public class Announcement extends BaseEntity {
 	@Column(name = "date")
 	private String date;
 
-	@Column(name = "announcement_text")
+	@Column(name = "announcement_text", columnDefinition = "TEXT")
 	private String announcementText;
 }
