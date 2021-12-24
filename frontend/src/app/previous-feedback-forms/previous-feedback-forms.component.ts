@@ -25,6 +25,7 @@ export class PreviousFeedbackFormsComponent implements OnInit {
   ngOnInit(): void {
     this.informationService.getPreviousFeedbackForms().subscribe( () => {
       this.previousForms = JSON.parse( localStorage.getItem( LocalStorageConstants.feedbackForms));
+      console.log(this.previousForms.form[0].rating);
     });
   }
 
