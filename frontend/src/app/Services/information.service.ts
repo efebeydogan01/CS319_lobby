@@ -3,7 +3,6 @@ import {Observable, Subject, tap} from "rxjs";
 import {HttpClient} from "@angular/common/http";
 import {HttpUrls} from "./HttpUrls";
 import {LocalStorageConstants} from "./LocalStorageConstants";
-import {User} from "./user.model";
 
 @Injectable({
   providedIn: 'root'
@@ -91,7 +90,7 @@ export class InformationService {
     // get the users's role from local storage
     const role = JSON.parse(localStorage.getItem(LocalStorageConstants.userData)).role;
 
-    // if the role is admin, we retreive all the reports else it retreives only reports that were created by the user
+    // if the role is admin, we retrieve all the reports else it retrieve only reports that were created by the user
     let link  = "";
     if ( role === "ADMIN")
     {
@@ -123,7 +122,7 @@ export class InformationService {
     // get the users's role from local storage
     const role = JSON.parse(localStorage.getItem(LocalStorageConstants.userData)).role;
 
-    // if the role is admin, we retreive all the forms else it retreives only forms that were created by the user
+    // if the role is admin, we retrieve all the forms else it retrieves only forms that were created by the user
     let link  = "";
     if ( role === "ADMIN")
     {
@@ -134,7 +133,7 @@ export class InformationService {
       link = HttpUrls.baseUrl + "feedback_form/readAllFromUser/" + uuid;
     }
 
-    // if the role is admin, we retreive all the forms else it retreives only reports that were created by the user
+    // if the role is admin, we retrieve all the forms else it retrieves only reports that were created by the user
     return this.http.get<any>( link).
       pipe( tap( data => {
         console.log(data);
@@ -155,7 +154,7 @@ export class InformationService {
     // get the users's role from local storage
     const role = JSON.parse(localStorage.getItem(LocalStorageConstants.userData)).role;
 
-    // if the role is admin, we retreive all the forms else it retreives only forms that were created by the user
+    // if the role is admin, we retrieve all the forms else it retrieves only forms that were created by the user
     let link  = "";
     if ( role === "ADMIN")
     {
@@ -166,7 +165,7 @@ export class InformationService {
       link = HttpUrls.baseUrl + "request_form/readAllFromUser/" + uuid;
     }
 
-    // if the role is admin, we retreive all the forms else it retreives only reports that were created by the user
+    // if the role is admin, we retrieve all the forms else it retrieves only reports that were created by the user
     return this.http.get<any>( link).
       pipe( tap( data => {
         console.log(data);

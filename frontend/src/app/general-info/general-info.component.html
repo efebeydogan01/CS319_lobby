@@ -53,28 +53,28 @@
       <div class="card-header pb-2">
         <h3 class="border-bottom p-2 mb-3">Announcements</h3>
         <a *ngIf="userRole === 'ADMIN'" class="btn btn-outline-dark my-2" data-bs-toggle="modal" data-bs-target="#makeAnnouncementPopUp">Make Announcement</a>
-        <div class="modal fade" id="makeAnnouncementPopUp" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal fade" id="makeAnnouncementPopUp" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
           <div class="modal-dialog modal-dialog-centered">
               <div class="modal-content">
                 <div class="modal-header">
                   <h5 class="modal-title" id="exampleModalLabel">Make An Announcement</h5>
                 </div>
                 <div class="modal-body">
-                  <form class="p-2">
+                  <form #makeAnnouncementForm="ngForm" role="form" class="p-2">
                     <div class="mb-3">
                       <label for="exampleInputPassword1" class="form-label">Announcement Title</label>
-                      <input #announcementTitle class="form-control" id="announcementTitle">
+                      <input #announcementTitle="ngModel" ngModel name="announcementTitle" required class="form-control" id="announcementTitle">
                     </div>
                     <div class="my-3">
                       <label for="exampleInputEmail1" class="form-label">Announcement Message</label>
-                      <textarea rows="5" #announcementMessage class="form-control" id="announcementMessage"> </textarea>
-
+                      <textarea rows="5" #announcementMessage="ngModel" ngModel name="announcementMessage" required class="form-control" id="announcementMessage"> </textarea>
                     </div>
                   </form>
+                  <span class="text-danger ps-2 text-sm" *ngIf="(announcementTitle.touched || announcementMessage.touched) && (!announcementTitle.valid || !announcementMessage.valid)">Please don't leave a field empty!</span>
                 </div>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-sm btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                  <button type="button" class="btn btn-sm btn-primary" data-bs-dismiss="modal" (click)="makeAnnouncement( announcementTitle.value, announcementMessage.value)">Announce</button>
+                  <button type="submit" [disabled]="!makeAnnouncementForm.valid" class="btn btn-sm btn-primary" data-bs-dismiss="modal" (click)="makeAnnouncement( announcementTitle.value, announcementMessage.value)">Announce</button>
                 </div>
             </div>
           </div>
