@@ -43,16 +43,16 @@
         <form class="p-2">
           <div class="mb-3">
             <label for="exampleInputPassword1" class="form-label">Title</label>
-            <input class="form-control" id="exampleInputPassword1">
+            <input class="form-control" id="exampleInputPassword1" #requestTitle>
           </div>
           <div class="my-3">
             <label for="exampleInputEmail1" class="form-label">Request</label>
-            <textarea class="form-control" id="exampleFormControlTextarea1" rows="5" style="height:100%;"></textarea>
+            <textarea class="form-control" id="exampleFormControlTextarea1" rows="5" style="height:100%;" #requestBody></textarea>
           </div>
         </form>
       </div>
       <div class="card-footer text-end pt-0">
-        <a type="submit" class="btn btn-primary m-0" data-bs-toggle="modal" data-bs-target="#formSubmittedPopup">Submit</a>
+        <a type="submit" class="btn btn-primary m-0" data-bs-toggle="modal" data-bs-target="#formSubmittedPopup" (click)="onRequestSubmit(requestTitle.value, requestBody.value)">Submit</a>
         <div class="modal fade" id="formSubmittedPopup" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
           <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
@@ -88,16 +88,16 @@
           </div>
           <div class="mb-3">
             <label for="exampleInputPassword1" class="form-label">Title</label>
-            <input class="form-control" id="exampleInputPassword1">
+            <input class="form-control" id="exampleInputPassword1" #feedbackTitle>
           </div>
           <div class="my-3">
             <label for="exampleInputEmail1" class="form-label">Feedback</label>
-            <textarea class="form-control" id="exampleFormControlTextarea1" rows="4"></textarea>
+            <textarea class="form-control" id="exampleFormControlTextarea1" rows="4" #feedbackBody></textarea>
           </div>
         </form>
       </div>
       <div class="card-footer text-end pt-0">
-        <a type="submit" class="btn btn-primary m-0" data-bs-toggle="modal" data-bs-target="#formSubmittedPopup">Submit</a>
+        <a type="submit" class="btn btn-primary m-0" data-bs-toggle="modal" data-bs-target="#formSubmittedPopup" (click)="onFeedbackSubmit( feedbackTitle.value, feedbackBody.value)">Submit</a>
       </div>
     </div>
     <a class="nav-link text-center text-sm p-1 mb-0" routerLink="previous-feedback-forms">View Previous Feedback</a>

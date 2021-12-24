@@ -48,8 +48,56 @@ export class ReportRequestComponent implements OnInit {
       },
       error: () => {
 
+        }
       }
-    }
-);
+    );
+  }
+
+  onRequestSubmit( requestTitle: string, requestBody: string) {
+    const uuid: string = JSON.parse( localStorage.getItem( LocalStorageConstants.userData)).uuid;
+    const userData = {
+      id: uuid
+    };
+
+    const request = {
+      user: userData,
+      title: requestTitle,
+      request: requestBody
+    };
+
+    this.http.post<any>( HttpUrls.baseUrl + "request_form/create", request).subscribe( {
+        next: () => {
+          console.log( "request form is submitted");
+        },
+        error: () => {
+
+        }
+      }
+    );
+  }
+
+  onFeedbackSubmit( feedbackTitle: string, feedbackBody: string) {
+    const uuid: string = JSON.parse( localStorage.getItem( LocalStorageConstants.userData)).uuid;
+    const userData = {
+      id: uuid
+    };
+
+    const feedback = {
+      user: userData,
+      rating: this.currentRate,
+      title: feedbackTitle,
+      feedback: feedbackBody
+    };
+
+    this.http.post<any>( HttpUrls.baseUrl + "feedback_form/create", feedback).subscribe( {
+        next: () => {
+          console.log( "feedback form is submitted");
+        },
+        error: () => {
+
+        }
+      }
+    );
+
   }
 }
