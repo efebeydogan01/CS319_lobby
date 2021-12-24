@@ -53,7 +53,7 @@ export class GeneralInfoComponent implements OnInit {
   makeAnnouncement(title: string, text: string) {
     let announcement = {
       "title": title,
-      "date": "2001-08-08",
+      "date": (new Date()).toDateString(),
       "announcementText" : text
     };
 
