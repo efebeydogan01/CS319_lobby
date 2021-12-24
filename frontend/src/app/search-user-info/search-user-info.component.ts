@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {LocalStorageConstants} from "../Services/LocalStorageConstants";
 
 @Component({
   selector: 'app-search-user-info',
@@ -6,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./search-user-info.component.css']
 })
 export class SearchUserInfoComponent implements OnInit {
+  userRole: string = JSON.parse( localStorage.getItem( LocalStorageConstants.userData)).role;
 
   constructor() { }
 
