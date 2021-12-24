@@ -10,14 +10,10 @@ import { LocalStorageConstants } from '../Services/LocalStorageConstants';
 export class PreviousRequestFormsComponent implements OnInit {
 
   previousForms: {
-    form: {
-      user: {
-        id: string
-      },
+      id: number,
       title: string,
       request: string
-    } []
-  } = null;
+  } []= null;
 
   constructor( private informationService: InformationService) { }
 
