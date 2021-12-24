@@ -9,7 +9,6 @@ import {HttpUrls} from "../Services/HttpUrls";
   styleUrls: ['./report-request.component.css']
 })
 export class ReportRequestComponent implements OnInit {
-
   constructor( private http: HttpClient) { }
 
   ngOnInit(): void {
@@ -26,8 +25,14 @@ export class ReportRequestComponent implements OnInit {
       place: violationPlace
     };
 
-    this.http.post<any>( HttpUrls.baseUrl + "violation_report/create", violation).subscribe( () => {
-      console.log( "violation report is submitted");
-    });
+    this.http.post<any>( HttpUrls.baseUrl + "violation_report/create", violation).subscribe( {
+      next: () => {
+        console.log( "violation report is submitted");
+      },
+      error: () => {
+
+      }
+    }
+);
   }
 }
