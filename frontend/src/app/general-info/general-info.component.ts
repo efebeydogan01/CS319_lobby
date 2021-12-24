@@ -34,6 +34,9 @@ export class GeneralInfoComponent implements OnInit {
     this.generalInfo = JSON.parse( localStorage.getItem( LocalStorageConstants.generalInfo));
     this.userRole = JSON.parse( localStorage.getItem( LocalStorageConstants.userData)).role;
     console.log( new Date());
+    this.informationService.getGeneralInfo().subscribe( () => {
+      this.generalInfo = JSON.parse( localStorage.getItem( LocalStorageConstants.generalInfo));
+    });
   }
 
   getGuidelines() {
