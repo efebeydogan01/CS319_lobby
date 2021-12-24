@@ -7,22 +7,29 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 
 @Entity
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "violation_reports")
-public class ViolationReport extends BaseEntity
+@Table(name = "feedback_form")
+public class FeedbackForm extends BaseEntity
 {
 	@ManyToOne(cascade = CascadeType.MERGE)
 	@JoinColumn(name = "user_id", referencedColumnName = "id")
 	private User user;
 
-	@Column(name = "message",columnDefinition = "TEXT")
-	private String message;
+	@Column(name = "rating")
+	@Min(0)
+	@Max(10)
+	private Integer rating;
+	
+	@Column(name = "title",columnDefinition = "TEXT")
+	private String title;
 
-	@Column(name = "place")
-	private String place;
+	@Column(name = "feedback", columnDefinition = "TEXT")
+	private String feedback;
 }
