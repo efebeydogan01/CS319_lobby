@@ -10,22 +10,18 @@ import { LocalStorageConstants } from '../Services/LocalStorageConstants';
 export class PreviousFeedbackFormsComponent implements OnInit {
 
   previousForms: {
-    form: {
-      user: {
-        id: string
-      },
-      rating: number,
-      title: string,
-      feedback: string
-    } []
-  } = null;
+    feedback: string,
+    id: number,
+    rating: number,
+    title: string
+  }[] = null;
 
   constructor(private informationService: InformationService) { }
 
   ngOnInit(): void {
     this.informationService.getPreviousFeedbackForms().subscribe( () => {
       this.previousForms = JSON.parse( localStorage.getItem( LocalStorageConstants.feedbackForms));
-      console.log(this.previousForms.form[0].rating);
+      console.log(this.previousForms[0].feedback);
     });
   }
 
