@@ -11,7 +11,8 @@
           <i class="fa fa-file-text"></i>
         </span>
         <div class="px-5">
-          <h6 class="text-dark text-lg font-weight-bold mb-0">{{form.title}}</h6>
+          <h6 class="text-dark h5 font-weight-bold mb-0">{{form.title}}</h6>
+          <ngb-rating class="text-primary h5" [readonly]="true" [rate]="form.rating"></ngb-rating>
           <p class="text-secondary font-weight-bold text-xs mt-1 mb-0">{{ "Rating: " + form.rating}}</p>
           <p class="border-radius-lg p-3 bg-gray-100 my-3 text-sm">{{form.feedback}}</p>
         </div>

@@ -10,14 +10,10 @@ import { LocalStorageConstants } from '../Services/LocalStorageConstants';
 export class PreviousViolationReportsComponent implements OnInit {
 
   previousReports: {
-    violation: {
-      user: {
-        id: string
-      },
+      id: number,
       message: string,
       place: string
-    } []
-  } = null;
+  }[] = null;
 
   constructor(private informationService: InformationService) { }
 
