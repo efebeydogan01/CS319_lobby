@@ -19,7 +19,9 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.UUID;
 
 @SpringBootApplication
@@ -37,7 +39,7 @@ public class PandemicaApplication {
 						  MedicalEmployeeService medicalEmployeeService,
 						  AcademicPersonnelService academicPersonnelService,
 						  SectionService sectionService,
-						  SeatService seatService) {
+						  StudentSectionService studentSectionService) {
 		return args -> {
 			Integer dummyAge = 0;
 			UserDto userDto1 = new UserDto(UUID.randomUUID(),"Mert Barkın Er", "password",
@@ -238,6 +240,25 @@ public class PandemicaApplication {
 			studentService.create(studentDto17);
 			studentService.create(studentDto18);
 
+			List<StudentDto> studentDtoList = new ArrayList<>();
+			studentDtoList.add(studentDto1);
+			studentDtoList.add(studentDto2);
+			studentDtoList.add(studentDto3);
+			studentDtoList.add(studentDto4);
+			studentDtoList.add(studentDto5);
+			studentDtoList.add(studentDto6);
+			studentDtoList.add(studentDto7);
+			studentDtoList.add(studentDto8);
+			studentDtoList.add(studentDto9);
+			studentDtoList.add(studentDto10);
+			studentDtoList.add(studentDto11);
+			studentDtoList.add(studentDto12);
+			studentDtoList.add(studentDto13);
+			studentDtoList.add(studentDto14);
+			studentDtoList.add(studentDto15);
+			studentDtoList.add(studentDto16);
+			studentDtoList.add(studentDto17);
+			studentDtoList.add(studentDto18);
 			
 			SectionDto sectionDto1 = new SectionDto(UUID.randomUUID(), "CS319", 1, "B-204", academicPersonnelDto);
 			SectionDto sectionDto2 = new SectionDto(UUID.randomUUID(), "CS319", 2, "B-204", academicPersonnelDto);
@@ -247,6 +268,22 @@ public class PandemicaApplication {
 			sectionService.create(sectionDto2);
 			sectionService.create(sectionDto3);
 			sectionService.create(sectionDto4);
+
+			List<SectionDto> sectionDtoList = new ArrayList<>();
+			sectionDtoList.add(sectionDto1);
+			sectionDtoList.add(sectionDto2);
+			sectionDtoList.add(sectionDto3);
+			sectionDtoList.add(sectionDto4);
+
+			for (int i = 0; i < sectionDtoList.size(); i++) {
+				SectionDto sectionDto = sectionDtoList.get(i);
+				for (int j = 0; j < studentDtoList.size(); j++) {
+					StudentDto studentDto = studentDtoList.get(j);
+					StudentSectionDto studentSectionDto = new StudentSectionDto(UUID.randomUUID(), studentDto, sectionDto);
+					studentSectionService.create(studentSectionDto);
+				}
+			}
+
 
 		};
 	}
