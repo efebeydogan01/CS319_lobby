@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { InformationService } from '../Services/information.service';
+import { LocalStorageConstants } from '../Services/LocalStorageConstants';
 
 @Component({
   selector: 'app-previous-request-forms',
@@ -7,9 +9,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PreviousRequestFormsComponent implements OnInit {
 
-  constructor() { }
+  previousForms: {
+    form: {
+      user: {
+        id: string
+      },
+      title: string,
+      request: string
+    } []
+  } = null;
+
+  constructor( private informationService: InformationService) { }
 
   ngOnInit(): void {
+    this.informationService.getPreviousRequestForms().subscribe( () => {
+      this.previousForms = JSON.parse( localStorage.getItem( LocalStorageConstants.requestForms));
+    });
   }
 
 }
