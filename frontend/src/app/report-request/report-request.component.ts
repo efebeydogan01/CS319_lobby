@@ -11,16 +11,10 @@ import {FormControl, Validators} from "@angular/forms";
   styles: [`
     .star {
       font-size: 1.5rem;
-      color: #b0c4de;
+      color: #ced4da;
     }
     .filled {
-      color: #1e90ff;
-    }
-    .bad {
-      color: #deb0b0;
-    }
-    .filled.bad {
-      color: #ff1e1e;
+      color: #cb0c9f;
     }
   `]
 })
