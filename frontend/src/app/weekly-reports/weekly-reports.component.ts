@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { LocalStorageConstants } from '../Services/LocalStorageConstants';
 
 @Component({
   selector: 'app-weekly-reports',
@@ -7,9 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class WeeklyReportsComponent implements OnInit {
 
+  weeklyReports: {
+
+  }
+
   constructor() { }
 
   ngOnInit(): void {
+    this.weeklyReports = JSON.parse( localStorage.getItem( LocalStorageConstants.weeklyReports));
   }
 
 }

@@ -55,4 +55,59 @@ export class InformationService {
         localStorage.setItem( LocalStorageConstants.seating, JSON.stringify( data.data));
       }));
   }
+
+  getGeneralInfo() {
+    return this.http.get<any>( HttpUrls.baseUrl + "announcement/readGeneralInfo").
+      pipe( tap( data => {
+        console.log(data);
+        localStorage.setItem( LocalStorageConstants.generalInfo, JSON.stringify( data.data));
+      }));
+  }
+
+  getGuidelines() {
+    return this.http.get<any>( HttpUrls.baseUrl + "guidelines").
+      pipe( tap( data => {
+        console.log(data);
+        localStorage.setItem( LocalStorageConstants.guidelines, JSON.stringify( data.data));
+      }));
+  }
+
+  getWeeklyReports() {
+    return this.http.get<any>( HttpUrls.baseUrl + "weeklyReports").
+      pipe( tap( data => {
+        console.log(data);
+        localStorage.setItem( LocalStorageConstants.guidelines, JSON.stringify( data.data));
+      }));
+  }
+
+  makeAnnouncement( announcement: { title: string, date:string, announcementText: string}) {
+    return this.http.post<any>( HttpUrls.baseUrl + "announcement/create", announcement);
+  }
+
+  getPreviousViolationReports() {
+    const uuid: string = JSON.parse(localStorage.getItem(LocalStorageConstants.userData)).uuid;
+    return this.http.get<any>( HttpUrls.baseUrl + "violation_report/readAllFromUser/" + uuid).
+      pipe( tap( data => {
+        console.log(data);
+        localStorage.setItem( LocalStorageConstants.violationReports, JSON.stringify( data.data));
+      }));
+  }
+
+  getPreviousFeedbackForms() {
+    const uuid: string = JSON.parse(localStorage.getItem(LocalStorageConstants.userData)).uuid;
+    return this.http.get<any>( HttpUrls.baseUrl + "feedback_form/readAllFromUser/" + uuid).
+      pipe( tap( data => {
+        console.log(data);
+        localStorage.setItem( LocalStorageConstants.feedbackForms, JSON.stringify( data.data));
+      }));
+  }
+
+  getPreviousRequestForms() {
+    const uuid: string = JSON.parse(localStorage.getItem(LocalStorageConstants.userData)).uuid;
+    return this.http.get<any>( HttpUrls.baseUrl + "request_form/readAllFromUser/" + uuid).
+      pipe( tap( data => {
+        console.log(data);
+        localStorage.setItem( LocalStorageConstants.requestForms, JSON.stringify( data.data));
+      }));
+  }
 }
