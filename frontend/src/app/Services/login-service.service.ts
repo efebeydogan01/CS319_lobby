@@ -69,6 +69,9 @@ export class LoginService {
     localStorage.removeItem( LocalStorageConstants.guidelines);
     localStorage.removeItem( LocalStorageConstants.weeklyReports);
     localStorage.removeItem( LocalStorageConstants.announcement);
+    localStorage.removeItem( LocalStorageConstants.violationReports);
+    localStorage.removeItem( LocalStorageConstants.feedbackForms);
+    localStorage.removeItem( LocalStorageConstants.requestForms);
     this.router.navigate(['/']);
 
     // if ( this.tokenExpirationTimer) {

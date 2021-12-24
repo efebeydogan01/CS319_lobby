@@ -31,9 +31,8 @@ export class GeneralInfoComponent implements OnInit {
   constructor( private informationService: InformationService, private router: Router) { }
 
   ngOnInit(): void {
-    this.generalInfo = JSON.parse( localStorage.getItem( LocalStorageConstants.generalInfo));
-    this.userRole = JSON.parse( localStorage.getItem( LocalStorageConstants.userData)).role;
-    console.log( new Date());
+    //this.generalInfo = JSON.parse( localStorage.getItem( LocalStorageConstants.generalInfo));
+    //this.userRole = JSON.parse( localStorage.getItem( LocalStorageConstants.userData)).role;
     this.informationService.getGeneralInfo().subscribe( () => {
       this.generalInfo = JSON.parse( localStorage.getItem( LocalStorageConstants.generalInfo));
     });
@@ -65,6 +64,4 @@ export class GeneralInfoComponent implements OnInit {
       });
     });
   }
-
-
 }

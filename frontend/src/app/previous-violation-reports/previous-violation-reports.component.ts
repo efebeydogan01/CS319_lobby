@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { InformationService } from '../Services/information.service';
+import { LocalStorageConstants } from '../Services/LocalStorageConstants';
 
 @Component({
   selector: 'app-previous-violation-reports',
@@ -7,9 +9,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PreviousViolationReportsComponent implements OnInit {
 
-  constructor() { }
+  previousReports: {
+    violation: {
+      user: {
+        id: string
+      },
+      message: string,
+      place: string
+    } []
+  } = null;
+
+  constructor(private informationService: InformationService) { }
 
   ngOnInit(): void {
+    this.informationService.getPreviousViolationReports().subscribe( () => {
+      this.previousReports = JSON.parse( localStorage.getItem( LocalStorageConstants.violationReports));
+    });
   }
-
 }
