@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {LocalStorageConstants} from "../Services/LocalStorageConstants";
 import {HttpClient} from "@angular/common/http";
 import {HttpUrls} from "../Services/HttpUrls";
@@ -25,6 +25,16 @@ import {FormControl, Validators} from "@angular/forms";
   `]
 })
 export class ReportRequestComponent implements OnInit {
+
+  @ViewChild('violationText') violationText: ElementRef;
+  @ViewChild('violationPlace') violationPlace: ElementRef;
+
+  @ViewChild('requestTitle') requestTitle: ElementRef;
+  @ViewChild('requestBody') requestBody: ElementRef;
+
+  @ViewChild('feedbackTitle') feedbackTitle: ElementRef;
+  @ViewChild('feedbackBody') feedbackBody: ElementRef;
+
   currentRate = 0;
   constructor( private http: HttpClient) { }
 
@@ -45,6 +55,8 @@ export class ReportRequestComponent implements OnInit {
     this.http.post<any>( HttpUrls.baseUrl + "violation_report/create", violation).subscribe( {
       next: () => {
         console.log( "violation report is submitted");
+        this.violationPlace.nativeElement.value = "";
+        this.violationText.nativeElement.value = "";
       },
       error: () => {
 
@@ -68,6 +80,8 @@ export class ReportRequestComponent implements OnInit {
     this.http.post<any>( HttpUrls.baseUrl + "request_form/create", request).subscribe( {
         next: () => {
           console.log( "request form is submitted");
+          this.requestBody.nativeElement.value = "";
+          this.requestTitle.nativeElement.value = "";
         },
         error: () => {
 
@@ -92,12 +106,14 @@ export class ReportRequestComponent implements OnInit {
     this.http.post<any>( HttpUrls.baseUrl + "feedback_form/create", feedback).subscribe( {
         next: () => {
           console.log( "feedback form is submitted");
+          this.currentRate = 0;
+          this.feedbackBody.nativeElement.value = "";
+          this.feedbackTitle.nativeElement.value = "";
         },
         error: () => {
 
         }
       }
     );
-
   }
 }
