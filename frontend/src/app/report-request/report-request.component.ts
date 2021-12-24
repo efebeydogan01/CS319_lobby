@@ -2,13 +2,30 @@ import { Component, OnInit } from '@angular/core';
 import {LocalStorageConstants} from "../Services/LocalStorageConstants";
 import {HttpClient} from "@angular/common/http";
 import {HttpUrls} from "../Services/HttpUrls";
+import {FormControl, Validators} from "@angular/forms";
 
 @Component({
   selector: 'app-report-request',
   templateUrl: './report-request.component.html',
-  styleUrls: ['./report-request.component.css']
+  styleUrls: ['./report-request.component.css'],
+  styles: [`
+    .star {
+      font-size: 1.5rem;
+      color: #b0c4de;
+    }
+    .filled {
+      color: #1e90ff;
+    }
+    .bad {
+      color: #deb0b0;
+    }
+    .filled.bad {
+      color: #ff1e1e;
+    }
+  `]
 })
 export class ReportRequestComponent implements OnInit {
+  currentRate = 0;
   constructor( private http: HttpClient) { }
 
   ngOnInit(): void {
