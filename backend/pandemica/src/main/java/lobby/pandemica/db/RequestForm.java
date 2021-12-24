@@ -13,16 +13,16 @@ import javax.persistence.*;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "violation_reports")
-public class ViolationReport extends BaseEntity
+@Table(name = "request_form")
+public class RequestForm extends BaseEntity
 {
 	@ManyToOne(cascade = CascadeType.MERGE)
 	@JoinColumn(name = "user_id", referencedColumnName = "id")
 	private User user;
 
-	@Column(name = "message",columnDefinition = "TEXT")
-	private String message;
+	@Column(name = "title",columnDefinition = "TEXT")
+	private String title;
 
-	@Column(name = "place")
-	private String place;
+	@Column(name = "request", columnDefinition = "TEXT")
+	private String request;
 }
