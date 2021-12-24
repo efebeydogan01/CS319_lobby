@@ -20,7 +20,7 @@
             </tr>
             </thead>
             <tbody>
-            <tr *ngFor="let i of [].constructor(3)">
+            <tr *ngFor="let i of [].constructor(3); let indexOfElements = index;">
               <td>
                 <div class="d-flex px-2 py-1 flex-column justify-content-center">
                   <h6 class="ms-2 mb-0">CS-319</h6>
@@ -37,8 +37,7 @@
                 </div>
               </td>
               <td class="align-middle text-center">
-                <a class="btn btn-xs btn-outline-primary mb-0" data-bs-toggle="modal" data-bs-target="#updateSeatPopup">update seat</a>
-                <app-seating-plan></app-seating-plan>
+                <app-seating-plan [i]="indexOfElements"></app-seating-plan>
               </td>
             </tr>
 

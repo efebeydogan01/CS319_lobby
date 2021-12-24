@@ -1,4 +1,4 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {AfterViewInit, Component, Input, OnDestroy, OnInit} from '@angular/core';
 import {SeatComponent} from "../seat/seat.component";
 import {Subscription, take} from "rxjs";
 import {SeatService} from "../Services/seat.service";
@@ -10,8 +10,9 @@ import {InformationService} from "../Services/information.service";
   templateUrl: './seating-plan.component.html',
   styleUrls: ['./seating-plan.component.css']
 })
-export class SeatingPlanComponent implements OnInit, OnDestroy {
-  seats: SeatComponent[] = new Array();
+export class SeatingPlanComponent implements OnInit, OnDestroy, AfterViewInit {
+  @Input() i: number = -1;
+  seats: SeatComponent[] = [];
   seatSubscriber: Subscription = new Subscription;
   selectedSeat: number = -1;
 
@@ -31,34 +32,21 @@ export class SeatingPlanComponent implements OnInit, OnDestroy {
   constructor( private seatService: SeatService, private informationService:InformationService) { }
 
   ngOnInit(): void {
-    console.log("seatingplan")
+    console.log("seating plan")
 
-    this.seatSubscriber = this.seatService.seatSub.subscribe(
-      seat => {
-        this.seats.push( seat);
-        //console.log( seat.i);
-      }
-    );
-
-    this.getSeatingPlan();
+    // this.seatSubscriber = this.seatService.seatSub.subscribe(
+    //   seat => {
+    //     this.seats[seat.i] = seat;
+    //     console.log( seat.i);
+    //   }
+    // );
   }
 
-  ngOnDestroy() {
-    this.seatSubscriber.unsubscribe();
-  }
-
-  updateSelectedSeat(seatNo: number) {
-    if (this.selectedSeat != -1)
-      this.seats[this.selectedSeat].unselectSeat();
-
-    this.selectedSeat = seatNo;
-    console.log(this.selectedSeat);
-  }
-
-  getSeatingPlan(): void {
+  ngAfterViewInit() {
+    console.log("selected" + this.selectedSeat)
     let section = {
       "courseName": "CS319",
-      "sectionNo": 1
+      "sectionNo": (this.i == 1) ? 4 : 1
     };
 
     this.informationService.getSeatingPlan(section).pipe( take( 1)).subscribe( {
@@ -70,5 +58,27 @@ export class SeatingPlanComponent implements OnInit, OnDestroy {
     if (seatingPlan) {
       this.seating = seatingPlan;
     }
+
+    console.log("get seating length: " + this.seats.length)
+  }
+
+  addSeatComponent(seat: SeatComponent) {
+    this.seats[seat.i] = seat;
+  }
+
+  ngOnDestroy() {
+    //this.seatSubscriber.unsubscribe();
+  }
+
+  updateSelectedSeat(seatNo: number) {
+    console.log("update selected seat " + this.seats.length)
+    if (this.selectedSeat != -1)
+      this.seats[this.selectedSeat].unselectSeat();
+
+    this.selectedSeat = seatNo;
+    console.log(this.selectedSeat);
+  }
+
+  getSeatingPlan(): void {
   }
 }

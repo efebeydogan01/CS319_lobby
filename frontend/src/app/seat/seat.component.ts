@@ -13,20 +13,27 @@ export class SeatComponent implements OnInit {
   bntStyle: string = this.seatStatus['no'];
   @Input() i: number = -1;
   @Input() exists: boolean = false;
+  @Input() selectedSeat: number = -1;
   @Output("updateSeat") updateSeat: EventEmitter<number> = new EventEmitter<number>();
-  constructor( private seatService: SeatService) {
+  @Output( "seatEmitter") seatEmitter: EventEmitter<SeatComponent> = new EventEmitter<SeatComponent>();
+  constructor() {
   }
 
   ngOnInit(): void {
-    this.seatService.emitSeat(this);
-    if (this.exists)
-      this.bntStyle = this.seatStatus['empty'];
+    console.log('created' +this.i)
+    this.seatEmitter.next( this);
+    if (this.exists) {
+      if (this.selectedSeat == this.i)
+        this.bntStyle = this.seatStatus['my'];
+      else
+        this.bntStyle = this.seatStatus['empty'];
+    }
   }
 
   selectSeat() {
     if (this.exists && this.bntStyle === this.seatStatus['empty']) {
       this.bntStyle = this.seatStatus['my'];
-      this.updateSeat.emit( this.i);
+      this.updateSeat.emit(this.i);
       console.log(this.i);
     }
   }
