@@ -1,5 +1,4 @@
 package lobby.pandemica.controller;
-
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
@@ -87,9 +86,8 @@ public class FilesController extends BaseController<CovidInformationDto> {
     public ResponseEntity<String> getFileAsString(@PathVariable String filename) throws IOException {
         Resource file = storageService.load(filename);
         File myFile = file.getFile();
-        while(sc.hasNext()) {
-            System.out.println(sc.next());
-        }
+        //PDDocument document = PDDocument.load(myFile);
+        String fileString = "";
         return ResponseEntity.ok()
                 .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + file.getFilename() + "\"").body(fileString);
     }
