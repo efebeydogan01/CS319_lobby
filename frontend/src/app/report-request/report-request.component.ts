@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import {LocalStorageConstants} from "../Services/LocalStorageConstants";
+import {HttpClient} from "@angular/common/http";
+import {HttpUrls} from "../Services/HttpUrls";
 
 @Component({
   selector: 'app-report-request',
@@ -7,9 +10,24 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ReportRequestComponent implements OnInit {
 
-  constructor() { }
+  constructor( private http: HttpClient) { }
 
   ngOnInit(): void {
   }
 
+  onViolationSubmit( violationText: string, violationPlace: string) {
+    const uuid: string = JSON.parse( localStorage.getItem( LocalStorageConstants.userData)).uuid;
+    const userData = {
+      id: uuid
+    };
+    const violation = {
+      user: userData,
+      message: violationText,
+      place: violationPlace
+    };
+
+    this.http.post<any>( HttpUrls.baseUrl + "violation_report/create", violation).subscribe( () => {
+      console.log( "violation report is submitted");
+    });
+  }
 }

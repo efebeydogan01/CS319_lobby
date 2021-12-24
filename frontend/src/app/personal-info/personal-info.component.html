@@ -1,5 +1,5 @@
 
-<app-search-user-bar *ngIf="userData.role === 'ADMIN' || 'MEDICAL_EMPLOYEE'"></app-search-user-bar>
+<app-search-user-bar *ngIf="userData.role === 'ADMIN' || userData.role === 'MEDICAL_EMPLOYEE'"></app-search-user-bar>
     <div class="row mb-4">
       <div class="col-8">
         <div class="card" style="height:100%">
@@ -80,18 +80,18 @@
               <div class="col-5 text-end">
                 <a class="btn bg-gradient-success my-2" data-bs-toggle="modal" data-bs-target="#addVacFilePopUp"><i class="fas fa-plus"
                                                                                aria-hidden="true"></i>&nbsp;&nbsp;Add Vaccination File</a>
-                <div class="modal fade" id="addVacFilePopUp" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal fade" id="addVacFilePopUp" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
                   <div class="modal-dialog modal-dialog-centered">
                       <div class="modal-content">
                         <div class="modal-header">
                           <h5 class="modal-title" id="exampleModalLabel">Add Vaccination File</h5>
                         </div>
                         <div class="modal-body">
-                          <input type="file" id="myFile" class="text-dark"/>
+                          <input #vaccFile type="file" (change)="onFileChange($event)" placeholder="Vaccination File" accept=".pdf" id="myFile" class="text-dark"/>
                         </div>
                         <div class="modal-footer">
-                          <button type="button" class="btn btn-sm btn-secondary" data-bs-dismiss="modal">Close</button>
-                          <button type="button" class="btn btn-sm btn-primary" data-bs-dismiss="modal">Save</button>
+                          <button type="button" class="btn btn-sm btn-secondary" data-bs-dismiss="modal" (click)="removeFile()">Cancel</button>
+                          <button type="button" class="btn btn-sm btn-primary" data-bs-dismiss="modal" (click)="onUpload()">Save</button>
                         </div>
                     </div>
                   </div>
