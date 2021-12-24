@@ -19,7 +19,9 @@
               <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Role</th>
               <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Covid Status</th>
               <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Date of status update</th>
+              <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Vaccination Status</th>
               <th class="text-secondary opacity-7"></th>
+              <th class="text-secondary opacity-7" *ngIf="userRole === 'ADMIN'"></th>
             </tr>
             </thead>
             <tbody>
@@ -46,197 +48,17 @@
               <td class="align-middle text-center">
                 <span class="text-secondary text-xs font-weight-bold">22/10/21</span>
               </td>
-              <td class="align-middle">
-                <a class="btn btn-xs btn-outline-secondary mb-0 p-1 px-3" href="javascript:;">edit</a>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <div class="d-flex px-2 py-1">
-                  <div>
-                    <img src="/assets/img/efe.jpg" class="avatar avatar-sm me-3" alt="user1">
-                  </div>
-                  <div class="d-flex flex-column justify-content-center">
-                    <h6 class="mb-0 text-sm">Eray Tüzün</h6>
-                  </div>
-                </div>
-              </td>
-              <td class="align-middle text-center">
-                <span class="text-secondary text-xs font-weight-bold">21903100</span>
-              </td>
-              <td class="align-middle text-center">
-                <span class="text-secondary text-xs font-weight-bold">Academic Personnel</span>
-              </td>
               <td class="align-middle text-center text-sm">
-                <span class="badge badge-sm bg-gradient-danger">Positive</span>
+                <span class="badge badge-sm bg-gradient-success">Vaccinated</span>
               </td>
-              <td class="align-middle text-center">
-                <span class="text-secondary text-xs font-weight-bold">22/10/21</span>
-              </td>
-              <td class="align-middle">
+              <td class="align-middle" *ngIf="userRole === 'ADMIN'">
                 <a class="btn btn-xs btn-outline-secondary mb-0 p-1 px-3" href="javascript:;">edit</a>
               </td>
-            </tr>
-            <tr>
-              <td>
-                <div class="d-flex px-2 py-1">
-                  <div>
-                    <img src="/assets/img/efe.jpg" class="avatar avatar-sm me-3" alt="user1">
-                  </div>
-                  <div class="d-flex flex-column justify-content-center">
-                    <h6 class="mb-0 text-sm">Eray Tüzün</h6>
-                  </div>
-                </div>
+              <td class="align-middle" *ngIf="userRole === 'ADMIN'">
+                <a class="btn btn-xs btn-outline-danger mb-0 p-1 px-3" href="javascript:;">remove</a>
               </td>
-              <td class="align-middle text-center">
-                <span class="text-secondary text-xs font-weight-bold">21903100</span>
-              </td>
-              <td class="align-middle text-center">
-                <span class="text-secondary text-xs font-weight-bold">Academic Personnel</span>
-              </td>
-              <td class="align-middle text-center text-sm">
-                <span class="badge badge-sm bg-gradient-danger">Positive</span>
-              </td>
-              <td class="align-middle text-center">
-                <span class="text-secondary text-xs font-weight-bold">22/10/21</span>
-              </td>
-              <td class="align-middle">
-                <a class="btn btn-xs btn-outline-secondary mb-0 p-1 px-3" href="javascript:;">edit</a>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <div class="d-flex px-2 py-1">
-                  <div>
-                    <img src="/assets/img/efe.jpg" class="avatar avatar-sm me-3" alt="user1">
-                  </div>
-                  <div class="d-flex flex-column justify-content-center">
-                    <h6 class="mb-0 text-sm">Eray Tüzün</h6>
-                  </div>
-                </div>
-              </td>
-              <td class="align-middle text-center">
-                <span class="text-secondary text-xs font-weight-bold">21903100</span>
-              </td>
-              <td class="align-middle text-center">
-                <span class="text-secondary text-xs font-weight-bold">Academic Personnel</span>
-              </td>
-              <td class="align-middle text-center text-sm">
-                <span class="badge badge-sm bg-gradient-danger">Positive</span>
-              </td>
-              <td class="align-middle text-center">
-                <span class="text-secondary text-xs font-weight-bold">22/10/21</span>
-              </td>
-              <td class="align-middle">
-                <a class="btn btn-xs btn-outline-secondary mb-0 p-1 px-3" href="javascript:;">edit</a>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <div class="d-flex px-2 py-1">
-                  <div>
-                    <img src="/assets/img/efe.jpg" class="avatar avatar-sm me-3" alt="user1">
-                  </div>
-                  <div class="d-flex flex-column justify-content-center">
-                    <h6 class="mb-0 text-sm">Eray Tüzün</h6>
-                  </div>
-                </div>
-              </td>
-              <td class="align-middle text-center">
-                <span class="text-secondary text-xs font-weight-bold">21903100</span>
-              </td>
-              <td class="align-middle text-center">
-                <span class="text-secondary text-xs font-weight-bold">Academic Personnel</span>
-              </td>
-              <td class="align-middle text-center text-sm">
-                <span class="badge badge-sm bg-gradient-danger">Positive</span>
-              </td>
-              <td class="align-middle text-center">
-                <span class="text-secondary text-xs font-weight-bold">22/10/21</span>
-              </td>
-              <td class="align-middle">
-                <a class="btn btn-xs btn-outline-secondary mb-0 p-1 px-3" href="javascript:;">edit</a>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <div class="d-flex px-2 py-1">
-                  <div>
-                    <img src="/assets/img/efe.jpg" class="avatar avatar-sm me-3" alt="user1">
-                  </div>
-                  <div class="d-flex flex-column justify-content-center">
-                    <h6 class="mb-0 text-sm">Eray Tüzün</h6>
-                  </div>
-                </div>
-              </td>
-              <td class="align-middle text-center">
-                <span class="text-secondary text-xs font-weight-bold">21903100</span>
-              </td>
-              <td class="align-middle text-center">
-                <span class="text-secondary text-xs font-weight-bold">Academic Personnel</span>
-              </td>
-              <td class="align-middle text-center text-sm">
-                <span class="badge badge-sm bg-gradient-danger">Positive</span>
-              </td>
-              <td class="align-middle text-center">
-                <span class="text-secondary text-xs font-weight-bold">22/10/21</span>
-              </td>
-              <td class="align-middle">
-                <a class="btn btn-xs btn-outline-secondary mb-0 p-1 px-3" href="javascript:;">edit</a>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <div class="d-flex px-2 py-1">
-                  <div>
-                    <img src="/assets/img/efe.jpg" class="avatar avatar-sm me-3" alt="user1">
-                  </div>
-                  <div class="d-flex flex-column justify-content-center">
-                    <h6 class="mb-0 text-sm">Eray Tüzün</h6>
-                  </div>
-                </div>
-              </td>
-              <td class="align-middle text-center">
-                <span class="text-secondary text-xs font-weight-bold">21903100</span>
-              </td>
-              <td class="align-middle text-center">
-                <span class="text-secondary text-xs font-weight-bold">Academic Personnel</span>
-              </td>
-              <td class="align-middle text-center text-sm">
-                <span class="badge badge-sm bg-gradient-danger">Positive</span>
-              </td>
-              <td class="align-middle text-center">
-                <span class="text-secondary text-xs font-weight-bold">22/10/21</span>
-              </td>
-              <td class="align-middle">
-                <a class="btn btn-xs btn-outline-secondary mb-0 p-1 px-3" href="javascript:;">edit</a>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <div class="d-flex px-2 py-1">
-                  <div>
-                    <img src="/assets/img/efe.jpg" class="avatar avatar-sm me-3" alt="user1">
-                  </div>
-                  <div class="d-flex flex-column justify-content-center">
-                    <h6 class="mb-0 text-sm">Eray Tüzün</h6>
-                  </div>
-                </div>
-              </td>
-              <td class="align-middle text-center">
-                <span class="text-secondary text-xs font-weight-bold">21903100</span>
-              </td>
-              <td class="align-middle text-center">
-                <span class="text-secondary text-xs font-weight-bold">Academic Personnel</span>
-              </td>
-              <td class="align-middle text-center text-sm">
-                <span class="badge badge-sm bg-gradient-danger">Positive</span>
-              </td>
-              <td class="align-middle text-center">
-                <span class="text-secondary text-xs font-weight-bold">22/10/21</span>
-              </td>
-              <td class="align-middle">
-                <a class="btn btn-xs btn-outline-secondary mb-0 p-1 px-3" href="javascript:;">edit</a>
+              <td class="align-middle" *ngIf="userRole === 'MEDICAL_EMPLOYEE'">
+                <a class="btn btn-xs btn-outline-secondary mb-0 p-1 px-3" href="javascript:;">enter test result</a>
               </td>
             </tr>
             </tbody>

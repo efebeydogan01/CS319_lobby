@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { LocalStorageConstants } from '../Services/LocalStorageConstants';
 
 @Component({
   selector: 'app-guidelines',
@@ -7,9 +8,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class GuidelinesComponent implements OnInit {
 
+  guidelines: {
+
+  }
+
+
+
   constructor() { }
 
   ngOnInit(): void {
+    this.guidelines = JSON.parse( localStorage.getItem( LocalStorageConstants.guidelines));
   }
 
 }
