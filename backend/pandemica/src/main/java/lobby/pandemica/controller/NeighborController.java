@@ -14,6 +14,9 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.persistence.EntityNotFoundException;
 import java.util.UUID;
 
+/**
+ * Controller for Neighbor, extends from Base Controller
+ */
 @RestController
 @RequestMapping("neighbor")
 public class NeighborController extends BaseController<NeighborDto>
@@ -25,6 +28,11 @@ public class NeighborController extends BaseController<NeighborDto>
         this.neighborService = neighborService;
     }
 
+    /**
+     * Finds the risk status of a student user, since other types of users can not have neighbors.
+     * @param id the UUID of the user
+     * @return True if the user is risk-free, False if the user is at risk due to one of their neighbors having COVID
+     */
     @GetMapping("getRiskStatus/{id}")
     public ResponseEntity<RestResponse<Boolean>> getRiskStatus(@PathVariable String id){
         try

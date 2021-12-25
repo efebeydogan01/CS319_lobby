@@ -16,6 +16,9 @@ import javax.persistence.EntityNotFoundException;
 import java.util.List;
 import java.util.UUID;
 
+/**
+ * Controller for Request Forms, extends from Base Controller
+ */
 @RestController
 @RequestMapping("request_form")
 public class RequestFormController extends BaseController<RequestFormDto>
@@ -28,6 +31,11 @@ public class RequestFormController extends BaseController<RequestFormDto>
 		this.requestFormService = requestFormService;
 	}
 
+	/**
+	 * Returns all the  request forms the user with UUID id created.
+	 * @param id the user with the UUID id
+	 * @return the list of request forms created by the user with the UUID id
+	 */
 	@GetMapping("readAllFromUser/{id}")
 	public ResponseEntity<RestResponse<List<RequestFormDto>>> readAllFromUser(@PathVariable String id)
 	{

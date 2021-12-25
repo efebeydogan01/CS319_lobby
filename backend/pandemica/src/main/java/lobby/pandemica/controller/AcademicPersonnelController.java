@@ -20,6 +20,9 @@ import javax.persistence.EntityNotFoundException;
 import java.util.List;
 import java.util.UUID;
 
+/**
+ * Controller for Academic Personnel, extends from Base Controller
+ */
 @RestController
 @RequestMapping("academic_personnel")
 public class AcademicPersonnelController extends BaseController<AcademicPersonnelDto> {
@@ -77,6 +80,11 @@ public class AcademicPersonnelController extends BaseController<AcademicPersonne
         }
     }
 
+    /**
+     * Reads a users specific attributes of an academic personnel
+     * @param id is the UUID of the USER, not the respective academic personnel
+     * @return the academic personnel associated with the user that has the UUID id
+     */
     @Override
     @GetMapping("read/{id}")
     public ResponseEntity<RestResponse<AcademicPersonnelDto>> read(@PathVariable String id)

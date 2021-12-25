@@ -13,6 +13,11 @@ import java.util.List;
 import java.util.Set;
 import java.util.UUID;
 
+/**
+ * This is a many-to-many table of Students.
+ * It holds a section which the firstStudent and secondStudent stand next to each other.
+ * To ease our workload, we create duplicates of these relationships so that every neighborhood is represented twice, but mirrored.
+ */
 @Entity
 @Getter
 @Setter

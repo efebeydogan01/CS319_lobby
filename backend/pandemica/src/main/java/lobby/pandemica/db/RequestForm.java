@@ -8,6 +8,10 @@ import lombok.Setter;
 
 import javax.persistence.*;
 
+/**
+ * Represents the request form created by a user.
+ * This class holds a reference to the user who created this form.
+ */
 @Entity
 @Getter
 @Setter

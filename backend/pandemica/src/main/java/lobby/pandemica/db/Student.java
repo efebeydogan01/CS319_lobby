@@ -12,6 +12,10 @@ import java.util.Collection;
 import java.util.List;
 import java.util.UUID;
 
+/**
+ * Represents the unique attributes of a student.
+ * This class holds a reference to the User table, which has the common attributes of this student.
+ */
 @Entity
 @Getter
 @Setter

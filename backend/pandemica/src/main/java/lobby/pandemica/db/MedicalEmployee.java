@@ -7,9 +7,10 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+
 /**
- * Entity class of Medical Employee user role, delegates its corresponding user, can
- * change users' COVID status, enter medical info etc.
+ * Represents the unique attributes of a medical employee.
+ * This class holds a reference to the User table, which has the common attributes of this medical employee.
  */
 @Entity
 @Getter

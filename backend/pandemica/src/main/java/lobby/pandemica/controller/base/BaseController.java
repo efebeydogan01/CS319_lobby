@@ -11,6 +11,12 @@ import javax.persistence.EntityNotFoundException;
 import java.util.List;
 import java.util.UUID;
 
+/**
+ * The Base Controller, this class contains all the base functionalities of a controller.
+ * The functionalities of this controller should be overwritten if and only if the behavior of the child is different.
+ * All of the methods in this class, (and by extension all controller classes) return a title and a message with the response entity.
+ * @param <D> The Data Transfer Object sent to and received from frontend.
+ */
 @CrossOrigin()
 public abstract class BaseController<D extends BaseDto<UUID>>
 {
@@ -21,6 +27,11 @@ public abstract class BaseController<D extends BaseDto<UUID>>
 		this.baseCrudService = baseCrudService;
 	}
 
+	/**
+	 * The base create method. Saves the entity mapped from the dto dto.
+	 * @param dto is the entity received from the frontend.
+	 * @return the entity created in dto form.
+	 */
 	@PostMapping(value = "create")
 	public ResponseEntity<RestResponse<D>> create(@RequestBody D dto) {
 		try
@@ -43,6 +54,11 @@ public abstract class BaseController<D extends BaseDto<UUID>>
 		}
 	}
 
+	/**
+	 * Create all method is the same with the create method, but it receives and returns a list.
+	 * @param dtoList is the list of dtos received from frontend.
+	 * @return the list of the entities created.
+	 */
 	@PostMapping(value = "manufacture")
 	public ResponseEntity<RestResponse<List<D>>> createAll(@RequestBody List<D> dtoList) {
 		try
@@ -64,6 +80,11 @@ public abstract class BaseController<D extends BaseDto<UUID>>
 		}
 	}
 
+	/**
+	 * Reads the entity with the UUID id.
+	 * @param id the UUID of the entity which is going to be returned.
+	 * @return the entity in dto form with the UUID id.
+	 */
 	@GetMapping(value = "read/{id}")
 	public ResponseEntity<RestResponse<D>> read(@PathVariable String id)
 	{
@@ -86,6 +107,10 @@ public abstract class BaseController<D extends BaseDto<UUID>>
 		}
 	}
 
+	/**
+	 * Reads all entities in a database table and returns them in a list.
+	 * @return the list of entities in a table in dto form.
+	 */
 	@GetMapping(value = "read")
 	public ResponseEntity<List<D>> readAll()
 	{
@@ -103,6 +128,11 @@ public abstract class BaseController<D extends BaseDto<UUID>>
 		}
 	}
 
+	/**
+	 * Updates an entity.
+	 * @param dto the entity going to be updated.
+	 * @return the updated entity in dto form.
+	 */
 	@PutMapping(value = "update")
 	public ResponseEntity<RestResponse<D>> update(@RequestBody D dto) {
 		try
@@ -123,6 +153,11 @@ public abstract class BaseController<D extends BaseDto<UUID>>
 		}
 	}
 
+	/**
+	 * Same as the update method, but this method takes a list as a parameter.
+	 * @param dtoList the list of entites going to be updated.
+	 * @return the updated entities in dto form.
+	 */
 	@PutMapping(value = "updateAll")
 	public ResponseEntity<RestResponse<List<D>>> updateAll(@RequestBody List<D> dtoList) {
 		try
@@ -145,6 +180,11 @@ public abstract class BaseController<D extends BaseDto<UUID>>
 		}
 	}
 
+	/**
+	 * Deletes the entity with the given UUID id
+	 * @param id the id of the entity going to be deleted
+	 * @return the deleted entity in dto form.
+	 */
 	@DeleteMapping(value = "delete/{id}")
 	public ResponseEntity<RestResponse<D>> delete(@PathVariable String id)
 	{
@@ -168,6 +208,11 @@ public abstract class BaseController<D extends BaseDto<UUID>>
 		}
 	}
 
+	/**
+	 * Same as the delete method, but this method takes a list as a parameter.
+	 * @param idList the list of UUIDs of the entities going to be deleted.
+	 * @return the deleted entities in dto form.
+	 */
 	@DeleteMapping(value = "deleteAll")
 	public ResponseEntity<RestResponse<List<D>>> deleteAll(@RequestBody List<String> idList)
 	{

@@ -9,6 +9,9 @@ import lombok.Setter;
 import javax.persistence.*;
 import java.util.*;
 
+/**
+ * Represents a test result of a user. This class holds a reference of its user.
+ */
 @Entity
 @Getter
 @Setter

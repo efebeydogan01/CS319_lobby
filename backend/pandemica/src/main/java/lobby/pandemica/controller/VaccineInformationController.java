@@ -16,6 +16,9 @@ import javax.persistence.EntityNotFoundException;
 import java.util.List;
 import java.util.UUID;
 
+/**
+ * Controller for Vacciation Information, extends from Base Controller
+ */
 @RestController
 @RequestMapping("vaccine")
 public class VaccineInformationController extends BaseController<VaccineInformationDto>

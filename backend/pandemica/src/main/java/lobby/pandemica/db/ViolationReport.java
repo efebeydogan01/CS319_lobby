@@ -8,6 +8,10 @@ import lombok.Setter;
 
 import javax.persistence.*;
 
+/**
+ * Represents the violation report created by a user.
+ * This class holds a reference to the user who created this report.
+ */
 @Entity
 @Getter
 @Setter

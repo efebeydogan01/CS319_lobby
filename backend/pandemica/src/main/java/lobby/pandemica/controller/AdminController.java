@@ -12,6 +12,9 @@ import org.springframework.web.bind.annotation.*;
 import javax.persistence.EntityNotFoundException;
 import java.util.UUID;
 
+/**
+ * Controller for Admins, extends from Base Controller
+ */
 @RestController
 @RequestMapping("admin")
 public class AdminController extends BaseController<AdminDto> {
@@ -22,6 +25,11 @@ public class AdminController extends BaseController<AdminDto> {
         this.adminService = adminService;
     }
 
+    /**
+     * Reads a users specific attributes of an admin
+     * @param id is the UUID of the USER, not the respective admin
+     * @return the admin associated with the user that has the UUID id
+     */
     @Override
     @GetMapping("read/{id}")
     public ResponseEntity<RestResponse<AdminDto>> read(@PathVariable String id)

@@ -12,6 +12,9 @@ import org.springframework.web.bind.annotation.*;
 import javax.persistence.EntityNotFoundException;
 import java.util.UUID;
 
+/**
+ * Controller for Users, extends from Base Controller
+ */
 @RestController
 @RequestMapping("user")
 public class UserController extends BaseController<UserDto>
@@ -23,6 +26,11 @@ public class UserController extends BaseController<UserDto>
 		this.userService = userService;
 	}
 
+	/**
+	 * gets the user with the given details, used for authentication
+	 * @param details of the user
+	 * @return the user with the given details.
+	 */
 	@PostMapping(value = "get")
 	public ResponseEntity<RestResponse<UserDto>> get(@RequestBody TempDetails details)
 	{
