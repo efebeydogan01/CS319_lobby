@@ -9,6 +9,7 @@ import {NgForm} from "@angular/forms";
   styleUrls: ['./search-user-info.component.css']
 })
 export class SearchUserInfoComponent implements OnInit {
+  term: any;
   userRole: string = JSON.parse( localStorage.getItem( LocalStorageConstants.userData)).role;
 
   date = new Date();
