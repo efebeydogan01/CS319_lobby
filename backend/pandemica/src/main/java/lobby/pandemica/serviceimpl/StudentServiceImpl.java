@@ -14,10 +14,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityNotFoundException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-import java.util.UUID;
+import java.util.*;
 
 @Service
 public class StudentServiceImpl extends BaseServiceImpl<Student, StudentDto> implements StudentService
@@ -89,6 +86,7 @@ public class StudentServiceImpl extends BaseServiceImpl<Student, StudentDto> imp
             StudentSection studentSection = studentSections.get(i);
             Section section = studentSection.getSection();
             List<Seat> seats = seatRepository.findAllBySectionId(section.getId());
+            order(seats);
 
             SectionWithSeats sectionWithSeats = new SectionWithSeats();
             sectionWithSeats.setSection(section);
@@ -104,5 +102,24 @@ public class StudentServiceImpl extends BaseServiceImpl<Student, StudentDto> imp
         return sectionWithSeatsList;
     }
 
+    private void order(List<Seat> seats) {
+
+        Collections.sort(seats, new Comparator() {
+
+            public int compare(Object o1, Object o2) {
+
+                Integer row1 = ((Seat) o1).getRow();
+                Integer row2 = ((Seat) o2).getRow();
+                int comp = row1.compareTo(row2);
+
+                if (comp != 0) {
+                    return comp;
+                }
+
+                Integer column1 = ((Seat) o1).getColumn();
+                Integer column2 = ((Seat) o2).getColumn();
+                return column1.compareTo(column2);
+            }});
+    }
 
 }
