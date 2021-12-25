@@ -47,7 +47,6 @@ export class PersonalInfoComponent implements OnInit {
   uploadedFile: ElementRef;
 
   formData: FormData;
-
   constructor( private loginService: LoginService, private informationService: InformationService, private http: HttpClient) { }
 
   ngOnInit(): void {
@@ -83,7 +82,6 @@ export class PersonalInfoComponent implements OnInit {
   }
   onFileChange( event) {
     const file: File = event.target.files[0];
-    console.log( file);
     if ( file) {
       this.formData = new FormData();
       this.formData.append( "file", file);
@@ -95,14 +93,25 @@ export class PersonalInfoComponent implements OnInit {
   }
 
   onUpload() {
-    const upload$ = this.http.post( HttpUrls.baseUrl + "vaccine/uploadFile/" + this.userData.uuid, this.formData);
-    upload$.pipe( take(1)).subscribe( {
-      next: (data: any) => {
-      },
-      error: () => {
-        console.log( "File could not be uploaded");
-      }
-    });
+    // const upload$ = this.http.post( HttpUrls.baseUrl + "file/upload/" + this.userData.uuid, this.formData);
+    // upload$.pipe( take(1)).subscribe( {
+    //   next: (data: any) => {
+    //     console.log( data);
+    //
+    //     this.http.get( HttpUrls.baseUrl + "file/files/" + this.userData.uuid + ".pdf").subscribe( {
+    //       next: (data) => {
+    //         console.log( data);
+    //       },
+    //       error: () => {
+    //         console.log( "file could not be retrieved");
+    //       }
+    //     });
+    //     console.log( "vacc file uploaded");
+    //   },
+    //   error: () => {
+    //     console.log( "File could not be uploaded");
+    //   }
+    // });
   }
 
 }
