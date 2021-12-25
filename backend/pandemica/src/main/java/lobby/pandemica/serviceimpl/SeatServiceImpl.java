@@ -158,6 +158,9 @@ public class SeatServiceImpl extends BaseServiceImpl<Seat, SeatDto> implements S
             oldSeatEntity.setStudent(null);
         }
 
+        // set new seat
+        seatEntity.setStudent(studentEntity);
+
         //find old neighbors and delete them
         List<Neighbor> oldNeighborsOfFirst = neighborRepository.findAllByFirstStudentIdAndSectionId(studentEntity.getId(), sectionEntity.getId());
         if( oldNeighborsOfFirst != null)
@@ -177,7 +180,7 @@ public class SeatServiceImpl extends BaseServiceImpl<Seat, SeatDto> implements S
         int newRightNeighborRowNo = seatEntity.getRow(); //same row no
         int newRightNeighborColumnNo = seatEntity.getColumn() + 1;
 
-        if ((newLeftNeighborColumnNo - 1 >= 0 ) && classroom[newLeftNeighborRowNo][newLeftNeighborColumnNo])
+        if ((newLeftNeighborColumnNo >= 0 ) && classroom[newLeftNeighborRowNo][newLeftNeighborColumnNo])
         {
             //add left neighbor if it exists
             Optional<Seat> leftSeat = seatRepository.findBySectionIdAndRowAndColumn(sectionEntity.getId(), newLeftNeighborRowNo, newLeftNeighborColumnNo);
@@ -185,11 +188,10 @@ public class SeatServiceImpl extends BaseServiceImpl<Seat, SeatDto> implements S
                 Student leftNeighbor = leftSeat.get().getStudent();
                 if (leftNeighbor != null) {
                     neighborService.create( NeighborMapper.INSTANCE.entityToDto(new Neighbor(sectionEntity, leftNeighbor, studentEntity)));
-                    neighborService.create( NeighborMapper.INSTANCE.entityToDto(new Neighbor(sectionEntity, studentEntity, leftNeighbor)));
                 }
             }
         }
-        if((newRightNeighborColumnNo + 1 <= maxColumn) && classroom[newRightNeighborRowNo][newRightNeighborColumnNo])
+        if((newRightNeighborColumnNo <= maxColumn) && classroom[newRightNeighborRowNo][newRightNeighborColumnNo])
         {
             //add right neighbor if it exists
             Optional<Seat> rightSeat = seatRepository.findBySectionIdAndRowAndColumn(sectionEntity.getId(), newRightNeighborRowNo, newRightNeighborColumnNo);
@@ -198,14 +200,9 @@ public class SeatServiceImpl extends BaseServiceImpl<Seat, SeatDto> implements S
                 Student rightNeighbor = rightSeat.get().getStudent();
                 if(rightNeighbor != null){
                     neighborService.create( NeighborMapper.INSTANCE.entityToDto(new Neighbor(sectionEntity, rightNeighbor, studentEntity)));
-                    neighborService.create( NeighborMapper.INSTANCE.entityToDto(new Neighbor(sectionEntity, studentEntity, rightNeighbor)));
                 }
             }
         }
-        // set new seat
-        seatEntity.setStudent(studentEntity);
-
-
 
         return SeatMapper.INSTANCE.entityToDto(seatRepository.save(seatEntity));
     }
