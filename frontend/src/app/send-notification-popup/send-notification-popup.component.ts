@@ -37,7 +37,6 @@ export class SendNotificationPopupComponent implements OnInit {
       title: notificationTitle,
       message: notificationMessage
     }
-
     if ( this.toAll) {
       notification.receivers = "ALL";
       this.notificationRequest( notification, form);
@@ -45,17 +44,20 @@ export class SendNotificationPopupComponent implements OnInit {
     else {
       if ( this.toStudent) {
         notification.receivers = "STUDENT";
+        this.notificationRequest( notification, form);
       }
-      else if ( this.toAcademic) {
+      if ( this.toAcademic) {
         notification.receivers = "ACADEMIC_PERSONNEL";
+        this.notificationRequest( notification, form);
       }
-      else if ( this.toHealthCenter) {
+      if ( this.toHealthCenter) {
         notification.receivers = "MEDICAL_EMPLOYEE";
+        this.notificationRequest( notification, form);
       }
-      else if ( this.toAdmins) {
+      if ( this.toAdmins) {
         notification.receivers = "ADMIN";
+        this.notificationRequest( notification, form);
       }
-      this.notificationRequest( notification, form);
     }
   }
 
@@ -70,7 +72,9 @@ export class SendNotificationPopupComponent implements OnInit {
           this.toStudent = false;
           this.toAcademic = false;
           const user = JSON.parse( localStorage.getItem( LocalStorageConstants.userData));
-          this.informationService.getNotifications( user.uuid).subscribe();
+          this.informationService.getNotifications( user.uuid).subscribe( (data) => {
+            window.location.reload();
+          });
         },
         error: () => {
           console.log( "notification could not be submitted");

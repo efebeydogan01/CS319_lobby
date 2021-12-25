@@ -182,8 +182,8 @@ export class InformationService {
 
   getNotifications( uuid: string): Observable<any> {
     return this.http.get<any>( HttpUrls.baseUrl + "notification/get/" + uuid).pipe( tap( data => {
+      // console.log( data.data);
       localStorage.setItem( LocalStorageConstants.notifications, JSON.stringify( data.data));
-      window.location.reload();
     }));
   }
 }
