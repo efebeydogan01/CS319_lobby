@@ -10,6 +10,7 @@ import {LocalStorageConstants} from "../Services/LocalStorageConstants";
   templateUrl: './class-info.component.html',
   styleUrls: ['./class-info.component.css']
 })
+// This component holds all the information related to the sections of a user, such as their neighbors, sections etc.
 export class ClassInfoComponent implements OnInit {
   sectionsWithSeats: {
     section: {
