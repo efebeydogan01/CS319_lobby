@@ -9,7 +9,7 @@
       </div>
       <div class="card-body px-0 pt-0 pb-2">
         <div class="form-group pull-right px-3 mb-0">
-          <input type="text" class="form-control" [(ngModel)]="term" name="searchbar" autocomplete="on" placeholder="Search for user">
+          <input type="search" class="form-control" [(ngModel)]="term" name="searchbar" autocomplete="on" placeholder="Search for user">
         </div>
         <div class="table-responsive p-0 pt-3">
           <table class="table table-hover align-items-center mb-0">
@@ -26,7 +26,7 @@
             </tr>
             </thead>
             <tbody>
-            <tr *ngFor="let covidInfo of covidInformations | filter:term; let i = index;">
+            <tr *ngFor="let covidInfo of filter(); let i = index;">
               <td>
                 <div class="d-flex px-2 py-1">
                   <div class="d-flex flex-column justify-content-center">
@@ -101,7 +101,7 @@
           </table>
         </div>
         <div class="card-footer px-4 pb-2">
-          <div class="text-muted text-xs">Showing <b>{{covidInformations?.length}}</b> out of <b>{{covidInformations?.length}}</b> users</div>
+          <div class="text-muted text-xs">Showing <b>{{filteredResults}}</b> out of <b>{{covidInformations?.length}}</b> users</div>
         </div>
       </div>
     </div>
