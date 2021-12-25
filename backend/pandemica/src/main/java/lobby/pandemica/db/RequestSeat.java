@@ -9,7 +9,7 @@ import lombok.*;
 @NoArgsConstructor
 public class RequestSeat {
     private String courseName;
-    private Integer sectionNo;
-    private Integer rowNo;
-    private Integer columnNo;
+    private int sectionNo;
+    private int rowNo;
+    private int columnNo;
 }
