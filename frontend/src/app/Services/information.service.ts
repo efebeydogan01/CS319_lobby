@@ -230,8 +230,15 @@ export class InformationService {
       phoneNumber: string,
       role: string}, testDate:string, type: string, result: string }) {
 
-    console.log(test);
     return this.http.post<any>( HttpUrls.baseUrl + "test_result/create", test);
+  }
+
+  getVaccInfo( uuid: string) {
+    return this.http.get<any>( HttpUrls.baseUrl + "vaccine/get/" + uuid).
+    pipe( tap( data => {
+      console.log("VaccInfo: " + data);
+      localStorage.setItem( LocalStorageConstants.vaccinationInfo, JSON.stringify( data));
+    }));
   }
 
 }
