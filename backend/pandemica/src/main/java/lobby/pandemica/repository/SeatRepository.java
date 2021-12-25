@@ -14,6 +14,7 @@ import java.util.UUID;
 public interface SeatRepository extends BaseRepository<Seat, UUID>
 {
     List<Seat> findAllBySectionId(UUID sectionID);
+    Optional<Seat> findBySectionIdAndStudentId(UUID sectionID, UUID studentId);
     Optional<Seat> findBySectionIdAndRowAndColumn(UUID sectionID, int row, int column);
     Optional<Seat> findBySectionIdAndStudentIdAndRowAndColumn(UUID sectionID, UUID studentId, int row, int column);
 }

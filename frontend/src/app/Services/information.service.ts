@@ -47,13 +47,28 @@ export class InformationService {
     }));
   }
 
-  getSeatingPlan( section: {courseName: string, sectionNo: number}) {
-    return this.http.post<any>( HttpUrls.baseUrl + "section/seating", section).
+  getSectionsWithSeats( uuid: string) {
+    return this.http.get<any>( HttpUrls.baseUrl + "student/sections_with_seats/" + uuid).
+    pipe( tap( data => {
+      console.log(data);
+      localStorage.setItem( LocalStorageConstants.sections, JSON.stringify( data.data));
+    }));
+  }
+
+  makeSeatSelection( uuid: string, seat: {courseName: string, sectionNo: number, rowNo: number, columnNo: number}) {
+    return this.http.post<any>( HttpUrls.baseUrl + "seat/update/" + uuid, seat).
       pipe( tap( data => {
         console.log(data);
-        localStorage.setItem( LocalStorageConstants.seating, JSON.stringify( data.data));
       }));
   }
+
+  // getSeatingPlan( section: {courseName: string, sectionNo: number}) {
+  //   return this.http.post<any>( HttpUrls.baseUrl + "section/seating", section).
+  //     pipe( tap( data => {
+  //       console.log(data);
+  //       localStorage.setItem( LocalStorageConstants.seating, JSON.stringify( data.data));
+  //     }));
+  // }
 
   getGeneralInfo() {
     // get general info which includes cases, vacc percentage and announcements
