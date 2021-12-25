@@ -22,6 +22,9 @@ import java.util.Date;
 				)
 		}
 )
+/**
+ * Entity class for holding vaccination information of a user, among with its information
+ */
 public class VaccineInformation extends BaseEntity
 {
 	@OneToOne(cascade = CascadeType.ALL)

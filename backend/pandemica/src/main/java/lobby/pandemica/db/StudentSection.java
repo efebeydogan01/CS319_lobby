@@ -21,6 +21,9 @@ import javax.persistence.*;
                 )
         }
 )
+/**
+ * Data class for encapsulating student with its section, creating a many to many relation
+ */
 public class StudentSection extends BaseEntity
 {
     @ManyToOne(cascade = CascadeType.MERGE)

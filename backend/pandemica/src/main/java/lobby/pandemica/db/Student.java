@@ -18,7 +18,9 @@ import java.util.UUID;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "students")
-
+/**
+ * Entity class for student user role, delegating the corresponding user
+ */
 public class Student extends BaseEntity {
     //Attributes
     @OneToOne(cascade = CascadeType.ALL)

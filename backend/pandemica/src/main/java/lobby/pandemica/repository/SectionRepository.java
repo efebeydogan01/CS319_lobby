@@ -9,6 +9,9 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
+/**
+ * Repository class for section class
+ */
 @Transactional
 @Repository
 public interface SectionRepository extends BaseRepository<Section, UUID>

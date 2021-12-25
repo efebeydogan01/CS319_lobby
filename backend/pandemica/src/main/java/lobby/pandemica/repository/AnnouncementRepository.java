@@ -8,7 +8,9 @@ import org.springframework.stereotype.Repository;
 import javax.transaction.Transactional;
 import java.util.Optional;
 import java.util.UUID;
-
+/**
+ * Repository class for announcement
+ */
 @Transactional
 @Repository
 public interface AnnouncementRepository extends BaseRepository<Announcement, UUID>

@@ -9,7 +9,9 @@ import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
-
+/**
+ * Repository class for covid information
+ */
 @Transactional
 @Repository
 public interface CovidInformationRepository extends BaseRepository<CovidInformation, UUID>

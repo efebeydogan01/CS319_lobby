@@ -9,6 +9,9 @@ import javax.transaction.Transactional;
 import java.util.Optional;
 import java.util.UUID;
 
+/**
+ * Repository class for academic personnel
+ */
 @Transactional
 @Repository
 public interface AcademicPersonnelRepository extends BaseRepository<AcademicPersonnel, UUID>

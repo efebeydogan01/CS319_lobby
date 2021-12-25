@@ -8,6 +8,9 @@ import javax.transaction.Transactional;
 import java.util.List;
 import java.util.UUID;
 
+/**
+ * Repository class for notification class
+ */
 @Repository
 @Transactional
 public interface NotificationRepository extends BaseRepository<Notification, UUID>

@@ -8,6 +8,9 @@ import javax.transaction.Transactional;
 import java.util.List;
 import java.util.UUID;
 
+/**
+ * Repository for violation report class
+ */
 @Transactional
 @Repository
 public interface ViolationReportRepository extends BaseRepository<ViolationReport, UUID>

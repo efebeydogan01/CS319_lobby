@@ -8,6 +8,9 @@ import javax.transaction.Transactional;
 import java.util.Optional;
 import java.util.UUID;
 
+/**
+ * Repository class for medical employee class
+ */
 @Transactional
 @Repository
 public interface MedicalEmployeeRepository extends BaseRepository<MedicalEmployee, UUID>

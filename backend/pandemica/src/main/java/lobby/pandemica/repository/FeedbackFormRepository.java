@@ -8,6 +8,9 @@ import javax.transaction.Transactional;
 import java.util.List;
 import java.util.UUID;
 
+/**
+ * Repository class for feedback form class
+ */
 @Repository
 @Transactional
 public interface FeedbackFormRepository extends BaseRepository<FeedbackForm, UUID>

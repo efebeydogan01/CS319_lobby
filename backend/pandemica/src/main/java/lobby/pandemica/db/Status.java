@@ -7,6 +7,9 @@ import lombok.*;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+/**
+ * Data class holding an enum type COVID risk status
+ */
 public class Status {
 
     public enum RISK {

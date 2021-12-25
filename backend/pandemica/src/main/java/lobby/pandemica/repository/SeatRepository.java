@@ -9,6 +9,9 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
+/**
+ * Repository class for seat class
+ */
 @Transactional
 @Repository
 public interface SeatRepository extends BaseRepository<Seat, UUID>

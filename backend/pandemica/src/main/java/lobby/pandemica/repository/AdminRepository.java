@@ -8,6 +8,9 @@ import javax.transaction.Transactional;
 import java.util.Optional;
 import java.util.UUID;
 
+/**
+ * Repository class for admin
+ */
 @Transactional
 @Repository
 public interface AdminRepository extends BaseRepository<Admin, UUID>

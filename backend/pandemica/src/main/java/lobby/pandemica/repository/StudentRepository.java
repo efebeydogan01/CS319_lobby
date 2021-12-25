@@ -8,6 +8,9 @@ import javax.transaction.Transactional;
 import java.util.Optional;
 import java.util.UUID;
 
+/**
+ * Repository class for student class
+ */
 @Transactional
 @Repository
 public interface StudentRepository extends BaseRepository<Student, UUID>

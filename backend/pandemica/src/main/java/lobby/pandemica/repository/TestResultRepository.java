@@ -7,6 +7,9 @@ import javax.transaction.Transactional;
 import java.util.List;
 import java.util.UUID;
 
+/**
+ * Repository for test result class
+ */
 @Transactional
 @Repository
 public interface TestResultRepository extends BaseRepository<TestResult, UUID>

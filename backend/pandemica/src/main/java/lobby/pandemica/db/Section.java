@@ -16,6 +16,9 @@ import javax.persistence.*;
                 columnNames = {"course_name", "section_no"}
         )
 )
+/**
+ * Entity for section class, involving an academic personnel (instructor), course name, sectionNo and the classroom name
+ */
 public class Section extends BaseEntity {
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "academic_personnel_id", referencedColumnName = "id")

@@ -14,6 +14,9 @@ import javax.persistence.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "violation_reports")
+/**
+ * Entity class for violation reports send by users
+ */
 public class ViolationReport extends BaseEntity
 {
 	@ManyToOne(cascade = CascadeType.MERGE)

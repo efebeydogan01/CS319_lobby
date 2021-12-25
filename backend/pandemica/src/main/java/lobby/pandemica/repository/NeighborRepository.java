@@ -9,6 +9,9 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
+/**
+ * Repository class for neighbor class
+ */
 @Transactional
 @Repository
 public interface NeighborRepository extends BaseRepository<Neighbor, UUID>

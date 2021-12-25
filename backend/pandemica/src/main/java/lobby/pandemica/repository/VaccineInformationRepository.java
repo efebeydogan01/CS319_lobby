@@ -8,6 +8,9 @@ import javax.transaction.Transactional;
 import java.util.List;
 import java.util.UUID;
 
+/**
+ * Repository for vaccination information
+ */
 @Transactional
 @Repository
 public interface VaccineInformationRepository extends BaseRepository<VaccineInformation, UUID>

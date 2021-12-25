@@ -15,7 +15,9 @@ import java.util.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "test_results")
-
+/**
+ * Entity class for holding test results of a user, among with its necessary information
+ */
 public class TestResult extends BaseEntity {
     //Attributes
     @ManyToOne(cascade = CascadeType.MERGE)
