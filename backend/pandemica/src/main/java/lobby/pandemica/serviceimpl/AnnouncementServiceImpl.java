@@ -89,11 +89,10 @@ public class AnnouncementServiceImpl extends BaseServiceImpl<Announcement, Annou
 				User user = infoUsers.get(i);
 				List<VaccineInformation> vaccineInformationList = vaccineInformationRepository.findAllByUserId(user.getId());
 				if (vaccineInformationList != null) {
-					if (vaccineInformationList.size() == 1) {
+					if (vaccineInformationList.size() >= 1) {
 						vaccinatedCount1++;
-					}
-					else if (vaccineInformationList.size() >= 2) {
-						vaccinatedCount2++;
+						if (vaccineInformationList.size() >= 2)
+							vaccinatedCount2++;
 					}
 				}
 			}
