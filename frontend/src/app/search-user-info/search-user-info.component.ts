@@ -51,13 +51,14 @@ export class SearchUserInfoComponent implements OnInit {
       "user": user,
       "testDate": testDate.substring(0,10),
       "type": testType,
-      "result": testResult
+      "result": testResult.toUpperCase()
     };
 
     console.log(testDate.substring(0,10));
 
     this.informationService.addTestResult(test).subscribe( () => {
       form.reset();
+      window.location.reload();
     });
   }
 }

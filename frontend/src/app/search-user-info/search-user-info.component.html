@@ -85,10 +85,10 @@
                               <input type="datetime-local" #testDate="ngModel" ngModel name="testDate" required class="form-control" id="testDate">
                             </div>
                           </form>
-                          <span class="text-danger ps-2 text-sm" *ngIf="(testResult.touched || testDate.touched || testType.touched) && (!testResult.valid || !testDate.valid || !testType.valid)">Please don't leave a field empty!</span>
+                          <span class="text-danger ps-2 text-sm" *ngIf="(testResult.touched && !testResult.valid) ||( testDate.touched && !testDate.valid) || (testType.touched && !testType.valid)">Please don't leave a field empty!</span>
                         </div>
                         <div class="modal-footer">
-                          <button type="button" class="btn btn-sm btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                          <button type="button" class="btn btn-sm btn-secondary" data-bs-dismiss="modal" (click)="enterTestResultForm.reset()">Cancel</button>
                           <button type="submit" [disabled]="!enterTestResultForm.valid" class="btn btn-sm btn-primary" data-bs-dismiss="modal" (click)="addTestResult( covidInfo.user, testResult.value, testType.value, testDate.value, enterTestResultForm)">Add Result</button>
                         </div>
                     </div>

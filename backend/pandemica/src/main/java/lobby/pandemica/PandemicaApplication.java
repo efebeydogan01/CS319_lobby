@@ -1,13 +1,13 @@
 package lobby.pandemica;
 
-import lobby.pandemica.db.Classrooms;
-import lobby.pandemica.db.Role;
-import lobby.pandemica.db.Seat;
-import lobby.pandemica.db.Status;
+import lobby.pandemica.db.*;
 import lobby.pandemica.dto.AcademicPersonnelDto;
 import lobby.pandemica.dto.CovidInformationDto;
 import lobby.pandemica.dto.SectionDto;
 import lobby.pandemica.dto.UserDto;
+import lobby.pandemica.repository.SectionRepository;
+import lobby.pandemica.repository.StudentRepository;
+import lobby.pandemica.repository.UserRepository;
 import lobby.pandemica.service.AcademicPersonnelService;
 import lobby.pandemica.service.CovidInformationService;
 import lobby.pandemica.service.SectionService;
@@ -19,10 +19,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 
 @SpringBootApplication
 public class PandemicaApplication {
@@ -39,7 +36,10 @@ public class PandemicaApplication {
 						  MedicalEmployeeService medicalEmployeeService,
 						  AcademicPersonnelService academicPersonnelService,
 						  SectionService sectionService,
-						  StudentSectionService studentSectionService) {
+						  StudentSectionService studentSectionService,
+						  SeatService seatService,
+						  StudentRepository studentRepository,
+						  UserRepository userRepository) {
 		return args -> {
 			Integer dummyAge = 0;
 			UserDto userDto1 = new UserDto(UUID.randomUUID(),"Mert Barkın Er", "password",
@@ -283,6 +283,22 @@ public class PandemicaApplication {
 					studentSectionService.create(studentSectionDto);
 				}
 			}
+
+			Classrooms classrooms = new Classrooms();
+			Boolean[][] classroom = classrooms.getClassroom(sectionDto1.getClassroom());
+			int rowLength = classroom.length; int columnLength = classroom[0].length;
+			int studentIndex = 0; int maxStudentCount = studentDtoList.size();
+			for (int i = 0; i < rowLength; i++) {
+				for (int j = 0; j < columnLength; j++) {
+					if (classroom[i][j] == true && studentIndex < maxStudentCount)  {
+						RequestSeat requestSeat = new RequestSeat(sectionDto1.getCourseName(), sectionDto1.getSectionNo(), i, j);
+						Optional<User> userOptional = userRepository.findByBilkentId(studentDtoList.get(studentIndex).getUser().getBilkentId());
+						seatService.set(requestSeat, userOptional.get().getId());
+						studentIndex++;
+					}
+				}
+			}
+
 
 
 		};
