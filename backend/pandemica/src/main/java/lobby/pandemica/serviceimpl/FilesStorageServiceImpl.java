@@ -29,7 +29,7 @@ public class FilesStorageServiceImpl implements FilesStorageService {
     }
 
     @Override
-    public void save(MultipartFile file, String id) {
+    public void save(MultipartFile file, String id){
         try {
             Files.copy(file.getInputStream(), this.root.resolve(id + ".pdf"));
         } catch (Exception e) {
