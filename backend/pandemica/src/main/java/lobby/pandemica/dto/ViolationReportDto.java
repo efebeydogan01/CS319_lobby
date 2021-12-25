@@ -8,6 +8,9 @@ import lombok.Setter;
 
 import java.util.UUID;
 
+/**
+ * Dto of violationReport entity
+ */
 @Getter
 @Setter
 @AllArgsConstructor

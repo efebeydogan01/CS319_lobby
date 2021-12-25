@@ -14,6 +14,9 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Table(name = "covid_information")
 @Entity
+/**
+ * Entity class of CovidInformation, involving covid related information of each user; one-to-one mapped with every single user
+ */
 public class CovidInformation extends BaseEntity {
     //Attributes
     @Column(name="status")

@@ -26,6 +26,9 @@ import java.util.UUID;
 				)
 		}
 )
+/**
+ * Entity class for neighbor, involves the relation between two students, and their section
+ */
 public class Neighbor extends BaseEntity
 {
 	@ManyToOne(cascade = CascadeType.MERGE)

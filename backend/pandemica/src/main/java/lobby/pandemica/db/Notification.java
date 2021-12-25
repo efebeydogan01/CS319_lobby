@@ -16,6 +16,9 @@ import java.time.Instant;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "notifications")
+/**
+ * Entity class for notification, sent to users when a neighbor is positive or when admins send an announcement
+ */
 public class Notification extends BaseEntity
 {
 	@ManyToOne(cascade = CascadeType.MERGE)

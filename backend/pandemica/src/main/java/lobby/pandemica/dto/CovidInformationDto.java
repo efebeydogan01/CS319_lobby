@@ -16,6 +16,9 @@ import java.util.UUID;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+/**
+ * Dto of covid information entity
+ */
 public class CovidInformationDto extends BaseDto<UUID>
 {
     private UUID id;

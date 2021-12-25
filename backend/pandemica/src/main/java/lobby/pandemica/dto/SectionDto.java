@@ -13,6 +13,9 @@ import java.util.UUID;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+/**
+ * Dto of section entity
+ */
 public class SectionDto extends BaseDto<UUID>
 {
     private UUID id;

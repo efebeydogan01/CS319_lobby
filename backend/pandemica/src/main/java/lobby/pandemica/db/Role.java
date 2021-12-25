@@ -7,6 +7,9 @@ import lombok.*;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+/**
+ * Data class of role, enum type of user types
+ */
 public class Role
 {
 	public enum ROLES {

@@ -13,6 +13,9 @@ import java.util.UUID;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+/**
+ * Dto of medical employee entity
+ */
 public class MedicalEmployeeDto extends BaseDto<UUID>
 {
     private UUID id;

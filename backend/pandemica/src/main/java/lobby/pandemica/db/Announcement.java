@@ -15,7 +15,9 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "announcements")
-
+/**
+ * Entity class representing an announcement, made by admins, shown to all the users
+ */
 public class Announcement extends BaseEntity {
 	//Attributes
 	@Column(name = "title")

@@ -23,6 +23,9 @@ import org.springframework.stereotype.Service;
 import javax.persistence.EntityNotFoundException;
 import java.util.*;
 
+/**
+ * Implementation of SectionService interface
+ */
 @Service
 public class SectionServiceImpl extends BaseServiceImpl<Section, SectionDto> implements SectionService
 {
@@ -36,6 +39,16 @@ public class SectionServiceImpl extends BaseServiceImpl<Section, SectionDto> imp
     private final SeatMapper seatMapper;
     private final AdminService adminService;
 
+    /**
+     * All args constructor
+     * @param sectionRepository
+     * @param sectionMapper
+     * @param userRepository
+     * @param academicPersonnelRepository
+     * @param seatRepository
+     * @param seatMapper
+     * @param adminService
+     */
     public SectionServiceImpl(SectionRepository sectionRepository, SectionMapper sectionMapper,
                               UserRepository userRepository, AcademicPersonnelRepository academicPersonnelRepository,
                               SeatRepository seatRepository, SeatMapper seatMapper, AdminService adminService) {
@@ -49,6 +62,12 @@ public class SectionServiceImpl extends BaseServiceImpl<Section, SectionDto> imp
         this.adminService = adminService;
     }
 
+    /**
+     *
+     * @param requestSeatingPlan An object consisting of a courseName (String) and a sectionNo (Integer)
+     *                           of the seating plan to be fetched
+     * @return A List consisting of SeatDto's, which represents all the seats in the section
+     */
     public List<SeatDto> getSeatingPlan(RequestSeatingPlan requestSeatingPlan)
     {
         String courseName = requestSeatingPlan.getCourseName();
@@ -74,6 +93,12 @@ public class SectionServiceImpl extends BaseServiceImpl<Section, SectionDto> imp
         return seatDtos;
     }
 
+    /**
+     * Puts the sectionDto object to the database
+     * @param dto sectionDto object to be added to the database
+     * @return sectionDto object that is added to the database
+     * @throws EntityNotFoundException
+     */
     @Override
     public SectionDto create(SectionDto dto) throws EntityNotFoundException
     {

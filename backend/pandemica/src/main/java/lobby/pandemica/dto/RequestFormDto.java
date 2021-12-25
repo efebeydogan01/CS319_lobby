@@ -12,6 +12,9 @@ import java.util.UUID;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+/**
+ * Dto of request form entity
+ */
 public class RequestFormDto extends BaseDto<UUID>
 {
 	private UserDto user;

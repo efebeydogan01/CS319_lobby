@@ -14,6 +14,9 @@ import javax.persistence.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "admins")
+/**
+ * Entity class for Admin user role, delegates its corresponding user entity
+ */
 public class Admin extends BaseEntity {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id", referencedColumnName = "id")

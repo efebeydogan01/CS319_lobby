@@ -12,6 +12,9 @@ import java.util.UUID;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+/**
+ * Dto of neighbor entity
+ */
 public class NeighborDto extends BaseDto<UUID>
 {
     private SectionDto section;
