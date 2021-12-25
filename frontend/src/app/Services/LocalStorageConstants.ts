@@ -14,4 +14,5 @@ export class LocalStorageConstants {
   public static notifications: string = 'notifications'
   public static allUserInfo: string = 'allUserInfo';
   public static allCovidInfo: string = 'allCovidInfo';
+  public static vaccinationInfo: string = 'vaccinationInfo';
 }

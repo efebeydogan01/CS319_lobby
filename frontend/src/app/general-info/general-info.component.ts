@@ -26,7 +26,8 @@ export class GeneralInfoComponent implements OnInit {
     adminCases: number,
     staffCases: number,
     studentCases: number,
-    vaccinationRate: number
+    vaccinationRate1: number,
+    vaccinationRate2: number,
   } = null;
 
   constructor( private informationService: InformationService, private router: Router) { }
