@@ -14,7 +14,14 @@ import java.util.Date;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "vaccine_information")
+@Table(
+		name = "vaccination_information",
+		uniqueConstraints = {
+				@UniqueConstraint(
+						columnNames = {"user_id", "date"}
+				)
+		}
+)
 public class VaccineInformation extends BaseEntity
 {
 	@OneToOne(cascade = CascadeType.ALL)
