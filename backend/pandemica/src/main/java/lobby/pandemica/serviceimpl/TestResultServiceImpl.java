@@ -2,14 +2,17 @@ package lobby.pandemica.serviceimpl;
 import lobby.pandemica.db.*;
 import lobby.pandemica.dto.TestResultDto;
 import lobby.pandemica.repository.*;
+import lobby.pandemica.service.NotificationService;
 import lobby.pandemica.service.TestResultService;
 import lobby.pandemica.serviceimpl.base.BaseServiceImpl;
 import lobby.pandemica.serviceimpl.mapper.TestResultMapper;
+import lobby.pandemica.serviceimpl.mapper.UserMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityNotFoundException;
+import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -22,16 +25,22 @@ public class TestResultServiceImpl extends BaseServiceImpl<TestResult, TestResul
     private final CovidInformationRepository covidInformationRepository;
     private final NeighborRepository neighborRepository;
     private final StudentRepository studentRepository;
+    private final NotificationRepository notificationRepository;
+    private final UserRepository userRepository;
 
     public TestResultServiceImpl(TestResultRepository testResultRepository,
                                  CovidInformationRepository covidInformationRepository,
                                  NeighborRepository neighborRepository,
-                                 StudentRepository studentRepository) {
+                                 StudentRepository studentRepository,
+                                 NotificationRepository notificationRepository,
+                                 UserRepository userRepository) {
         super(testResultRepository, TestResultMapper.INSTANCE);
         this.testResultRepository = testResultRepository;
         this.covidInformationRepository = covidInformationRepository;
         this.neighborRepository = neighborRepository;
         this.studentRepository = studentRepository;
+        this.notificationRepository = notificationRepository;
+        this.userRepository = userRepository;
     }
 
     @Override
@@ -48,12 +57,12 @@ public class TestResultServiceImpl extends BaseServiceImpl<TestResult, TestResul
         covidInformationRepository.save(covidInformation);
         if (dto.getResult().equalsIgnoreCase("POSITIVE"))
         {
-            checkNeighbors(dto.getUser().getId());
+            checkNeighbors(dto.getUser().getId(), dto);
         }
         return super.create(dto);
     }
 
-    private void checkNeighbors(UUID userId){
+    private void checkNeighbors(UUID userId, TestResultDto dto){
         Optional<Student> student = studentRepository.findByUserId(userId);
         List<UUID> neighborIdList = new ArrayList<>();
 
@@ -75,6 +84,14 @@ public class TestResultServiceImpl extends BaseServiceImpl<TestResult, TestResul
             {
                 covidInformation.setStatus("RISKY");
                 covidInformationRepository.save(covidInformation);
+                Notification notification = new Notification();
+                notification.setUser(UserMapper.INSTANCE.dtoToEntity(dto.getUser()));
+                notification.setTitle("Neighbor Contacted Virus!");
+                notification.setMessage("One of your neighbors has tested positive for COVID and your status has been " +
+                        "changed to risky. Please make a test appointment as soon as possible.");
+                notification.setCreatedOn(Instant.now());
+                notification.setReceiver(userRepository.getById(covidInformation.getUser().getId()));
+                notificationRepository.save(notification);
             }
         }
     }
