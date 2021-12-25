@@ -73,7 +73,7 @@ public class NeighborServiceImpl extends BaseServiceImpl<Neighbor, NeighborDto> 
         for (User user: neighborsUsers)
         {
             Optional<CovidInformation> covidInformation = covidInformationRepository.findByUserId(user.getId());
-            if (covidInformation.isPresent() && covidInformation.get().getStatus().equalsIgnoreCase(Role.ROLES.STUDENT.name()))
+            if (covidInformation.isPresent() && covidInformation.get().getStatus().equalsIgnoreCase(Status.RISK.POSITIVE.name()))
             {
                 return Boolean.FALSE;
             }
