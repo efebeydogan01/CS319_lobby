@@ -16,6 +16,7 @@ import lobby.pandemica.serviceimpl.base.BaseServiceImpl;
 import lobby.pandemica.serviceimpl.mapper.AcademicPersonnelMapper;
 import lobby.pandemica.serviceimpl.mapper.SeatMapper;
 import lobby.pandemica.serviceimpl.mapper.SectionMapper;
+import lobby.pandemica.serviceimpl.mapper.StudentMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -72,6 +73,24 @@ public class SectionServiceImpl extends BaseServiceImpl<Section, SectionDto> imp
             seatDtos.add(seatMapper.entityToDto(infoSeats.get(i)));
         }
         return seatDtos;
+    }
+
+    public List<Section> getSections(UUID userId)
+    {
+        Optional<User> userOptional = userRepository.findById(userId);
+        if (!userOptional.isPresent()) {
+            LOGGER.warn("The user cannot be found!");
+            throw new EntityNotFoundException();
+        }
+
+        Optional<AcademicPersonnel> academicPersonnelOptional = academicPersonnelRepository.findByUserId(userId);
+        if (!academicPersonnelOptional.isPresent()) {
+            LOGGER.warn("The academic personnel entity cannot be found!");
+            throw new EntityNotFoundException();
+        }
+
+        List<Section> sections = sectionRepository.findAllByAcademicPersonnelId(academicPersonnelOptional.get().getId());
+        return sections;
     }
 
     @Override
