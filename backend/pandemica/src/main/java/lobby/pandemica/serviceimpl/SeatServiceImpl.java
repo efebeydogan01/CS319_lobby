@@ -89,7 +89,7 @@ public class SeatServiceImpl extends BaseServiceImpl<Seat, SeatDto> implements S
         return SeatMapper.INSTANCE.entityToDto(seatRepository.save(entity));
     }
 
-    public SeatDto set(RequestSeat requestSeat, UUID studentId) throws EntityNotFoundException
+    public SeatDto set(RequestSeat requestSeat, UUID userId) throws EntityNotFoundException
     {
         // check if student exists
         // check if section exists
@@ -99,8 +99,16 @@ public class SeatServiceImpl extends BaseServiceImpl<Seat, SeatDto> implements S
         // find old seat
         // set new seat
 
+        // check if user exists
+        Optional<User> infoUser = userRepository.findById(userId);
+        if (!infoUser.isPresent())
+        {
+            LOGGER.warn("The entity to find does not exist!");
+            throw new EntityNotFoundException();
+        }
+
         // check if student exists
-        Optional<Student> infoStudent = studentRepository.findById(studentId);
+        Optional<Student> infoStudent = studentRepository.findByUserId(userId);
         if (!infoStudent.isPresent())
         {
             LOGGER.warn("Student cannot be found!");
@@ -149,9 +157,7 @@ public class SeatServiceImpl extends BaseServiceImpl<Seat, SeatDto> implements S
         }
 
         // find old seat
-        Optional<Seat> infoOldSeat = seatRepository.findBySectionIdAndStudentIdAndRowAndColumn(
-                sectionEntity.getId(), studentEntity.getId(), row, column
-        );
+        Optional<Seat> infoOldSeat = seatRepository.findBySectionIdAndStudentId(sectionEntity.getId(), studentEntity.getId());
         if (infoOldSeat.isPresent())
         {
             Seat oldSeatEntity = infoOldSeat.get();
