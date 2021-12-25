@@ -245,5 +245,4 @@ export class InformationService {
       localStorage.setItem( LocalStorageConstants.vaccinationInfo, JSON.stringify( data.data));
     }));
   }
-
 }

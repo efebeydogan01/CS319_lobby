@@ -77,39 +77,13 @@
               <div class="col-7">
                 <div class="numbers">
                   <p class="mb-2 font-weight-bold">Vaccination</p>
-                  <p class="text-sm mb-0">
+                  <p class="text-sm mb-0" *ngIf="vaccInfo?.length <= 0">
                     Please add vaccination file.
                   </p>
-                  <table class="table align-items-center mb-0">
-                    <thead>
-                    <tr>
-                      <th
-                        class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                        Date</th>
-                      <th
-                        class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
-                        Type</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr *ngFor="let vaccination of vaccInfo">
-                      <td>
-                        <div class="d-flex px-2 py-1 flex-column justify-content-center">
-                          <h6 class="ms-2 mb-0 text-sm">{{ vaccination.date.substring(0, 10) }}</h6>
-                        </div>
-                      </td>
-                      <td>
-                        <div class="d-flex py-1 flex-column justify-content-center">
-                          <h6 class="mb-0 text-sm">{{ vaccination.vaccineName }}</h6>
-                        </div>
-                      </td>
-                    </tr>
-                    </tbody>
-                  </table>
                 </div>
               </div>
               <div class="col-5 text-end">
-                <a class="btn bg-gradient-success my-2" data-bs-toggle="modal" data-bs-target="#addVacFilePopUp"><i class="fas fa-plus"
+                <a class="btn bg-gradient-success my-0" data-bs-toggle="modal" data-bs-target="#addVacFilePopUp"><i class="fas fa-plus"
                                                                                aria-hidden="true"></i>&nbsp;&nbsp;Add Vaccination File</a>
                 <div class="modal fade" id="addVacFilePopUp" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
                   <div class="modal-dialog modal-dialog-centered">
@@ -129,6 +103,32 @@
                 </div>
               </div>
             </div>
+            <table class="table align-items-center mb-0 mt-3" *ngIf="vaccInfo?.length > 0">
+              <thead>
+              <tr>
+                <th
+                  class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                  Date</th>
+                <th
+                  class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
+                  Type</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr *ngFor="let vaccination of vaccInfo">
+                <td>
+                  <div class="d-flex px-2 py-1 flex-column justify-content-center">
+                    <h6 class="ms-2 mb-0 text-sm">{{ vaccination.date.substring(0, 10) }}</h6>
+                  </div>
+                </td>
+                <td>
+                  <div class="d-flex py-1 flex-column justify-content-center">
+                    <h6 class="mb-0 text-sm">{{ vaccination.vaccineName }}</h6>
+                  </div>
+                </td>
+              </tr>
+              </tbody>
+            </table>
           </div>
         </div>
       </div>
@@ -187,7 +187,7 @@
                 <h5>Tests</h5>
                 <p class="text-sm mb-0">
                   <i class="fa fa-check text-info" aria-hidden="true"></i>
-                  <span class="font-weight-bold ms-1">{{ testResults ? testResults.length + " tests done" : "0 tests done" }}</span>
+                  <span class="font-weight-bold ms-1">{{ testResults ? testResults?.length + " tests done" : "0 tests done" }}</span>
                 </p>
               </div>
               <div class="col-lg-6 col-5 my-auto text-end">
