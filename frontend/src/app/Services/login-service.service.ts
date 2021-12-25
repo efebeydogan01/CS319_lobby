@@ -64,7 +64,7 @@ export class LoginService {
     localStorage.removeItem(LocalStorageConstants.userData);
     localStorage.removeItem( LocalStorageConstants.studentInfo);
     localStorage.removeItem( LocalStorageConstants.testResults);
-    localStorage.removeItem( LocalStorageConstants.seating);
+    localStorage.removeItem( LocalStorageConstants.sections);
     localStorage.removeItem( LocalStorageConstants.generalInfo);
     localStorage.removeItem( LocalStorageConstants.guidelines);
     localStorage.removeItem( LocalStorageConstants.weeklyReports);
