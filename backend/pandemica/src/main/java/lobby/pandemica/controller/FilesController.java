@@ -51,7 +51,6 @@ public class FilesController extends BaseController<CovidInformationDto> {
         String message = "";
         try {
             storageService.save(file, id);
-
             message = "Uploaded the file successfully: " + file.getOriginalFilename();
             return ResponseEntity.status(HttpStatus.OK).body(new ResponseMessage(message));
         } catch (Exception e) {
