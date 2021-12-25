@@ -3,12 +3,10 @@ package lobby.pandemica.serviceimpl;
 import lobby.pandemica.db.*;
 import lobby.pandemica.dto.AnnouncementDto;
 import lobby.pandemica.dto.UserDto;
-import lobby.pandemica.repository.AcademicPersonnelRepository;
-import lobby.pandemica.repository.AnnouncementRepository;
-import lobby.pandemica.repository.CovidInformationRepository;
-import lobby.pandemica.repository.UserRepository;
+import lobby.pandemica.repository.*;
 import lobby.pandemica.service.AcademicPersonnelService;
 import lobby.pandemica.service.AnnouncementService;
+import lobby.pandemica.service.VaccineInformationService;
 import lobby.pandemica.serviceimpl.base.BaseServiceImpl;
 import lobby.pandemica.serviceimpl.mapper.AcademicPersonnelMapper;
 import lobby.pandemica.serviceimpl.mapper.AnnouncementMapper;
@@ -32,14 +30,19 @@ public class AnnouncementServiceImpl extends BaseServiceImpl<Announcement, Annou
 	private final AnnouncementRepository announcementRepository;
 	private final CovidInformationRepository covidInformationRepository;
 	private final UserRepository userRepository;
+	private final VaccineInformationService vaccineInformationService;
+	private final VaccineInformationRepository vaccineInformationRepository;
 
 	public AnnouncementServiceImpl(AnnouncementRepository announcementRepository, AnnouncementMapper announcementMapper,
-								   CovidInformationRepository covidInformationRepository, UserRepository userRepository) {
+								   CovidInformationRepository covidInformationRepository, UserRepository userRepository,
+								   VaccineInformationService vaccineInformationService, VaccineInformationRepository vaccineInformationRepository) {
 		super(announcementRepository, AnnouncementMapper.INSTANCE);
 		this.announcementRepository = announcementRepository;
 		this.announcementMapper = announcementMapper;
 		this.covidInformationRepository = covidInformationRepository;
 		this.userRepository = userRepository;
+		this.vaccineInformationService = vaccineInformationService;
+		this.vaccineInformationRepository = vaccineInformationRepository;
 	}
 	@Override
 	public AnnouncementDto create(AnnouncementDto dto) throws EntityNotFoundException
@@ -71,11 +74,28 @@ public class AnnouncementServiceImpl extends BaseServiceImpl<Announcement, Annou
 	@Override
 	public GeneralInfo readGeneralInfo()
 	{
-		Integer academicCases = 0;
-		Integer adminCases = 0;
-		Integer staffCases = 0;
-		Integer studentCases = 0;
-		Integer vaccinationRate = 72;
+		int academicCases = 0;
+		int adminCases = 0;
+		int staffCases = 0;
+		int studentCases = 0;
+
+		int vaccinationRate;
+		int vaccinatedCount = 0;
+		List<User> infoUsers = userRepository.findAll();
+		if (infoUsers != null) {
+			for (int i = 0; i < infoUsers.size(); i++) {
+				User user = infoUsers.get(i);
+				List<VaccineInformation> vaccineInformationList = vaccineInformationRepository.findAllByUserId(user.getId());
+				if (vaccineInformationList != null && vaccineInformationList.size() >= 2) {
+					vaccinatedCount++;
+				}
+			}
+			vaccinationRate = vaccinatedCount / infoUsers.size();
+		}
+		else {
+			vaccinationRate = 0;
+		}
+
 		GeneralInfo generalInfo = new GeneralInfo();
 		generalInfo.setAnnouncements(announcementRepository.findAll());
 		List<CovidInformation> covidInformationList = covidInformationRepository.findAllByStatus(Status.RISK.POSITIVE.name());
