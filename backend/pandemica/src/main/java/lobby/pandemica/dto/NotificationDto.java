@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.time.Instant;
 import java.util.UUID;
 
 @Getter
@@ -18,4 +19,5 @@ public class NotificationDto extends BaseDto<UUID>
 	private String receivers;
 	private String title;
 	private String message;
+	private Instant createdOn;
 }
