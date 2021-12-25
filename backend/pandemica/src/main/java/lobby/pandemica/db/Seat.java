@@ -10,7 +10,14 @@ import javax.persistence.*;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "seats")
+@Table(
+        name = "seats",
+        uniqueConstraints = {
+                @UniqueConstraint(
+                        columnNames = {"section_id", "row_no", "column_no"}
+                )
+        }
+)
 public class Seat extends BaseEntity {
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "student_id", referencedColumnName = "id")

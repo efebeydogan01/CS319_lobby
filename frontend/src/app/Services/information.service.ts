@@ -3,7 +3,6 @@ import {Observable, Subject, tap} from "rxjs";
 import {HttpClient} from "@angular/common/http";
 import {HttpUrls} from "./HttpUrls";
 import {LocalStorageConstants} from "./LocalStorageConstants";
-import {User} from "./user.model";
 
 @Injectable({
   providedIn: 'root'
@@ -57,6 +56,7 @@ export class InformationService {
   }
 
   getGeneralInfo() {
+    // get general info which includes cases, vacc percentage and announcements
     return this.http.get<any>( HttpUrls.baseUrl + "announcement/readGeneralInfo").
       pipe( tap( data => {
         console.log(data);
@@ -85,29 +85,98 @@ export class InformationService {
   }
 
   getPreviousViolationReports() {
+    // get the user's uuid from local storage
     const uuid: string = JSON.parse(localStorage.getItem(LocalStorageConstants.userData)).uuid;
-    return this.http.get<any>( HttpUrls.baseUrl + "violation_report/readAllFromUser/" + uuid).
+    // get the users's role from local storage
+    const role = JSON.parse(localStorage.getItem(LocalStorageConstants.userData)).role;
+
+    // if the role is admin, we retrieve all the reports else it retrieve only reports that were created by the user
+    let link  = "";
+    if ( role === "ADMIN")
+    {
+      link = HttpUrls.baseUrl + "violation_report/read";
+    }
+    else
+    {
+      link = HttpUrls.baseUrl + "violation_report/readAllFromUser/" + uuid;
+    }
+
+    // send http request according to user type
+    return this.http.get<any>( link).
       pipe( tap( data => {
         console.log(data);
-        localStorage.setItem( LocalStorageConstants.violationReports, JSON.stringify( data.data));
+        if ( role === "ADMIN")
+        {
+          localStorage.setItem( LocalStorageConstants.violationReports, JSON.stringify( data));
+        }
+        else
+        {
+          localStorage.setItem( LocalStorageConstants.violationReports, JSON.stringify( data.data));
+        }
       }));
   }
 
   getPreviousFeedbackForms() {
+    // get the user's uuid from local storage
     const uuid: string = JSON.parse(localStorage.getItem(LocalStorageConstants.userData)).uuid;
-    return this.http.get<any>( HttpUrls.baseUrl + "feedback_form/readAllFromUser/" + uuid).
+    // get the users's role from local storage
+    const role = JSON.parse(localStorage.getItem(LocalStorageConstants.userData)).role;
+
+    // if the role is admin, we retrieve all the forms else it retrieves only forms that were created by the user
+    let link  = "";
+    if ( role === "ADMIN")
+    {
+      link = HttpUrls.baseUrl + "feedback_form/read";
+    }
+    else
+    {
+      link = HttpUrls.baseUrl + "feedback_form/readAllFromUser/" + uuid;
+    }
+
+    // if the role is admin, we retrieve all the forms else it retrieves only reports that were created by the user
+    return this.http.get<any>( link).
       pipe( tap( data => {
         console.log(data);
-        localStorage.setItem( LocalStorageConstants.feedbackForms, JSON.stringify( data.data));
+        if ( role === "ADMIN")
+        {
+          localStorage.setItem( LocalStorageConstants.feedbackForms, JSON.stringify( data));
+        }
+        else
+        {
+          localStorage.setItem( LocalStorageConstants.feedbackForms, JSON.stringify( data.data));
+        }
       }));
   }
 
   getPreviousRequestForms() {
+    // get the user's uuid from local storage
     const uuid: string = JSON.parse(localStorage.getItem(LocalStorageConstants.userData)).uuid;
-    return this.http.get<any>( HttpUrls.baseUrl + "request_form/readAllFromUser/" + uuid).
+    // get the users's role from local storage
+    const role = JSON.parse(localStorage.getItem(LocalStorageConstants.userData)).role;
+
+    // if the role is admin, we retrieve all the forms else it retrieves only forms that were created by the user
+    let link  = "";
+    if ( role === "ADMIN")
+    {
+      link = HttpUrls.baseUrl + "request_form/read";
+    }
+    else
+    {
+      link = HttpUrls.baseUrl + "request_form/readAllFromUser/" + uuid;
+    }
+
+    // if the role is admin, we retrieve all the forms else it retrieves only reports that were created by the user
+    return this.http.get<any>( link).
       pipe( tap( data => {
         console.log(data);
-        localStorage.setItem( LocalStorageConstants.requestForms, JSON.stringify( data.data));
+        if ( role === "ADMIN")
+        {
+          localStorage.setItem( LocalStorageConstants.requestForms, JSON.stringify( data));
+        }
+        else
+        {
+          localStorage.setItem( LocalStorageConstants.requestForms, JSON.stringify( data.data));
+        }
       }));
   }
 }
