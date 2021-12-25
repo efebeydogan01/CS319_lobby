@@ -39,13 +39,15 @@ export class ClassInfoComponent implements OnInit {
       }
     }[]
   }[] = null;
+  userRole: string = JSON.parse( localStorage.getItem( LocalStorageConstants.userData)).role;
 
   constructor(private informationService:InformationService) { }
 
   ngOnInit(): void {
     const userData = JSON.parse(localStorage.getItem(LocalStorageConstants.userData));
+    let path: string = this.userRole === 'STUDENT' ? "student/sections_with_seats/" : "academic_personnel/sections_with_seats/";
 
-    this.informationService.getSectionsWithSeats(userData.uuid).pipe( take( 1)).subscribe( {
+    this.informationService.getSectionsWithSeats(userData.uuid, path).pipe( take( 1)).subscribe( {
       next: () => {
         this.sectionsWithSeats = JSON.parse( localStorage.getItem( LocalStorageConstants.sections));
       }

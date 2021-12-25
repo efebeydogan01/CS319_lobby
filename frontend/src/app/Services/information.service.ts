@@ -48,8 +48,8 @@ export class InformationService {
     }));
   }
 
-  getSectionsWithSeats( uuid: string) {
-    return this.http.get<any>( HttpUrls.baseUrl + "student/sections_with_seats/" + uuid).
+  getSectionsWithSeats( uuid: string, path: string) {
+    return this.http.get<any>( HttpUrls.baseUrl + path + uuid).
     pipe( tap( data => {
       console.log(data);
       localStorage.setItem( LocalStorageConstants.sections, JSON.stringify( data.data));
