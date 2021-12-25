@@ -10,5 +10,5 @@ import java.util.UUID;
 public interface StudentService extends BaseCrudService<StudentDto>
 {
 	public StudentDto getUserWithRole(UUID userId);
-	public List<SectionWithSeats> getSectionsWithSeats(UUID studentId);
+	public List<SectionWithSeats> getSectionsWithSeats(UUID userId);
 }
