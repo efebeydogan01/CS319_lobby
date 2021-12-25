@@ -98,7 +98,9 @@ public class AnnouncementServiceImpl extends BaseServiceImpl<Announcement, Annou
 				}
 			}
 			vaccinationRate1 = 100.0 * vaccinatedCount1 / infoUsers.size();
+			vaccinationRate1 = (double) Math.round(vaccinationRate1 * 10d) / 10d;
 			vaccinationRate2 = 100.0 * vaccinatedCount2 / infoUsers.size();
+			vaccinationRate2 = (double) Math.round(vaccinationRate2 * 10d) / 10d;
 		}
 
 		GeneralInfo generalInfo = new GeneralInfo();
