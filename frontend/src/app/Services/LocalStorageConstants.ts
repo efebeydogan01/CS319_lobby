@@ -11,4 +11,6 @@ export class LocalStorageConstants {
   public static feedbackForms: string = 'feedbackForms';
   public static requestForms: string = 'requestForms';
   public static notifications: string = 'notifications'
+  public static allUserInfo: string = 'allUserInfo';
+  public static allCovidInfo: string = 'allCovidInfo';
 }
