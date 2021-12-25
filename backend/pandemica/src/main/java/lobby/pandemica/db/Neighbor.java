@@ -18,7 +18,14 @@ import java.util.UUID;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "neighbors")
+@Table(
+		name = "neighbors",
+		uniqueConstraints = {
+				@UniqueConstraint(
+						columnNames = {"section_id", "first_student_id", "second_student_id"}
+				)
+		}
+)
 public class Neighbor extends BaseEntity
 {
 	@ManyToOne(cascade = CascadeType.MERGE)
