@@ -65,9 +65,16 @@ public class StudentServiceImpl extends BaseServiceImpl<Student, StudentDto> imp
         return super.create(StudentMapper.INSTANCE.entityToDto(entity));
     }
 
-    public List<SectionWithSeats> getSectionsWithSeats(UUID studentId) throws EntityNotFoundException
+    public List<SectionWithSeats> getSectionsWithSeats(UUID userId) throws EntityNotFoundException
     {
-        Optional<Student> infoStudent = studentRepository.findById(studentId);
+        Optional<User> infoUser = userRepository.findById(userId);
+        if (!infoUser.isPresent())
+        {
+            LOGGER.warn("The entity to find does not exist!");
+            throw new EntityNotFoundException();
+        }
+
+        Optional<Student> infoStudent = studentRepository.findByUserId(userId);
         if (!infoStudent.isPresent())
         {
             LOGGER.warn("The entity to find does not exist!");
