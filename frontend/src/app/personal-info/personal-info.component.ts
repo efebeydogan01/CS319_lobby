@@ -66,6 +66,9 @@ export class PersonalInfoComponent implements OnInit {
         this.testResults = tests;
       }
 
+      this.informationService.getTestResults(this.userData.uuid).subscribe( () => {
+        this.testResults = JSON.parse( localStorage.getItem( LocalStorageConstants.testResults));
+      });
     }
   }
   onFileChange( event) {

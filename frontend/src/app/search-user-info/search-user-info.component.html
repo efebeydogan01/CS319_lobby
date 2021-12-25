@@ -25,47 +25,82 @@
             </tr>
             </thead>
             <tbody>
-            <tr>
+            <tr *ngFor=" let covidInfo of covidInformations; let i=index;">
               <td>
                 <div class="d-flex px-2 py-1">
-                  <div>
-                    <img src="/assets/img/efe.jpg" class="avatar avatar-sm me-3" alt="user1">
-                  </div>
                   <div class="d-flex flex-column justify-content-center">
-                    <h6 class="mb-0 text-sm">Eray Tüzün</h6>
+                    <h6 class="mb-0 text-sm">{{covidInfo.user.name}}</h6>
                   </div>
                 </div>
               </td>
               <td class="align-middle text-center">
-                <span class="text-secondary text-xs font-weight-bold">21903100</span>
+                <span class="text-secondary text-xs font-weight-bold">{{covidInfo.user.bilkentId}}</span>
               </td>
               <td class="align-middle text-center">
-                <span class="text-secondary text-xs font-weight-bold">Academic Personnel</span>
+                <span class="text-secondary text-xs font-weight-bold">{{covidInfo.user.role}}</span>
               </td>
               <td class="align-middle text-center text-sm">
-                <span class="badge badge-sm bg-gradient-danger">Positive</span>
+                <span class="badge badge-sm bg-gradient-danger" *ngIf="covidInfo.status === 'POSITIVE'">{{covidInfo.status}}</span>
+                <span class="badge badge-sm bg-gradient-warning" *ngIf="covidInfo.status === 'RISKY'">{{covidInfo.status}}</span>
+                <span class="badge badge-sm bg-gradient-success" *ngIf="covidInfo.status === 'NEGATIVE'">{{covidInfo.status}}</span>
               </td>
               <td class="align-middle text-center">
-                <span class="text-secondary text-xs font-weight-bold">22/10/21</span>
+                <span class="text-secondary text-xs font-weight-bold">{{date}}</span>
               </td>
               <td class="align-middle text-center text-sm">
                 <span class="badge badge-sm bg-gradient-success">Vaccinated</span>
               </td>
               <td class="align-middle" *ngIf="userRole === 'ADMIN'">
-                <a class="btn btn-xs btn-outline-secondary mb-0 p-1 px-3" href="javascript:;">edit</a>
+                <a class="btn btn-xs btn-outline-secondary mb-0 p-1 px-3" data-bs-toggle="modal" data-bs-target="#editUserInfoPopUp">edit</a>
               </td>
               <td class="align-middle" *ngIf="userRole === 'ADMIN'">
-                <a class="btn btn-xs btn-outline-danger mb-0 p-1 px-3" href="javascript:;">remove</a>
+                <a class="btn btn-xs btn-outline-danger mb-0 p-1 px-3">remove</a>
               </td>
               <td class="align-middle" *ngIf="userRole === 'MEDICAL_EMPLOYEE'">
-                <a class="btn btn-xs btn-outline-secondary mb-0 p-1 px-3" href="javascript:;">enter test result</a>
+                <a class="btn btn-xs btn-outline-secondary mb-0 p-1 px-3" data-bs-toggle="modal" [attr.data-bs-target]="'#enterTestResult' + i">enter test result</a>
+                <div class="modal fade" [id]="'enterTestResult' + i" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
+                  <div class="modal-dialog modal-dialog-centered">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="exampleModalLabel">Enter test result</h5>
+                        </div>
+                        <div class="modal-body">
+                          <form #enterTestResultForm="ngForm" role="form" class="p-2">
+                            <div class="mb-3">
+                              <label>Test Result</label>
+                              <select #testResult="ngModel" ngModel name="testResult" required class="form-control" id="testResult">
+                                <option value="Positive">Positive</option>
+                                <option value="Negative">Negative</option>
+                              </select>
+                            </div>
+                            <div class="my-3">
+                              <label>Test Type</label>
+                              <select #testType="ngModel" ngModel name="testType" required class="form-control" id="testType">
+                                <option value="PCR">PCR</option>
+                                <option value="Diagnovir">Diagnovir</option>
+                              </select>
+                            </div>
+                            <div class="my-3">
+                              <label for="exampleInputEmail1" class="form-label">Test Date</label>
+                              <input type="datetime-local" #testDate="ngModel" ngModel name="testDate" required class="form-control" id="testDate">
+                            </div>
+                          </form>
+                          <span class="text-danger ps-2 text-sm" *ngIf="(testResult.touched || testDate.touched || testType.touched) && (!testResult.valid || !testDate.valid || !testType.valid)">Please don't leave a field empty!</span>
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-sm btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                          <button type="submit" [disabled]="!enterTestResultForm.valid" class="btn btn-sm btn-primary" data-bs-dismiss="modal" (click)="addTestResult( covidInfo.user, testResult.value, testType.value, testDate.value, enterTestResultForm)">Add Result</button>
+                        </div>
+                    </div>
+                  </div>
+                </div>
               </td>
             </tr>
             </tbody>
           </table>
         </div>
         <div class="card-footer px-4 pb-2">
-          <div class="text-muted text-xs">Showing <b>8</b> out of <b>8</b> users</div>
+          <div class="text-muted text-xs">Showing <b>{{covidInformations?.length}}</b> out of <b>{{covidInformations?.length}}</b> users</div>
         </div>
       </div>
     </div>
