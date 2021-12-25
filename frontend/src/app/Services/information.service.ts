@@ -179,4 +179,36 @@ export class InformationService {
         }
       }));
   }
+
+  getAllUserInfo()
+  {
+    return this.http.get<any>( HttpUrls.baseUrl + "user/read").
+      pipe( tap( data => {
+        console.log(data);
+        localStorage.setItem( LocalStorageConstants.allUserInfo, JSON.stringify( data));
+      }));
+  }
+
+  getAllCovidInfo()
+  {
+    return this.http.get<any>( HttpUrls.baseUrl + "covid/read").
+      pipe( tap( data => {
+        console.log(data);
+        localStorage.setItem( LocalStorageConstants.allCovidInfo, JSON.stringify( data));
+      }));
+  }
+
+  addTestResult(test: {user: {
+    age: number,
+    bilkentId: number,
+    dateOfBirth: string,
+    id: number,
+    name: string,
+    password: string,
+    phoneNumber: string,
+    role: string}, testDate:string, type: string, result: string }) {
+
+    console.log(test);
+    return this.http.post<any>( HttpUrls.baseUrl + "test_result/create", test);
+  }
 }

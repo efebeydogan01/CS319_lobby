@@ -72,6 +72,8 @@ export class LoginService {
     localStorage.removeItem( LocalStorageConstants.violationReports);
     localStorage.removeItem( LocalStorageConstants.feedbackForms);
     localStorage.removeItem( LocalStorageConstants.requestForms);
+    localStorage.removeItem( LocalStorageConstants.allUserInfo);
+    localStorage.removeItem( LocalStorageConstants.allCovidInfo);
     this.router.navigate(['/']);
 
     // if ( this.tokenExpirationTimer) {
