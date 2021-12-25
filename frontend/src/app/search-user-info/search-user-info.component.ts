@@ -76,10 +76,10 @@ export class SearchUserInfoComponent implements OnInit {
     }
 
     const filtered = this.covidInformations.filter( info =>
-      info.user.name.toLowerCase().indexOf( this.term.toLowerCase()) !== -1 ||
-      (String)(info.user.bilkentId).toLowerCase().indexOf( this.term.toLowerCase()) !== -1 ||
-      info.user.role.toLowerCase().indexOf( this.term.toLowerCase()) !== -1 ||
-      info.status.toLowerCase().indexOf( this.term.toLowerCase()) !== -1);
+      info.covidInformation.user.name.toLowerCase().indexOf( this.term.toLowerCase()) !== -1 ||
+      (String)(info.covidInformation.user.bilkentId).toLowerCase().indexOf( this.term.toLowerCase()) !== -1 ||
+      info.covidInformation.user.role.toLowerCase().indexOf( this.term.toLowerCase()) !== -1 ||
+      info.covidInformation.status.toLowerCase().indexOf( this.term.toLowerCase()) !== -1);
     this.filteredResults = filtered.length;
     return filtered;
   }

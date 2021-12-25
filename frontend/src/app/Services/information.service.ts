@@ -3,6 +3,7 @@ import {Observable, Subject, tap} from "rxjs";
 import {HttpClient} from "@angular/common/http";
 import {HttpUrls} from "./HttpUrls";
 import {LocalStorageConstants} from "./LocalStorageConstants";
+import {NgForm} from "@angular/forms";
 
 @Injectable({
   providedIn: 'root'
@@ -197,7 +198,7 @@ export class InformationService {
 
   getNotifications( uuid: string): Observable<any> {
     return this.http.get<any>( HttpUrls.baseUrl + "notification/get/" + uuid).pipe( tap( data => {
-      // console.log( data.data);
+      console.log( data);
       localStorage.setItem( LocalStorageConstants.notifications, JSON.stringify( data.data));
     }));
   }
@@ -233,6 +234,10 @@ export class InformationService {
     return this.http.post<any>( HttpUrls.baseUrl + "test_result/create", test);
   }
 
+  notificationRequest( notification) {
+    return this.http.post<any>(HttpUrls.baseUrl + "notification/create", notification);
+  }
+
   getVaccInfo( uuid: string) {
     return this.http.get<any>( HttpUrls.baseUrl + "vaccine/get/" + uuid).
     pipe( tap( data => {
@@ -240,5 +245,4 @@ export class InformationService {
       localStorage.setItem( LocalStorageConstants.vaccinationInfo, JSON.stringify( data.data));
     }));
   }
-
 }
