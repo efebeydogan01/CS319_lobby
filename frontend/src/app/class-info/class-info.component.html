@@ -37,10 +37,10 @@
                 </div>
               </td>
               <td class="align-middle text-center">
-                <app-seating-plan [i]="indexOfElements" [courseName]="sectionsWithSeats[indexOfElements].section.courseName" [sectionNo]="sectionsWithSeats[indexOfElements].section.sectionNo" [seating]="sectionsWithSeats[indexOfElements].seats"></app-seating-plan>
+                <app-seating-plan *ngIf="userRole === 'STUDENT'" [i]="indexOfElements" [courseName]="sectionsWithSeats[indexOfElements].section.courseName" [sectionNo]="sectionsWithSeats[indexOfElements].section.sectionNo" [seating]="sectionsWithSeats[indexOfElements].seats"></app-seating-plan>
+                <app-seating-plan *ngIf="userRole === 'ACADEMIC_PERSONNEL'" [i]="indexOfElements" [courseName]="sectionsWithSeats[indexOfElements].section.courseName" [sectionNo]="sectionsWithSeats[indexOfElements].section.sectionNo" [seating]="sectionsWithSeats[indexOfElements].seats"></app-seating-plan>
               </td>
             </tr>
-
             </tbody>
           </table>
         </div>

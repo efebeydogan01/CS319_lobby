@@ -38,6 +38,7 @@ export class ClassInfoComponent implements OnInit {
       }
     }[]
   }[] = null;
+  userRole: string = JSON.parse( localStorage.getItem( LocalStorageConstants.userData)).role;
 
   constructor(private informationService:InformationService) { }
 
