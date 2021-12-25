@@ -15,6 +15,9 @@ import javax.persistence.EntityNotFoundException;
 import java.util.List;
 import java.util.UUID;
 
+/**
+ * Controller for Test results, extends from Base Controller
+ */
 @RestController
 @RequestMapping("test_result")
 public class TestResultController extends BaseController<TestResultDto> {
@@ -25,6 +28,11 @@ public class TestResultController extends BaseController<TestResultDto> {
         this.testResultService = testResultService;
     }
 
+    /**
+     * Gets the test results associated with the user with the UUID id
+     * @param id the UUID of the user.
+     * @return the list of test results of the user with the UUID id.
+     */
     @GetMapping("getTestResults/{id}")
     public ResponseEntity<RestResponse<List<TestResultDto>>> getTestResults(@PathVariable String id)
     {

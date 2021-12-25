@@ -33,8 +33,11 @@ public class NotificationServiceImpl extends BaseServiceImpl<Notification, Notif
 	public List<NotificationDto> getNotificationsForUser(UUID id)
 	{
 		String userRole = userRepository.getById(id).getRole();
+		// Gets all the notifications for all users
 		List<Notification> notificationsForAllUsers = notificationRepository.findAllByReceivers("ALL");
+		// Gets the notifications that are addressed for the users role
 		List<Notification> notificationsForRole = notificationRepository.findAllByReceivers(userRole);
+		// Gets the notifications addressed for that specific user
 		List<Notification> notificationsForUser = notificationRepository.findAllByReceiverId(id);
 		notificationsForRole.addAll(notificationsForAllUsers);
 		notificationsForRole.addAll(notificationsForUser);

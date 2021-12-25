@@ -8,6 +8,10 @@ import javax.persistence.MappedSuperclass;
 import java.util.UUID;
 import org.hibernate.id.UUIDGenerator;
 
+/**
+ * Represents the base entity of any entity in the database.
+ * This class is not created as a table, but it is used as a template for the other entities to use.
+ */
 @MappedSuperclass
 public abstract class BaseEntity
 {

@@ -8,6 +8,10 @@ import lombok.Setter;
 
 import javax.persistence.*;
 
+/**
+ * Represents the unique attributes of an admin.
+ * This class holds a reference to the User table, which has the common attributes of this admin.
+ */
 @Entity
 @Getter
 @Setter

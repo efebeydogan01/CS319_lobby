@@ -9,6 +9,9 @@ import lombok.Setter;
 import javax.persistence.*;
 import java.util.Date;
 
+/**
+ * Represents an announcement made by an admin.
+ */
 @Entity
 @Getter
 @Setter

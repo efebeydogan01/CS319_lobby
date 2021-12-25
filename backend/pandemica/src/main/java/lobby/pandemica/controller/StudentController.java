@@ -16,6 +16,9 @@ import javax.persistence.EntityNotFoundException;
 import java.util.List;
 import java.util.UUID;
 
+/**
+ * Controller for Student, extends from Base Controller
+ */
 @RestController
 @RequestMapping("student")
 public class StudentController extends BaseController<StudentDto> {
@@ -26,6 +29,11 @@ public class StudentController extends BaseController<StudentDto> {
         this.studentService = studentService;
     }
 
+    /**
+     * Reads a users specific attributes of an student
+     * @param id is the UUID of the USER, not the respective student
+     * @return the student associated with the user that has the UUID id
+     */
     @Override
     @GetMapping("read/{id}")
     public ResponseEntity<RestResponse<StudentDto>> read(@PathVariable String id)

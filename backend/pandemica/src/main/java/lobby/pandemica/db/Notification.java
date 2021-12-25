@@ -10,6 +10,11 @@ import lombok.Setter;
 import javax.persistence.*;
 import java.time.Instant;
 
+/**
+ * Represents a notification.
+ * This notifications receiver can either be a role of users (see receivers), or a custom student when one of their neighbors
+ * gets infected with COVID (see receiver).
+ */
 @Entity
 @Getter
 @Setter

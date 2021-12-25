@@ -8,6 +8,9 @@ import lombok.Setter;
 
 import javax.persistence.*;
 
+/**
+ * Represents a covid information of a specific user. The user of the covid information is held as a reference in this class.
+ */
 @Getter
 @Setter
 @AllArgsConstructor
