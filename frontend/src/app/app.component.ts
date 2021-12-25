@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from "@angular/router";
 import {LoginService} from "./Services/login-service.service";
+import {Title} from "@angular/platform-browser";
 
 @Component({
   selector: 'app-root',
@@ -9,11 +10,12 @@ import {LoginService} from "./Services/login-service.service";
 })
 export class AppComponent implements OnInit {
   title = 'frontend';
-  constructor(public router: Router, private loginService: LoginService){
+  constructor(public router: Router, private loginService: LoginService, private titleService: Title){
 
   }
 
   ngOnInit() {
+    this.titleService.setTitle("Pandemica");
     this.loginService.autoLogin();
   }
 }

@@ -1,6 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {LoginService} from "../Services/login-service.service";
 import {LocalStorageConstants} from "../Services/LocalStorageConstants";
+import {HttpClient} from "@angular/common/http";
+import {HttpUrls} from "../Services/HttpUrls";
+import {InformationService} from "../Services/information.service";
 
 @Component({
   selector: 'app-topbar',
@@ -13,11 +16,12 @@ export class TopbarComponent implements OnInit {
   roleIcon: string = "";
 
   notifications: {
+    id: number,
     message: string,
     title: string
   }[] = null;
 
-  constructor( private loginService: LoginService) { }
+  constructor( private loginService: LoginService, private http: HttpClient, private informationService:InformationService) { }
 
   ngOnInit(): void {
     const notificationsArray = JSON.parse( localStorage.getItem(LocalStorageConstants.notifications));
@@ -47,6 +51,14 @@ export class TopbarComponent implements OnInit {
 
   onLogout() {
     this.loginService.logout();
+  }
+
+  deleteNotification( index: number) {
+    this.http.delete<any>( HttpUrls.baseUrl + "notification/delete/" + this.notifications[index].id).subscribe( () => {
+      this.informationService.getNotifications( (JSON.parse( localStorage.getItem( LocalStorageConstants.userData))).uuid).subscribe( () => {
+        window.location.reload();
+      });
+    });
   }
 
 }
