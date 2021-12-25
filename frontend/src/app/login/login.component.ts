@@ -41,8 +41,16 @@ export class LoginComponent implements OnInit {
                 next: () => {
                   this.informationService.getTestResults( userData.uuid).pipe( take( 1)).subscribe( {
                     next: () => {
-                      this.router.navigate( ['/personal-info']);
-                      this.isLoading = false;
+                      this.informationService.getNotifications( userData.uuid).subscribe( {
+                        next: () => {
+                          this.router.navigate( ['/personal-info']);
+                          this.isLoading = false;
+                        },
+                        error: () => {
+                          console.log( "notifications could not be retrieved");
+                          this.onError();
+                        }
+                      });
                     },
                     error: () => {
                       this.onError();

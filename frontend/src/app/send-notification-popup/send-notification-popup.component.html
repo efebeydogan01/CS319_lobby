@@ -48,7 +48,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-sm btn-secondary" data-bs-dismiss="modal">Cancel</button>
-        <button type="submit" [disabled]="!sendNotificationForm.valid || (!toAll && !toAdmins && !toHealthCenter && !toStudent && !toAcademic)" class="btn btn-sm btn-primary" data-bs-dismiss="modal" (click)="sendNotification(notificationTitle.value, notificationMessage.value)">Send</button>
+        <button type="submit" [disabled]="!sendNotificationForm.valid || (!toAll && !toAdmins && !toHealthCenter && !toStudent && !toAcademic)" class="btn btn-sm btn-primary" data-bs-dismiss="modal" (click)="sendNotification(notificationTitle.value, notificationMessage.value, sendNotificationForm)">Send</button>
       </div>
     </div>
   </div>
