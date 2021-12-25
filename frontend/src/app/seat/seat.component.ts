@@ -9,7 +9,7 @@ import {SeatService} from "../Services/seat.service";
   styleUrls: ['./seat.component.css']
 })
 export class SeatComponent implements OnInit {
-  seatStatus = {'no': 'bg-secondary', 'empty': 'bg-white', 'occupied': 'bg-primary', 'my': 'bg-success', 'old': 'bg-faded-success'};
+  seatStatus = {'no': 'bg-secondary', 'empty': 'btn-white', 'occupied': 'bg-primary', 'my': 'bg-success', 'new': 'bg-warning'};
   bntStyle: string = this.seatStatus['no'];
   @Input() i: number = -1;
   @Input() exists: boolean = false;
@@ -36,20 +36,15 @@ export class SeatComponent implements OnInit {
   }
 
   selectSeat() {
-    if (this.exists && this.bntStyle === this.seatStatus['empty']) {
-      this.bntStyle = this.seatStatus['my'];
+    if (this.exists && this.ownedSeat != this.i && this.bntStyle === this.seatStatus['empty']) {
+      this.bntStyle = this.seatStatus['new'];
       this.updateSeat.emit(this.i);
-      console.log(this.i);
+      console.log("new selection: " + this.i);
     }
   }
 
   unselectSeat() {
-    console.log("old seat")
-    if (this.exists) {
-      if (this.ownedSeat == this.i)
-        this.bntStyle = this.seatStatus['old'];
-      else
+    if (this.exists && this.ownedSeat != this.i)
         this.bntStyle = this.seatStatus['empty'];
-    }
   }
 }

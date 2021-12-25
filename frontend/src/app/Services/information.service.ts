@@ -55,6 +55,13 @@ export class InformationService {
     }));
   }
 
+  makeSeatSelection( uuid: string, seat: {courseName: string, sectionNo: number, rowNo: number, columnNo: number}) {
+    return this.http.post<any>( HttpUrls.baseUrl + "seat/update/" + uuid, seat).
+      pipe( tap( data => {
+        console.log(data);
+      }));
+  }
+
   // getSeatingPlan( section: {courseName: string, sectionNo: number}) {
   //   return this.http.post<any>( HttpUrls.baseUrl + "section/seating", section).
   //     pipe( tap( data => {

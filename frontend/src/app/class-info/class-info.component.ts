@@ -49,10 +49,5 @@ export class ClassInfoComponent implements OnInit {
         this.sectionsWithSeats = JSON.parse( localStorage.getItem( LocalStorageConstants.sections));
       }
     });
-
-    // const sections = JSON.parse( localStorage.getItem( LocalStorageConstants.sections));
-    // if (sections) {
-    //   this.sectionsWithSeats = sections;
-    // }
   }
 }

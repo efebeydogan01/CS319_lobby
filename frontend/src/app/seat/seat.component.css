@@ -12,3 +12,15 @@
 .bg-faded-success {
   background-color: rgba(130,214,22,0.61);
 }
+
+/*This is modifying the btn-primary colors but you could create your own .btn-something class as well*/
+.btn-white {
+  color: #fff;
+  background-color: white;
+  border-color: white; /*set the color you want here*/
+}
+.btn-white:hover, .btn-white:focus, .btn-white:active, .btn-white.active, .open>.dropdown-toggle.btn-white {
+  color: white;
+  background-color: lightyellow;
+  border-color: white; /*set the color you want here*/
+}

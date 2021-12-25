@@ -12,7 +12,8 @@ import {InformationService} from "../Services/information.service";
 })
 export class SeatingPlanComponent implements OnInit, OnDestroy {
   @Input() i: number = -1;
-  @Input() sectionName: string = '';
+  @Input() courseName: string = '';
+  @Input() sectionNo: number = -1;
   @Input() seating: {
     id: string,
     exists: boolean,
@@ -30,7 +31,7 @@ export class SeatingPlanComponent implements OnInit, OnDestroy {
   ownedSeat: number = -1;
   selectedSeat: number = -1;
 
-  constructor( private seatService: SeatService) { }
+  constructor( private seatService: SeatService, private informationService:InformationService) { }
 
   ngOnInit(): void {
     const userData = JSON.parse(localStorage.getItem(LocalStorageConstants.userData));
@@ -43,18 +44,6 @@ export class SeatingPlanComponent implements OnInit, OnDestroy {
     }
   }
 
-  // ngAfterViewInit() {
-  //   console.log("selected" + this.selectedSeat)
-  //   let section = {
-  //     "courseName": "CS319",
-  //     "sectionNo": (this.i == 1) ? 4 : 1
-  //   };
-  //
-  //
-  //
-  //   console.log("get seating length: " + this.seats.length)
-  // }
-
   addSeatComponent(seat: SeatComponent) {
     this.seats[seat.i] = seat;
   }
@@ -64,13 +53,10 @@ export class SeatingPlanComponent implements OnInit, OnDestroy {
   }
 
   updateSelectedSeat(seatNo: number) {
-    console.log("update selected seat " + this.seats.length)
     if (this.selectedSeat != -1)
       this.seats[this.selectedSeat].unselectSeat();
 
     this.selectedSeat = seatNo;
-    console.log(this.selectedSeat);
-
     console.log("owned seat: " + this.ownedSeat)
   }
 
@@ -81,6 +67,25 @@ export class SeatingPlanComponent implements OnInit, OnDestroy {
   }
 
   saveSelection(): void {
+    const userData = JSON.parse(localStorage.getItem(LocalStorageConstants.userData));
 
+    let seat = {
+      courseName: this.courseName,
+      sectionNo: this.sectionNo,
+      rowNo: Math.floor(this.selectedSeat / 10),
+      columnNo: Math.floor(this.selectedSeat % 10)
+    }
+
+    console.log(seat)
+    this.informationService.makeSeatSelection(userData.uuid, seat).pipe( take( 1)).subscribe( {
+      next: () => {
+        this.ownedSeat = this.selectedSeat;
+        this.resetSelection();
+        window.location.reload();
+      },
+      error: () => {
+        console.log("Seat not available")
+      }
+    });
   }
 }
