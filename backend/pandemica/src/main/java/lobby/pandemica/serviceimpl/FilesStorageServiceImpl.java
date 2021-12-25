@@ -29,9 +29,14 @@ public class FilesStorageServiceImpl implements FilesStorageService {
     }
 
     @Override
-    public void save(MultipartFile file) {
+    public void save(MultipartFile file, String id){
         try {
-            Files.copy(file.getInputStream(), this.root.resolve(file.getOriginalFilename()));
+            Path filePath = root.resolve(id+".pdf");
+            Resource resource = new UrlResource(filePath.toUri());
+            if(resource.exists()){
+                Files.delete(root.resolve(id + ".pdf"));
+            }
+            Files.copy(file.getInputStream(), this.root.resolve(id + ".pdf"));
         } catch (Exception e) {
             throw new RuntimeException("Could not store the file. Error: " + e.getMessage());
         }
@@ -57,6 +62,7 @@ public class FilesStorageServiceImpl implements FilesStorageService {
     public void deleteAll() {
         FileSystemUtils.deleteRecursively(root.toFile());
     }
+
 
     @Override
     public Stream<Path> loadAll() {

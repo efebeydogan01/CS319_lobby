@@ -17,4 +17,5 @@ public interface CovidInformationRepository extends BaseRepository<CovidInformat
     Optional<CovidInformation> findByUserId(UUID userID);
     Integer countByStatus(String status);
     List<CovidInformation> findAllByStatus(String status);
+    CovidInformation getByUserId(UUID userId);
 }

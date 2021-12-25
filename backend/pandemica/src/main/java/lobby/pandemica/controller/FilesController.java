@@ -39,8 +39,8 @@ public class FilesController extends BaseController<CovidInformationDto> {
         this.storageService = storageService;
     }
 
-    @PostMapping("/upload")
-    public  ResponseEntity<ResponseMessage> uploadFile(@RequestParam("file") MultipartFile file) {
+    @PostMapping("/upload/{id}")
+    public  ResponseEntity<ResponseMessage> uploadFile(@RequestParam("file") MultipartFile file, @PathVariable String id) {
         FilesStorageServiceImpl filesStorageService = new FilesStorageServiceImpl();
         if( count == 0)
         {
@@ -50,8 +50,7 @@ public class FilesController extends BaseController<CovidInformationDto> {
         }
         String message = "";
         try {
-            storageService.save(file);
-
+            storageService.save(file, id);
             message = "Uploaded the file successfully: " + file.getOriginalFilename();
             return ResponseEntity.status(HttpStatus.OK).body(new ResponseMessage(message));
         } catch (Exception e) {
@@ -71,10 +70,10 @@ public class FilesController extends BaseController<CovidInformationDto> {
         return ResponseEntity.status(HttpStatus.OK).body(fileInfos);
     }
 
-    @GetMapping("/files/{filename:.+}")
+    @GetMapping("/files/{id}")
     @ResponseBody
-    public ResponseEntity<Resource> getFile(@PathVariable String filename) {
-        Resource file = storageService.load(filename);
+    public ResponseEntity<Resource> getFile(@PathVariable String id){
+        Resource file = storageService.load(id);
 
         return ResponseEntity.ok()
                 .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + file.getFilename() + "\"").body(file);
