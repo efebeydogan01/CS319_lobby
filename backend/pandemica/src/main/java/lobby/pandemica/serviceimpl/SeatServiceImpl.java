@@ -157,9 +157,7 @@ public class SeatServiceImpl extends BaseServiceImpl<Seat, SeatDto> implements S
         }
 
         // find old seat
-        Optional<Seat> infoOldSeat = seatRepository.findBySectionIdAndStudentIdAndRowAndColumn(
-                sectionEntity.getId(), studentEntity.getId(), row, column
-        );
+        Optional<Seat> infoOldSeat = seatRepository.findBySectionIdAndStudentId(sectionEntity.getId(), studentEntity.getId());
         if (infoOldSeat.isPresent())
         {
             Seat oldSeatEntity = infoOldSeat.get();
