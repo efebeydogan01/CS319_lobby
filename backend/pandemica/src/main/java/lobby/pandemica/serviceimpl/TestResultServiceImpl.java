@@ -90,7 +90,7 @@ public class TestResultServiceImpl extends BaseServiceImpl<TestResult, TestResul
                 notification.setMessage("One of your neighbors has tested positive for COVID and your status has been " +
                         "changed to risky. Please make a test appointment as soon as possible.");
                 notification.setCreatedOn(Instant.now());
-                notification.setReceiver(userRepository.getById(userId));
+                notification.setReceiver(userRepository.getById(covidInformation.getUser().getId()));
                 notificationRepository.save(notification);
             }
         }
