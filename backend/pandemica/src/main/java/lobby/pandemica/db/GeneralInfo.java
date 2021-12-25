@@ -3,9 +3,10 @@ package lobby.pandemica.db;
 import lombok.*;
 
 import java.util.List;
+
 /**
- * Entity class representing general covid related info of the university, involving numbers of cases by user roles, announcements
- * made by admins etc.
+ * Holds the statistics for the university, the case numbers by the user type.
+ * This class in not represented in the database, it is just created and sent to frontend when necessary.
  */
 @Data
 @Getter

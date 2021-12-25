@@ -8,13 +8,10 @@ import lobby.pandemica.service.AcademicPersonnelService;
 import lobby.pandemica.service.AnnouncementService;
 import lobby.pandemica.service.VaccineInformationService;
 import lobby.pandemica.serviceimpl.base.BaseServiceImpl;
-import lobby.pandemica.serviceimpl.mapper.AcademicPersonnelMapper;
 import lobby.pandemica.serviceimpl.mapper.AnnouncementMapper;
-import lobby.pandemica.serviceimpl.mapper.CovidInformationMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
-import sun.java2d.loops.FillRect;
 
 import javax.persistence.EntityNotFoundException;
 import java.util.List;
