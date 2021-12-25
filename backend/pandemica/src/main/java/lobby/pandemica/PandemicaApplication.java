@@ -14,7 +14,6 @@ import lobby.pandemica.service.SectionService;
 import lobby.pandemica.service.UserService;
 import lobby.pandemica.dto.*;
 import lobby.pandemica.service.*;
-import lobby.pandemica.serviceimpl.mapper.VaccineInformationMapper;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -39,8 +38,9 @@ public class PandemicaApplication {
 						  SectionService sectionService,
 						  StudentSectionService studentSectionService,
 						  SeatService seatService,
+						  StudentRepository studentRepository,
 						  UserRepository userRepository,
-						  VaccineInformationService vaccineInformationService) {
+						  AnnouncementService announcementService) {
 		return args -> {
 			Integer dummyAge = 0;
 			UserDto userDto1 = new UserDto(UUID.randomUUID(),"Mert Barkın Er", "password",
@@ -194,89 +194,6 @@ public class PandemicaApplication {
 			covidInformationService.create(covidInformationDto21);
 
 
-			VaccineInformationDto vaccineInformationDto1 = new VaccineInformationDto(UUID.randomUUID(), userDto1,
-					Vaccines.TYPE.BIONTECH.name(), new Date(121,8,21));
-			VaccineInformationDto vaccineInformationDto2 = new VaccineInformationDto(UUID.randomUUID(), userDto1,
-					Vaccines.TYPE.BIONTECH.name(), new Date(121,12,19));
-			VaccineInformationDto vaccineInformationDto3 = new VaccineInformationDto(UUID.randomUUID(), userDto2,
-					Vaccines.TYPE.SINOVAC.name(), new Date(121,7,17));
-			VaccineInformationDto vaccineInformationDto4 = new VaccineInformationDto(UUID.randomUUID(), userDto2,
-					Vaccines.TYPE.SINOVAC.name(), new Date(121,10,1));
-			VaccineInformationDto vaccineInformationDto5 = new VaccineInformationDto(UUID.randomUUID(), userDto3,
-					Vaccines.TYPE.BIONTECH.name(), new Date(121,6,3));
-			VaccineInformationDto vaccineInformationDto6 = new VaccineInformationDto(UUID.randomUUID(), userDto3,
-					Vaccines.TYPE.BIONTECH.name(), new Date(121,10,6));
-			VaccineInformationDto vaccineInformationDto7 = new VaccineInformationDto(UUID.randomUUID(), userDto4,
-					Vaccines.TYPE.TURKOVAC.name(), new Date(121,5,17));
-			VaccineInformationDto vaccineInformationDto8 = new VaccineInformationDto(UUID.randomUUID(), userDto4,
-					Vaccines.TYPE.TURKOVAC.name(), new Date(121,8,19));
-			VaccineInformationDto vaccineInformationDto9 = new VaccineInformationDto(UUID.randomUUID(), userDto5,
-					Vaccines.TYPE.BIONTECH.name(), new Date(121,2,22));
-			VaccineInformationDto vaccineInformationDto10 = new VaccineInformationDto(UUID.randomUUID(), userDto5,
-					Vaccines.TYPE.BIONTECH.name(), new Date(121,4,21));
-			VaccineInformationDto vaccineInformationDto11 = new VaccineInformationDto(UUID.randomUUID(), userDto6,
-					Vaccines.TYPE.BIONTECH.name(), new Date(121,8,4));
-			VaccineInformationDto vaccineInformationDto12 = new VaccineInformationDto(UUID.randomUUID(), userDto6,
-					Vaccines.TYPE.BIONTECH.name(), new Date(121,11,7));
-			VaccineInformationDto vaccineInformationDto13 = new VaccineInformationDto(UUID.randomUUID(), userDto7,
-					Vaccines.TYPE.SINOVAC.name(), new Date(121,7,9));
-			VaccineInformationDto vaccineInformationDto14 = new VaccineInformationDto(UUID.randomUUID(), userDto7,
-					Vaccines.TYPE.SINOVAC.name(), new Date(121,10,10));
-			VaccineInformationDto vaccineInformationDto15 = new VaccineInformationDto(UUID.randomUUID(), userDto8,
-					Vaccines.TYPE.BIONTECH.name(), new Date(121,8,13));
-			VaccineInformationDto vaccineInformationDto16 = new VaccineInformationDto(UUID.randomUUID(), userDto9,
-					Vaccines.TYPE.SINOVAC.name(), new Date(121,8,12));
-			VaccineInformationDto vaccineInformationDto17 = new VaccineInformationDto(UUID.randomUUID(), userDto9,
-					Vaccines.TYPE.BIONTECH.name(), new Date(121,11,15));
-			VaccineInformationDto vaccineInformationDto18 = new VaccineInformationDto(UUID.randomUUID(), userDto10,
-					Vaccines.TYPE.BIONTECH.name(), new Date(121,8,17));
-			VaccineInformationDto vaccineInformationDto19 = new VaccineInformationDto(UUID.randomUUID(), userDto11,
-					Vaccines.TYPE.BIONTECH.name(), new Date(121,4,19));
-			VaccineInformationDto vaccineInformationDto20 = new VaccineInformationDto(UUID.randomUUID(), userDto11,
-					Vaccines.TYPE.BIONTECH.name(), new Date(121,7,25));
-			VaccineInformationDto vaccineInformationDto21 = new VaccineInformationDto(UUID.randomUUID(), userDto12,
-					Vaccines.TYPE.BIONTECH.name(), new Date(121,2,27));
-			VaccineInformationDto vaccineInformationDto22 = new VaccineInformationDto(UUID.randomUUID(), userDto13,
-					Vaccines.TYPE.BIONTECH.name(), new Date(121,1,17));
-			VaccineInformationDto vaccineInformationDto23 = new VaccineInformationDto(UUID.randomUUID(), userDto13,
-					Vaccines.TYPE.BIONTECH.name(), new Date(121,4,7));
-			VaccineInformationDto vaccineInformationDto24 = new VaccineInformationDto(UUID.randomUUID(), userDto13,
-					Vaccines.TYPE.BIONTECH.name(), new Date(121,8,5));
-			VaccineInformationDto vaccineInformationDto25 = new VaccineInformationDto(UUID.randomUUID(), userDto14,
-					Vaccines.TYPE.BIONTECH.name(), new Date(121,11,2));
-			VaccineInformationDto vaccineInformationDto26 = new VaccineInformationDto(UUID.randomUUID(), userDto15,
-					Vaccines.TYPE.BIONTECH.name(), new Date(121,8,6));
-			VaccineInformationDto vaccineInformationDto27 = new VaccineInformationDto(UUID.randomUUID(), userDto16,
-					Vaccines.TYPE.BIONTECH.name(), new Date(121,8,8));
-			vaccineInformationService.create(vaccineInformationDto1);
-			vaccineInformationService.create(vaccineInformationDto2);
-			vaccineInformationService.create(vaccineInformationDto3);
-			vaccineInformationService.create(vaccineInformationDto4);
-			vaccineInformationService.create(vaccineInformationDto5);
-			vaccineInformationService.create(vaccineInformationDto6);
-			vaccineInformationService.create(vaccineInformationDto7);
-			vaccineInformationService.create(vaccineInformationDto8);
-			vaccineInformationService.create(vaccineInformationDto9);
-			vaccineInformationService.create(vaccineInformationDto10);
-			vaccineInformationService.create(vaccineInformationDto11);
-			vaccineInformationService.create(vaccineInformationDto12);
-			vaccineInformationService.create(vaccineInformationDto13);
-			vaccineInformationService.create(vaccineInformationDto14);
-			vaccineInformationService.create(vaccineInformationDto15);
-			vaccineInformationService.create(vaccineInformationDto16);
-			vaccineInformationService.create(vaccineInformationDto17);
-			vaccineInformationService.create(vaccineInformationDto18);
-			vaccineInformationService.create(vaccineInformationDto19);
-			vaccineInformationService.create(vaccineInformationDto20);
-			vaccineInformationService.create(vaccineInformationDto21);
-			vaccineInformationService.create(vaccineInformationDto22);
-			vaccineInformationService.create(vaccineInformationDto23);
-			vaccineInformationService.create(vaccineInformationDto24);
-			vaccineInformationService.create(vaccineInformationDto25);
-			vaccineInformationService.create(vaccineInformationDto26);
-			vaccineInformationService.create(vaccineInformationDto27);
-
-
 			AdminDto adminDto = new AdminDto(UUID.randomUUID(), userDto2);
 			adminService.create(adminDto);
 
@@ -383,7 +300,19 @@ public class PandemicaApplication {
 				}
 			}
 
+			String announcementMessage = "Dear Students, Faculty Members, and Staff,\n" +
+					"As I am sure you have heard, the government has decided to begin face-to-face education at all levels starting this September" +
+					" and is requiring everybody to be either vaccinated against Covid-19 or provide a negative PCR test at least twice a week. " +
+					"Consequently, universities in Turkey are returning to face-to-face education this fall and instituting vaccine requirements.\n" +
+					"We have now decided to hold all lectures, laboratories, studios, midterm and final exams, and other evaluation activities at Bilkent" +
+					" in a face-to-face format starting this Fall Semester.\n" +
+					"Vaccine requirements will be effective throughout all campus facilities, in addition to current Covid-19 measures that are already in " +
+					"place. Face mask use will continue to be mandatory across the whole campus including classrooms, laboratories, and studios. The university " +
+					"will continue checking HES codes and taking appropriate action for isolating risky cases.";
+			String announcementTitle = "Covid19";
 
+			AnnouncementDto announcementDto = new AnnouncementDto(UUID.randomUUID(), announcementTitle,"25.12.2021", announcementMessage);
+			announcementService.create(announcementDto);
 
 		};
 	}

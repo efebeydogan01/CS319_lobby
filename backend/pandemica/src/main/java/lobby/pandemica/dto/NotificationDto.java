@@ -20,4 +20,5 @@ public class NotificationDto extends BaseDto<UUID>
 	private String title;
 	private String message;
 	private Instant createdOn;
+	private UserDto receiver;
 }

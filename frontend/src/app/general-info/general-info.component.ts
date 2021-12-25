@@ -59,10 +59,31 @@ export class GeneralInfoComponent implements OnInit {
     };
 
     this.informationService.makeAnnouncement(announcement).subscribe( () => {
+      const uuid: string = JSON.parse( localStorage.getItem( LocalStorageConstants.userData)).uuid;
       this.informationService.getGeneralInfo().subscribe( () => {
-        this.generalInfo = JSON.parse( localStorage.getItem( LocalStorageConstants.generalInfo));
-        window.location.reload();
+        const userData = {
+          id: uuid
+        };
+        const notification = {
+          user: userData,
+          receivers: "ALL",
+          title: announcement.title,
+          message: announcement.announcementText
+        }
+        this.informationService.notificationRequest(notification).subscribe( {
+          next: () => {
+            this.informationService.getNotifications( userData.id).subscribe( {
+              next: () => {
+                this.generalInfo = JSON.parse( localStorage.getItem( LocalStorageConstants.generalInfo));
+                window.location.reload();
+              },
+            });
+          },
+          error: () => {
+          }
+        });
       });
     });
   }
 }
+

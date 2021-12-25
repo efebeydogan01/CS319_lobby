@@ -35,7 +35,9 @@ public class NotificationServiceImpl extends BaseServiceImpl<Notification, Notif
 		String userRole = userRepository.getById(id).getRole();
 		List<Notification> notificationsForAllUsers = notificationRepository.findAllByReceivers("ALL");
 		List<Notification> notificationsForRole = notificationRepository.findAllByReceivers(userRole);
+		List<Notification> notificationsForUser = notificationRepository.findAllByReceiverId(id);
 		notificationsForRole.addAll(notificationsForAllUsers);
+		notificationsForRole.addAll(notificationsForUser);
 		return NotificationMapper.INSTANCE.entityListToDtoList(notificationsForRole);
 	}
 }
