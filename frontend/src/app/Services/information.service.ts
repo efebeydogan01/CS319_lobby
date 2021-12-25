@@ -213,10 +213,10 @@ export class InformationService {
 
   getAllCovidInfo()
   {
-    return this.http.get<any>( HttpUrls.baseUrl + "covid/read").
+    return this.http.get<any>( HttpUrls.baseUrl + "covid/extend").
     pipe( tap( data => {
-      console.log(data);
-      localStorage.setItem( LocalStorageConstants.allCovidInfo, JSON.stringify( data));
+      console.log(data.data);
+      localStorage.setItem( LocalStorageConstants.allCovidInfo, JSON.stringify( data.data));
     }));
   }
 

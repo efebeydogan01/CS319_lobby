@@ -29,26 +29,28 @@
               <td>
                 <div class="d-flex px-2 py-1">
                   <div class="d-flex flex-column justify-content-center">
-                    <h6 class="mb-0 text-sm">{{covidInfo.user.name}}</h6>
+                    <h6 class="mb-0 text-sm">{{covidInfo.covidInformation.user.name}}</h6>
                   </div>
                 </div>
               </td>
               <td class="align-middle text-center">
-                <span class="text-secondary text-xs font-weight-bold">{{covidInfo.user.bilkentId}}</span>
+                <span class="text-secondary text-xs font-weight-bold">{{covidInfo.covidInformation.user.bilkentId}}</span>
               </td>
               <td class="align-middle text-center">
-                <span class="text-secondary text-xs font-weight-bold">{{covidInfo.user.role}}</span>
+                <span class="text-secondary text-xs font-weight-bold">{{covidInfo.covidInformation.user.role}}</span>
               </td>
               <td class="align-middle text-center text-sm">
-                <span class="badge badge-sm bg-gradient-danger" *ngIf="covidInfo.status === 'POSITIVE'">{{covidInfo.status}}</span>
-                <span class="badge badge-sm bg-gradient-warning" *ngIf="covidInfo.status === 'RISKY'">{{covidInfo.status}}</span>
-                <span class="badge badge-sm bg-gradient-success" *ngIf="covidInfo.status === 'NEGATIVE'">{{covidInfo.status}}</span>
+                <span class="badge badge-sm bg-gradient-danger" *ngIf="covidInfo.covidInformation.status === 'POSITIVE'">{{covidInfo.covidInformation.status}}</span>
+                <span class="badge badge-sm bg-gradient-warning" *ngIf="covidInfo.covidInformation.status === 'RISKY'">{{covidInfo.covidInformation.status}}</span>
+                <span class="badge badge-sm bg-gradient-success" *ngIf="covidInfo.covidInformation.status === 'NEGATIVE'">{{covidInfo.covidInformation.status}}</span>
               </td>
               <td class="align-middle text-center">
                 <span class="text-secondary text-xs font-weight-bold">{{date}}</span>
               </td>
               <td class="align-middle text-center text-sm">
-                <span class="badge badge-sm bg-gradient-success">Vaccinated</span>
+                <span class="badge badge-sm bg-gradient-success" *ngIf="covidInfo.vaccinationCount >= 2">Fully Vaccinated</span>
+                <span class="badge badge-sm bg-gradient-warning" *ngIf="covidInfo.vaccinationCount === 1">Partially Vaccinated</span>
+                <span class="badge badge-sm bg-gradient-danger" *ngIf="covidInfo.vaccinationCount === 0">Unvaccinated</span>
               </td>
               <td class="align-middle" *ngIf="userRole === 'ADMIN'">
                 <a class="btn btn-xs btn-outline-secondary mb-0 p-1 px-3" data-bs-toggle="modal" data-bs-target="#editUserInfoPopUp">edit</a>
@@ -89,7 +91,7 @@
                         </div>
                         <div class="modal-footer">
                           <button type="button" class="btn btn-sm btn-secondary" data-bs-dismiss="modal" (click)="enterTestResultForm.reset()">Cancel</button>
-                          <button type="submit" [disabled]="!enterTestResultForm.valid" class="btn btn-sm btn-primary" data-bs-dismiss="modal" (click)="addTestResult( covidInfo.user, testResult.value, testType.value, testDate.value, enterTestResultForm)">Add Result</button>
+                          <button type="submit" [disabled]="!enterTestResultForm.valid" class="btn btn-sm btn-primary" data-bs-dismiss="modal" (click)="addTestResult( covidInfo.covidInformation.user, testResult.value, testType.value, testDate.value, enterTestResultForm)">Add Result</button>
                         </div>
                     </div>
                   </div>
