@@ -5,6 +5,7 @@ import lobby.pandemica.repository.base.BaseRepository;
 import org.springframework.stereotype.Repository;
 
 import javax.transaction.Transactional;
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -13,4 +14,5 @@ import java.util.UUID;
 public interface SectionRepository extends BaseRepository<Section, UUID>
 {
     Optional<Section> findByCourseNameAndSectionNo(String courseName, Integer sectionNo);
+    List<Section> findAllByAcademicPersonnelId(UUID academicPersonnelId);
 }
