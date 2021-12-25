@@ -9,8 +9,10 @@ import {NgForm} from "@angular/forms";
   styleUrls: ['./search-user-info.component.css']
 })
 export class SearchUserInfoComponent implements OnInit {
+  term: any = "";
   userRole: string = JSON.parse( localStorage.getItem( LocalStorageConstants.userData)).role;
 
+  filteredResults: number = 0;
   date = new Date();
 
   covidInformations: {
@@ -35,6 +37,7 @@ export class SearchUserInfoComponent implements OnInit {
   ngOnInit(): void {
     this.informationService.getAllCovidInfo().subscribe( () => {
       this.covidInformations = JSON.parse( localStorage.getItem( LocalStorageConstants.allCovidInfo));
+      this.filteredResults = this.covidInformations.length;
     });
   }
 
@@ -60,5 +63,21 @@ export class SearchUserInfoComponent implements OnInit {
       form.reset();
       window.location.reload();
     });
+  }
+
+  filter() {
+    console.log( "inside filter");
+    if ( this.term === "" || this.covidInformations?.length === 0) {
+      this.filteredResults = this.covidInformations?.length;
+      return this.covidInformations;
+    }
+
+    const filtered = this.covidInformations.filter( info =>
+      info.user.name.toLowerCase().indexOf( this.term.toLowerCase()) !== -1 ||
+      (String)(info.user.bilkentId).toLowerCase().indexOf( this.term.toLowerCase()) !== -1 ||
+      info.user.role.toLowerCase().indexOf( this.term.toLowerCase()) !== -1 ||
+      info.status.toLowerCase().indexOf( this.term.toLowerCase()) !== -1);
+    this.filteredResults = filtered.length;
+    return filtered;
   }
 }
