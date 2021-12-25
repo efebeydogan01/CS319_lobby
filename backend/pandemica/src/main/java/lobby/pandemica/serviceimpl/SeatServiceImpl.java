@@ -5,12 +5,11 @@ import lobby.pandemica.dto.AcademicPersonnelDto;
 import lobby.pandemica.dto.SeatDto;
 import lobby.pandemica.dto.SectionDto;
 import lobby.pandemica.dto.StudentDto;
-import lobby.pandemica.repository.SeatRepository;
-import lobby.pandemica.repository.SectionRepository;
-import lobby.pandemica.repository.StudentRepository;
-import lobby.pandemica.repository.UserRepository;
+import lobby.pandemica.repository.*;
+import lobby.pandemica.service.NeighborService;
 import lobby.pandemica.service.SeatService;
 import lobby.pandemica.serviceimpl.base.BaseServiceImpl;
+import lobby.pandemica.serviceimpl.mapper.NeighborMapper;
 import lobby.pandemica.serviceimpl.mapper.SeatMapper;
 import lobby.pandemica.serviceimpl.mapper.SectionMapper;
 import lobby.pandemica.serviceimpl.mapper.StudentMapper;
@@ -19,6 +18,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityNotFoundException;
+import java.util.List;
 import java.util.Optional;
 import java.util.OptionalInt;
 import java.util.UUID;
@@ -34,16 +34,21 @@ public class SeatServiceImpl extends BaseServiceImpl<Seat, SeatDto> implements S
     private final SectionRepository sectionRepository;
     private final UserRepository userRepository;
     private final StudentRepository studentRepository;
+    private final NeighborRepository neighborRepository;
+    private final NeighborService neighborService;
 
     public SeatServiceImpl(SeatRepository seatRepository, SeatMapper seatMapper,
                            SectionRepository sectionRepository, UserRepository userRepository,
-                           StudentRepository studentRepository) {
+                           StudentRepository studentRepository, NeighborRepository neighborRepository,
+                           NeighborService neighborService) {
         super(seatRepository, SeatMapper.INSTANCE);
         this.seatRepository = seatRepository;
         this.seatMapper = seatMapper;
         this.sectionRepository = sectionRepository;
         this.userRepository = userRepository;
         this.studentRepository = studentRepository;
+        this.neighborRepository = neighborRepository;
+        this.neighborService = neighborService;
     }
 
     @Override
@@ -161,8 +166,54 @@ public class SeatServiceImpl extends BaseServiceImpl<Seat, SeatDto> implements S
             oldSeatEntity.setStudent(null);
         }
 
+        //find old neighbors and delete them
+        List<Neighbor> oldNeighborsOfFirst = neighborRepository.findAllByFirstStudentIdAndSectionId(studentEntity.getId(), sectionEntity.getId());
+        if( oldNeighborsOfFirst != null)
+        {
+            neighborRepository.deleteAll(oldNeighborsOfFirst);
+        }
+        List<Neighbor> oldNeighborsOfSecond = neighborRepository.findAllBySecondStudentIdAndSectionId(studentEntity.getId(), sectionEntity.getId());
+        if( oldNeighborsOfSecond != null)
+        {
+            neighborRepository.deleteAll(oldNeighborsOfSecond);
+        }
+
+        //add new neighbors
+        int newLeftNeighborRowNo = seatEntity.getRow();
+        int newLeftNeighborColumnNo = seatEntity.getColumn() - 1;
+
+        int newRightNeighborRowNo = seatEntity.getRow(); //same row no
+        int newRightNeighborColumnNo = seatEntity.getColumn() + 1;
+
+        if ((newLeftNeighborColumnNo - 1 >= 0 ) && classroom[newLeftNeighborRowNo][newLeftNeighborColumnNo])
+        {
+            //add left neighbor if it exists
+            Optional<Seat> leftSeat = seatRepository.findBySectionIdAndRowAndColumn(sectionEntity.getId(), newLeftNeighborRowNo, newLeftNeighborColumnNo);
+            if(leftSeat.isPresent()) {
+                Student leftNeighbor = leftSeat.get().getStudent();
+                if (leftNeighbor != null) {
+                    neighborService.create( NeighborMapper.INSTANCE.entityToDto(new Neighbor(sectionEntity, leftNeighbor, studentEntity)));
+                    neighborService.create( NeighborMapper.INSTANCE.entityToDto(new Neighbor(sectionEntity, studentEntity, leftNeighbor)));
+                }
+            }
+        }
+        if((newRightNeighborColumnNo + 1 <= maxColumn) && classroom[newRightNeighborRowNo][newRightNeighborColumnNo])
+        {
+            //add right neighbor if it exists
+            Optional<Seat> rightSeat = seatRepository.findBySectionIdAndRowAndColumn(sectionEntity.getId(), newRightNeighborRowNo, newRightNeighborColumnNo);
+            if(rightSeat.isPresent())
+            {
+                Student rightNeighbor = rightSeat.get().getStudent();
+                if(rightNeighbor != null){
+                    neighborService.create( NeighborMapper.INSTANCE.entityToDto(new Neighbor(sectionEntity, rightNeighbor, studentEntity)));
+                    neighborService.create( NeighborMapper.INSTANCE.entityToDto(new Neighbor(sectionEntity, studentEntity, rightNeighbor)));
+                }
+            }
+        }
         // set new seat
         seatEntity.setStudent(studentEntity);
+
+
 
         return SeatMapper.INSTANCE.entityToDto(seatRepository.save(seatEntity));
     }
