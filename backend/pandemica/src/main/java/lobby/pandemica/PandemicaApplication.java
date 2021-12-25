@@ -39,7 +39,8 @@ public class PandemicaApplication {
 						  StudentSectionService studentSectionService,
 						  SeatService seatService,
 						  StudentRepository studentRepository,
-						  UserRepository userRepository) {
+						  UserRepository userRepository,
+						  AnnouncementService announcementService) {
 		return args -> {
 			Integer dummyAge = 0;
 			UserDto userDto1 = new UserDto(UUID.randomUUID(),"Mert Barkın Er", "password",
@@ -299,7 +300,19 @@ public class PandemicaApplication {
 				}
 			}
 
+			String announcementMessage = "Dear Students, Faculty Members, and Staff,\n" +
+					"As I am sure you have heard, the government has decided to begin face-to-face education at all levels starting this September" +
+					" and is requiring everybody to be either vaccinated against Covid-19 or provide a negative PCR test at least twice a week. " +
+					"Consequently, universities in Turkey are returning to face-to-face education this fall and instituting vaccine requirements.\n" +
+					"We have now decided to hold all lectures, laboratories, studios, midterm and final exams, and other evaluation activities at Bilkent" +
+					" in a face-to-face format starting this Fall Semester.\n" +
+					"Vaccine requirements will be effective throughout all campus facilities, in addition to current Covid-19 measures that are already in " +
+					"place. Face mask use will continue to be mandatory across the whole campus including classrooms, laboratories, and studios. The university " +
+					"will continue checking HES codes and taking appropriate action for isolating risky cases.";
+			String announcementTitle = "Covid19";
 
+			AnnouncementDto announcementDto = new AnnouncementDto(UUID.randomUUID(), announcementTitle,"25.12.2021", announcementMessage);
+			announcementService.create(announcementDto);
 
 		};
 	}
