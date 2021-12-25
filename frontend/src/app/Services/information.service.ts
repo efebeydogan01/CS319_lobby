@@ -236,8 +236,8 @@ export class InformationService {
   getVaccInfo( uuid: string) {
     return this.http.get<any>( HttpUrls.baseUrl + "vaccine/get/" + uuid).
     pipe( tap( data => {
-      console.log("VaccInfo: " + data);
-      localStorage.setItem( LocalStorageConstants.vaccinationInfo, JSON.stringify( data));
+      console.log(data.data);
+      localStorage.setItem( LocalStorageConstants.vaccinationInfo, JSON.stringify( data.data));
     }));
   }
 
