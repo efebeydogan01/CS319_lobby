@@ -80,6 +80,32 @@
                   <p class="text-sm mb-0">
                     Please add vaccination file.
                   </p>
+                  <table class="table align-items-center mb-0">
+                    <thead>
+                    <tr>
+                      <th
+                        class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                        Date</th>
+                      <th
+                        class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
+                        Type</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr *ngFor="let vaccination of vaccInfo">
+                      <td>
+                        <div class="d-flex px-2 py-1 flex-column justify-content-center">
+                          <h6 class="ms-2 mb-0 text-sm">{{ vaccination.date.substring(0, 10) }}</h6>
+                        </div>
+                      </td>
+                      <td>
+                        <div class="d-flex py-1 flex-column justify-content-center">
+                          <h6 class="mb-0 text-sm">{{ vaccination.vaccineName }}</h6>
+                        </div>
+                      </td>
+                    </tr>
+                    </tbody>
+                  </table>
                 </div>
               </div>
               <div class="col-5 text-end">
