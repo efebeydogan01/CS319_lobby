@@ -17,25 +17,25 @@
       <ul class="navbar-nav  justify-content-end">
         <li class="nav-item px-3 dropdown me-2 d-flex align-items-center">
           <a href="javascript:;" class="nav-link text-body p-0" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
-            <i class="fa fa-bell cursor-pointer"></i>
+            <i class="fa fa-bell cursor-pointer"><span class="text-sm font-monospace text-primary">{{notifications.length}}</span></i>
           </a>
           <ul class="dropdown-menu dropdown-menu-end  px-2 py-3 me-sm-n4" *ngIf="notifications" aria-labelledby="dropdownMenuButton">
-            <li class="mb-2" *ngFor="let notification of notifications">
+            <li *ngFor="let notification of notifications">
               <a class="dropdown-item border-radius-md">
-                <div class="d-flex py-1">
 <!--                  <div class="my-auto">-->
 <!--                    <img src="/assets/img/efe.jpg" class="avatar avatar-sm  me-3 ">-->
 <!--                  </div>-->
-                  <div class="d-flex flex-column justify-content-center">
-                    <h6 class="text-sm font-weight-normal mb-1">
-                      <span class="font-weight-bold">{{ notification.title }}</span> {{ notification.message }}
+                    <h6 class="text-sm font-weight-normal mb-1 text-wrap">
+                      <div class="d-flex">
+                        <span class="font-weight-bold flex-grow-1">{{ notification.title }}</span>
+                        <a class="btn-outline-danger"><i class="fa fa-minus-circle"></i></a>
+                      </div>
+                      <p class="text-sm text-muted font-weight-light">{{ notification.message }}</p>
                     </h6>
 <!--                    <p class="text-xs text-secondary mb-0">-->
 <!--                      <i class="fa fa-clock me-1"></i>-->
 <!--                      13 minutes ago-->
 <!--                    </p>-->
-                  </div>
-                </div>
               </a>
             </li>
           </ul>

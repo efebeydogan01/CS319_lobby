@@ -12,9 +12,10 @@ import java.util.List;
 public class GeneralInfo
 {
 	private List<Announcement> announcements;
-	private Integer academicCases;
-	private Integer adminCases;
-	private Integer staffCases;
-	private Integer studentCases;
-	private Integer vaccinationRate;
+	private int academicCases;
+	private int adminCases;
+	private int staffCases;
+	private int studentCases;
+	private double vaccinationRate1;
+	private double vaccinationRate2;
 }
