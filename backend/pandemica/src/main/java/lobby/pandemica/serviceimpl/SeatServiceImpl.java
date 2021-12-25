@@ -91,14 +91,6 @@ public class SeatServiceImpl extends BaseServiceImpl<Seat, SeatDto> implements S
 
     public SeatDto set(RequestSeat requestSeat, UUID userId) throws EntityNotFoundException
     {
-        // check if student exists
-        // check if section exists
-        // check if row and column indexes are valid
-        // check if requested seat exists
-        // check if seat available
-        // find old seat
-        // set new seat
-
         // check if user exists
         Optional<User> infoUser = userRepository.findById(userId);
         if (!infoUser.isPresent())

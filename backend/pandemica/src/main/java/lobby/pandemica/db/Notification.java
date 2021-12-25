@@ -22,7 +22,7 @@ public class Notification extends BaseEntity
 	@JoinColumn(name = "user_id",referencedColumnName = "id")
 	private User user;
 
-	@Column(name = "receivers", nullable = false)
+	@Column(name = "receivers")
 	private String receivers;
 
 	@Column(name = "title", columnDefinition = "TEXT")
@@ -35,4 +35,8 @@ public class Notification extends BaseEntity
 	@JsonIgnore
 	@Column(name = "createdOn", updatable = false)
 	private Instant createdOn;
+
+	@ManyToOne(cascade = CascadeType.MERGE)
+	@JoinColumn(name = "receiver_id", referencedColumnName = "id")
+	private User receiver;
 }
