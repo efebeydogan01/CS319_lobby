@@ -38,6 +38,11 @@ export class PersonalInfoComponent implements OnInit {
     neighborStatus: string
   } = null;
 
+  vaccInfo: {
+    vaccineName: string,
+    date: string
+  } [] = null;
+
   @ViewChild('vaccFile')
   uploadedFile: ElementRef;
 
@@ -68,6 +73,11 @@ export class PersonalInfoComponent implements OnInit {
       this.informationService.getTestResults(this.userData.uuid).subscribe( () => {
         this.testResults = JSON.parse( localStorage.getItem( LocalStorageConstants.testResults));
       });
+
+      this.informationService.getVaccInfo(this.userData.uuid).subscribe( () => {
+        this.vaccInfo = JSON.parse( localStorage.getItem( LocalStorageConstants.vaccinationInfo));
+      });
+
     }
   }
   onFileChange( event) {

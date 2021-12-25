@@ -38,6 +38,10 @@ public class PandemicaApplication {
 						  SectionService sectionService,
 						  StudentSectionService studentSectionService,
 						  SeatService seatService,
+<<<<<<< HEAD
+=======
+						  VaccineInformationService vaccineInformationService,
+>>>>>>> b3b6a481ea3d7bb987b49a423e83b1d6dee5751a
 						  StudentRepository studentRepository,
 						  UserRepository userRepository,
 						  AnnouncementService announcementService) {
