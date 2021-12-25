@@ -198,7 +198,7 @@ export class InformationService {
 
   getNotifications( uuid: string): Observable<any> {
     return this.http.get<any>( HttpUrls.baseUrl + "notification/get/" + uuid).pipe( tap( data => {
-      // console.log( data.data);
+      console.log( data);
       localStorage.setItem( LocalStorageConstants.notifications, JSON.stringify( data.data));
     }));
   }
@@ -214,10 +214,10 @@ export class InformationService {
 
   getAllCovidInfo()
   {
-    return this.http.get<any>( HttpUrls.baseUrl + "covid/read").
+    return this.http.get<any>( HttpUrls.baseUrl + "covid/extend").
     pipe( tap( data => {
-      console.log(data);
-      localStorage.setItem( LocalStorageConstants.allCovidInfo, JSON.stringify( data));
+      console.log(data.data);
+      localStorage.setItem( LocalStorageConstants.allCovidInfo, JSON.stringify( data.data));
     }));
   }
 
@@ -231,12 +231,18 @@ export class InformationService {
       phoneNumber: string,
       role: string}, testDate:string, type: string, result: string }) {
 
-    console.log(test);
     return this.http.post<any>( HttpUrls.baseUrl + "test_result/create", test);
   }
 
   notificationRequest( notification) {
-    return this.http.post<any>( HttpUrls.baseUrl + "notification/create", notification);
+    return this.http.post<any>(HttpUrls.baseUrl + "notification/create", notification);
   }
 
+  getVaccInfo( uuid: string) {
+    return this.http.get<any>( HttpUrls.baseUrl + "vaccine/get/" + uuid).
+    pipe( tap( data => {
+      console.log(data.data);
+      localStorage.setItem( LocalStorageConstants.vaccinationInfo, JSON.stringify( data.data));
+    }));
+  }
 }

@@ -28,7 +28,6 @@ import { PreviousViolationReportsComponent } from './previous-violation-reports/
 import { PreviousRequestFormsComponent } from './previous-request-forms/previous-request-forms.component';
 import { PreviousFeedbackFormsComponent } from './previous-feedback-forms/previous-feedback-forms.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import {Ng2SearchPipeModule} from "ng2-search-filter";
 
 const appRoutes: Routes =[
   { path: '', component: LoginComponent},
@@ -76,8 +75,7 @@ const appRoutes: Routes =[
         FormsModule,
         HttpClientModule,
         ReactiveFormsModule,
-        NgbModule,
-        Ng2SearchPipeModule
+        NgbModule
     ],
   providers: [],
   bootstrap: [AppComponent]

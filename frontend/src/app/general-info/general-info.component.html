@@ -11,13 +11,13 @@
               <h1 class="display-1 fw-bolder text-primary text-gradient text-center m-0">{{generalInfo?.academicCases + generalInfo?.adminCases + generalInfo?.staffCases + generalInfo?.studentCases}}</h1>
               <p class="text-center fw-bold text-muted m-0"> Cases</p>
             </div>
-            <div class="col-4 px-3 align-self-center border-start border-end border-2">
+            <div class="col-3 px-3 align-self-center border-start border-end border-2">
               <h3 class="text-muted font-weight-bold my-1">{{generalInfo?.academicCases}} <span class="text-sm text-muted font-weight-normal"> Academic Staff</span></h3>
               <h3 class="text-muted font-weight-bold my-1">{{generalInfo?.adminCases}} <span class="text-sm text-muted font-weight-normal"> Administrative Staff</span></h3>
               <h3 class="text-muted font-weight-bold my-1">{{generalInfo?.staffCases}} <span class="text-sm text-muted font-weight-normal"> Support Staff</span></h3>
               <h3 class="text-muted font-weight-bold my-1">{{generalInfo?.studentCases}} <span class="text-end text-sm text-muted font-weight-normal"> Students</span></h3>
             </div>
-            <div class="col-5 align-self-center">
+            <div class="col-3 align-self-center border-end border-2">
               <div class="progress mx-auto" data-value='80'>
                     <span class="progress-left">
                       <span class="progress-bar border-primary"></span>
@@ -26,10 +26,24 @@
                       <span class="progress-bar border-primary"></span>
                     </span>
                 <div class="progress-value w-100 h-100 rounded-circle d-flex align-items-center justify-content-center">
-                  <div class="h2 text-success font-weight-bold m-0">{{generalInfo?.vaccinationRate}}<sup class="small">%</sup></div>
+                  <div class="h2 text-success font-weight-bold m-0">{{generalInfo?.vaccinationRate1}}<sup class="small">%</sup></div>
                 </div>
               </div>
-              <p class="text-center fw-bold text-muted mb-0 mt-3"> Vaccination Rate</p>
+              <p class="text-center fw-bold text-muted mb-0 mt-3"> 1st Dose Vaccination Rate</p>
+            </div>
+            <div class="col-3 align-self-center">
+              <div class="progress mx-auto" data-value='80'>
+                    <span class="progress-left">
+                      <span class="progress-bar border-primary"></span>
+                    </span>
+                <span class="progress-right">
+                      <span class="progress-bar border-primary"></span>
+                    </span>
+                <div class="progress-value w-100 h-100 rounded-circle d-flex align-items-center justify-content-center">
+                  <div class="h2 text-success font-weight-bold m-0">{{generalInfo?.vaccinationRate2}}<sup class="small">%</sup></div>
+                </div>
+              </div>
+              <p class="text-center fw-bold text-muted mb-0 mt-3"> 2nd Dose Vaccination Rate</p>
             </div>
           </div>
         </div>
