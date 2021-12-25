@@ -87,6 +87,14 @@ public class SeatServiceImpl extends BaseServiceImpl<Seat, SeatDto> implements S
     public SeatDto set(RequestSeat requestSeat, UUID studentId) throws EntityNotFoundException
     {
         // check if student exists
+        // check if section exists
+        // check if row and column indexes are valid
+        // check if requested seat exists
+        // check if seat available
+        // find old seat
+        // set new seat
+
+        // check if student exists
         Optional<Student> infoStudent = studentRepository.findById(studentId);
         if (!infoStudent.isPresent())
         {
@@ -111,7 +119,7 @@ public class SeatServiceImpl extends BaseServiceImpl<Seat, SeatDto> implements S
         Boolean[][] classroom = classrooms.getClassroom(sectionEntity.getClassroom());
         int maxRow = classroom.length; int maxColumn = classroom[0].length;
         int row = requestSeat.getRowNo(); int column = requestSeat.getColumnNo();
-        if (!((row < maxRow && row >= 0 ) && (column < maxColumn && column >= 0)))
+        if (!((row < maxRow && row >= 0 ) && (column < maxColumn && column >= 0) && classroom[row][column] == true))
         {
             LOGGER.warn("Row, column indexes of the seat are not valid!");
             throw new EntityNotFoundException();

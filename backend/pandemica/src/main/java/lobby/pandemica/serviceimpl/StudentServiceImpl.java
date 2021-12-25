@@ -1,9 +1,10 @@
 package lobby.pandemica.serviceimpl;
 
-import lobby.pandemica.db.Student;
-import lobby.pandemica.db.User;
+import lobby.pandemica.db.*;
 import lobby.pandemica.dto.StudentDto;
+import lobby.pandemica.repository.SeatRepository;
 import lobby.pandemica.repository.StudentRepository;
+import lobby.pandemica.repository.StudentSectionRepository;
 import lobby.pandemica.repository.UserRepository;
 import lobby.pandemica.service.StudentService;
 import lobby.pandemica.serviceimpl.base.BaseServiceImpl;
@@ -13,6 +14,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityNotFoundException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -23,11 +26,16 @@ public class StudentServiceImpl extends BaseServiceImpl<Student, StudentDto> imp
 
     private final StudentRepository studentRepository;
     private final UserRepository userRepository;
+    private final StudentSectionRepository studentSectionRepository;
+    private final SeatRepository seatRepository;
 
-    public StudentServiceImpl(StudentRepository studentRepository,UserRepository userRepository) {
+    public StudentServiceImpl(StudentRepository studentRepository, UserRepository userRepository,
+                              StudentSectionRepository studentSectionRepository, SeatRepository seatRepository) {
         super(studentRepository, StudentMapper.INSTANCE);
         this.studentRepository = studentRepository;
         this.userRepository = userRepository;
+        this.studentSectionRepository = studentSectionRepository;
+        this.seatRepository = seatRepository;
     }
 
     @Override
@@ -59,4 +67,42 @@ public class StudentServiceImpl extends BaseServiceImpl<Student, StudentDto> imp
         entity.setUser(infoUser.get());
         return super.create(StudentMapper.INSTANCE.entityToDto(entity));
     }
+
+    public List<SectionWithSeats> getSectionsWithSeats(UUID studentId) throws EntityNotFoundException
+    {
+        Optional<Student> infoStudent = studentRepository.findById(studentId);
+        if (!infoStudent.isPresent())
+        {
+            LOGGER.warn("The entity to find does not exist!");
+            throw new EntityNotFoundException();
+        }
+        Student studentEntity = infoStudent.get();
+
+        List<StudentSection> studentSections = studentSectionRepository.findAllByStudentId(studentEntity.getId());
+        if (studentSections == null) {
+            LOGGER.warn("The entity to find does not exist!");
+            throw new EntityNotFoundException();
+        }
+
+        List<SectionWithSeats> sectionWithSeatsList = new ArrayList<>();
+        for (int i = 0; i < studentSections.size(); i++) {
+            StudentSection studentSection = studentSections.get(i);
+            Section section = studentSection.getSection();
+            List<Seat> seats = seatRepository.findAllBySectionId(section.getId());
+
+            SectionWithSeats sectionWithSeats = new SectionWithSeats();
+            sectionWithSeats.setSection(section);
+            sectionWithSeats.setSeats(seats);
+            sectionWithSeatsList.add(sectionWithSeats);
+        }
+
+        if (sectionWithSeatsList == null) {
+            LOGGER.warn("Getting entity was unsuccessful due to an error with the entities given.");
+            throw new EntityNotFoundException();
+        }
+
+        return sectionWithSeatsList;
+    }
+
+
 }

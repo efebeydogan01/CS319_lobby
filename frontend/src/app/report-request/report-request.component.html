@@ -8,7 +8,7 @@
         </div>
       </div>
       <div class="card-body p-3">
-        <form class="p-2">
+        <form #violationForm="ngForm" role="form" class="p-2">
 <!--          <select class="form-select" id="inputGroupSelect01">-->
 <!--            <option selected>Choose Violation Type</option>-->
 <!--            <option value="1">One</option>-->
@@ -17,16 +17,17 @@
 <!--          </select>-->
           <div class="my-3">
             <label for="exampleInputEmail1" class="form-label">Violation Message</label>
-            <textarea #violationText class="form-control" id="exampleFormControlTextarea1" rows="2"></textarea>
+            <textarea #violationText="ngModel" ngModel name="violationText" required class="form-control" id="exampleFormControlTextarea1" rows="2"></textarea>
           </div>
           <div class="mb-3">
             <label for="exampleInputPassword1" class="form-label">Violation Place</label>
-            <input #violationPlace class="form-control" id="exampleInputPassword1">
+            <input #violationPlace="ngModel" ngModel name="violationPlace" required class="form-control" id="exampleInputPassword1">
           </div>
         </form>
+        <span class="text-danger ps-2 text-sm" *ngIf="(violationText.touched || violationPlace.touched) && (!violationText.valid || !violationPlace.valid)">Please don't leave a field empty!</span>
       </div>
       <div class="card-footer text-end pt-0">
-        <a type="submit" (click)="onViolationSubmit(violationText.value, violationPlace.value)" class="btn btn-primary m-0" data-bs-toggle="modal" data-bs-target="#formSubmittedPopup">Submit</a>
+        <button type="submit" [disabled]="!violationForm.valid" (click)="onViolationSubmit(violationText.value, violationPlace.value, violationForm)" class="btn btn-primary m-0" data-bs-toggle="modal" data-bs-target="#formSubmittedPopup">Submit</button>
       </div>
     </div>
     <a class="nav-link text-center text-sm p-1 mb-0" routerLink="previous-violation-reports">View Previous Reports</a>
@@ -40,19 +41,20 @@
         </div>
       </div>
       <div class="card-body p-3">
-        <form class="p-2">
+        <form #requestForm="ngForm" role="form" class="p-2">
           <div class="mb-3">
             <label for="exampleInputPassword1" class="form-label">Title</label>
-            <input class="form-control" id="exampleInputPassword1" #requestTitle>
+            <input #requestTitle="ngModel" ngModel name="requestTitle" required class="form-control" id="exampleInputPassword1">
           </div>
           <div class="my-3">
             <label for="exampleInputEmail1" class="form-label">Request</label>
-            <textarea class="form-control" id="exampleFormControlTextarea1" rows="5" style="height:100%;" #requestBody></textarea>
+            <textarea #requestBody="ngModel" ngModel name="requestBody" required class="form-control" id="exampleFormControlTextarea1" rows="5" style="height:100%;"></textarea>
           </div>
         </form>
+        <span class="text-danger ps-2 text-sm" *ngIf="(requestTitle.touched || requestBody.touched) && (!requestTitle.valid || !requestBody.valid)">Please don't leave a field empty!</span>
       </div>
       <div class="card-footer text-end pt-0">
-        <a type="submit" class="btn btn-primary m-0" data-bs-toggle="modal" data-bs-target="#formSubmittedPopup" (click)="onRequestSubmit(requestTitle.value, requestBody.value)">Submit</a>
+        <button type="submit" [disabled]="!requestForm.valid" class="btn btn-primary m-0" data-bs-toggle="modal" data-bs-target="#formSubmittedPopup" (click)="onRequestSubmit(requestTitle.value, requestBody.value, requestForm)">Submit</button>
         <div class="modal fade" id="formSubmittedPopup" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
           <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
@@ -78,7 +80,7 @@
         </div>
       </div>
       <div class="card-body p-3 pt-1">
-        <form class="p-2">
+        <form #feedbackForm="ngForm" role="form"class="p-2">
           <div class="form-group" style="text-align: center;">
             <ngb-rating [(rate)]="currentRate">
               <ng-template let-fill="fill" let-index="index">
@@ -88,16 +90,17 @@
           </div>
           <div class="mb-3">
             <label for="exampleInputPassword1" class="form-label">Title</label>
-            <input class="form-control" id="exampleInputPassword1" #feedbackTitle>
+            <input #feedbackTitle="ngModel" ngModel name="feedbackTitle" required class="form-control" id="exampleInputPassword1" >
           </div>
           <div class="my-3">
             <label for="exampleInputEmail1" class="form-label">Feedback</label>
-            <textarea class="form-control" id="exampleFormControlTextarea1" rows="4" #feedbackBody></textarea>
+            <textarea #feedbackBody="ngModel" ngModel name="feedbackBody" required class="form-control" id="exampleFormControlTextarea1" rows="4"y></textarea>
           </div>
         </form>
+        <span class="text-danger ps-2 text-sm" *ngIf="(feedbackTitle.touched || feedbackBody.touched) && (!feedbackTitle.valid || !feedbackBody.valid)">Please don't leave a field empty!</span>
       </div>
       <div class="card-footer text-end pt-0">
-        <a type="submit" class="btn btn-primary m-0" data-bs-toggle="modal" data-bs-target="#formSubmittedPopup" (click)="onFeedbackSubmit( feedbackTitle.value, feedbackBody.value)">Submit</a>
+        <button type="submit" [disabled]="!feedbackForm.valid" class="btn btn-primary m-0" data-bs-toggle="modal" data-bs-target="#formSubmittedPopup" (click)="onFeedbackSubmit( feedbackTitle.value, feedbackBody.value, feedbackForm)">Submit</button>
       </div>
     </div>
     <a class="nav-link text-center text-sm p-1 mb-0" routerLink="previous-feedback-forms">View Previous Feedbacks</a>

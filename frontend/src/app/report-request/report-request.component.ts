@@ -2,7 +2,7 @@ import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {LocalStorageConstants} from "../Services/LocalStorageConstants";
 import {HttpClient} from "@angular/common/http";
 import {HttpUrls} from "../Services/HttpUrls";
-import {FormControl, Validators} from "@angular/forms";
+import {FormControl, NgForm, Validators} from "@angular/forms";
 
 @Component({
   selector: 'app-report-request',
@@ -20,14 +20,16 @@ import {FormControl, Validators} from "@angular/forms";
 })
 export class ReportRequestComponent implements OnInit {
 
-  @ViewChild('violationText') violationText: ElementRef;
-  @ViewChild('violationPlace') violationPlace: ElementRef;
+  // @ViewChild('violationText') violationText: ElementRef;
+  // @ViewChild('violationPlace') violationPlace: ElementRef;
+  //
+  // @ViewChild('requestTitle') requestTitle: ElementRef;
+  // @ViewChild('requestBody') requestBody: ElementRef;
+  //
+  // @ViewChild('feedbackTitle') feedbackTitle: ElementRef;
+  // @ViewChild('feedbackBody') feedbackBody: ElementRef;
 
-  @ViewChild('requestTitle') requestTitle: ElementRef;
-  @ViewChild('requestBody') requestBody: ElementRef;
 
-  @ViewChild('feedbackTitle') feedbackTitle: ElementRef;
-  @ViewChild('feedbackBody') feedbackBody: ElementRef;
 
   currentRate = 0;
   constructor( private http: HttpClient) { }
@@ -35,7 +37,7 @@ export class ReportRequestComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  onViolationSubmit( violationText: string, violationPlace: string) {
+  onViolationSubmit( violationText: string, violationPlace: string, form: NgForm) {
     const uuid: string = JSON.parse( localStorage.getItem( LocalStorageConstants.userData)).uuid;
     const userData = {
       id: uuid
@@ -49,8 +51,7 @@ export class ReportRequestComponent implements OnInit {
     this.http.post<any>( HttpUrls.baseUrl + "violation_report/create", violation).subscribe( {
       next: () => {
         console.log( "violation report is submitted");
-        this.violationPlace.nativeElement.value = "";
-        this.violationText.nativeElement.value = "";
+        form.reset();
       },
       error: () => {
 
@@ -59,7 +60,7 @@ export class ReportRequestComponent implements OnInit {
     );
   }
 
-  onRequestSubmit( requestTitle: string, requestBody: string) {
+  onRequestSubmit( requestTitle: string, requestBody: string, form: NgForm) {
     const uuid: string = JSON.parse( localStorage.getItem( LocalStorageConstants.userData)).uuid;
     const userData = {
       id: uuid
@@ -74,8 +75,7 @@ export class ReportRequestComponent implements OnInit {
     this.http.post<any>( HttpUrls.baseUrl + "request_form/create", request).subscribe( {
         next: () => {
           console.log( "request form is submitted");
-          this.requestBody.nativeElement.value = "";
-          this.requestTitle.nativeElement.value = "";
+          form.reset();
         },
         error: () => {
 
@@ -84,7 +84,7 @@ export class ReportRequestComponent implements OnInit {
     );
   }
 
-  onFeedbackSubmit( feedbackTitle: string, feedbackBody: string) {
+  onFeedbackSubmit( feedbackTitle: string, feedbackBody: string, form: NgForm) {
     const uuid: string = JSON.parse( localStorage.getItem( LocalStorageConstants.userData)).uuid;
     const userData = {
       id: uuid
@@ -101,8 +101,7 @@ export class ReportRequestComponent implements OnInit {
         next: () => {
           console.log( "feedback form is submitted");
           this.currentRate = 0;
-          this.feedbackBody.nativeElement.value = "";
-          this.feedbackTitle.nativeElement.value = "";
+          form.reset();
         },
         error: () => {
 
