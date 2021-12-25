@@ -3,6 +3,7 @@ import {Observable, Subject, tap} from "rxjs";
 import {HttpClient} from "@angular/common/http";
 import {HttpUrls} from "./HttpUrls";
 import {LocalStorageConstants} from "./LocalStorageConstants";
+import {NgForm} from "@angular/forms";
 
 @Injectable({
   providedIn: 'root'
@@ -232,6 +233,10 @@ export class InformationService {
 
     console.log(test);
     return this.http.post<any>( HttpUrls.baseUrl + "test_result/create", test);
+  }
+
+  notificationRequest( notification) {
+    return this.http.post<any>( HttpUrls.baseUrl + "notification/create", notification);
   }
 
 }
