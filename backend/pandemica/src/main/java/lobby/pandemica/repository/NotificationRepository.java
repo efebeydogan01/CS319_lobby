@@ -13,4 +13,5 @@ import java.util.UUID;
 public interface NotificationRepository extends BaseRepository<Notification, UUID>
 {
 	List<Notification> findAllByReceivers(String receivers);
+	List<Notification> findAllByReceiverId(UUID receiverId);
 }
