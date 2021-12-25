@@ -71,8 +71,11 @@ public class TestResultServiceImpl extends BaseServiceImpl<TestResult, TestResul
         for (UUID id: neighborIdList)
         {
             CovidInformation covidInformation = covidInformationRepository.getByUserId(id);
-            covidInformation.setStatus("RISKY");
-            covidInformationRepository.save(covidInformation);
+            if (covidInformation.getStatus().equalsIgnoreCase("NEGATIVE"))
+            {
+                covidInformation.setStatus("RISKY");
+                covidInformationRepository.save(covidInformation);
+            }
         }
     }
 }
