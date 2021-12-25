@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { InformationService } from '../Services/information.service';
 import {LocalStorageConstants} from "../Services/LocalStorageConstants";
+import {NgForm} from "@angular/forms";
 
 @Component({
   selector: 'app-search-user-info',
@@ -45,7 +46,7 @@ export class SearchUserInfoComponent implements OnInit {
     name: string,
     password: string,
     phoneNumber: string,
-    role: string}, testResult: string, testType: string, testDate:string) {
+    role: string}, testResult: string, testType: string, testDate:string, form: NgForm) {
     let test = {
       "user": user,
       "testDate": testDate.substring(0,10),
@@ -56,6 +57,7 @@ export class SearchUserInfoComponent implements OnInit {
     console.log(testDate.substring(0,10));
 
     this.informationService.addTestResult(test).subscribe( () => {
+      form.reset();
     });
   }
 }
