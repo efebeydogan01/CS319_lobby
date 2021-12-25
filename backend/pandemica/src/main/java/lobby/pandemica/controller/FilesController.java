@@ -8,7 +8,6 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.stream.Collectors;
 
-import jdk.incubator.jpackage.internal.IOUtils;
 import lobby.pandemica.controller.base.BaseController;
 import lobby.pandemica.db.FileInfo;
 import lobby.pandemica.db.ResponseMessage;
@@ -28,7 +27,7 @@ import org.springframework.web.servlet.mvc.method.annotation.MvcUriComponentsBui
 
 @RestController
 //@CrossOrigin("http://localhost:8081")
-@RequestMapping("vacc_info")
+@RequestMapping("file")
 public class FilesController extends BaseController<CovidInformationDto> {
 
     static int count = 0;
