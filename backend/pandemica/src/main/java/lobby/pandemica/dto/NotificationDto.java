@@ -6,15 +6,18 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.time.Instant;
 import java.util.UUID;
 
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class NeighborDto extends BaseDto<UUID>
+public class NotificationDto extends BaseDto<UUID>
 {
-    private SectionDto section;
-    private StudentDto firstStudent;
-    private StudentDto secondStudent;
+	private UserDto user;
+	private String receivers;
+	private String title;
+	private String message;
+	private Instant createdOn;
 }
