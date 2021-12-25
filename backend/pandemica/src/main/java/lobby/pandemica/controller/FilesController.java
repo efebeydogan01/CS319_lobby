@@ -7,7 +7,6 @@ import java.nio.file.Files;
 import java.util.List;
 import java.util.Scanner;
 import java.util.stream.Collectors;
-
 import lobby.pandemica.controller.base.BaseController;
 import lobby.pandemica.db.FileInfo;
 import lobby.pandemica.db.ResponseMessage;
@@ -24,7 +23,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.method.annotation.MvcUriComponentsBuilder;
-
 @RestController
 //@CrossOrigin("http://localhost:8081")
 @RequestMapping("file")

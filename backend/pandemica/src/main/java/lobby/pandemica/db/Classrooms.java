@@ -6,6 +6,9 @@ import java.util.HashMap;
 @Data
 @Getter
 @Setter
+/**
+ * Represents built in, hardcoded classroom templates as boolean multi-dim arrays; showing available seats
+ */
 public class Classrooms
 {
     private static HashMap<String, Boolean[][]> classrooms;
@@ -26,6 +29,9 @@ public class Classrooms
             {true, true, true, true, true, true, true, true, true, true}
     };
 
+    /**
+     *
+     */
     public Classrooms()
     {
         classrooms = new HashMap<>();

@@ -18,6 +18,9 @@ import javax.persistence.*;
                 )
         }
 )
+/**
+ * Entity class of requestForm sent by users, includes the sender and text
+ */
 public class Seat extends BaseEntity {
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "student_id", referencedColumnName = "id")

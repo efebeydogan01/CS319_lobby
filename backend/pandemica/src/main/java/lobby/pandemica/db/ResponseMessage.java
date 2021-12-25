@@ -1,5 +1,7 @@
 package lobby.pandemica.db;
-
+/**
+ * Helper class for file uploading system, inclues the message in uploading
+ */
 public class ResponseMessage {
     private String message;
 

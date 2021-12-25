@@ -14,6 +14,9 @@ import javax.persistence.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "request_form")
+/**
+ * Entity class of requestForm sent by users, includes the sender and text
+ */
 public class RequestForm extends BaseEntity
 {
 	@ManyToOne(cascade = CascadeType.MERGE)

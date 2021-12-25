@@ -9,6 +9,9 @@ import lombok.Setter;
 import java.util.Date;
 import java.util.UUID;
 
+/**
+ * Dto of vaccinationInformation entity
+ */
 @Getter
 @Setter
 @AllArgsConstructor

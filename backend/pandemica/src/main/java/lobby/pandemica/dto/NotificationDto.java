@@ -13,6 +13,9 @@ import java.util.UUID;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+/**
+ * Dto of notification entity
+ */
 public class NotificationDto extends BaseDto<UUID>
 {
 	private UserDto user;

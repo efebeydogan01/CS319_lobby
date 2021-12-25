@@ -16,6 +16,9 @@ import javax.validation.constraints.Min;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "feedback_form")
+/**
+ * Entity class for feedback forms
+ */
 public class FeedbackForm extends BaseEntity
 {
 	@ManyToOne(cascade = CascadeType.MERGE)

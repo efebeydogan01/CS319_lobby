@@ -19,6 +19,10 @@ import java.util.UUID;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "users")
+/**
+ * User entity representing the general user of the Pandemica application, is delegated by all
+ * other types of users
+ */
 public class User extends BaseEntity
 {
 	//Attributes

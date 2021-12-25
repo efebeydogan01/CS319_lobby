@@ -12,6 +12,9 @@ import java.util.UUID;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+/**
+ * Dto of feedback form entity
+ */
 public class FeedbackFormDto extends BaseDto<UUID>
 {
 	private UserDto user;

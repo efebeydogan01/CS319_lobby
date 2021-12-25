@@ -17,6 +17,9 @@ import java.util.Set;
 @NoArgsConstructor
 @Table(name = "academic_personnel")
 @Entity
+/**
+ * Entity class for academic personnel, which delegates a corresponding user entity
+ */
 public class AcademicPersonnel extends BaseEntity {
     @Column(name = "department", nullable = false)
     private String department;

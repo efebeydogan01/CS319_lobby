@@ -1,5 +1,7 @@
 package lobby.pandemica.db;
-
+/**
+ * Helper class holding the name and url of an uploaded file, in this case it is the vaccination file
+ */
 public class FileInfo {
     private String name;
     private String url;

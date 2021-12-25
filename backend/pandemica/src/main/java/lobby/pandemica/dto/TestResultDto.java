@@ -16,6 +16,9 @@ import java.util.UUID;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+/**
+ * Dto of testResult entity
+ */
 public class TestResultDto extends BaseDto<UUID>
 {
     private UserDto user;

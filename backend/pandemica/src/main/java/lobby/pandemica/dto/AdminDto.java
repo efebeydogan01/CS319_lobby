@@ -12,6 +12,9 @@ import java.util.UUID;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+/**
+ * Dto of admin entity
+ */
 public class AdminDto extends BaseDto<UUID>
 {
     private UUID id;
