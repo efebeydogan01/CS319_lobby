@@ -8,5 +8,5 @@ import java.util.UUID;
 
 public interface SeatService extends BaseCrudService<SeatDto>
 {
-    SeatDto set(RequestSeat requestSeat, UUID studentID);
+    SeatDto set(RequestSeat requestSeat, UUID userId);
 }
