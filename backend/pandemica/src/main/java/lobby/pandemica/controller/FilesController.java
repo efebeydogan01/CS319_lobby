@@ -79,8 +79,8 @@ public class FilesController extends BaseController<CovidInformationDto> {
         return ResponseEntity.ok()
                 .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + file.getFilename() + "\"").body(file);
     }
-
-    @GetMapping("/files/{filename:.+}")
+    /*
+    @GetMapping("/files/{filename:.+}/")
     @ResponseBody
     public ResponseEntity<String> getFileAsString(@PathVariable String filename) throws IOException {
         Resource file = storageService.load(filename);
@@ -90,4 +90,5 @@ public class FilesController extends BaseController<CovidInformationDto> {
         return ResponseEntity.ok()
                 .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + file.getFilename() + "\"").body(fileString);
     }
+    */
 }
