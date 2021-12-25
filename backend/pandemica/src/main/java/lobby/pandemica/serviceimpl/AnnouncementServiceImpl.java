@@ -79,21 +79,26 @@ public class AnnouncementServiceImpl extends BaseServiceImpl<Announcement, Annou
 		int staffCases = 0;
 		int studentCases = 0;
 
-		int vaccinationRate;
-		int vaccinatedCount = 0;
+		double vaccinationRate1 = 0;
+		double vaccinationRate2 = 0;
+		int vaccinatedCount1 = 0;
+		int vaccinatedCount2 = 0;
 		List<User> infoUsers = userRepository.findAll();
 		if (infoUsers != null) {
 			for (int i = 0; i < infoUsers.size(); i++) {
 				User user = infoUsers.get(i);
 				List<VaccineInformation> vaccineInformationList = vaccineInformationRepository.findAllByUserId(user.getId());
-				if (vaccineInformationList != null && vaccineInformationList.size() >= 2) {
-					vaccinatedCount++;
+				if (vaccineInformationList != null) {
+					if (vaccineInformationList.size() == 1) {
+						vaccinatedCount1++;
+					}
+					else if (vaccineInformationList.size() >= 2) {
+						vaccinatedCount2++;
+					}
 				}
 			}
-			vaccinationRate = vaccinatedCount / infoUsers.size();
-		}
-		else {
-			vaccinationRate = 0;
+			vaccinationRate1 = 100.0 * vaccinatedCount1 / infoUsers.size();
+			vaccinationRate2 = 100.0 * vaccinatedCount2 / infoUsers.size();
 		}
 
 		GeneralInfo generalInfo = new GeneralInfo();
@@ -124,7 +129,8 @@ public class AnnouncementServiceImpl extends BaseServiceImpl<Announcement, Annou
 		generalInfo.setAdminCases(adminCases);
 		generalInfo.setStudentCases(studentCases);
 		generalInfo.setStaffCases(staffCases);
-		generalInfo.setVaccinationRate(vaccinationRate);
+		generalInfo.setVaccinationRate1(vaccinationRate1);
+		generalInfo.setVaccinationRate2(vaccinationRate2);
 		return generalInfo;
 	}
 
