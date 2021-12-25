@@ -69,23 +69,25 @@ export class SeatingPlanComponent implements OnInit, OnDestroy {
   saveSelection(): void {
     const userData = JSON.parse(localStorage.getItem(LocalStorageConstants.userData));
 
-    let seat = {
-      courseName: this.courseName,
-      sectionNo: this.sectionNo,
-      rowNo: Math.floor(this.selectedSeat / 10),
-      columnNo: Math.floor(this.selectedSeat % 10)
-    }
-
-    console.log(seat)
-    this.informationService.makeSeatSelection(userData.uuid, seat).pipe( take( 1)).subscribe( {
-      next: () => {
-        this.ownedSeat = this.selectedSeat;
-        this.resetSelection();
-        window.location.reload();
-      },
-      error: () => {
-        console.log("Seat not available")
+    if (this.selectedSeat != -1) {
+      let seat = {
+        courseName: this.courseName,
+        sectionNo: this.sectionNo,
+        rowNo: Math.floor(this.selectedSeat / 10),
+        columnNo: Math.floor(this.selectedSeat % 10)
       }
-    });
+
+      console.log(seat)
+      this.informationService.makeSeatSelection(userData.uuid, seat).pipe(take(1)).subscribe({
+        next: () => {
+          this.ownedSeat = this.selectedSeat;
+          this.resetSelection();
+          window.location.reload();
+        },
+        error: () => {
+          console.log("Seat not available")
+        }
+      });
+    }
   }
 }
