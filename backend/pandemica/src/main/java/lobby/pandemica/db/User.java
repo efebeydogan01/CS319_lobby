@@ -13,6 +13,9 @@ import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
+/**
+ * Represents a user, which is the common attributes of everyone.
+ */
 @Entity
 @Getter
 @Setter

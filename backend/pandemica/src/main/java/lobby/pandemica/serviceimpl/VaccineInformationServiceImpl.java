@@ -36,7 +36,6 @@ public class VaccineInformationServiceImpl extends BaseServiceImpl<VaccineInform
 		this.vaccineInformationMapper = vaccineInformationMapper;
 	}
 
-	//TODO allahın bir kulu burayı yapsın lütfen
 	@Override
 	public List<String> upload(MultipartFile multipartFile, UUID id)
 	{

@@ -15,6 +15,9 @@ import javax.persistence.EntityNotFoundException;
 import java.util.List;
 import java.util.UUID;
 
+/**
+ * Controller for Notifications, extends from Base Controller
+ */
 @RestController
 @RequestMapping("notification")
 public class NotificationController extends BaseController<NotificationDto>
@@ -27,6 +30,11 @@ public class NotificationController extends BaseController<NotificationDto>
 		this.notificationService = notificationService;
 	}
 
+	/**
+	 * Gets the list of notifications that address the user with the UUID id.
+	 * @param id the UUID of the user who is logged in.
+	 * @return the list of notifications that user has.
+	 */
 	@GetMapping("get/{id}")
 	public ResponseEntity<RestResponse<List<NotificationDto>>> getNotificationsForUser(@PathVariable String id)
 	{

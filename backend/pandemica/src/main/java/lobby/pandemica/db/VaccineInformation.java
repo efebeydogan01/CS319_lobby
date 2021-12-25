@@ -9,6 +9,9 @@ import lombok.Setter;
 import javax.persistence.*;
 import java.util.Date;
 
+/**
+ * Represents the vaccine information of a user. This class holds a reference to its user.
+ */
 @Entity
 @Getter
 @Setter

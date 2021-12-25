@@ -16,6 +16,9 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.persistence.EntityNotFoundException;
 import java.util.UUID;
 
+/**
+ * Controller for Academic Personnel, extends from Base Controller
+ */
 @RestController
 @RequestMapping("academic_personnel")
 public class AcademicPersonnelController extends BaseController<AcademicPersonnelDto> {
@@ -26,6 +29,11 @@ public class AcademicPersonnelController extends BaseController<AcademicPersonne
         this.academicPersonnelService = academicPersonnelService;
     }
 
+    /**
+     * Reads a users specific attributes of an academic personnel
+     * @param id is the UUID of the USER, not the respective academic personnel
+     * @return the academic personnel associated with the user that has the UUID id
+     */
     @Override
     @GetMapping("read/{id}")
     public ResponseEntity<RestResponse<AcademicPersonnelDto>> read(@PathVariable String id)

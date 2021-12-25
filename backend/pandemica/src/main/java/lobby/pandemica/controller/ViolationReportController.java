@@ -16,6 +16,9 @@ import javax.persistence.EntityNotFoundException;
 import java.util.List;
 import java.util.UUID;
 
+/**
+ * Controller for violation reports, extends from Base Controller
+ */
 @RestController
 @RequestMapping("violation_report")
 public class ViolationReportController extends BaseController<ViolationReportDto>
@@ -28,6 +31,11 @@ public class ViolationReportController extends BaseController<ViolationReportDto
 		this.violationFormService = violationFormService;
 	}
 
+	/**
+	 * gets the list of violation reports created by the user with the UUID id
+	 * @param id the UUID of the user
+	 * @return the list of violation reports.
+	 */
 	@GetMapping("readAllFromUser/{id}")
 	public ResponseEntity<RestResponse<List<ViolationReportDto>>> readAllFromUser(@PathVariable String id)
 	{

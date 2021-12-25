@@ -57,6 +57,7 @@ public class TestResultServiceImpl extends BaseServiceImpl<TestResult, TestResul
         covidInformationRepository.save(covidInformation);
         if (dto.getResult().equalsIgnoreCase("POSITIVE"))
         {
+            // if a test result comes as positive, the neighbors of that user should be marked as risky
             checkNeighbors(dto.getUser().getId(), dto);
         }
         return super.create(dto);
@@ -80,10 +81,13 @@ public class TestResultServiceImpl extends BaseServiceImpl<TestResult, TestResul
         for (UUID id: neighborIdList)
         {
             CovidInformation covidInformation = covidInformationRepository.getByUserId(id);
+            // If a neighbor is negative, their status should be changed to risky, otherwise it should not be changed
             if (covidInformation.getStatus().equalsIgnoreCase("NEGATIVE"))
             {
                 covidInformation.setStatus("RISKY");
                 covidInformationRepository.save(covidInformation);
+                // After changing the status of the neighbor, a notification is sent to that neighbor stating they should
+                // make a test appointment
                 Notification notification = new Notification();
                 notification.setUser(UserMapper.INSTANCE.dtoToEntity(dto.getUser()));
                 notification.setTitle("Neighbor Contacted Virus!");

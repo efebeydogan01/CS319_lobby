@@ -8,6 +8,10 @@ import lombok.Setter;
 
 import javax.persistence.*;
 
+/**
+ * Represents the unique attributes of a medical employee.
+ * This class holds a reference to the User table, which has the common attributes of this medical employee.
+ */
 @Entity
 @Getter
 @Setter

@@ -43,18 +43,18 @@ public class NeighborServiceImpl extends BaseServiceImpl<Neighbor, NeighborDto> 
     public Boolean getRiskStatus(UUID id)
     {
         Optional<Student> dbStudent = studentRepository.findByUserId(id);
-        if (!dbStudent.isPresent())
+        if (!dbStudent.isPresent()) // if that user does not exist, return null
         {
             return null;
         }
         UUID studentId = dbStudent.get().getId();
         User dbUser = userRepository.getById(id);
-        if (!dbUser.getRole().equalsIgnoreCase(Role.ROLES.STUDENT.name()))
+        if (!dbUser.getRole().equalsIgnoreCase(Role.ROLES.STUDENT.name())) // if that user is not a student, return null
         {
             return null;
         }
         int noOfNeighbors = neighborRepository.countNeighborsByFirstStudentId(studentId);
-        if (noOfNeighbors == 0)
+        if (noOfNeighbors == 0) // if that student does not have a neighbor, they are not in risk
         {
             return Boolean.TRUE;
         }
@@ -67,6 +67,7 @@ public class NeighborServiceImpl extends BaseServiceImpl<Neighbor, NeighborDto> 
         List<User> neighborsUsers = new ArrayList<>();
         for (Student student: neighbors)
         {
+            // this loop adds the students the user has as neighbors
             Optional<Student> optionalStudent = studentRepository.findById(student.getId());
             optionalStudent.ifPresent(value -> neighborsUsers.add(value.getUser()));
         }
@@ -75,6 +76,7 @@ public class NeighborServiceImpl extends BaseServiceImpl<Neighbor, NeighborDto> 
             Optional<CovidInformation> covidInformation = covidInformationRepository.findByUserId(user.getId());
             if (covidInformation.isPresent() && covidInformation.get().getStatus().equalsIgnoreCase(Status.RISK.POSITIVE.name()))
             {
+                // if one of their neighbors is positive, return false
                 return Boolean.FALSE;
             }
         }
@@ -89,6 +91,7 @@ public class NeighborServiceImpl extends BaseServiceImpl<Neighbor, NeighborDto> 
             LOGGER.warn("The entity to save cannot be empty!");
             throw new EntityNotFoundException();
         }
+        // since we search for neighbors only using the firstStudent, we create a mirrored neighbor relationship
         NeighborDto otherNeighbor = new NeighborDto();
         otherNeighbor.setFirstStudent(dto.getSecondStudent());
         otherNeighbor.setSecondStudent(dto.getFirstStudent());

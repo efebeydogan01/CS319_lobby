@@ -10,6 +10,9 @@ import javax.persistence.*;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 
+/**
+ * Represents the feedback form created by the user User
+ */
 @Entity
 @Getter
 @Setter

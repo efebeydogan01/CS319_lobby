@@ -11,6 +11,9 @@ import org.springframework.web.bind.annotation.*;
 import javax.persistence.EntityNotFoundException;
 import java.util.UUID;
 
+/**
+ * Controller for Covid Information, extends from Base Controller
+ */
 @RestController
 @RequestMapping("covid")
 public class CovidInformationController extends BaseController<CovidInformationDto>
@@ -22,6 +25,11 @@ public class CovidInformationController extends BaseController<CovidInformationD
         this.covidInformationService = covidInformationService;
     }
 
+    /**
+     * Gets the associated covid information from the user with the UUID id
+     * @param id the UUID of the user
+     * @return the covid information of the user with the UUID id
+     */
     @GetMapping(value = "get/{id}")
     public ResponseEntity<RestResponse<CovidInformationDto>> get(@PathVariable String id)
     {

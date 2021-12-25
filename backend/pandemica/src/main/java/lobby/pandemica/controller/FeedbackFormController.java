@@ -16,6 +16,9 @@ import javax.persistence.EntityNotFoundException;
 import java.util.List;
 import java.util.UUID;
 
+/**
+ * Controller for Feedback Forms, extends from Base Controller
+ */
 @RestController
 @RequestMapping("feedback_form")
 public class FeedbackFormController extends BaseController<FeedbackFormDto>
@@ -28,6 +31,11 @@ public class FeedbackFormController extends BaseController<FeedbackFormDto>
 		this.feedbackFormService = feedbackFormService;
 	}
 
+	/**
+	 * Reads all the feedback forms a user created
+	 * @param id the users id
+	 * @return the feedback forms the user with UUID id created
+	 */
 	@GetMapping("readAllFromUser/{id}")
 	public ResponseEntity<RestResponse<List<FeedbackFormDto>>> readAllFromUser(@PathVariable String id)
 	{

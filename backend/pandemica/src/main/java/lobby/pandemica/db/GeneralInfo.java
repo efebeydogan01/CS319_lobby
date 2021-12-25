@@ -4,6 +4,10 @@ import lombok.*;
 
 import java.util.List;
 
+/**
+ * Holds the statistics for the university, the case numbers by the user type.
+ * This class in not represented in the database, it is just created and sent to frontend when necessary.
+ */
 @Data
 @Getter
 @Setter
