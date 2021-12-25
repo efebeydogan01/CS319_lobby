@@ -73,7 +73,7 @@ public class FilesController extends BaseController<CovidInformationDto> {
     @GetMapping("/files/{id}")
     @ResponseBody
     public ResponseEntity<Resource> getFile(@PathVariable String id){
-        Resource file = storageService.load(id + ".pdf");
+        Resource file = storageService.load(id);
 
         return ResponseEntity.ok()
                 .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + file.getFilename() + "\"").body(file);
