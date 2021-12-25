@@ -28,6 +28,7 @@ import { PreviousViolationReportsComponent } from './previous-violation-reports/
 import { PreviousRequestFormsComponent } from './previous-request-forms/previous-request-forms.component';
 import { PreviousFeedbackFormsComponent } from './previous-feedback-forms/previous-feedback-forms.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { InstructorSeatingPlanComponent } from './instructor-seating-plan/instructor-seating-plan.component';
 
 const appRoutes: Routes =[
   { path: '', component: LoginComponent},
@@ -66,7 +67,8 @@ const appRoutes: Routes =[
     SeatingPlanComponent,
     PreviousViolationReportsComponent,
     PreviousRequestFormsComponent,
-    PreviousFeedbackFormsComponent
+    PreviousFeedbackFormsComponent,
+    InstructorSeatingPlanComponent
   ],
     imports: [
         BrowserModule,

@@ -2,6 +2,7 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {ClassInfoComponent} from "../class-info/class-info.component";
 import {Subject} from "rxjs";
 import {SeatService} from "../Services/seat.service";
+import {LocalStorageConstants} from "../Services/LocalStorageConstants";
 
 @Component({
   selector: 'app-seat',
@@ -20,11 +21,15 @@ export class SeatComponent implements OnInit {
   } = null;
   @Output("updateSeat") updateSeat: EventEmitter<number> = new EventEmitter<number>();
   @Output( "seatEmitter") seatEmitter: EventEmitter<SeatComponent> = new EventEmitter<SeatComponent>();
+  userRole: string = JSON.parse( localStorage.getItem( LocalStorageConstants.userData)).role;
+
   constructor() {
   }
 
   ngOnInit(): void {
-    this.seatEmitter.next( this);
+    if (this.userRole === 'STUDENT')
+      this.seatEmitter.next( this);
+
     if (this.exists) {
       if (this.ownedSeat == this.i)
         this.bntStyle = this.seatStatus['my'];
@@ -36,7 +41,7 @@ export class SeatComponent implements OnInit {
   }
 
   selectSeat() {
-    if (this.exists && this.ownedSeat != this.i && this.bntStyle === this.seatStatus['empty']) {
+    if (this.userRole === 'STUDENT' && this.exists && this.ownedSeat != this.i && this.bntStyle === this.seatStatus['empty']) {
       this.bntStyle = this.seatStatus['new'];
       this.updateSeat.emit(this.i);
       console.log("new selection: " + this.i);
@@ -44,7 +49,7 @@ export class SeatComponent implements OnInit {
   }
 
   unselectSeat() {
-    if (this.exists && this.ownedSeat != this.i)
+    if (this.userRole === 'STUDENT' && this.exists && this.ownedSeat != this.i)
         this.bntStyle = this.seatStatus['empty'];
   }
 }
