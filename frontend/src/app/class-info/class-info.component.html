@@ -5,7 +5,7 @@
         <h3 class="border-bottom p-2 mb-3">Seat Information</h3>
         <p class="text-sm mb-0">
           <i class="fa fa-book text-primary px-1" aria-hidden="true"></i>
-          <span class="font-weight-bold">5</span> courses taken
+          <span class="font-weight-bold">{{sectionsWithSeats?.length}}</span> courses taken
         </p>
       </div>
       <div class="card-body p-0 pb-2">
@@ -14,21 +14,33 @@
             <thead>
             <tr>
               <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Course</th>
+              <th class="text-uppercase text-secondary text-center text-xxs font-weight-bolder opacity-7">Section No</th>
+              <th class="text-uppercase text-secondary text-center text-xxs font-weight-bolder opacity-7">Instructor</th>
               <th class="text-uppercase text-secondary text-center text-xxs font-weight-bolder opacity-7">Seat No</th>
               <th class="text-uppercase text-secondary text-center text-xxs font-weight-bolder opacity-7">Seating Plan</th>
               <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"></th>
             </tr>
             </thead>
             <tbody>
-            <tr *ngFor="let i of [].constructor(3); let indexOfElements = index;">
+            <tr *ngFor="let section of sectionsWithSeats; let indexOfElements = index;">
               <td>
                 <div class="d-flex px-2 py-1 flex-column justify-content-center">
-                  <h6 class="ms-2 mb-0">CS-319</h6>
+                  <h6 class="ms-2 mb-0">{{section.section.courseName}}</h6>
                 </div>
               </td>
               <td>
                 <div class="d-flex py-1 flex-column justify-content-center text-center">
-                  <h6 class="mb-0 text-sm text-muted">A6</h6>
+                  <h6 class="mb-0 text-sm text-muted">{{section.section.sectionNo}}</h6>
+                </div>
+              </td>
+              <td>
+                <div class="d-flex py-1 flex-column justify-content-center text-center">
+                  <h6 class="mb-0 text-sm text-muted">{{section.section.academicPersonnel.user.name}}</h6>
+                </div>
+              </td>
+              <td>
+                <div class="d-flex py-1 flex-column justify-content-center text-center">
+                  <h6 class="mb-0 text-sm text-muted">--</h6>
                 </div>
               </td>
               <td>
@@ -37,7 +49,7 @@
                 </div>
               </td>
               <td class="align-middle text-center">
-                <app-seating-plan [i]="indexOfElements"></app-seating-plan>
+                <app-seating-plan [i]="indexOfElements" [sectionName]="sectionsWithSeats[indexOfElements].section.courseName + ' Sec.' + sectionsWithSeats[indexOfElements].section.sectionNo" [seating]="sectionsWithSeats[indexOfElements].seats"></app-seating-plan>
               </td>
             </tr>
 

@@ -10,13 +10,10 @@ import {InformationService} from "../Services/information.service";
   templateUrl: './seating-plan.component.html',
   styleUrls: ['./seating-plan.component.css']
 })
-export class SeatingPlanComponent implements OnInit, OnDestroy, AfterViewInit {
+export class SeatingPlanComponent implements OnInit, OnDestroy {
   @Input() i: number = -1;
-  seats: SeatComponent[] = [];
-  seatSubscriber: Subscription = new Subscription;
-  selectedSeat: number = -1;
-
-  seating: {
+  @Input() sectionName: string = '';
+  @Input() seating: {
     id: string,
     exists: boolean,
     row: number,
@@ -27,40 +24,36 @@ export class SeatingPlanComponent implements OnInit, OnDestroy, AfterViewInit {
         bilkentId: number
       }
     }
-  }[] = null;
+  }[] = [];
+  seats: SeatComponent[] = [];
+  seatSubscriber: Subscription = new Subscription;
+  ownedSeat: number = -1;
+  selectedSeat: number = -1;
 
-  constructor( private seatService: SeatService, private informationService:InformationService) { }
+  constructor( private seatService: SeatService) { }
 
   ngOnInit(): void {
-    console.log("seating plan")
-
-    // this.seatSubscriber = this.seatService.seatSub.subscribe(
-    //   seat => {
-    //     this.seats[seat.i] = seat;
-    //     console.log( seat.i);
-    //   }
-    // );
-  }
-
-  ngAfterViewInit() {
-    console.log("selected" + this.selectedSeat)
-    let section = {
-      "courseName": "CS319",
-      "sectionNo": (this.i == 1) ? 4 : 1
-    };
-
-    this.informationService.getSeatingPlan(section).pipe( take( 1)).subscribe( {
-      next: () => {
+    const userData = JSON.parse(localStorage.getItem(LocalStorageConstants.userData));
+    if (userData?.id && userData.id > -1)
+    for (let i = 0; i < this.seating.length; i++) {
+      if (this.seating[i]?.student?.user?.bilkentId == userData.id) {
+        this.ownedSeat = i;
+        break;
       }
-    });
-
-    const seatingPlan = JSON.parse( localStorage.getItem( LocalStorageConstants.seating));
-    if (seatingPlan) {
-      this.seating = seatingPlan;
     }
-
-    console.log("get seating length: " + this.seats.length)
   }
+
+  // ngAfterViewInit() {
+  //   console.log("selected" + this.selectedSeat)
+  //   let section = {
+  //     "courseName": "CS319",
+  //     "sectionNo": (this.i == 1) ? 4 : 1
+  //   };
+  //
+  //
+  //
+  //   console.log("get seating length: " + this.seats.length)
+  // }
 
   addSeatComponent(seat: SeatComponent) {
     this.seats[seat.i] = seat;
@@ -77,8 +70,13 @@ export class SeatingPlanComponent implements OnInit, OnDestroy, AfterViewInit {
 
     this.selectedSeat = seatNo;
     console.log(this.selectedSeat);
+
+    console.log("owned seat: " + this.ownedSeat)
   }
 
-  getSeatingPlan(): void {
+  resetSelection(): void {
+    if (this.selectedSeat != -1 && this.selectedSeat != this.ownedSeat)
+      this.seats[this.selectedSeat].unselectSeat();
+    this.selectedSeat = -1;
   }
 }
