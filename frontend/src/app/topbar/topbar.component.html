@@ -17,7 +17,7 @@
       <ul class="navbar-nav  justify-content-end">
         <li class="nav-item px-3 dropdown me-2 d-flex align-items-center">
           <a href="javascript:;" class="nav-link text-body p-0" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
-            <i class="fa fa-bell cursor-pointer"></i>
+            <i class="fa fa-bell cursor-pointer"><span class="text-sm font-monospace text-primary">{{notifications.length}}</span></i>
           </a>
           <ul class="dropdown-menu dropdown-menu-end  px-2 py-3 me-sm-n4" *ngIf="notifications" aria-labelledby="dropdownMenuButton">
             <li *ngFor="let notification of notifications">
@@ -26,7 +26,10 @@
 <!--                    <img src="/assets/img/efe.jpg" class="avatar avatar-sm  me-3 ">-->
 <!--                  </div>-->
                     <h6 class="text-sm font-weight-normal mb-1 text-wrap">
-                      <span class="font-weight-bold overflow">{{ notification.title }}</span>
+                      <div class="d-flex">
+                        <span class="font-weight-bold flex-grow-1">{{ notification.title }}</span>
+                        <a class="btn-outline-danger"><i class="fa fa-minus-circle"></i></a>
+                      </div>
                       <p class="text-sm text-muted font-weight-light">{{ notification.message }}</p>
                     </h6>
 <!--                    <p class="text-xs text-secondary mb-0">-->
