@@ -12,9 +12,18 @@ export class TopbarComponent implements OnInit {
   role: string = "";
   roleIcon: string = "";
 
+  notifications: {
+    message: string,
+    title: string
+  }[] = null;
+
   constructor( private loginService: LoginService) { }
 
   ngOnInit(): void {
+    const notificationsArray = JSON.parse( localStorage.getItem(LocalStorageConstants.notifications));
+    if ( notificationsArray) {
+      this.notifications = notificationsArray;
+    }
     switch ( this.userRole) {
       case ( 'STUDENT'):
         this.role = "Student";
