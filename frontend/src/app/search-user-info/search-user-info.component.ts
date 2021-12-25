@@ -58,6 +58,7 @@ export class SearchUserInfoComponent implements OnInit {
 
     this.informationService.addTestResult(test).subscribe( () => {
       form.reset();
+      window.location.reload();
     });
   }
 }
