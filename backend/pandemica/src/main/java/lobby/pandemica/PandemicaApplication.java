@@ -41,8 +41,7 @@ public class PandemicaApplication {
 						  VaccineInformationService vaccineInformationService,
 						  StudentRepository studentRepository,
 						  UserRepository userRepository,
-						  AnnouncementService announcementService,
-						  VaccineInformationService vaccineInformationService) {
+						  AnnouncementService announcementService) {
 		return args -> {
 			Integer dummyAge = 0;
 			UserDto userDto1 = new UserDto(UUID.randomUUID(),"Mert Barkın Er", "password",
