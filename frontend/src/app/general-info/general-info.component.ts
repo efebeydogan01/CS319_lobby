@@ -9,11 +9,12 @@ import { take } from 'rxjs';
   templateUrl: './general-info.component.html',
   styleUrls: ['./general-info.component.css']
 })
+// This component shows all the information about the situation of the pandemic in the university
 export class GeneralInfoComponent implements OnInit {
-
 
   userRole:string = "";
 
+  // The cases are categorized as academic, admin, staff, student and vaccination rates
   generalInfo: {
     announcements: {
       id: string,
@@ -74,6 +75,7 @@ export class GeneralInfoComponent implements OnInit {
             this.informationService.getNotifications( userData.id).subscribe( {
               next: () => {
                 this.generalInfo = JSON.parse( localStorage.getItem( LocalStorageConstants.generalInfo));
+                // page is reloaded after data is received so the user can see updated info
                 window.location.reload();
               },
             });
