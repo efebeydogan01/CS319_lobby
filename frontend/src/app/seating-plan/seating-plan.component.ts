@@ -79,4 +79,8 @@ export class SeatingPlanComponent implements OnInit, OnDestroy {
       this.seats[this.selectedSeat].unselectSeat();
     this.selectedSeat = -1;
   }
+
+  saveSelection(): void {
+
+  }
 }
