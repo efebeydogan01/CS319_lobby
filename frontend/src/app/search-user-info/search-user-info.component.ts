@@ -16,21 +16,24 @@ export class SearchUserInfoComponent implements OnInit {
   date = new Date();
 
   covidInformations: {
-    allowedOnCampus: boolean,
-    hesCode: string,
-    id: string,
-    status: string,
-    user: {
-      age: number,
-      bilkentId: number,
-      dateOfBirth: string,
-      id: number,
-      name: string,
-      password: string,
-      phoneNumber: string,
-      role: string
-    }
-  } [] = null;
+    covidInformation: {
+      allowedOnCampus: boolean,
+      hesCode: string,
+      id: string,
+      status: string,
+      user: {
+        age: number,
+        bilkentId: number,
+        dateOfBirth: string,
+        id: number,
+        name: string,
+        password: string,
+        phoneNumber: string,
+        role: string
+      }
+    },
+    vaccinationCount: number
+  }[] = null;
 
   constructor(private informationService: InformationService) { }
 
