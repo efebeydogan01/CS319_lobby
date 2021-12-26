@@ -1,0 +1,50 @@
+<div class="row">
+  <div class="col-12 mb-4">
+    <div class="card">
+      <div class="card-header pb-4">
+        <h3 class="border-bottom p-2 mb-3">Seat Information</h3>
+        <p class="text-sm mb-0">
+          <i class="fa fa-book text-primary px-1" aria-hidden="true"></i>
+          <span class="font-weight-bold">{{sectionsWithSeats?.length}}</span> courses taken
+        </p>
+      </div>
+      <div class="card-body p-0 pb-2">
+        <div class="table-responsive">
+          <table class="table align-items-center mb-0">
+            <thead>
+            <tr>
+              <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Course</th>
+              <th class="text-uppercase text-secondary text-center text-xxs font-weight-bolder opacity-7">Section No</th>
+              <th class="text-uppercase text-secondary text-center text-xxs font-weight-bolder opacity-7">Instructor</th>
+              <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let section of sectionsWithSeats; let indexOfElements = index;">
+              <td>
+                <div class="d-flex px-2 py-1 flex-column justify-content-center">
+                  <h6 class="ms-2 mb-0">{{section.section.courseName}}</h6>
+                </div>
+              </td>
+              <td>
+                <div class="d-flex py-1 flex-column justify-content-center text-center">
+                  <h6 class="mb-0 text-sm text-muted">{{section.section.sectionNo}}</h6>
+                </div>
+              </td>
+              <td>
+                <div class="d-flex py-1 flex-column justify-content-center text-center">
+                  <h6 class="mb-0 text-sm text-muted">{{section.section.academicPersonnel.user.name}}</h6>
+                </div>
+              </td>
+              <td class="align-middle text-center">
+                <app-seating-plan *ngIf="userRole === 'STUDENT'" [i]="indexOfElements" [courseName]="sectionsWithSeats[indexOfElements].section.courseName" [sectionNo]="sectionsWithSeats[indexOfElements].section.sectionNo" [seating]="sectionsWithSeats[indexOfElements].seats"></app-seating-plan>
+                <app-instructor-seating-plan *ngIf="userRole === 'ACADEMIC_PERSONNEL'" [i]="indexOfElements" [courseName]="sectionsWithSeats[indexOfElements].section.courseName" [sectionNo]="sectionsWithSeats[indexOfElements].section.sectionNo" [seating]="sectionsWithSeats[indexOfElements].seats"></app-instructor-seating-plan>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

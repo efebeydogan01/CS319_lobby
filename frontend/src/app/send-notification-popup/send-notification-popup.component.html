@@ -1,0 +1,55 @@
+<div class="modal fade" id="sendNotificationPopUp" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-backdrop="static">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Send Notification</h5>
+      </div>
+      <div class="modal-body">
+        <form #sendNotificationForm="ngForm" role="form" class="p-2">
+          <label for="exampleFormControlTextarea1" class="form-label pe-2">Receivers</label>
+          <div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1" [checked]="toAll" (change)="toAll = !toAll">
+              <label class="form-check-label" for="inlineCheckbox1">All</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2" [disabled]="toAll" [checked]="toStudent" (change)="toStudent = !toStudent">
+              <label class="form-check-label" for="inlineCheckbox2">Students</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3" [disabled]="toAll" [checked]="toAcademic" (change)="toAcademic = !toAcademic">
+              <label class="form-check-label" for="inlineCheckbox3">Academic Personnel</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="checkbox" id="inlineCheckbox4" value="option4" [disabled]="toAll" [checked]="toHealthCenter" (change)="toHealthCenter = !toHealthCenter">
+              <label class="form-check-label" for="inlineCheckbox4">Health Center Employees</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="checkbox" id="inlineCheckbox5" value="option5" [disabled]="toAll" [checked]="toAdmins" (change)="toAdmins = !toAdmins">
+              <label class="form-check-label" for="inlineCheckbox5">Admins</label>
+            </div>
+<!--            <div class="form-check form-check-inline">-->
+<!--              <input class="form-check-input" type="checkbox" id="inlineCheckbox6" value="option6" [checked]="toOther"  [disabled]="toAll" (change)="toOther = !toOther">-->
+<!--              <label class="form-check-label" for="inlineCheckbox6">Other</label>-->
+<!--            </div>-->
+<!--            <label for="exampleFormControlTextarea1" class="form-label pe-2" *ngIf="toOther">Receiver Ids</label>-->
+<!--            <input class="form-control" id="exampleFormControlTextarea1" *ngIf="toOther"/>-->
+          </div>
+          <div class="my-3">
+            <label for="exampleFormControlTextarea1" class="form-label">Notification Title</label>
+            <input #notificationTitle="ngModel" ngModel name="notificationTitle" required class="form-control" id="exampleFormControlTextarea1"/>
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">Notification Message</label>
+            <textarea #notificationMessage="ngModel" ngModel name="notificationMessage" required class="form-control" id="exampleInputPassword1" rows="3"></textarea>
+          </div>
+        </form>
+        <span class="text-danger ps-2 text-sm" *ngIf="(notificationTitle.touched || notificationMessage.touched) && (!notificationTitle.valid || !notificationMessage.valid)">Please don't leave a field empty!</span>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-sm btn-secondary" data-bs-dismiss="modal">Cancel</button>
+        <button type="submit" [disabled]="!sendNotificationForm.valid || (!toAll && !toAdmins && !toHealthCenter && !toStudent && !toAcademic)" class="btn btn-sm btn-primary" data-bs-dismiss="modal" (click)="sendNotification(notificationTitle.value, notificationMessage.value, sendNotificationForm)">Send</button>
+      </div>
+    </div>
+  </div>
+</div>

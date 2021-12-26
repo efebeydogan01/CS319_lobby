@@ -1,0 +1,26 @@
+.square {
+  float:left;
+  position: relative;
+  width: 8.3%;
+  padding-bottom : 8.3%; /* = width for a 1:1 aspect ratio */
+  margin: 0.85%;
+  background-color: white;
+  background-position:center center;
+  background-repeat:no-repeat;
+}
+
+.bg-faded-success {
+  background-color: rgba(130,214,22,0.61);
+}
+
+/*This is modifying the btn-primary colors but you could create your own .btn-something class as well*/
+.btn-white {
+  color: #fff;
+  background-color: white;
+  border-color: white; /*set the color you want here*/
+}
+.btn-white:hover, .btn-white:focus, .btn-white:active, .btn-white.active, .open>.dropdown-toggle.btn-white {
+  color: white;
+  background-color: lightyellow;
+  border-color: white; /*set the color you want here*/
+}

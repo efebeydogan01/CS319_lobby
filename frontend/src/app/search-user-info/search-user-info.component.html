@@ -1,0 +1,111 @@
+<div class="row mt-0 mb-4">
+  <div>
+    <div class="card mb-4">
+      <div class="card-header pb-2">
+        <h4 class="text-muted p-2 mb-0">Search User Information</h4>
+        <a class="align-middle text-start text-sm ps-2"  routerLink="/personal-info">Go Back</a>
+      </div>
+      <div class="card-header border-top mt-2 pt-3 pb-0">
+      </div>
+      <div class="card-body px-0 pt-0 pb-2">
+        <div class="form-group pull-right px-3 mb-0">
+          <input type="search" class="form-control" [(ngModel)]="term" name="searchbar" autocomplete="on" placeholder="Search for user">
+        </div>
+        <div class="table-responsive p-0 pt-3">
+          <table class="table table-hover align-items-center mb-0">
+            <thead class="border-top">
+            <tr>
+              <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Name</th>
+              <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Id</th>
+              <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Role</th>
+              <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Covid Status</th>
+              <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Date of status update</th>
+              <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Vaccination Status</th>
+              <th class="text-secondary opacity-7"></th>
+              <th class="text-secondary opacity-7" *ngIf="userRole === 'ADMIN'"></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let covidInfo of filter(); let i = index;">
+              <td>
+                <div class="d-flex px-2 py-1">
+                  <div class="d-flex flex-column justify-content-center">
+                    <h6 class="mb-0 text-sm">{{covidInfo.covidInformation.user.name}}</h6>
+                  </div>
+                </div>
+              </td>
+              <td class="align-middle text-center">
+                <span class="text-secondary text-xs font-weight-bold">{{covidInfo.covidInformation.user.bilkentId}}</span>
+              </td>
+              <td class="align-middle text-center">
+                <span class="text-secondary text-xs font-weight-bold">{{covidInfo.covidInformation.user.role}}</span>
+              </td>
+              <td class="align-middle text-center text-sm">
+                <span class="badge badge-sm bg-gradient-danger" *ngIf="covidInfo.covidInformation.status === 'POSITIVE'">{{covidInfo.covidInformation.status}}</span>
+                <span class="badge badge-sm bg-gradient-warning" *ngIf="covidInfo.covidInformation.status === 'RISKY'">{{covidInfo.covidInformation.status}}</span>
+                <span class="badge badge-sm bg-gradient-success" *ngIf="covidInfo.covidInformation.status === 'NEGATIVE'">{{covidInfo.covidInformation.status}}</span>
+              </td>
+              <td class="align-middle text-center">
+                <span class="text-secondary text-xs font-weight-bold">{{date}}</span>
+              </td>
+              <td class="align-middle text-center text-sm">
+                <span class="badge badge-sm bg-gradient-success" *ngIf="covidInfo.vaccinationCount >= 2">Fully Vaccinated</span>
+                <span class="badge badge-sm bg-gradient-warning" *ngIf="covidInfo.vaccinationCount === 1">Partially Vaccinated</span>
+                <span class="badge badge-sm bg-gradient-danger" *ngIf="covidInfo.vaccinationCount === 0">Unvaccinated</span>
+              </td>
+              <td class="align-middle" *ngIf="userRole === 'ADMIN'">
+                <a class="btn btn-xs btn-outline-secondary mb-0 p-1 px-3">edit</a>
+              </td>
+              <td class="align-middle" *ngIf="userRole === 'ADMIN'">
+                <a class="btn btn-xs btn-outline-danger mb-0 p-1 px-3">remove</a>
+              </td>
+              <td class="align-middle" *ngIf="userRole === 'MEDICAL_EMPLOYEE'">
+                <a class="btn btn-xs btn-outline-secondary mb-0 p-1 px-3" data-bs-toggle="modal" [attr.data-bs-target]="'#enterTestResult' + i">enter test result</a>
+                <div class="modal fade" [id]="'enterTestResult' + i" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
+                  <div class="modal-dialog modal-dialog-centered">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="exampleModalLabel">Enter test result</h5>
+                        </div>
+                        <div class="modal-body">
+                          <form #enterTestResultForm="ngForm" role="form" class="p-2">
+                            <div class="mb-3">
+                              <label>Test Result</label>
+                              <select #testResult="ngModel" ngModel name="testResult" required class="form-control" id="testResult">
+                                <option value="Positive">Positive</option>
+                                <option value="Negative">Negative</option>
+                              </select>
+                            </div>
+                            <div class="my-3">
+                              <label>Test Type</label>
+                              <select #testType="ngModel" ngModel name="testType" required class="form-control" id="testType">
+                                <option value="PCR">PCR</option>
+                                <option value="Diagnovir">Diagnovir</option>
+                              </select>
+                            </div>
+                            <div class="my-3">
+                              <label for="exampleInputEmail1" class="form-label">Test Date</label>
+                              <input type="datetime-local" #testDate="ngModel" ngModel name="testDate" required class="form-control" id="testDate">
+                            </div>
+                          </form>
+                          <span class="text-danger ps-2 text-sm" *ngIf="(testResult.touched && !testResult.valid) ||( testDate.touched && !testDate.valid) || (testType.touched && !testType.valid)">Please don't leave a field empty!</span>
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-sm btn-secondary" data-bs-dismiss="modal" (click)="enterTestResultForm.reset()">Cancel</button>
+                          <button type="submit" [disabled]="!enterTestResultForm.valid" class="btn btn-sm btn-primary" data-bs-dismiss="modal" (click)="addTestResult( covidInfo.covidInformation.user, testResult.value, testType.value, testDate.value, enterTestResultForm)">Add Result</button>
+                        </div>
+                    </div>
+                  </div>
+                </div>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="card-footer px-4 pb-2">
+          <div class="text-muted text-xs">Showing <b>{{filteredResults}}</b> out of <b>{{covidInformations?.length}}</b> users</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
