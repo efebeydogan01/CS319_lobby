@@ -113,7 +113,7 @@ public class AnnouncementServiceImpl extends BaseServiceImpl<Announcement, Annou
 				case "ADMIN":
 					adminCases++;
 					break;
-				case "STAFF":
+				case "MEDICAL_EMPLOYEE":
 					staffCases++;
 					break;
 				case "STUDENT":
