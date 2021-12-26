@@ -189,7 +189,7 @@ public class SeatServiceImpl extends BaseServiceImpl<Seat, SeatDto> implements S
                 }
             }
         }
-        if((newRightNeighborColumnNo <= maxColumn) && classroom[newRightNeighborRowNo][newRightNeighborColumnNo])
+        if((newRightNeighborColumnNo < maxColumn) && classroom[newRightNeighborRowNo][newRightNeighborColumnNo])
         {
             //add right neighbor if it exists
             Optional<Seat> rightSeat = seatRepository.findBySectionIdAndRowAndColumn(sectionEntity.getId(), newRightNeighborRowNo, newRightNeighborColumnNo);

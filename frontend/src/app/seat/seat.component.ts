@@ -22,6 +22,7 @@ export class SeatComponent implements OnInit {
   @Output("updateSeat") updateSeat: EventEmitter<number> = new EventEmitter<number>();
   @Output( "seatEmitter") seatEmitter: EventEmitter<SeatComponent> = new EventEmitter<SeatComponent>();
   userRole: string = JSON.parse( localStorage.getItem( LocalStorageConstants.userData)).role;
+  tooltip: string = '';
 
   constructor() {
   }
@@ -38,6 +39,7 @@ export class SeatComponent implements OnInit {
       else
         this.bntStyle = this.seatStatus['empty'];
     }
+    if (this.seatOwner) { if (this.userRole === 'ACADEMIC_PERSONNEL') this.tooltip = this.seatOwner.name + ' ' + this.seatOwner.bilkentId; else if (this.userRole === 'STUDENT' && (this.i - this.ownedSeat == 1 && this.i % 10 != 0 || this.i - this.ownedSeat == -1 && this.i % 10 != 9)) this.tooltip = this.seatOwner.name; }
   }
 
   selectSeat() {
